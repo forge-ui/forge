@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FeedbackKitExamples } from "../_admin-kit-examples";
 import { PageHeading, Section } from "../_shared";
 import { AdditionalComponentApi } from "../_additional-component-api";
 
@@ -18,6 +19,7 @@ export default function FeedbackPage() {
           。
         </p>
       </Section>
+      <FeedbackKitExamples />
       <AdditionalComponentApi family="feedback" />
     </div>
   );

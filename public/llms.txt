@@ -1,6 +1,6 @@
 # Forge UI
 
-> Forge 是面向中文后台的 React 组件库 @forge-ui-official/core@0.10.1（Next.js、React 19、Tailwind v4）。包含组件、70 个可复制的页面组件（blocks）、多页业务模板和 Next.js 起点仓库，以及给编码助手用的 Skill、MCP 服务器和 DESIGN.md。
+> Forge 是面向中文后台的 React 组件库 @forge-ui-official/core@0.11.1（Next.js、React 19、Tailwind v4）。包含组件、70 个可复制的页面组件（blocks）、多页业务模板和 Next.js 起点仓库，以及给编码助手用的 Skill、MCP 服务器和 DESIGN.md。
 
 使用要点：
 - 先找最接近的模板页面（Screen）或页面组件（Block），再查组件 API：Screen → Blocks → Components。
@@ -31,14 +31,14 @@
 
 - [设计规范](https://www.forgeui.org/components/style-guide.md): ColorSwatch、ColorSection、TypefaceBlock、TypographyWeightSample、TypographySizeRow
 - [按钮与链接](https://www.forgeui.org/components/button-link.md): Button、IconButton、StyledLink、ButtonGroup
-- [表单与输入](https://www.forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Datepicker、RadioButton
+- [表单与输入](https://www.forgeui.org/components/input-field.md): TextField、TextArea、SelectOption、Combobox、Autocomplete
 - [筛选](https://www.forgeui.org/components/filter.md): FilterGroup、FilterTrigger、FilterPanel
 - [数据表格](https://www.forgeui.org/components/table.md): DataTable、CellActions、StatusBadge、CellTextSubtitle、CellText
 - [图表](https://www.forgeui.org/components/chart.md): DonutChart、ChartCard、ChartListItem、ChartTooltip、ChartLegendItem
 - [列表](https://www.forgeui.org/components/list.md): ListItem、DescriptionItem、ListGroup、Label、ContactItem
 - [卡片](https://www.forgeui.org/components/card.md): LineChartStatCard、StatCard、ProgressStatCard、ImageStatCard、WheelChartStatCard
 - [徽章与标签](https://www.forgeui.org/components/badge.md): NotificationBadge、Label、CircleIcon、ArtisticIcon
-- [实用组件](https://www.forgeui.org/components/other-widget.md): CurrencyConverter、RatingStars、ImageGrid、ProductRow
+- [实用组件](https://www.forgeui.org/components/other-widget.md): ScrollArea、CurrencyConverter、RatingStars、ImageGrid、ProductRow
 - [日历与日程](https://www.forgeui.org/components/calendar.md): CalendarCard、EventTag、CalendarDayCell、EventCard、SmallCalendar
 - [地图](https://www.forgeui.org/components/map.md): MapCard
 - [文件展示](https://www.forgeui.org/components/file-type.md): FileTypeIcon、FileCard
@@ -49,15 +49,15 @@
 - [进度](https://www.forgeui.org/components/progress.md): ProgressBar
 - [消息反馈](https://www.forgeui.org/components/feedback.md)
 - [确认弹窗](https://www.forgeui.org/components/modal.md): ConfirmationDialog
-- [提示气泡](https://www.forgeui.org/components/tooltip.md): TooltipBubble、TooltipAnchor、Tooltip
+- [提示气泡](https://www.forgeui.org/components/tooltip.md): PreviewCard、Avatar、TooltipBubble、TooltipAnchor、Tooltip
 - [菜单](https://www.forgeui.org/components/menu.md): MenuItem、DropdownPanel、DropdownDivider、IconTrigger、KebabMenu
-- [页签与切换](https://www.forgeui.org/components/tab.md): TabBar
+- [页签与切换](https://www.forgeui.org/components/tab.md): TabBar、ToggleGroup
 - [分页与步骤](https://www.forgeui.org/components/pagination-stepper.md): Pagination、Stepper、PageDot
 - [页面顶栏](https://www.forgeui.org/components/page-header.md): AppLayout、PageHeader、Breadcrumbs、AskAi、ChatInputBar
 - [工具栏](https://www.forgeui.org/components/toolbar.md): ToolbarSelectDropdown、ToolbarSearchInput、Toolbar、ToolbarShowSelect、PageTitleToolbar
 - [布局栅格](https://www.forgeui.org/components/grid.md): Grid、GridItem、StatCard
 - [应用布局](https://www.forgeui.org/components/menu-sections.md): AppLayout
-- [折叠面板](https://www.forgeui.org/components/accordion.md)
+- [折叠面板](https://www.forgeui.org/components/accordion.md): Collapsible
 
 ## 页面组件
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { AnchoredPanel } from "./anchored-panel";
 import { AddCircleLinear, CloseCircleLinear, MicrophoneLinear } from "../icons";
 import { useReducedMotion } from "./motion";
 import type { MotionPreference } from "../lib/motion";
@@ -14,24 +15,17 @@ export function ChatReactions({ reactions, options, onChange, locale, motion }: 
 }) {
   const [open, setOpen] = useState(false);
   const [cursor, setCursor] = useState(0);
-  const root = useRef<HTMLDivElement>(null), trigger = useRef<HTMLButtonElement>(null);
-  const id = useId();
   const reduced = useReducedMotion(motion);
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
-    document.addEventListener("pointerdown", close);
-    return () => document.removeEventListener("pointerdown", close);
-  }, [open]);
-  return <div ref={root} className="forge-chat-reactions relative flex flex-wrap gap-1.5" data-motion={reduced ? "none" : motion} onKeyDown={event => {
-    if (event.key === "Escape" && open) { event.preventDefault(); event.stopPropagation(); setOpen(false); trigger.current?.focus(); }
-  }}>
+  const label = locale === "zh" ? "选择反应" : "Choose a reaction";
+  return <div className="forge-chat-reactions relative flex flex-wrap gap-1.5" data-motion={reduced ? "none" : motion}>
     {reactions.filter(item => item.count > 0).map(item => <button key={item.id} type="button" aria-pressed={Boolean(item.selected)} aria-label={`${item.label} · ${item.count}`} onClick={() => onChange(item.id)} className="forge-chat-reaction inline-flex min-h-8 items-center gap-1 rounded-lg border border-fg-grey-200 bg-background px-2 text-xs text-fg-black"><span aria-hidden>{item.content}</span>{item.count}</button>)}
-    {options.length > 0 && <button ref={trigger} type="button" className="rounded-lg p-1 text-fg-grey-700" aria-label={locale === "zh" ? "添加反应" : "Add reaction"} aria-haspopup="dialog" aria-expanded={open} aria-controls={id} onClick={() => { setOpen(!open); setCursor(0); }}><AddCircleLinear size={20} /></button>}
-    {open && <div id={id} role="dialog" aria-label={locale === "zh" ? "选择反应" : "Choose a reaction"} className="forge-chat-reaction-picker absolute bottom-full left-0 z-20 mb-2 grid w-64 max-w-[calc(100vw-3rem)] grid-cols-6 gap-1 rounded-xl border border-fg-grey-200 bg-background p-2 shadow-sm" onKeyDown={event => {
-      const delta = ({ ArrowRight: 1, ArrowLeft: -1, ArrowDown: 6, ArrowUp: -6 } as Record<string, number>)[event.key];
-      if (delta !== undefined) { event.preventDefault(); const next = ((cursor + delta) % options.length + options.length) % options.length; setCursor(next); event.currentTarget.querySelectorAll<HTMLButtonElement>("button")[next]?.focus(); }
-    }}>{options.map((item, index) => <button key={item.id} type="button" autoFocus={index === 0} tabIndex={cursor === index ? 0 : -1} onFocus={() => setCursor(index)} aria-label={item.label} className="h-9 w-full min-w-0 rounded-lg text-lg hover:bg-fg-grey-100" onClick={() => { onChange(item.id); setOpen(false); trigger.current?.focus(); }}>{item.content}</button>)}</div>}
+    {options.length > 0 && <AnchoredPanel open={open} onOpenChange={next => { setOpen(next); if (next) setCursor(0); }} side="top" align="start" label={label}
+      trigger={<button type="button" className="rounded-lg p-1 text-fg-grey-700" aria-label={locale === "zh" ? "添加反应" : "Add reaction"}><AddCircleLinear size={20} /></button>}>
+      <div className="forge-chat-reaction-picker grid w-64 max-w-[calc(100vw-3rem)] grid-cols-6 gap-1 rounded-xl border border-fg-grey-200 bg-background p-2 shadow-sm" onKeyDown={event => {
+        const delta = ({ ArrowRight: 1, ArrowLeft: -1, ArrowDown: 6, ArrowUp: -6 } as Record<string, number>)[event.key];
+        if (delta !== undefined) { event.preventDefault(); const next = ((cursor + delta) % options.length + options.length) % options.length; setCursor(next); event.currentTarget.querySelectorAll<HTMLButtonElement>("button")[next]?.focus(); }
+      }}>{options.map((item, index) => <button key={item.id} type="button" tabIndex={cursor === index ? 0 : -1} onFocus={() => setCursor(index)} aria-label={item.label} className="h-9 w-full min-w-0 rounded-lg text-lg hover:bg-fg-grey-100" onClick={() => { onChange(item.id); setOpen(false); }}>{item.content}</button>)}</div>
+    </AnchoredPanel>}
   </div>;
 }
 

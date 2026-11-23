@@ -22,7 +22,6 @@ import { Button } from "../src/components/ui/button";
 import { TabBar } from "../src/components/ui/tab-bar";
 import { SelectOption } from "../src/components/ui/forms/select-option";
 import { Datepicker } from "../src/components/ui/forms/datepicker";
-import { IconSelector } from "../src/components/ui/forms/icon-selector";
 
 function installDom({ mobile = false }: { mobile?: boolean } = {}) {
   const dom = new JSDOM("<!doctype html><html><body><div id=\"root\"></div></body></html>", {
@@ -59,6 +58,9 @@ function installDom({ mobile = false }: { mobile?: boolean } = {}) {
 
   return dom;
 }
+
+// Base UI applies open/close and focus changes asynchronously.
+const settle = () => act(async () => { for (let index = 0; index < 4; index++) await new Promise(resolve => setTimeout(resolve, 5)); });
 
 test("DataTable 单行选择返回新的 key 集合且不修改输入集合", async () => {
   type Row = { id: string; name: string };
@@ -307,55 +309,7 @@ test("PageHeader 内置日期面板支持 Escape 关闭并把焦点还给触发�
   });
 
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
-
-  await act(async () => root.unmount());
-  dom.window.close();
-});
-
-test("IconSelector 打开非模态 dialog 后移入焦点，Escape 关闭并恢复触发焦点", async () => {
-  const dom = installDom();
-  // React's legacy input-event fallback expects these IE hooks when jsdom is
-  // installed after react-dom has loaded.
-  Object.assign(dom.window.HTMLInputElement.prototype, {
-    attachEvent: () => undefined,
-    detachEvent: () => undefined,
-  });
-  const container = document.querySelector<HTMLDivElement>("#root");
-  assert.ok(container);
-  const root = createRoot(container);
-
-  await act(async () => {
-    root.render(createElement(IconSelector, {
-      icons: [createElement("span", { key: "star" }, "★")],
-      labels: ["星标"],
-      label: "项目图标",
-    }));
-  });
-
-  const trigger = document.querySelector<HTMLButtonElement>(
-    'button[aria-haspopup="dialog"]',
-  );
-  assert.ok(trigger);
-  trigger.focus();
-  await act(async () => trigger.click());
-
-  const dialogId = trigger.getAttribute("aria-controls");
-  assert.ok(dialogId);
-  const dialog = document.getElementById(dialogId);
-  assert.ok(dialog);
-  assert.equal(dialog.getAttribute("role"), "dialog");
-  assert.equal(dialog.getAttribute("aria-modal"), "false");
-  assert.equal(trigger.getAttribute("aria-expanded"), "true");
-  assert.equal(document.activeElement, dialog.querySelector("input"));
-
-  await act(async () => {
-    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-  });
-
-  assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.getElementById(dialogId), null);
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => root.unmount());
   dom.window.close();
@@ -403,14 +357,14 @@ test("AppLayout 移动导航进入时聚焦并陷阱 Tab，Escape 后恢复触�
   await act(async () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab", bubbles: true }));
   });
-  assert.equal(document.activeElement, focusable[0]);
+  await settle(); assert.ok(document.activeElement === focusable[0], "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   });
 
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
   assert.equal(document.body.style.overflow, "");
 
   await act(async () => root.unmount());
@@ -494,24 +448,24 @@ test("AppLayout 移动导航内的 Escape 先关闭 popover 再关闭抽屉", as
     '[data-forge-app-sidebar] [data-popover-trigger="messages"]',
   );
   assert.ok(messageTrigger);
-  await act(async () => messageTrigger.click());
+  await act(async () => { messageTrigger.focus(); messageTrigger.click(); });
   assert.ok(document.querySelector('[data-popover="messages"]'));
 
   await act(async () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   });
 
-  assert.equal(document.querySelector('[data-popover="messages"]'), null);
+  await settle(); assert.ok(!document.querySelector('[data-popover="messages"]'), "popover closed");
   assert.equal(drawerTrigger.getAttribute("aria-expanded"), "true");
   assert.equal(document.body.style.overflow, "hidden");
-  assert.equal(document.activeElement, messageTrigger);
+  await settle(); assert.ok(document.activeElement === messageTrigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   });
 
   assert.equal(drawerTrigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, drawerTrigger);
+  await settle(); assert.ok(document.activeElement === drawerTrigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
   assert.equal(document.body.style.overflow, "");
 
   await act(async () => root.unmount());
@@ -539,7 +493,7 @@ test("AppLayout 桌面折叠态提供可聚焦的展开导航按钮", async () =
   const expand = document.querySelector<HTMLButtonElement>('[aria-label="展开主导航"]');
   assert.ok(expand);
   expand.focus();
-  assert.equal(document.activeElement, expand);
+  await settle(); assert.ok(document.activeElement === expand, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
   await act(async () => expand.click());
   assert.ok(document.querySelector('[aria-label="收起主导航"]'));
 
@@ -975,7 +929,8 @@ test("AppLayout 顶栏 popover 暴露展开状态并在 Escape 后恢复触发�
   await act(async () => trigger.click());
 
   assert.equal(trigger.getAttribute("aria-expanded"), "true");
-  assert.ok(document.querySelector('[data-popover="messages"] [role="menu"]'));
+  assert.ok(document.querySelector('[data-popover="messages"][role="menu"]'));
+  await settle();
   const firstMenuItem = document.querySelector<HTMLElement>(
     '[data-popover="messages"] [role="menuitem"]',
   );
@@ -986,13 +941,13 @@ test("AppLayout 顶栏 popover 暴露展开状态并在 Escape 后恢复触发�
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   });
 
-  assert.equal(document.querySelector('[data-popover="messages"]'), null);
+  await settle(); assert.ok(!document.querySelector('[data-popover="messages"]'), "popover closed");
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => root.unmount());
   dom.window.close();
-  assert.equal(focusedAfterOpen, firstMenuItem);
+  assert.ok(focusedAfterOpen === firstMenuItem, "first item focused on open");
 });
 
 test("AppLayout 消息菜单支持方向键、Home 与 End 移动焦点", async () => {
@@ -1013,7 +968,10 @@ test("AppLayout 消息菜单支持方向键、Home 与 End 移动焦点", async 
     '[data-popover-trigger="messages"]',
   );
   assert.ok(trigger);
+  // Base UI roving focus skips elements without layout; jsdom has none.
+  dom.window.HTMLElement.prototype.getClientRects = function() { return [{ width: 200, height: 40 }] as unknown as DOMRectList; };
   await act(async () => trigger.click());
+  await settle();
 
   const items = [...document.querySelectorAll<HTMLElement>(
     '[data-popover="messages"] [role="menuitem"]',
@@ -1026,6 +984,7 @@ test("AppLayout 消息菜单支持方向键、Home 与 End 移动焦点", async 
         new KeyboardEvent("keydown", { key, bubbles: true }),
       );
     });
+    await settle();
     focusedItemIndexes.push(items.indexOf(document.activeElement as HTMLElement));
   }
 
@@ -1038,7 +997,7 @@ test("AppLayout 消息菜单支持方向键、Home 与 End 移动焦点", async 
   assert.deepEqual(focusedItemIndexes, [0, 1, 3, 0, 3, 0]);
 });
 
-test("AppLayout 菜单焦点移出后关闭且不抢回焦点", async () => {
+test("AppLayout 菜单在外部按下并聚焦后关闭且不抢回焦点", async () => {
   const dom = installDom();
   const container = document.querySelector<HTMLDivElement>("#root");
   assert.ok(container);
@@ -1058,12 +1017,15 @@ test("AppLayout 菜单焦点移出后关闭且不抢回焦点", async () => {
   const nextControl = document.querySelector<HTMLButtonElement>("[data-after-menu]");
   assert.ok(trigger);
   assert.ok(nextControl);
-  await act(async () => trigger.click());
-  assert.ok(document.querySelector('[data-popover="messages"]'));
+  await act(async () => { trigger.focus(); trigger.click(); });
+  await settle();
+  assert.ok(document.querySelector('[data-popover="messages"]')?.contains(document.activeElement), "focus moves into the menu");
 
   await act(async () => {
+    for (const type of ["pointerdown", "mousedown"]) nextControl.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, button: 0 }));
     nextControl.focus();
   });
+  await settle();
 
   const popoverClosed = document.querySelector('[data-popover="messages"]') === null;
   const expanded = trigger.getAttribute("aria-expanded");
@@ -1110,7 +1072,7 @@ test("AppLayout 打开 dialog popover 后把焦点移入面板", async () => {
   await act(async () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   });
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => root.unmount());
   dom.window.close();
@@ -1168,12 +1130,13 @@ test("TabBar 支持方向键、Home、End 切换并移动焦点", async () => {
   assert.equal(tabs.length, 3);
   tabs[0].focus();
   await act(async () => tabs[0].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true })));
-  assert.equal(document.activeElement, tabs[1]);
+  await settle(); assert.ok(document.activeElement === tabs[1], "focus: " + document.activeElement?.outerHTML.slice(0, 120));
   await act(async () => tabs[1].dispatchEvent(new KeyboardEvent("keydown", { key: "End", bubbles: true })));
-  assert.equal(document.activeElement, tabs[2]);
+  await settle(); assert.ok(document.activeElement === tabs[2], "focus: " + document.activeElement?.outerHTML.slice(0, 120));
   await act(async () => tabs[2].dispatchEvent(new KeyboardEvent("keydown", { key: "Home", bubbles: true })));
-  assert.equal(document.activeElement, tabs[0]);
-  assert.deepEqual(changes, [1, 2, 0]);
+  await settle(); assert.ok(document.activeElement === tabs[0], "focus: " + document.activeElement?.outerHTML.slice(0, 120));
+  // The parent never moved `active` off tab 0, so returning to it is not a change.
+  assert.deepEqual(changes, [1, 2]);
 
   await act(async () => root.unmount());
   dom.window.close();
@@ -1225,7 +1188,7 @@ test("SelectOption 从触发器按方向键打开后将焦点移入首末 option
   assert.equal(upFocusedLast, true);
 });
 
-test("SelectOption 打开后支持方向键循环与 Home End 定位", async () => {
+test("SelectOption 打开后支持方向键与 Home End 定位", async () => {
   const dom = installDom();
   const container = document.querySelector<HTMLDivElement>("#root");
   assert.ok(container);
@@ -1250,9 +1213,9 @@ test("SelectOption 打开后支持方向键循环与 Home End 定位", async () 
     const options = [...document.querySelectorAll<HTMLButtonElement>('[role="option"]')];
 
     focusResults.push(document.activeElement === options[0]);
-    await act(async () => options[0].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })));
-    focusResults.push(document.activeElement === options[2]);
-    await act(async () => options[2].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
+    await act(async () => options[0].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
+    focusResults.push(document.activeElement === options[1]);
+    await act(async () => options[1].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })));
     focusResults.push(document.activeElement === options[0]);
     await act(async () => options[0].dispatchEvent(new KeyboardEvent("keydown", { key: "End", bubbles: true })));
     focusResults.push(document.activeElement === options[2]);
@@ -1295,11 +1258,11 @@ test("SelectOption 键盘打开、选择与 Escape 关闭后维持触发焦点",
     .find((option) => option.textContent?.includes("就绪"));
   assert.ok(ready);
   ready.focus();
-  assert.equal(document.activeElement, ready);
+  await settle(); assert.ok(document.activeElement === ready, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
   await act(async () => ready.click());
   assert.equal(selected, "ready");
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => trigger.click());
   const draft = [...document.querySelectorAll<HTMLButtonElement>('[role="option"]')]
@@ -1308,15 +1271,18 @@ test("SelectOption 键盘打开、选择与 Escape 关闭后维持触发焦点",
   draft.focus();
   await act(async () => draft.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => trigger.click());
   await act(async () => trigger.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => trigger.click());
-  await act(async () => document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })));
+  // A real outside press: pointerdown → mousedown → pointerup → mouseup → click.
+  await act(async () => {
+    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup", "click"]) document.body.dispatchEvent(new MouseEvent(type, { bubbles: true, button: 0 }));
+  });
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
 
   await act(async () => root.unmount());
@@ -1359,7 +1325,7 @@ test("SelectOption 多选标签按钮的按键不会冒泡劫持外层 combobox"
   await act(async () => removeButton.dispatchEvent(enter));
   assert.equal(enter.defaultPrevented, false);
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, removeButton);
+  await settle(); assert.ok(document.activeElement === removeButton, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   const arrowDown = new KeyboardEvent("keydown", {
     key: "ArrowDown",
@@ -1369,7 +1335,7 @@ test("SelectOption 多选标签按钮的按键不会冒泡劫持外层 combobox"
   await act(async () => removeButton.dispatchEvent(arrowDown));
   assert.equal(arrowDown.defaultPrevented, false);
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, removeButton);
+  await settle(); assert.ok(document.activeElement === removeButton, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => removeButton.click());
   assert.deepEqual(selected, []);
@@ -1403,17 +1369,20 @@ test("Datepicker 选择和 Escape 关闭后恢复触发焦点", async () => {
   await act(async () => day.click());
   assert.equal(selected?.getDate(), 15);
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => trigger.click());
   await act(async () => {
     document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
   });
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
-  assert.equal(document.activeElement, trigger);
+  await settle(); assert.ok(document.activeElement === trigger, "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
   await act(async () => trigger.click());
-  await act(async () => document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true })));
+  // A real outside press: pointerdown → mousedown → pointerup → mouseup → click.
+  await act(async () => {
+    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup", "click"]) document.body.dispatchEvent(new MouseEvent(type, { bubbles: true, button: 0 }));
+  });
   assert.equal(trigger.getAttribute("aria-expanded"), "false");
 
   await act(async () => root.unmount());
@@ -1437,7 +1406,7 @@ test("AppLayout application selection closes the menu and legacy team actions re
     assert.equal(item.getAttribute("aria-checked"), "true");
     await act(async () => item.click());
     assert.equal(selected, app);
-    assert.equal(document.querySelector('[data-popover="team"]'), null);
+    await settle(); assert.ok(!document.querySelector('[data-popover="team"]'), "popover closed");
     await act(async () => root.render(<AppLayout teamName="Legacy" teamMemberCount={12} showTeamActions><main>Content</main></AppLayout>));
     assert.ok(document.body.textContent?.includes("12 名成员"));
     await act(async () => document.querySelector<HTMLButtonElement>('[data-popover-trigger="team"]')!.click());

@@ -1,5 +1,6 @@
 "use client";
 
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import type { MotionPreference } from "../../lib/motion";
 import { useMovingIndicator, useReducedMotion } from "../../internal/motion";
@@ -77,72 +78,61 @@ export function TabBar({
     layer.style.setProperty("--forge-indicator-width", `${first.offsetWidth + (last.offsetWidth - first.offsetWidth) * t}px`);
   }, [progress, indicator]);
   return (
-    <div
-      ref={rootRef}
-      data-motion={reduced ? "none" : motion}
-      data-tab-appearance={appearance}
-      role="tablist"
-      aria-label={ariaLabel}
-      className={cn(
-        "relative isolate border-b border-fg-grey-200",
-        appearance === "dock" && "forge-tab-dock rounded-2xl border border-fg-grey-200 bg-background p-2",
-        isPage
-          ? "flex w-full bg-background px-6 pt-4"
-          : "inline-flex",
-        className,
-      )}
+    <TabsPrimitive.Root
+      value={activeIndex === -1 ? null : activeIndex}
+      onValueChange={(next) => { if (typeof next === "number") onChange?.(next); }}
+      render={<div />}
+      className="contents"
     >
-      <span aria-hidden ref={indicator} className={cn("forge-moving-indicator forge-tab-indicator", tabBorderColors[color])} style={{ transition: reduced || progress !== undefined ? "none" : "translate 420ms cubic-bezier(.2,.8,.2,1), width 420ms cubic-bezier(.2,.8,.2,1)" }} />
-      {tabs.map((tab, index) => (
-        <button
-          key={index}
-          type="button"
-          role="tab"
-          id={tab.id}
-          aria-controls={tab.controls}
-          aria-selected={!!tab.active}
-          tabIndex={tab.active || (activeIndex === -1 && index === 0) ? 0 : -1}
-          onClick={() => onChange?.(index)}
-          onKeyDown={(event) => {
-            const lastIndex = tabs.length - 1;
-            const nextIndex = event.key === "ArrowRight"
-              ? (index + 1) % tabs.length
-              : event.key === "ArrowLeft"
-                ? (index - 1 + tabs.length) % tabs.length
-                : event.key === "Home"
-                  ? 0
-                  : event.key === "End"
-                    ? lastIndex
-                    : -1;
-            if (nextIndex < 0) return;
-            event.preventDefault();
-            onChange?.(nextIndex);
-            event.currentTarget.parentElement?.querySelectorAll<HTMLElement>("[role='tab']")[nextIndex]?.focus();
-          }}
-          className={cn(
-            "relative px-4 py-3 text-sm cursor-pointer inline-flex items-center gap-1.5",
-            tab.active
-              ? `${tabActiveColors[color]} font-semibold`
-              : "text-fg-grey-700 font-medium"
-          )}
-        >
-          {tab.icon && <span aria-hidden className="forge-tab-icon flex h-5 w-5 items-center justify-center">{tab.icon}</span>}
-          {tab.label}
-          {tab.badge !== undefined && (
-            <span
-              className={cn(
-                "px-1.5 py-0.5 rounded-full text-xs font-medium",
-                tab.active
-                  ? `${tabBorderColors[color]} text-white`
-                  : "bg-fg-grey-200 text-fg-grey-700"
-              )}
-            >
-              {tab.badge}
-            </span>
-          )}
-
-        </button>
-      ))}
-    </div>
+      <TabsPrimitive.List
+        ref={rootRef}
+        activateOnFocus
+        loopFocus
+        data-motion={reduced ? "none" : motion}
+        data-tab-appearance={appearance}
+        aria-label={ariaLabel}
+        className={cn(
+          "relative isolate border-b border-fg-grey-200",
+          appearance === "dock" && "forge-tab-dock rounded-2xl border border-fg-grey-200 bg-background p-2",
+          isPage
+            ? "flex w-full bg-background px-6 pt-4"
+            : "inline-flex",
+          className,
+        )}
+      >
+        <span aria-hidden ref={indicator} className={cn("forge-moving-indicator forge-tab-indicator", tabBorderColors[color])} style={{ transition: reduced || progress !== undefined ? "none" : "translate 420ms cubic-bezier(.2,.8,.2,1), width 420ms cubic-bezier(.2,.8,.2,1)" }} />
+        {tabs.map((tab, index) => (
+          <TabsPrimitive.Tab
+            key={index}
+            value={index}
+            id={tab.id}
+            aria-controls={tab.controls}
+            // With no active tab the first one stays reachable by Tab key.
+            tabIndex={activeIndex === -1 ? (index === 0 ? 0 : -1) : undefined}
+            className={cn(
+              "relative px-4 py-3 text-sm cursor-pointer inline-flex items-center gap-1.5",
+              tab.active
+                ? `${tabActiveColors[color]} font-semibold`
+                : "text-fg-grey-700 font-medium"
+            )}
+          >
+            {tab.icon && <span aria-hidden className="forge-tab-icon flex h-5 w-5 items-center justify-center">{tab.icon}</span>}
+            {tab.label}
+            {tab.badge !== undefined && (
+              <span
+                className={cn(
+                  "px-1.5 py-0.5 rounded-full text-xs font-medium",
+                  tab.active
+                    ? `${tabBorderColors[color]} text-white`
+                    : "bg-fg-grey-200 text-fg-grey-700"
+                )}
+              >
+                {tab.badge}
+              </span>
+            )}
+          </TabsPrimitive.Tab>
+        ))}
+      </TabsPrimitive.List>
+    </TabsPrimitive.Root>
   );
 }

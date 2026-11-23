@@ -1,5 +1,6 @@
 "use client";
 
+import { Input as InputPrimitive } from "@base-ui/react/input";
 import { forwardRef, useId, type ForwardRefExoticComponent, type InputHTMLAttributes, type ReactNode, type RefAttributes } from "react";
 import { cn } from "../../../lib/utils";
 import {
@@ -72,6 +73,8 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
   const inputId = id ?? autoId;
   const errorId = `${inputId}-error`;
   const { wrapper, text } = getFieldClasses({ state, shape, color });
+  // Inside a FormField, a failed validation marks the input data-invalid.
+  const invalidFromForm = state !== "disabled" && "has-[[data-invalid]]:bg-fg-red-100 has-[[data-invalid]]:outline-fg-red";
   const isDisabled = state === "disabled" || disabled;
   const hasTags = tags && tags.length > 0;
   const floating = labelPlacement === "floating" && Boolean(label) && !hasTags;
@@ -88,7 +91,7 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
       errorId={errorId}
       inputId={inputId}
     >
-      <div className={cn("relative flex items-center gap-1", padding, wrapper, floating && "forge-field-floating", className)}>
+      <div className={cn("relative flex items-center gap-1", padding, wrapper, invalidFromForm, floating && "forge-field-floating", className)}>
         {floating && <label htmlFor={inputId} className="forge-field-floating-label">{label}</label>}
         {iconLeft && (
           <span className="w-5 h-5 flex items-center justify-center text-fg-grey-700 shrink-0">
@@ -107,7 +110,7 @@ export const TextField: ForwardRefExoticComponent<TextFieldProps & RefAttributes
                 onRemove={!isDisabled && onRemoveTag ? () => onRemoveTag(tag.value) : undefined}
               />
             ))}
-          <input
+          <InputPrimitive
             id={inputId}
             ref={ref}
             type={type}

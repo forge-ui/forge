@@ -1,6 +1,6 @@
 {
   "name": "@forge-ui-official/core",
-  "version": "0.10.1",
+  "version": "0.11.1",
   "description": "Forge UI Kit — React 19 + Tailwind v4 components",
   "license": "MIT",
   "private": false,
@@ -87,6 +87,7 @@
     "directory": "core"
   },
   "dependencies": {
+    "@base-ui/react": "1.9.0",
     "streamdown": "2.6.0",
     "motion": "^14.1.0"
   }

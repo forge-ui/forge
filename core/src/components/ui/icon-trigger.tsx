@@ -1,12 +1,12 @@
 "use client";
 
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { type ReactNode, useCallback, useId, useRef, useState } from "react";
 import type { MotionPreference } from "../../lib/motion";
-import { MotionPresence } from "../../internal/motion";
-
-import { type ReactNode, useEffect, useId, useRef, useState } from "react";
+import { IconTriggerButton } from "../../internal/icon-trigger-button";
 import { cn } from "../../lib/utils";
-import { accentColors, type AccentColor } from "./accent-utils";
-import { TooltipBubble, type TooltipPosition } from "./tooltip";
+import type { AccentColor } from "./accent-utils";
+import { Tooltip, type TooltipPosition } from "./tooltip";
 
 export type IconTriggerAccent = AccentColor;
 export type IconTriggerState = "idle" | "hover" | "open";
@@ -54,111 +54,51 @@ export function IconTrigger({
   const state: IconTriggerState = usingInternal
     ? (internalOpen ? "open" : "idle")
     : (stateProp ?? "idle");
-
-  const wrapRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
   const panelId = useId();
-  const [focusRequest, setFocusRequest] = useState(0);
-  useEffect(() => { if (focusRequest) wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus(); }, [focusRequest]);
-  useEffect(() => {
-    if (!usingInternal || !internalOpen || !initialFocus) return;
-    const panelNode = wrapRef.current?.querySelector<HTMLElement>(`[data-icon-trigger-panel]`);
-    const selected = initialFocus === "selected" ? panelNode?.querySelector<HTMLElement>('[aria-checked="true"],[aria-selected="true"]') : null;
-    (selected ?? panelNode?.querySelector<HTMLElement>('button:not(:disabled),input:not(:disabled),[tabindex="0"]'))?.focus();
-  }, [usingInternal, internalOpen, initialFocus]);
-  useEffect(() => {
-    if (!usingInternal || !internalOpen) return;
-    function handleOutside(e: MouseEvent) {
-      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
-        setInternalOpen(false);
-      }
-    }
-    function escape(event: KeyboardEvent) { if (event.key === "Escape") { setInternalOpen(false); wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus(); } }
-    document.addEventListener("keydown", escape);
-    document.addEventListener("mousedown", handleOutside);
-    return () => { document.removeEventListener("mousedown", handleOutside); document.removeEventListener("keydown", escape); };
-  }, [usingInternal, internalOpen]);
+  const close = useCallback(() => setInternalOpen(false), []);
 
-  const accentTheme = accentColors[accent];
-  const showBadge = badge !== undefined && badge > 0;
+  const button = (
+    <IconTriggerButton
+      icon={icon}
+      badge={badge}
+      accent={accent}
+      surface={surface}
+      state={state}
+      motion={motion}
+      aria-label={ariaLabel ?? tooltip}
+      aria-expanded={!usingInternal && stateProp !== undefined ? stateProp === "open" : undefined}
+      onClick={onClick ? () => onClick() : undefined}
+    />
+  );
 
-  const stateClass = (() => {
-    if (surface === "onColoredBg") {
-      return state === "open"
-        ? "bg-white/25 text-white"
-        : state === "hover"
-          ? "bg-white/10 text-white"
-          : "text-white/75 hover:bg-white/10";
-    }
-    return state === "open"
-      ? cn(accentTheme.bg, "text-white")
-      : state === "hover"
-        ? "bg-fg-grey-200 text-fg-grey-700"
-        : "text-fg-grey-700 hover:bg-fg-grey-200";
-  })();
-
-  // Suppress tooltip when internal panel is open to avoid stacking two popovers.
-  const hasInlineTooltip =
-    tooltip && (state === "hover" || state === "open") && !(usingInternal && internalOpen);
-
-  const handleClick = () => {
-    if (onClick) onClick();
-    else if (panel !== undefined) setInternalOpen((v) => !v);
+  const focusTarget = () => {
+    if (!initialFocus) return false;
+    const node = panelRef.current;
+    const selected = initialFocus === "selected" ? node?.querySelector<HTMLElement>('[aria-checked="true"],[aria-selected="true"]') : null;
+    return selected ?? node?.querySelector<HTMLElement>('button:not(:disabled),input:not(:disabled),[tabindex="0"]') ?? true;
   };
 
-  const renderedPanel = typeof panel === "function" ? panel(() => { setInternalOpen(false); setFocusRequest(value => value + 1); }) : panel;
+  const trigger = usingInternal ? (
+    <PopoverPrimitive.Root open={internalOpen} onOpenChange={next => setInternalOpen(next)} modal={false}>
+      <PopoverPrimitive.Trigger ref={triggerRef} render={button} />
+      <PopoverPrimitive.Portal>
+        <PopoverPrimitive.Positioner side={panelPlacement} align={panelAlign} sideOffset={8} collisionPadding={8} className="z-50">
+          <PopoverPrimitive.Popup ref={panelRef} id={panelId} data-icon-trigger-panel data-motion={motion} initialFocus={focusTarget} className="forge-popup outline-none">
+            {typeof panel === "function" ? panel(close) : panel}
+          </PopoverPrimitive.Popup>
+        </PopoverPrimitive.Positioner>
+      </PopoverPrimitive.Portal>
+    </PopoverPrimitive.Root>
+  ) : button;
+
+  // Static `hover` / `open` states keep the tooltip visible for showcases; an open panel hides it.
+  const tooltipOpen = usingInternal ? (internalOpen ? false : undefined) : stateProp === "hover" || stateProp === "open" ? true : undefined;
 
   return (
-    <div className={cn("relative inline-flex", className)} ref={wrapRef}>
-      <button
-        data-motion={motion}
-        aria-controls={usingInternal ? panelId : undefined}
-        aria-haspopup={usingInternal ? "dialog" : undefined}
-        aria-expanded={usingInternal ? internalOpen : stateProp !== undefined ? stateProp === "open" : undefined}
-        type="button"
-        onClick={handleClick}
-        aria-label={ariaLabel ?? tooltip}
-        className={cn(
-          "forge-button relative p-3 rounded-full inline-flex items-center justify-center",
-          stateClass
-        )}
-      >
-        <span className="w-5 h-5 flex items-center justify-center">{icon}</span>
-        {showBadge && (
-          <span className="absolute top-1 right-1 px-1.5 py-0.5 bg-fg-red rounded-full text-white text-[10px] font-semibold leading-4 tracking-fg">
-            {badge}
-          </span>
-        )}
-      </button>
-
-      {hasInlineTooltip && (
-        <div
-          aria-hidden
-          className={cn(
-            "absolute z-50 pointer-events-none",
-            tooltipPosition === "top" && "bottom-full left-1/2 -translate-x-1/2 mb-2",
-            tooltipPosition === "bottom" && "top-full left-1/2 -translate-x-1/2 mt-2",
-            tooltipPosition === "left" && "right-full top-1/2 -translate-y-1/2 mr-2",
-            tooltipPosition === "right" && "left-full top-1/2 -translate-y-1/2 ml-2"
-          )}
-        >
-          <TooltipBubble content={tooltip!} position={tooltipPosition} />
-        </div>
-      )}
-
-      {usingInternal && (
-        <MotionPresence open={internalOpen} motion={motion}
-          className={cn(
-            "absolute z-50",
-            panelPlacement === "top" && "bottom-full mb-2",
-            panelPlacement === "bottom" && "top-full mt-2",
-            (panelPlacement === "top" || panelPlacement === "bottom") && (panelAlign === "start" ? "left-0" : panelAlign === "end" ? "right-0" : "left-1/2 -translate-x-1/2"),
-            panelPlacement === "left" && "right-full top-1/2 -translate-y-1/2 mr-2",
-            panelPlacement === "right" && "left-full top-1/2 -translate-y-1/2 ml-2"
-          )}
-        >
-          <div id={panelId} data-icon-trigger-panel>{renderedPanel}</div>
-        </MotionPresence>
-      )}
+    <div className={cn("relative inline-flex", className)}>
+      {tooltip ? <Tooltip content={tooltip} position={tooltipPosition} open={tooltipOpen} motion={motion}>{trigger}</Tooltip> : trigger}
     </div>
   );
 }

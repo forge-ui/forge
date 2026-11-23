@@ -884,10 +884,12 @@ body {
 .forge-motion-surface[data-state="closed"] { pointer-events: none; }
 @keyframes forge-surface-in { from { opacity: 0; transform: translateY(4px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes forge-surface-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(2px) scale(.98); } }
-.forge-motion-collapse { display: grid; grid-template-rows: 0fr; }
-.forge-motion-collapse[data-state="open"] { grid-template-rows: 1fr; }
+.forge-motion-collapse { height: var(--collapsible-panel-height); overflow: hidden; }
+.forge-motion-collapse:is([data-starting-style], [data-ending-style]) { height: 0; }
 .forge-chevron { rotate: 0deg; }
 .forge-chevron[data-expanded="true"] { rotate: 180deg; }
+/* Base UI triggers mark the open state themselves. */
+:is([data-panel-open], [data-popup-open]) .forge-chevron { rotate: 180deg; }
 .forge-moving-indicator {
   position: absolute; pointer-events: none; visibility: hidden; z-index: 0;
   left: 0; top: 0; width: var(--forge-indicator-width, 0px);
@@ -905,7 +907,7 @@ body {
   .forge-tabs-content[data-motion="auto"][data-state="open"] { animation: forge-tabs-content-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
   .forge-motion-surface[data-motion="auto"][data-state="open"] { animation: forge-surface-in var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease) both; }
   .forge-motion-surface[data-motion="auto"][data-state="closed"] { animation: forge-surface-out var(--forge-motion-exit-duration) ease-in both; }
-  .forge-motion-collapse[data-motion="auto"] { transition: grid-template-rows var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-motion-collapse[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-chevron[data-motion="auto"] { transition: rotate var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   [data-motion="auto"] > .forge-moving-indicator { transition: translate var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease), width var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease), height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-toggle[data-motion="auto"] { transition: background-color var(--forge-motion-layout-duration) ease; }
@@ -914,6 +916,22 @@ body {
   .forge-check-visual[data-motion="auto"] .forge-check-tick { transition: stroke-dashoffset var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
   .forge-motion-trigger[data-motion="auto"], .forge-menu-item[data-motion="auto"] { transition: background-color var(--forge-motion-feedback-duration) ease, color var(--forge-motion-feedback-duration) ease, outline-color var(--forge-motion-feedback-duration) ease; }
 }
+/* Accordion: Base UI exposes the measured panel height; the answer fades and settles in. */
+.forge-accordion-panel[data-open] .forge-accordion-answer { opacity: 1; transform: none; }
+.forge-accordion-panel:not([data-open]) .forge-accordion-answer, .forge-accordion-panel[data-ending-style] .forge-accordion-answer { opacity: 0; transform: translateY(-8px); }
+@media (prefers-reduced-motion: no-preference) {
+  .forge-accordion-panel[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-collapsible-panel[data-motion="auto"] { transition: height var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-accordion-panel[data-motion="auto"] .forge-accordion-answer { transition: opacity 150ms cubic-bezier(.2,.8,.2,1), transform 450ms cubic-bezier(.34,1.16,.64,1); }
+  .forge-accordion-panel[data-motion="auto"][data-open] .forge-accordion-answer { transition-duration: 250ms, 450ms; transition-delay: 80ms; }
+}
+/* Floating popups: Popover, DropdownMenu, ContextMenu, Combobox, Autocomplete. */
+.forge-popup { transform-origin: var(--transform-origin, top center); }
+@media (prefers-reduced-motion: no-preference) {
+  .forge-popup[data-motion="auto"] { transition: opacity var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease), transform var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+  .forge-popup[data-motion="auto"][data-starting-style] { opacity: 0; transform: translateY(4px) scale(.98); }
+  .forge-popup[data-motion="auto"][data-ending-style] { opacity: 0; transform: translateY(2px) scale(.98); transition-duration: var(--forge-motion-exit-duration); transition-timing-function: ease-in; }
+}
 .forge-motion-trigger[data-motion="none"], .forge-menu-item[data-motion="none"], .forge-sidebar-motion[data-motion="none"] { transition: none; }
 .forge-motion-menu[data-motion="none"] button { transition: none; }
 .forge-checklist-motion[data-motion="none"] *, .forge-checklist-motion[data-motion="none"] { animation: none; transition: none; }
@@ -921,58 +939,27 @@ body {
   .forge-motion-trigger, .forge-menu-item, .forge-sidebar-motion, .forge-motion-menu button { transition: none; }
 }
 
-/* Native dialog supplies top-layer stacking, focus containment and restoration. */
-.forge-dialog::backdrop { background: rgb(0 0 0 / .35); }
-.forge-modal { width: min(480px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); margin: auto; }
-.forge-template-modal { max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); margin: auto; }
-.forge-template-modal::backdrop { background: color-mix(in srgb, var(--fg-black) 30%, transparent); }
-.forge-drawer { position: fixed; inset-block: 0; width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; }
-.forge-drawer[data-side="right"] { left: auto; right: 0; }
-.forge-drawer[data-side="left"] { left: 0; right: auto; }
-@keyframes forge-drawer-in { from { transform: translateX(var(--forge-drawer-from)); } to { transform: none; } }
-@keyframes forge-drawer-out { from { transform: none; } to { transform: translateX(var(--forge-drawer-from)); } }
+/* Modal, Drawer and ConfirmationDialog (Base UI Dialog / AlertDialog / Drawer). */
+.forge-overlay-backdrop { position: fixed; inset: 0; z-index: 50; background: rgb(0 0 0 / .35); }
+.forge-overlay-backdrop--template { background: color-mix(in srgb, var(--fg-black) 30%, transparent); }
+.forge-modal { width: min(480px, calc(100vw - 2rem)); max-height: calc(100dvh - 2rem); }
+.forge-template-modal { max-width: calc(100vw - 2rem); max-height: calc(100dvh - 2rem); }
+.forge-drawer { width: min(440px, 100vw); max-width: 100vw; height: 100dvh; max-height: 100dvh; transform: translateX(var(--drawer-swipe-movement-x, 0px)); }
 .forge-drawer[data-side="right"] { --forge-drawer-from: 100%; }
 .forge-drawer[data-side="left"] { --forge-drawer-from: -100%; }
-/* Dialog enter/exit retarget from the current frame. Keyframes would replay a full tail on interrupt. */
-.forge-dialog[data-motion="auto"]::backdrop {
-  opacity: 0;
-  transition: opacity var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease);
-}
-.forge-dialog[data-motion="auto"][data-state="open"]::backdrop {
-  opacity: 1;
-  transition-duration: var(--forge-motion-enter-duration);
-}
-.forge-modal[data-motion="auto"] {
-  opacity: 0;
-  transition:
-    opacity var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease),
-    transform var(--forge-motion-exit-duration) var(--forge-motion-feedback-ease);
-}
-.forge-modal[data-motion="auto"][data-state="open"] {
-  opacity: 1;
-  transform: none;
-  transition-duration: var(--forge-motion-enter-duration);
-}
-@starting-style {
-  .forge-dialog[data-motion="auto"][data-state="open"]::backdrop { opacity: 0; }
-  .forge-modal[data-motion="auto"][data-state="open"] { opacity: 0; }
-}
+.forge-overlay-backdrop[data-motion="auto"] { transition: opacity var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+.forge-overlay-backdrop[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { opacity: 0; }
+.forge-overlay-backdrop[data-motion="auto"][data-ending-style] { transition-duration: var(--forge-motion-exit-duration); }
+.forge-modal[data-motion="auto"], .forge-template-modal[data-motion="auto"] { transition: opacity var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease), transform var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+:is(.forge-modal, .forge-template-modal)[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { opacity: 0; }
+:is(.forge-modal, .forge-template-modal)[data-motion="auto"][data-ending-style] { transition-duration: var(--forge-motion-exit-duration); }
 @media (prefers-reduced-motion: no-preference) {
-  .forge-modal[data-motion="auto"] { transform: translateY(4px) scale(.98); }
-  @starting-style {
-    .forge-modal[data-motion="auto"][data-state="open"] { opacity: 0; transform: translateY(4px) scale(.98); }
-  }
-  .forge-drawer[data-motion="auto"][data-state="open"] { animation: forge-drawer-in var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease) both; }
-  .forge-drawer[data-motion="auto"][data-state="closed"] { animation: forge-drawer-out var(--forge-motion-exit-duration) ease both; }
+  :is(.forge-modal, .forge-template-modal)[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { transform: translateY(4px) scale(.98); }
+  .forge-drawer[data-motion="auto"] { transition: transform var(--forge-motion-layout-duration) var(--forge-motion-feedback-ease); }
+  .forge-drawer[data-motion="auto"]:is([data-starting-style], [data-ending-style]) { transform: translateX(var(--forge-drawer-from)); }
+  .forge-drawer[data-motion="auto"][data-ending-style] { transition-duration: var(--forge-motion-exit-duration); transition-timing-function: ease; }
+  .forge-drawer[data-swiping] { transition: none; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .forge-modal[data-motion="auto"],
-  .forge-modal[data-motion="auto"][data-state="open"] {
-    transform: none;
-    transition-property: opacity;
-  }
-}
-.forge-toast .forge-motion-collapse[data-state="closed"] { transition-duration: var(--forge-motion-exit-duration); }
 
 /* StreamingAnswer owns its Markdown styles; consumers only scan Forge dist. */
 @keyframes sd-forge-answer-in { from { opacity: 0; } to { opacity: 1; } }
@@ -1217,7 +1204,7 @@ body {
 .forge-liquid__chevron:active{ transform: scale(0.95);}
 .forge-liquid__chevron:focus-visible{ box-shadow: 0 0 0 2px var(--forge-liquid-ring);}
 .forge-liquid__chevronIcon{ display: grid;}
-.forge-liquid__menu{ position: absolute; top: 46px; right: 8px; z-index: 30; width: 160px; padding: 4px; border: 1px solid var(--forge-liquid-divider); background: var(--forge-liquid-card); box-shadow: var(--forge-liquid-menu-shadow);}
+.forge-liquid__menu{ width: 160px; padding: 4px; border: 1px solid var(--forge-liquid-divider); background: var(--forge-liquid-card); box-shadow: var(--forge-liquid-menu-shadow);}
 .forge-liquid__menuItem{ display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 8px 10px; border: 0; border-radius: 8px; background: none; color: var(--forge-liquid-text); font: inherit; font-size: 13px; font-weight: 500; text-align: left; cursor: pointer; outline: none; transition: background-color 0.2s ease;}
 .forge-liquid__menuItem:hover, .forge-liquid__menuItem:focus-visible{ background: var(--forge-liquid-hover);}
 .forge-liquid__check{ display: grid;}
@@ -1398,9 +1385,10 @@ body {
 }
 @media (prefers-reduced-motion: no-preference) {
   .forge-sidebar-motion[data-motion="auto"] { transition: width 600ms var(--forge-sidebar-spring), transform 300ms ease; }
-  .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-disclosure, .forge-motion-collapse) {
+  .forge-sidebar-motion[data-motion="auto"] .forge-sidebar-disclosure {
     transition: grid-template-rows 600ms var(--forge-sidebar-spring), opacity 200ms ease;
   }
+  .forge-sidebar-motion[data-motion="auto"] .forge-motion-collapse { transition: height 600ms var(--forge-sidebar-spring), opacity 200ms ease; }
   .forge-sidebar-motion[data-motion="auto"] :is(.forge-sidebar-row, .forge-sidebar-profile) {
     transition: padding 600ms var(--forge-sidebar-spring), border-radius 600ms var(--forge-sidebar-spring), background-color 200ms ease, color 200ms ease;
   }
@@ -1477,8 +1465,15 @@ body {
 .forge-progress-ring-track{stroke:var(--color-fg-grey-200)}
 .forge-progress-ring-fill{stroke:currentColor;stroke-linecap:round;transition:stroke-dashoffset .35s}
 .forge-progress-ring[data-indeterminate]>svg{animation:forge-action-spin 1.2s linear infinite}
-.forge-toast{touch-action:pan-y;transition:translate .2s,margin .25s,scale .25s;transform-origin:bottom center;pointer-events:auto}
-.forge-toast-list[data-stacked]:not(:hover):not(:focus-within) .forge-toast:not(:last-child){margin-bottom:-64px;scale:.96}
+/* Toasts are stacked from the bottom with Base UI's measured offsets (--toast-index / --toast-offset-y). */
+.forge-toast{--forge-toast-gap:12px;position:absolute;left:0;right:0;bottom:0;touch-action:pan-y;pointer-events:auto;outline:none;transform-origin:bottom center;
+  transform:translateX(var(--toast-swipe-movement-x,0px)) translateY(calc(-1 * (var(--toast-offset-y,0px) + var(--toast-index,0) * var(--forge-toast-gap))));
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),opacity .2s ease}
+.forge-toast-list[data-stacked] .forge-toast:not([data-expanded]){transform:translateX(var(--toast-swipe-movement-x,0px)) translateY(calc(var(--toast-index,0) * -10px)) scale(calc(1 - var(--toast-index,0) * .04))}
+.forge-toast[data-starting-style]{opacity:0;transform:translateY(100%)}
+.forge-toast[data-ending-style]{opacity:0}
+.forge-toast[data-ending-style][data-swipe-direction=right]{transform:translateX(calc(var(--toast-swipe-movement-x,0px) + 120%))}
+.forge-toast[data-expanded] .forge-toast-timer>span{animation-play-state:paused}
 .forge-swipe-row{position:relative;overflow:hidden;border-radius:12px}
 .forge-swipe-action{position:absolute;inset:0 0 0 auto;display:flex;gap:6px;align-items:center;justify-content:flex-end;padding:0 16px 0 36px;background:var(--color-fg-red);color:var(--color-white,#fff);font-size:12px;font-weight:600;min-width:115px;border:0}
 .forge-swipe-content{position:relative;background:var(--background);padding:14px;touch-action:pan-y;transition:translate .25s}
@@ -1511,8 +1506,6 @@ body {
 .forge-stepper>.forge-stepper-indicator:before{display:none}
 .forge-toast-timer{height:2px;background:var(--color-fg-grey-100);margin-top:12px;overflow:hidden;border-radius:2px}
 .forge-toast-timer>span{display:block;height:100%;background:var(--color-fg-grey-500);transform-origin:left;animation:forge-toast-expiry linear forwards}
-.forge-toast-timer[data-paused]>span{animation-play-state:paused}
-.forge-tooltip-position [data-tooltip-arrow]{translate:var(--forge-tooltip-arrow-x,0) var(--forge-tooltip-arrow-y,0)}
 @keyframes forge-toast-expiry{to{transform:scaleX(0)}}
 
 /* Existing form/navigation primitives: optional interaction variants. */
@@ -1568,3 +1561,26 @@ body {
   :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-effect] *::before,
   :is(.forge-button,.forge-styled-link,.forge-surface-card)[data-effect] *::after{animation:none!important;transition:none!important}
 }
+
+/* Spinner, Skeleton and Tree chevron (admin feedback and data display). */
+@keyframes forge-spin { to { rotate: 360deg; } }
+@keyframes forge-skeleton-pulse { 50% { opacity: .55; } }
+.forge-spinner { animation: forge-spin .8s linear infinite; }
+.forge-skeleton { animation: forge-skeleton-pulse 1.6s ease-in-out infinite; }
+.forge-tree-chevron { transition: rotate var(--forge-motion-enter-duration) var(--forge-motion-feedback-ease); }
+.forge-tree-chevron[data-open] { rotate: 90deg; }
+.forge-tree-chevron[data-motion="none"] { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .forge-spinner { animation-duration: 1.6s; }
+  .forge-skeleton { animation: none; }
+  .forge-tree-chevron { transition: none; }
+}
+
+/* Agent kit disclosures (Thinking, ToolCall, sources…): height and fade on Base UI Collapsible. */
+.forge-disclosure-panel[data-starting-style], .forge-disclosure-panel[data-ending-style] { height: 0; opacity: 0; }
+.forge-disclosure-panel[data-motion="auto"] { transition: height 200ms cubic-bezier(.2,.8,.2,1), opacity 200ms cubic-bezier(.2,.8,.2,1); }
+@media (prefers-reduced-motion: reduce) { .forge-disclosure-panel { transition: none; } }
+
+/* DataTable pinned columns: a soft edge where scrolled content slides under. */
+.forge-table-pin-left { box-shadow: 6px 0 8px -6px rgb(77 84 100 / .16); }
+.forge-table-pin-right { box-shadow: -6px 0 8px -6px rgb(77 84 100 / .16); }

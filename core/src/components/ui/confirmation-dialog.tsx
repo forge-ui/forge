@@ -144,5 +144,5 @@ export function ConfirmationDialog({
       </div>
     </div>
   );
-  return open === undefined ? content : <DialogSurface open={open} onOpenChange={(next) => { onOpenChange?.(next); if (!next) onCancel?.(); }} label={title} motion={motion}>{content}</DialogSurface>;
+  return open === undefined ? content : <DialogSurface open={open} onOpenChange={(next) => { onOpenChange?.(next); if (!next) onCancel?.(); }} label={title} motion={motion} role="alert">{content}</DialogSurface>;
 }

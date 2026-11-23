@@ -1,5 +1,6 @@
 "use client";
 
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import {
   AltArrowLeftLinear,
@@ -203,12 +204,12 @@ export function MessageActions({ copyText, onRetry, onFeedback, feedback: contro
         )}
         {onFeedback && (
           <>
-            <button type="button" aria-label={text.up} title={text.up} aria-pressed={feedback === "up"} className={button} onClick={() => vote("up")}>
+            <TogglePrimitive aria-label={text.up} title={text.up} pressed={feedback === "up"} className={button} onPressedChange={() => vote("up")}>
               <LikeLinear size={16} color="currentColor" />
-            </button>
-            <button type="button" aria-label={text.down} title={text.down} aria-pressed={feedback === "down"} className={button} onClick={() => vote("down")}>
+            </TogglePrimitive>
+            <TogglePrimitive aria-label={text.down} title={text.down} pressed={feedback === "down"} className={button} onPressedChange={() => vote("down")}>
               <DislikeLinear size={16} color="currentColor" />
-            </button>
+            </TogglePrimitive>
           </>
         )}
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import type { MotionPreference } from "../../lib/motion";
 import { MotionCollapse } from "../../internal/motion";
 
@@ -44,7 +45,7 @@ function SidebarRow({
   const kind = isChild ? "submenu" : hasChildren ? "dropdown" : "single";
 
   return (
-    <div className="flex flex-col gap-1">
+    <CollapsiblePrimitive.Root open={hasChildren ? expanded : false} onOpenChange={setExpanded} className="flex flex-col gap-1">
       <MenuItem
         motion={motion}
         lead={item.icon ? { kind: "icon", icon: item.icon } : undefined}
@@ -61,7 +62,7 @@ function SidebarRow({
         }}
       />
       {hasChildren && (
-        <MotionCollapse open={expanded} motion={motion}><div className="flex flex-col gap-1">
+        <MotionCollapse motion={motion}><div className="flex flex-col gap-1">
           {item.children!.map((child, i) => (
             <SidebarRow
               motion={motion}
@@ -74,7 +75,7 @@ function SidebarRow({
           ))}
         </div></MotionCollapse>
       )}
-    </div>
+    </CollapsiblePrimitive.Root>
   );
 }
 

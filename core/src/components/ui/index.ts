@@ -135,6 +135,21 @@ export type {
   MenuItemLead,
 } from "./menu-item";
 export { DropdownPanel, DropdownDivider } from "./dropdown-panel";
+export { DropdownMenu, ContextMenu } from "./dropdown-menu";
+export type {
+  DropdownMenuProps,
+  DropdownMenuEntry,
+  DropdownMenuActionEntry,
+  DropdownMenuCheckboxEntry,
+  DropdownMenuSubmenuEntry,
+  DropdownMenuGroupEntry,
+  DropdownMenuDividerEntry,
+  DropdownMenuAccent,
+  DropdownMenuSide,
+  DropdownMenuAlign,
+  ContextMenuProps,
+  ContextMenuEntry,
+} from "./dropdown-menu";
 export { IconTrigger } from "./icon-trigger";
 export type {
   IconTriggerAccent,
@@ -177,6 +192,23 @@ export {
   IconPicker,
   ColorPicker,
   TextFieldSelectSuffix,
+  Combobox,
+  Autocomplete,
+  NumberField,
+  Slider,
+  Form,
+  FormField,
+  Fieldset,
+  RadioGroup,
+  CheckboxGroup,
+  ToggleGroup,
+  Cascader,
+  TimePicker,
+  TagInput,
+  Transfer,
+  DateTimePicker,
+  PeriodPicker,
+  TreeSelect,
 } from "./forms";
 export type {
   ToggleProps,
@@ -206,11 +238,68 @@ export type {
   DatepickerMode,
   ControlColor,
   IconSelectorColor,
+  ComboboxProps,
+  ComboboxOption,
+  ComboboxState,
+  ComboboxShape,
+  ComboboxColor,
+  AutocompleteProps,
+  AutocompleteOption,
+  AutocompleteState,
+  AutocompleteShape,
+  AutocompleteColor,
+  NumberFieldProps,
+  NumberFieldState,
+  NumberFieldShape,
+  NumberFieldColor,
+  SliderProps,
+  SliderColor,
+  SliderValue,
+  FormProps,
+  FormFieldProps,
+  FieldsetProps,
+  FormValues,
+  FormValidationMode,
+  RadioGroupProps,
+  CheckboxGroupProps,
+  ToggleGroupProps,
+  ToggleGroupOption,
+  ChoiceGroupOption,
+  ChoiceGroupColor,
+  ChoiceGroupOrientation,
+  CascaderProps,
+  CascaderOption,
+  TimePickerProps,
+  TagInputProps,
+  TransferProps,
+  TransferItem,
+  DateTimePickerProps,
+  PeriodPickerProps,
+  PeriodGranularity,
+  TreeSelectProps,
 } from "./forms";
 
 // Dialog & Overlay
 export { ConfirmationDialog } from "./confirmation-dialog";
 export type { ConfirmationDialogColor, ConfirmationDialogLayout } from "./confirmation-dialog";
+
+export { Popover } from "./popover";
+export type { PopoverProps, PopoverSide, PopoverAlign } from "./popover";
+
+export { PreviewCard } from "./preview-card";
+export type { PreviewCardProps, PreviewCardSide, PreviewCardAlign } from "./preview-card";
+
+export { Collapsible } from "./collapsible";
+export type { CollapsibleProps } from "./collapsible";
+
+export { Menubar } from "./menubar";
+export type { MenubarProps, MenubarMenu } from "./menubar";
+
+export { NavigationMenu } from "./navigation-menu";
+export type { NavigationMenuProps, NavigationMenuItem, NavigationMenuLink } from "./navigation-menu";
+
+export { ScrollArea } from "./scroll-area";
+export type { ScrollAreaProps, ScrollAreaOrientation } from "./scroll-area";
 
 export { Tooltip, TooltipBubble, TooltipAnchor, TooltipGroup } from "./tooltip";
 export type { TooltipPosition, TooltipSize, TooltipAnchorState } from "./tooltip";
@@ -318,6 +407,7 @@ export type {
   DataTableColor,
   DataTableProps,
   FullWidthTableProps,
+  TableCellEdit,
 } from "./data-table";
 
 // Shared accent colors
@@ -613,3 +703,15 @@ export type { ChartHeaderProps, ChartMetricRowProps, GroupedBarChartProps, Diver
 
 export { InfoRow } from "./info-row";
 export type { InfoRowProps } from "./info-row";
+
+// Admin feedback, data display and layout helpers
+export { Alert, Spinner, LoadingOverlay, Skeleton, EmptyState, Result } from "./feedback";
+export type { AlertProps, AlertTone, SpinnerSize, SkeletonProps, EmptyStateProps, ResultProps, ResultStatus } from "./feedback";
+export { Descriptions, Timeline, Tag, Kbd, Separator, CopyButton } from "./data-display";
+export type { DescriptionsProps, DescriptionsItem, TimelineItem, TimelineTone, TagProps, TagColor, CopyButtonProps } from "./data-display";
+export { Popconfirm } from "./popconfirm";
+export type { PopconfirmProps } from "./popconfirm";
+export { Tree } from "./tree";
+export type { TreeProps, TreeNode } from "./tree";
+export { Splitter } from "./splitter";
+export type { SplitterProps } from "./splitter";

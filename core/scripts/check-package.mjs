@@ -24,12 +24,15 @@ const [pack] = JSON.parse(
 );
 
 // 0.7.0 raised the budgets for the agent conversation kit (Conversation, AgentMessage, AgentParts…);
-// 0.9.0 for the agent run and governance kit (Reasoning, ToolCall, Question, Approval, AgentPlan…).
+// 0.9.0 for the agent run and governance kit (Reasoning, ToolCall, Question, Approval, AgentPlan…);
+// 0.11.0 for the floating and input primitives (Popover, DropdownMenu, Combobox, NumberField, Slider…)
+// and the admin kit (Alert, Tree, Cascader, TimePicker, TagInput, Transfer, Splitter…),
+// DataTable admin features, DateTimePicker, PeriodPicker and TreeSelect.
 const limits = {
-  packed: 1_080_000,
-  unpacked: 4_300_000,
-  entries: 600,
-  sourceMaps: 2_350_000,
+  packed: 1_160_000,
+  unpacked: 4_550_000,
+  entries: 680,
+  sourceMaps: 2_450_000,
   normalJsRaw: 41_000,
   normalJsGzip: 20_000,
   inlinedRaw: 90_000,

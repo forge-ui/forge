@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.11.1
+
+- ProgressBar、MeterChart 和 DropdownDivider 补上 `"use client"`。0.11.0 里在服务端组件中直接使用 ProgressBar 或 MeterChart 会在构建时报错（函数不能传给客户端组件）。
+- 新增检查：所有用到 Base UI 的模块都必须是客户端模块。
+
+## 0.11.0
+
+这一版把交互底层统一换成 Base UI（`@base-ui/react` 1.9.0，锁定版本、只在 core 内部使用，公开类型里不出现），并补齐管理后台常用组件。已有组件的外观和用法不变，下面列出需要注意的行为变化。
+
+**交互底层**
+- 弹窗、抽屉、确认弹窗改用 Base UI 的 Dialog / Drawer / AlertDialog，不再是浏览器原生 `<dialog>`。抽屉可以滑动关闭。弹窗里的菜单、下拉不再需要特殊处理。
+- 菜单、下拉选择、提示、浮层、页签、折叠面板、开关、复选框、通知、日期弹层、验证码输入、按钮组、筛选分组、侧栏子菜单和 AppLayout 外壳弹层（应用切换、语言、消息、个人菜单改为真正的菜单）都换成了 Base UI。
+- 弹层挂到页面最外层，会自动带上所在区域的 `data-accent` 和 `data-theme`。
+
+**行为变化**
+- 确认弹窗点外面不再关闭，需要明确选择。
+- 下拉选择用方向键到第一项或最后一项时停住，与浏览器原生下拉一致。
+- 加载中的按钮改为 `aria-disabled`，仍可获得焦点。
+- 不要把 Forge 的弹层放进宿主自己用 `showModal()` 打开的原生 `<dialog>` 里，原生模态会让外面的弹层不可操作。
+
+**新增组件**
+- 浮层与菜单：Popover、DropdownMenu、ContextMenu、PreviewCard、Menubar、NavigationMenu、Popconfirm。
+- 表单：Form、FormField、Fieldset、Combobox、Autocomplete、NumberField、Slider、RadioGroup、CheckboxGroup、ToggleGroup、Cascader、TimePicker、DateTimePicker、PeriodPicker（月 / 季度 / 年）、TreeSelect、TagInput、Transfer。
+- 反馈与展示：Alert、Spinner、LoadingOverlay、Skeleton、EmptyState、Result、Descriptions、Timeline、Tree、Tag、Kbd、Separator、CopyButton、Splitter、ScrollArea、Collapsible。
+- Datepicker 新增 `calendarOnly`；Checkbox 新增 `indeterminate`、`name`、`value`。
+
+**DataTable / FullWidthTable（均为可选项）**
+- `loading`、`maxHeight`（固定表头）、列的 `pinned`（左右固定）、`resizable`（拖拽列宽）、`edit`（行内编辑）、`hideable`。
+- `expandable`（展开行）、`getRowChildren`（树形表格）、`columnSettings`（列设置）、`bulkActions`（批量操作条）、`pageSize` / `pageSizeOptions` / `showQuickJumper`、`virtualized`（虚拟滚动）。
+
 ## 0.10.1
 
 0.10.0 里和字体无关的布局改动全部撤回，只保留字体、字重、字距和颜色的调整。

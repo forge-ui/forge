@@ -36,6 +36,7 @@ import type {
   AvatarInitialColor,
 } from "@forge-ui-official/core";
 import { AddCircleLinear, CheckCircleLinear, CardBold } from "@forge-ui-official/core/icons";
+import { TableKitExamples } from "../_table-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -684,6 +685,8 @@ export default function TableCasePage() {
           </div>
         </DocExample>
       </Section>
+
+      <TableKitExamples />
 
       <Section title="API" description="有独立字段的单元格单独列表。">
         <ApiBlock id="columndef" title="ColumnDef" rows={COLUMN_DEF_PROPS} />

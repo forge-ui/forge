@@ -162,7 +162,9 @@ test("History lists the given sessions and switches the transcript", async () =>
   })));
   await act(async () => document.querySelector<HTMLButtonElement>('[aria-label="Forge Agent"]')!.click());
   await act(async () => panel()!.querySelector<HTMLButtonElement>('[aria-label="历史对话"]')!.click());
-  const history = panel()!.querySelector('nav[aria-label="历史对话"]')!;
+  // The history list is a popover, so it renders outside the panel.
+  const history = document.querySelector('nav[aria-label="历史对话"]')!;
+  assert.ok(history, "history opens");
   assert.match(history.textContent ?? "", /上周的探索/);
   await act(async () => [...history.querySelectorAll("button")].find((item) => item.textContent?.includes("版本对比"))!.click());
   assert.deepEqual(selected, ["s2"]);

@@ -1,10 +1,12 @@
 "use client";
 
 import type { MotionPreference } from "../../lib/motion";
-import { MotionPresence, MotionMenu, useMovingIndicator } from "../../internal/motion";
+import { useMovingIndicator } from "../../internal/motion";
 import { ToolbarSelection } from "../../internal/toolbar-selection";
+import { AnchoredPanel } from "../../internal/anchored-panel";
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 import { MagniferLinear, CalendarBoldDuotone, FilterBold, AltArrowDownLinear, MenuDotsBold, StarBoldDuotone } from "../../icons";
 import { Breadcrumbs, type BreadcrumbItem } from "./breadcrumbs";
@@ -119,24 +121,6 @@ export function ToolbarSearchInput({
   );
 }
 
-// ── Shared: outside-click hook ──────────────────────────────
-
-function useOutsideClick<T extends HTMLElement>(
-  active: boolean,
-  onOutside: () => void,
-): React.RefObject<T | null> {
-  const ref = useRef<T | null>(null);
-  useEffect(() => {
-    if (!active) return;
-    function handle(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) onOutside();
-    }
-    document.addEventListener("mousedown", handle);
-    return () => document.removeEventListener("mousedown", handle);
-  }, [active, onOutside]);
-  return ref;
-}
-
 // ── ToolbarSelectDropdown ───────────────────────────────────
 
 export interface ToolbarSelectOption {
@@ -166,68 +150,55 @@ export function ToolbarSelectDropdown({
   motion?: MotionPreference;
 }) {
   const [open, setOpen] = useState(false);
-  const usingInternal = !onClick && options !== undefined;
-  const wrapRef = useOutsideClick<HTMLDivElement>(usingInternal && open, () => setOpen(false));
-
   const matched = options?.find((o) => o.value === value);
   const displayText = matched?.label ?? value ?? placeholder;
   const hasValue = value !== undefined;
+  const triggerClass = cn(
+    "px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-2 overflow-hidden cursor-pointer",
+    fixedWidth && "w-20",
+  );
+  const face = (
+    <>
+      <div className="flex-1 h-6 flex justify-start items-center gap-2 overflow-hidden">
+        <span className={cn("justify-start text-sm font-normal leading-5 tracking-fg whitespace-nowrap", hasValue ? "text-fg-black" : "text-fg-grey-700")}>
+          {displayText}
+        </span>
+      </div>
+      <div className="forge-chevron w-6 h-6 flex justify-center items-center" data-motion={motion}>
+        <AltArrowDownLinear size={20} color="var(--fg-grey-700)" />
+      </div>
+    </>
+  );
 
-  const handleClick = () => {
-    if (onClick) onClick();
-    else if (options !== undefined) setOpen((v) => !v);
-  };
-
+  if (onClick || options === undefined) {
+    return <div className={cn("relative inline-flex", className)}><button type="button" onClick={onClick} className={triggerClass}>{face}</button></div>;
+  }
   return (
-    <div className={cn("relative inline-flex", className)} ref={wrapRef} onKeyDown={(event) => { if (event.key === "Escape") { setOpen(false); wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus(); } }}>
-      <button
-        type="button"
-        onClick={handleClick}
-        aria-expanded={usingInternal ? open : undefined}
-        onKeyDown={(event) => { if (event.key === "Escape") setOpen(false); }}
-        className={cn(
-          "px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-2 overflow-hidden cursor-pointer",
-          fixedWidth && "w-20",
-        )}
-      >
-        <div className="flex-1 h-6 flex justify-start items-center gap-2 overflow-hidden">
-          <span
-            className={cn(
-              "justify-start text-sm font-normal leading-5 tracking-fg whitespace-nowrap",
-              hasValue ? "text-fg-black" : "text-fg-grey-700",
-            )}
-          >
-            {displayText}
-          </span>
-        </div>
-        <div className="forge-chevron w-6 h-6 flex justify-center items-center" data-motion={motion} data-expanded={open}>
-          <AltArrowDownLinear size={20} color="var(--fg-grey-700)" />
-        </div>
-      </button>
-      {usingInternal && options && (
-        <MotionPresence open={open} motion={motion} className="absolute right-0 top-full mt-2 z-50 min-w-full bg-background rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-2 flex flex-col gap-1">
-          <MotionMenu motion={motion} className="flex flex-col gap-1" >
-          {options.map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => {
-                if (!open) return;
-                onChange?.(opt.value);
-                setOpen(false);
-                wrapRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
-              }}
-              className={cn(
-                "px-3 py-2 rounded-xl text-left text-sm leading-5 tracking-fg transition-colors whitespace-nowrap",
-                value === opt.value ? "bg-fg-grey-100 text-fg-black font-medium" : "text-fg-grey-700 hover:bg-fg-grey-100",
-              )}
-            >
-              {opt.label}
-            </button>
-          ))}
-          </MotionMenu>
-        </MotionPresence>
-      )}
+    <div className={cn("relative inline-flex", className)}>
+      <MenuPrimitive.Root open={open} onOpenChange={setOpen} modal={false}>
+        <MenuPrimitive.Trigger className={triggerClass}>{face}</MenuPrimitive.Trigger>
+        <MenuPrimitive.Portal>
+          <MenuPrimitive.Positioner side="bottom" align="end" sideOffset={8} collisionPadding={8} className="z-50">
+            <MenuPrimitive.Popup data-motion={motion} className="forge-popup min-w-(--anchor-width) max-h-(--available-height) overflow-y-auto bg-background rounded-2xl shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 p-2 flex flex-col gap-1">
+              <MenuPrimitive.RadioGroup value={value ?? null} onValueChange={(next) => onChange?.(next as string)} className="flex flex-col gap-1">
+                {options.map((opt) => (
+                  <MenuPrimitive.RadioItem
+                    key={opt.value}
+                    value={opt.value}
+                    closeOnClick
+                    className={cn(
+                      "px-3 py-2 rounded-xl text-left text-sm leading-5 tracking-fg transition-colors whitespace-nowrap cursor-pointer outline-none data-highlighted:bg-fg-grey-100",
+                      value === opt.value ? "bg-fg-grey-100 text-fg-black font-medium" : "text-fg-grey-700",
+                    )}
+                  >
+                    {opt.label}
+                  </MenuPrimitive.RadioItem>
+                ))}
+              </MenuPrimitive.RadioGroup>
+            </MenuPrimitive.Popup>
+          </MenuPrimitive.Positioner>
+        </MenuPrimitive.Portal>
+      </MenuPrimitive.Root>
     </div>
   );
 }
@@ -252,34 +223,26 @@ export function ToolbarDatepicker({
 }) {
   const [open, setOpen] = useState(false);
   const usingInternal = !onClick && enablePopover;
-  const wrapRef = useOutsideClick<HTMLDivElement>(usingInternal && open, () => setOpen(false));
-
-  const handleClick = () => {
-    if (onClick) onClick();
-    else if (usingInternal) setOpen((v) => !v);
-  };
+  const button = (
+    <button
+      type="button"
+      onClick={usingInternal ? undefined : onClick}
+      className="px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
+    >
+      <div className="w-6 h-6 flex justify-center items-center">
+        <CalendarBoldDuotone size={20} color="var(--fg-grey-700)" />
+      </div>
+      <div className="h-6 flex justify-start items-center gap-2 overflow-hidden">
+        <span className="justify-start text-fg-grey-700 text-sm font-normal leading-5 tracking-fg whitespace-nowrap">
+          {label}
+        </span>
+      </div>
+    </button>
+  );
 
   return (
-    <div className={cn("relative inline-flex", className)} ref={wrapRef}>
-      <button
-        type="button"
-        onClick={handleClick}
-        className="px-4 py-3 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden cursor-pointer"
-      >
-        <div className="w-6 h-6 flex justify-center items-center">
-          <CalendarBoldDuotone size={20} color="var(--fg-grey-700)" />
-        </div>
-        <div className="h-6 flex justify-start items-center gap-2 overflow-hidden">
-          <span className="justify-start text-fg-grey-700 text-sm font-normal leading-5 tracking-fg whitespace-nowrap">
-            {label}
-          </span>
-        </div>
-      </button>
-      {usingInternal && open && (
-        <div className="absolute right-0 top-full mt-2 z-50">
-          <CalendarPopup accentBg={accentBg} />
-        </div>
-      )}
+    <div className={cn("relative inline-flex", className)}>
+      {usingInternal ? <AnchoredPanel open={open} onOpenChange={setOpen} trigger={button} label={label}><CalendarPopup accentBg={accentBg} /></AnchoredPanel> : button}
     </div>
   );
 }
@@ -303,31 +266,24 @@ export function ToolbarFilterButton({
 }) {
   const [open, setOpen] = useState(false);
   const usingInternal = !onClick && panel !== undefined;
-  const wrapRef = useOutsideClick<HTMLDivElement>(usingInternal && open, () => setOpen(false));
-
-  const handleClick = () => {
-    if (onClick) onClick();
-    else if (panel !== undefined) setOpen((v) => !v);
-  };
-
   const renderedPanel = typeof panel === "function" ? panel(() => setOpen(false)) : panel;
+  const button = (
+    <button
+      type="button"
+      onClick={usingInternal ? undefined : onClick}
+      disabled={!onClick && panel === undefined}
+      className="px-4 py-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      <FilterBold size={20} color="var(--fg-grey-700)" />
+      <span className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap">
+        {label}
+      </span>
+    </button>
+  );
 
   return (
-    <div className={cn("relative inline-flex", className)} ref={wrapRef}>
-      <button
-        type="button"
-        onClick={handleClick}
-        disabled={!onClick && panel === undefined}
-        className="px-4 py-3.5 bg-background rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex justify-center items-center gap-1 overflow-hidden enabled:cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        <FilterBold size={20} color="var(--fg-grey-700)" />
-        <span className="justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap">
-          {label}
-        </span>
-      </button>
-      {usingInternal && open && (
-        <div className="absolute right-0 top-full mt-2 z-50">{renderedPanel}</div>
-      )}
+    <div className={cn("relative inline-flex", className)}>
+      {usingInternal ? <AnchoredPanel open={open} onOpenChange={setOpen} trigger={button} label={label}>{renderedPanel}</AnchoredPanel> : button}
     </div>
   );
 }

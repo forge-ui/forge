@@ -5,7 +5,8 @@ import type { MotionPreference } from "../../lib/motion";
 /* eslint-disable @next/next/no-img-element */
 
 import { type CSSProperties, type ReactNode, useState, useRef, useEffect, useCallback, useId } from "react";
-import { createPortal } from "react-dom";
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { usePathname } from "next/navigation";
 import { cn } from "../../lib/utils";
 import {
@@ -33,9 +34,9 @@ import {
   type AppSwitcherItem,
   type TeamSwitcherLabels,
 } from "./sidebar-popovers";
+import { ShellMenuContext } from "../../internal/shell-menu-context";
 import { forgeLogoDataUrl } from "../../assets/_inlined";
 import { accentTokens, findActiveSidebarMenuItem, modeConfig, SidebarMenuItemRow } from "../../internal/app-layout-sidebar";
-import { useShellPopoverAnchor, useShellPopoverFocus, useShellPopoverPosition } from "../../internal/shell-popover";
 import { languageLabels } from "../../internal/sidebar-popover-data";
 
 export type { Team };
@@ -281,6 +282,8 @@ export function AppLayout({
   const mobileSidebarTriggerRef = useRef<HTMLElement | null>(null);
   const returnMobileNavigationFocusRef = useRef(false);
   const popoverTriggerRef = useRef<HTMLElement | null>(null);
+  // The trigger that opened the current popover; shell popovers anchor to it.
+  const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 767px)");
@@ -377,24 +380,18 @@ export function AppLayout({
     return () => window.cancelAnimationFrame(frame);
   }, [isMobile, mobileSidebarOpen, openPopover]);
 
-  useShellPopoverPosition(layoutRef, openPopover);
-  useShellPopoverFocus(layoutRef, openPopover, isMobile);
-
+  // Shell menus open from buttons outside Base UI's trigger, so start on the first item like a menu button would.
   useEffect(() => {
-    if (openPopover === null) return;
-    const popover = layoutRef.current?.querySelector<HTMLElement>(
-      `[data-popover="${openPopover}"]`,
-    );
-    const menuItem = popover?.querySelector<HTMLElement>(
-      '[role="menu"] [role="menuitem"], [role="menu"] [role="menuitemradio"]',
-    );
-    const dialogControl = popover?.querySelector<HTMLElement>(
-      '[role="dialog"] button:not([disabled]), [role="dialog"] input:not([disabled]), [role="dialog"] [tabindex]:not([tabindex="-1"])',
-    );
-    (menuItem ?? dialogControl)?.focus({ preventScroll: true });
+    if (openPopover !== "team" && openPopover !== "language" && openPopover !== "messages" && openPopover !== "profile") return;
+    const frame = requestAnimationFrame(() => {
+      const popup = document.querySelector<HTMLElement>(`[data-popover="${openPopover}"]`);
+      (popup?.querySelector<HTMLElement>('[role="menuitemradio"][aria-checked="true"]') ?? popup?.querySelector<HTMLElement>('[role^="menuitem"]'))?.focus({ preventScroll: true });
+    });
+    return () => cancelAnimationFrame(frame);
   }, [openPopover]);
 
   const togglePopover = useCallback((id: PopoverId) => {
+    setPopoverAnchor(popoverTriggerRef.current);
     setOpenPopover((prev) => (prev === id ? null : id));
   }, []);
 
@@ -405,51 +402,57 @@ export function AppLayout({
     }
   }, []);
 
-  const adoptPopoverTrigger = useCallback((element: HTMLElement) => {
-    popoverTriggerRef.current = element;
-  }, []);
-  useShellPopoverAnchor(layoutRef, popoverTriggerRef, openPopover, closePopover, adoptPopoverTrigger);
-
   const selectLanguage = useCallback((nextLanguage: AppLayoutLanguage) => {
     if (language === undefined) setInternalLanguage(nextLanguage);
     onLanguageChange?.(nextLanguage);
     closePopover(true);
   }, [closePopover, language, onLanguageChange]);
 
-  // Click-outside handler
-  useEffect(() => {
-    if (openPopover === null) return;
-    function handleClickOutside(e: MouseEvent) {
-      const target = e.target as HTMLElement;
-      if (target.closest("[data-popover]") || target.closest("[data-popover-trigger]")) return;
-      setOpenPopover(null);
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key !== "Escape") return;
-      e.preventDefault();
-      closePopover(true);
-    }
-    function handleFocusOutside(e: FocusEvent) {
-      const target = e.target;
-      if (!(target instanceof window.Node)) return;
-      const popover = layoutRef.current?.querySelector<HTMLElement>(
-        `[data-popover="${openPopover}"]`,
-      );
-      if (popover?.contains(target) || popoverTriggerRef.current?.contains(target)) return;
-      setOpenPopover(null);
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-    document.addEventListener("focusin", handleFocusOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-      document.removeEventListener("focusin", handleFocusOutside);
+  // Shell popovers: Base UI handles outside presses, Escape, focus and collision.
+  // One instance per popover anchors to whichever trigger (sidebar or topbar) opened it.
+  // Closing the mobile drawer also closes its popovers; focus goes back to the drawer's opener.
+  const mobileNavigationClosed = isMobile && !mobileSidebarOpen;
+  const anchorInSidebar = Boolean(popoverAnchor?.closest("[data-forge-app-sidebar]"));
+  const renderShellPopover = (id: Exclude<PopoverId, null>, label: string, content: ReactNode) => {
+    const side = isMobile ? (id === "team" ? "bottom" : "top") : anchorInSidebar ? "right" : "bottom";
+    const align = isMobile || id === "team" ? "start" : "end";
+    const onOpenChange = (next: boolean, details: { reason: string; event?: Event }) => {
+      if (next) return;
+      // A press on the trigger toggles through its own click handler.
+      const target = details.event?.target;
+      if (details.reason === "outside-press" && target instanceof Element && target.closest(`[data-popover-trigger="${id}"]`)) return;
+      setOpenPopover((current) => (current === id ? null : current));
     };
-  }, [closePopover, openPopover]);
-
-  const renderSidebarPopover = (content: ReactNode) =>
-    isMobile && sidebarPortalTarget ? createPortal(content, sidebarPortalTarget) : content;
+    const finalFocus = () => mobileNavigationClosed ? layoutRef.current?.querySelector<HTMLElement>('[data-forge-menu-trigger][aria-controls="forge-app-sidebar"]') ?? true : true;
+    const container = isMobile ? sidebarPortalTarget : undefined;
+    const positioner = { anchor: popoverAnchor, side, align, sideOffset: isMobile ? 8 : 16, collisionPadding: 16, className: "z-[60]" } as const;
+    const popupClass = "forge-popup max-h-(--available-height) outline-none";
+    // Lists of actions or choices are Base UI menus (arrow keys, typeahead); calendar and notifications are panels.
+    if (id === "team" || id === "language" || id === "messages" || id === "profile") {
+      return (
+        <MenuPrimitive.Root open={openPopover === id} modal={false} onOpenChange={onOpenChange}>
+          <MenuPrimitive.Portal container={container} data-accent={accent}>
+            <MenuPrimitive.Positioner {...positioner}>
+              <MenuPrimitive.Popup data-popover={id} aria-label={label} finalFocus={finalFocus} data-motion={motion} className={popupClass}>
+                <ShellMenuContext.Provider value>{content}</ShellMenuContext.Provider>
+              </MenuPrimitive.Popup>
+            </MenuPrimitive.Positioner>
+          </MenuPrimitive.Portal>
+        </MenuPrimitive.Root>
+      );
+    }
+    return (
+      <PopoverPrimitive.Root open={openPopover === id} modal={false} onOpenChange={onOpenChange}>
+        <PopoverPrimitive.Portal container={container} data-accent={accent}>
+          <PopoverPrimitive.Positioner {...positioner}>
+            <PopoverPrimitive.Popup data-popover={id} aria-label={label} finalFocus={finalFocus} data-motion={motion} className={popupClass}>
+              {content}
+            </PopoverPrimitive.Popup>
+          </PopoverPrimitive.Positioner>
+        </PopoverPrimitive.Portal>
+      </PopoverPrimitive.Root>
+    );
+  };
 
   // Helper: active icon style
   const iconActive = (id: PopoverId) =>
@@ -572,24 +575,6 @@ export function AppLayout({
                 </div>
               </div>
             </div>
-            {openPopover === "team" && (
-              renderSidebarPopover(<div data-popover="team" className="absolute left-4 top-full mt-2 z-[60] md:left-full md:top-0 md:ml-2 md:mt-0 md:z-50">
-                <TeamSwitcherDropdown
-                  locale={locale}
-                  teamName={teamName}
-                  teamAvatar={teamAvatar}
-                  teamMemberCount={teamMemberCount}
-                  teamSubtitle={teamSubtitle}
-                  teams={teams}
-                  labels={teamLabels}
-                  showActions={appName ? false : showTeamActions}
-                  onAppChange={(app) => {
-                    closePopover(true);
-                    onAppChange?.(app);
-                  }}
-                />
-              </div>)
-            )}
           </div>
         )}
 
@@ -720,36 +705,31 @@ export function AppLayout({
               </button>
             )}
 
-            {/* Sidebar popovers - positioned to the right, in the content area */}
-            {openPopover === "language" && (
-              renderSidebarPopover(<div data-popover="language" className="absolute left-4 bottom-20 z-[60] md:left-full md:ml-4 md:z-50">
-                <LanguageSwitcher accentBg={accentCfg.activeBg} value={activeLanguage} onChange={selectLanguage} />
-              </div>)
-            )}
-            {openPopover === "calendar" && (
-              renderSidebarPopover(<div data-popover="calendar" className="absolute left-4 bottom-20 w-[calc(100vw-2rem)] z-[60] md:left-full md:ml-4 md:w-screen md:max-w-[400px] md:z-50">
-                <CalendarPopup accentBg={accentCfg.activeBg} />
-              </div>)
-            )}
-            {openPopover === "notifications" && (
-              renderSidebarPopover(<div data-popover="notifications" className="absolute left-4 bottom-4 z-[60] md:left-full md:ml-4 md:z-50">
-                <NotificationPanel onClose={() => closePopover(true)} />
-              </div>)
-            )}
-            {openPopover === "messages" && (
-              renderSidebarPopover(<div data-popover="messages" className="absolute left-4 bottom-20 z-[60] md:left-full md:ml-4 md:z-50">
-                <MessageMenu />
-              </div>)
-            )}
-            {openPopover === "profile" && (
-              renderSidebarPopover(<div data-popover="profile" className="absolute left-4 bottom-4 z-[60] md:left-full md:ml-4 md:z-50">
-                <ProfileDropdown locale={locale} items={profileMenuItems} onClose={() => closePopover()} />
-              </div>)
-            )}
           </div>
         )}
         </div>
       </div>
+
+      {teamName && renderShellPopover("team", locale === "en" ? "Switch application" : "应用切换",
+        <TeamSwitcherDropdown
+          locale={locale}
+          teamName={teamName}
+          teamAvatar={teamAvatar}
+          teamMemberCount={teamMemberCount}
+          teamSubtitle={teamSubtitle}
+          teams={teams}
+          labels={teamLabels}
+          showActions={appName ? false : showTeamActions}
+          onAppChange={(app) => {
+            closePopover(true);
+            onAppChange?.(app);
+          }}
+        />)}
+      {renderShellPopover("language", english ? "Language" : "语言", <LanguageSwitcher accentBg={accentCfg.activeBg} value={activeLanguage} onChange={selectLanguage} />)}
+      {renderShellPopover("calendar", english ? "Calendar" : "日历", <CalendarPopup accentBg={accentCfg.activeBg} />)}
+      {renderShellPopover("notifications", english ? "Notifications" : "通知", <NotificationPanel onClose={() => closePopover(true)} />)}
+      {renderShellPopover("messages", english ? "Messages" : "消息", <MessageMenu />)}
+      {profile && renderShellPopover("profile", english ? "Profile menu" : "个人菜单", <ProfileDropdown locale={locale} items={profileMenuItems} onClose={() => closePopover()} />)}
 
       {/* ====== Content area ====== */}
       <div data-forge-app-content className="min-w-0 w-full flex-1 p-0 md:p-2 flex flex-col min-h-screen">
@@ -798,32 +778,6 @@ export function AppLayout({
                   openPopover === "profile" ? "text-white rotate-180" : "text-fg-grey-700"
                 )}
               />
-              {/* Topbar popovers */}
-              {!isMobile && openPopover === "calendar" && (
-                <div data-popover="calendar" className="absolute top-full right-48 mt-0 z-50">
-                  <CalendarPopup accentBg={accentCfg.activeBg} />
-                </div>
-              )}
-              {!isMobile && openPopover === "messages" && (
-                <div data-popover="messages" className="absolute top-full right-48 mt-0 z-50">
-                  <MessageMenu />
-                </div>
-              )}
-              {!isMobile && openPopover === "notifications" && (
-                <div data-popover="notifications" className="absolute top-full right-48 mt-0 z-50">
-                  <NotificationPanel onClose={() => closePopover(true)} />
-                </div>
-              )}
-              {!isMobile && openPopover === "language" && (
-                <div data-popover="language" className="absolute top-full right-48 mt-0 z-50">
-                  <LanguageSwitcher accentBg={accentCfg.activeBg} value={activeLanguage} onChange={selectLanguage} />
-                </div>
-              )}
-              {!isMobile && openPopover === "profile" && (
-                <div data-popover="profile" className="absolute top-full right-0 mt-0 z-50">
-                  <ProfileDropdown locale={locale} items={profileMenuItems} onClose={() => closePopover()} />
-                </div>
-              )}
             </div>
           ) : pageHeaderVariant === "detail" ? (
             /* --- Detail Page Header (using PageHeader) --- */

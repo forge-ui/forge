@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion as animated } from "motion/react";
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "../lib/utils";
 import type { MotionPreference } from "../lib/motion";
@@ -89,24 +89,28 @@ export function CardActions({ children, aside }: { children: ReactNode; aside?: 
   );
 }
 
-/** Height-and-fade disclosure used by every folding part of the kit. */
-export function Collapse({ open, motion = "auto", children, className }: { open: boolean; motion?: MotionPreference; children: ReactNode; className?: string }) {
+/**
+ * Height-and-fade disclosure used by every folding part of the kit (Base UI Collapsible).
+ * Put the toggle inside as `<DisclosureTrigger>` so it gets aria-expanded/aria-controls;
+ * `Collapse` alone is a panel driven by `open`.
+ */
+export function Disclosure({ open, onOpenChange, disabled, className, children, ...attributes }: { open: boolean; onOpenChange?: (open: boolean) => void; disabled?: boolean; className?: string; children: ReactNode } & Omit<HTMLAttributes<HTMLDivElement>, "children" | "className">) {
+  return <CollapsiblePrimitive.Root {...attributes} open={open} onOpenChange={next => onOpenChange?.(next)} disabled={disabled} className={className}>{children}</CollapsiblePrimitive.Root>;
+}
+
+export const DisclosureTrigger = CollapsiblePrimitive.Trigger;
+
+export function DisclosurePanel({ motion = "auto", children, className }: { motion?: MotionPreference; children: ReactNode; className?: string }) {
   const reduced = useReducedMotion(motion);
   return (
-    <AnimatePresence initial={false}>
-      {open && (
-        <animated.div
-          initial={reduced ? false : { height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={reduced ? { opacity: 0, transition: { duration: 0 } } : { height: 0, opacity: 0 }}
-          transition={{ duration: reduced ? 0 : 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-          className={cn("overflow-hidden", className)}
-        >
-          {children}
-        </animated.div>
-      )}
-    </AnimatePresence>
+    <CollapsiblePrimitive.Panel data-motion={reduced ? "none" : "auto"} className={cn("forge-disclosure-panel h-(--collapsible-panel-height) overflow-hidden", className)}>
+      {children}
+    </CollapsiblePrimitive.Panel>
   );
+}
+
+export function Collapse({ open, motion = "auto", children, className }: { open: boolean; motion?: MotionPreference; children: ReactNode; className?: string }) {
+  return <Disclosure open={open}><DisclosurePanel motion={motion} className={className}>{children}</DisclosurePanel></Disclosure>;
 }
 
 export function Spinner({ size = 14, className }: { size?: number; className?: string }) {

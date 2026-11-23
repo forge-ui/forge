@@ -4,6 +4,8 @@ import type { MotionPreference } from "../../../lib/motion";
 
 /* eslint-disable @next/next/no-img-element */
 
+import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
+import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 import { useEffect, useRef, useState, type PointerEvent, type ReactNode } from "react";
 import { useReducedMotion } from "../../../internal/motion";
 import { cn } from "../../../lib/utils";
@@ -35,6 +37,9 @@ export type ToggleProps = {
   /** Allow dragging the thumb; clicking and keyboard activation remain available. */
   draggable?: boolean;
   thumbIcon?: ReactNode;
+  /** Form field name; submits `value` (default "on") when on. */
+  name?: string;
+  value?: string;
 };
 
 type ToggleDrag = {
@@ -58,13 +63,16 @@ export function Toggle({
   ariaLabel = "开关",
   draggable = false,
   thumbIcon,
+  name,
+  value,
 }: ToggleProps) {
   const [internalChecked, setInternalChecked] = useState(defaultChecked);
   const active = checked ?? internalChecked;
   const noMotion = useReducedMotion(motion);
-  const thumbRef = useRef<HTMLDivElement>(null);
+  const thumbRef = useRef<HTMLSpanElement>(null);
   const drag = useRef<ToggleDrag | null>(null);
   const skipClick = useRef(false);
+  const clickDetail = useRef(0);
   const previousChecked = useRef(active);
   const [dragView, setDragView] = useState<{ offset: number; startChecked: boolean } | null>(null);
   const isMd = size === "md";
@@ -99,7 +107,7 @@ export function Toggle({
     setDragView(null);
   }
 
-  function startDrag(event: PointerEvent<HTMLButtonElement>) {
+  function startDrag(event: PointerEvent<HTMLElement>) {
     if (disabled || event.button !== 0 || event.isPrimary === false || drag.current) return;
     skipClick.current = false;
     if (!draggable) return;
@@ -116,7 +124,7 @@ export function Toggle({
     track.setPointerCapture?.(event.pointerId);
   }
 
-  function moveDrag(event: PointerEvent<HTMLButtonElement>) {
+  function moveDrag(event: PointerEvent<HTMLElement>) {
     const gesture = drag.current;
     if (!gesture || gesture.pointerId !== event.pointerId || disabled) return;
     const dx = (event.clientX - gesture.startX) / gesture.scale;
@@ -126,8 +134,9 @@ export function Toggle({
     setDragView({ offset: gesture.offset, startChecked: gesture.startChecked });
   }
 
-  function endDrag(event: PointerEvent<HTMLButtonElement>) {
+  function endDrag(event: PointerEvent<HTMLElement>) {
     const gesture = drag.current;
+
     if (!gesture || gesture.pointerId !== event.pointerId) return;
     moveDrag(event);
     cancelDrag();
@@ -139,15 +148,22 @@ export function Toggle({
   }
 
   return (
-    <button
-      type="button"
-      role="switch"
+    <SwitchPrimitive.Root
+      checked={active}
+      disabled={disabled}
+      name={name}
+      value={value}
+      onCheckedChange={(next, details) => {
+        // A finished drag already decided the value; swallow the click that follows it.
+        // Keyboard activation (click detail 0) always toggles.
+        if (skipClick.current && clickDetail.current !== 0) { skipClick.current = false; details.cancel(); return; }
+        skipClick.current = false;
+        change(next);
+      }}
       data-motion={noMotion ? "none" : "auto"}
       data-draggable={draggable || undefined}
       data-dragging={Boolean(dragView) || undefined}
       aria-label={ariaLabel}
-      aria-checked={active}
-      disabled={disabled}
       onPointerDown={startDrag}
       onPointerMove={moveDrag}
       onPointerUp={endDrag}
@@ -164,20 +180,16 @@ export function Toggle({
       onKeyDown={event => {
         if (event.key === "Escape") { skipClick.current = true; cancelDrag(); }
       }}
-      onClick={event => {
-        if (skipClick.current && event.detail !== 0) { skipClick.current = false; return; }
-        skipClick.current = false;
-        change(!active);
-      }}
+      onClickCapture={event => { clickDetail.current = event.detail; }}
       style={draggable ? { touchAction: "pan-y", userSelect: "none" } : undefined}
       className={cn(
-        "forge-toggle p-1 rounded-full inline-flex items-start",
+        "forge-toggle p-1 rounded-full inline-flex items-start outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg-blue",
         isMd ? "w-9" : "w-8",
         active ? formAccents[color].bg : "bg-fg-grey-300",
         disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer",
       )}
     >
-      <div
+      <SwitchPrimitive.Thumb
         ref={thumbRef}
         aria-hidden="true"
         style={{
@@ -190,8 +202,8 @@ export function Toggle({
           "forge-toggle-thumb rounded-full w-3 h-3 flex items-center justify-center text-fg-black",
           active ? "bg-background" : "bg-fg-grey-50",
         )}
-      >{thumbIcon}</div>
-    </button>
+      >{thumbIcon}</SwitchPrimitive.Thumb>
+    </SwitchPrimitive.Root>
   );
 }
 
@@ -328,11 +340,16 @@ export function CheckboxWithLabel({
   avatar,
   dotColor,
   disabled = false,
+  name,
+  value,
   className,
 }: {
   checked?: boolean;
   motion?: MotionPreference;
   onChange?: (checked: boolean) => void;
+  /** Form field name; submits `value` (default "on") when checked. */
+  name?: string;
+  value?: string;
   label: string;
   color?: ControlColor;
   checkboxPosition?: "left" | "right";
@@ -375,14 +392,16 @@ export function CheckboxWithLabel({
   );
 
   return (
-    <button
-      type="button"
-      role="checkbox"
-      aria-checked={checked}
+    <CheckboxPrimitive.Root
+      nativeButton
+      render={<button type="button" />}
+      checked={checked}
       disabled={disabled}
-      onClick={() => onChange?.(!checked)}
+      name={name}
+      value={value}
+      onCheckedChange={(next) => onChange?.(next)}
       className={cn(
-        "inline-flex items-start gap-2 overflow-hidden",
+        "inline-flex items-start gap-2 overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fg-blue rounded-md",
         disabled && "opacity-60 cursor-not-allowed",
         !disabled && "cursor-pointer",
         className,
@@ -399,6 +418,6 @@ export function CheckboxWithLabel({
           {checkboxEl}
         </>
       )}
-    </button>
+    </CheckboxPrimitive.Root>
   );
 }

@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { createContext, useContext, type CSSProperties, type Key, type ReactNode } from "react";
+import { Fragment, type CSSProperties, type Key, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import {
   AltArrowLeftLinear,
@@ -19,6 +19,15 @@ import {
   TrashBinTrashLinear,
 } from "../../icons";
 import { Checkbox, type CheckboxColor } from "./checkbox";
+import { BulkActionBar, ColumnSettingsButton, PageSizeAndJumper, TableGrid, useHiddenColumns } from "../../internal/table-grid";
+import {
+  numericCellLayout,
+  useWarnWhenNumericCellMissesColumn,
+  type ColumnDef,
+  type TableColumnAlign,
+} from "../../internal/table-columns";
+export { getDefaultTableMinWidth, resolveTableColumnAlign } from "../../internal/table-columns";
+export type { ColumnDef, TableCellEdit, TableColumnAlign, TableValueKind } from "../../internal/table-columns";
 import { FileTypeIcon } from "./forms";
 import { ProgressBar, type ProgressColor } from "./progress-bar";
 
@@ -110,174 +119,6 @@ export function TableCell({
       )}
     </div>
   );
-}
-
-export type TableColumnAlign = "left" | "right";
-
-/**
- * 列语义，决定省略 `align` 时的默认方向。
- * - `number`：金额、数量、单价、百分比及同类可比较数值，默认右对齐。
- * - `identifier`：工号、日期、时间、电话、邮编、订单号、业务 ID 及同类标识，默认左对齐。
- */
-export type TableValueKind = "number" | "identifier";
-
-type ColumnDefBase<T> = {
-  key: string;
-  header: string;
-  sortable?: boolean;
-  /** Tailwind width class for compact columns, e.g. `w-[120px]`. */
-  width?: string;
-  minWidth?: number;
-  /** Readable name column, capped at 280px. Does not absorb leftover table width. */
-  flex?: boolean;
-  render: (row: T, rowIndex: number) => ReactNode;
-};
-
-type ColumnDefAlign =
-  | {
-      /** 省略或 identifier：标识与普通文本，默认左对齐。列头与内容同向。 */
-      valueKind?: "identifier";
-      align?: TableColumnAlign;
-      /** 标识列一般不需要。数字列禁止用这个字段代替 `valueKind: "number"`。 */
-      alignOverrideReason?: string;
-    }
-  | {
-      /** 金额、数量、单价、百分比及同类可比较数值。省略 align 即右对齐。 */
-      valueKind: "number";
-      align?: "right";
-      alignOverrideReason?: never;
-    }
-  | {
-      valueKind: "number";
-      /**
-       * 数字列离开默认右对齐。必须同时填写非空 `alignOverrideReason`。
-       * 漏写原因会在运行时警告，并标上 `data-forge-align-violation`。
-       */
-      align: "left";
-      alignOverrideReason: string;
-    };
-
-export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
-
-const warnedNumberAlignKeys = new Set<string>();
-const warnedCellAlignKeys = new Set<string>();
-
-const TableColumnAlignContext = createContext<{ align: TableColumnAlign; columnKey: string } | null>(null);
-
-function useWarnWhenNumericCellMissesColumn(align: TableColumnAlign) {
-  const column = useContext(TableColumnAlignContext);
-  if (!column || column.align === align || warnedCellAlignKeys.has(column.columnKey)) return;
-  warnedCellAlignKeys.add(column.columnKey);
-  console.warn(
-    `[ForgeUI] 列 "${column.columnKey}" 对齐为 ${column.align}，其中的数字单元格为 ${align}。金额、数量、单价、百分比请设 valueKind: "number"，让列头与内容一起右对齐。数字列要左对齐时，列上同时写 align: "left" 与 alignOverrideReason，单元格再传 align="left"。`,
-  );
-}
-
-/** 数字列默认右对齐；标识列与普通列默认左对齐。数字列左对齐必须带非空原因。 */
-export function resolveTableColumnAlign<T>(
-  column: Pick<ColumnDef<T>, "key" | "valueKind" | "align" | "alignOverrideReason">,
-): TableColumnAlign {
-  if (column.valueKind === "number") {
-    if (column.align === "left") {
-      if (!column.alignOverrideReason?.trim() && !warnedNumberAlignKeys.has(column.key)) {
-        warnedNumberAlignKeys.add(column.key);
-        console.warn(
-          `[ForgeUI] 数字列 "${column.key}" 设置了 align="left"，但没有 alignOverrideReason。金额、数量、单价、百分比默认右对齐；左对齐必须显式写出原因。`,
-        );
-      }
-      return "left";
-    }
-    return "right";
-  }
-  return column.align ?? "left";
-}
-
-function tableAlignToken(align: TableColumnAlign): CSSProperties["textAlign"] {
-  return (align === "right"
-    ? "var(--forge-table-align-number)"
-    : "var(--forge-table-align-identifier)") as CSSProperties["textAlign"];
-}
-
-function columnAlignDataAttrs<T>(column: ColumnDef<T>) {
-  const align = resolveTableColumnAlign(column);
-  const override = column.valueKind === "number" && column.align === "left"
-    ? column.alignOverrideReason?.trim() ?? ""
-    : "";
-  return {
-    "data-forge-column-align": align,
-    "data-forge-column-kind": column.valueKind ?? "text",
-    ...(override ? { "data-forge-align-override": override } : {}),
-    ...(column.valueKind === "number" && column.align === "left" && !override
-      ? { "data-forge-align-violation": "number-left-without-reason" }
-      : {}),
-  };
-}
-
-function numericCellLayout(align: TableColumnAlign = "right") {
-  return {
-    "data-forge-cell-number-align": align,
-    className: cn(
-      "flex h-10 w-full min-w-0 items-center gap-1 tabular-nums",
-      align === "right" ? "justify-end text-right" : "justify-start text-left",
-    ),
-    style: { textAlign: tableAlignToken(align) } satisfies CSSProperties,
-  };
-}
-
-/** Identity / flex columns stay readable but do not absorb leftover table width. */
-const TABLE_IDENTITY_COLUMN_MAX_PX = 280;
-
-function isTableIdentityColumn<T>(column: ColumnDef<T>, index: number): boolean {
-  return Boolean(column.flex) || (index === 0 && !column.width);
-}
-
-function isTableActionsColumn<T>(column: ColumnDef<T>): boolean {
-  return column.key === "actions" || column.header === "";
-}
-
-export function getDefaultTableMinWidth<T>(
-  columns: ColumnDef<T>[],
-  showCheckbox = false,
-): number {
-  let minWidth = showCheckbox ? 56 : 0;
-  for (const [index, column] of columns.entries()) {
-    if (column.minWidth !== undefined && Number.isFinite(column.minWidth) && column.minWidth > 0) minWidth += column.minWidth;
-    else if (isTableIdentityColumn(column, index)) minWidth += 240;
-    else if (isTableActionsColumn(column)) minWidth += 88;
-    else minWidth += 128;
-  }
-  return minWidth;
-}
-
-function tableColumnClass<T>(
-  column: ColumnDef<T>,
-  index: number,
-  variant: "header" | "body",
-) {
-  const identity = isTableIdentityColumn(column, index);
-  const align = resolveTableColumnAlign(column);
-  return cn(
-    variant === "header"
-      ? "px-5 py-3.5 bg-background text-fg-grey-700 text-sm font-medium leading-5 tracking-fg whitespace-nowrap"
-      : "px-5 py-3.5",
-    align === "right" ? "text-right tabular-nums" : "text-left",
-    "min-w-0",
-    identity ? "w-[1%] max-w-[280px] overflow-hidden" : "whitespace-nowrap",
-    column.width,
-  );
-}
-
-function tableColumnStyle<T>(
-  column: ColumnDef<T>,
-  index: number,
-): CSSProperties {
-  return {
-    textAlign: tableAlignToken(resolveTableColumnAlign(column)),
-    ...(column.minWidth !== undefined && Number.isFinite(column.minWidth) && column.minWidth > 0 ? { minWidth: column.minWidth } : {}),
-    ...(isTableIdentityColumn(column, index)
-      ? { maxWidth: TABLE_IDENTITY_COLUMN_MAX_PX }
-      : {}),
-  };
 }
 
 const statusBadgeSolidColors = {
@@ -800,6 +641,35 @@ export type DataTableProps<T> = {
   paginationLabel?: string;
   /** Minimum width of the table content. Overflow stays inside the component. */
   tableMinWidth?: CSSProperties["minWidth"];
+  /** Shows skeleton rows when empty, otherwise a spinner over the current rows. */
+  loading?: boolean;
+  /** Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. */
+  maxHeight?: number | string;
+  /** Extra content under a row, toggled by a chevron column. */
+  expandable?: {
+    render: (row: T, rowIndex: number) => ReactNode;
+    rowExpandable?: (row: T) => boolean;
+  };
+  /** Nested rows (tree table); the first column gets the expand toggle and indentation. */
+  getRowChildren?: (row: T) => T[] | undefined;
+  /** Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. */
+  expandedRowKeys?: ReadonlySet<Key>;
+  defaultExpandedRowKeys?: Iterable<Key>;
+  onExpandedRowKeysChange?: (keys: Set<Key>) => void;
+  /** Adds a column settings menu to the header. */
+  columnSettings?: boolean;
+  hiddenColumnKeys?: ReadonlySet<string>;
+  onHiddenColumnKeysChange?: (keys: Set<string>) => void;
+  /** Actions for the selected rows, shown in a bar above the table while something is selected. */
+  bulkActions?: (selectedKeys: Set<Key>) => ReactNode;
+  /** Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. */
+  virtualized?: { rowHeight: number; overscan?: number };
+  /** Rows per page selector in the footer. */
+  pageSize?: number;
+  pageSizeOptions?: number[];
+  onPageSizeChange?: (size: number) => void;
+  /** Adds a "go to page" field next to the pagination. */
+  showQuickJumper?: boolean;
   className?: string;
 };
 
@@ -835,181 +705,6 @@ export function getPaginationSummary({
   const start = (Math.max(1, currentPage) - 1) * pageSize + 1;
   const end = start + rowCount - 1;
   return totalRows === undefined ? `显示 ${start}-${end}` : `显示 ${start}-${end}，共 ${totalRows} 条`;
-}
-
-type TableGridProps<T> = Pick<
-  DataTableProps<T>,
-  | "columns"
-  | "rows"
-  | "showCheckbox"
-  | "checkboxColor"
-  | "selectedRowKeys"
-  | "selectedRows"
-  | "onSelectedRowKeysChange"
-  | "onSelectRow"
-  | "onSelectAll"
-  | "onSort"
-  | "sortColumnKey"
-  | "sortDirection"
-  | "getRowKey"
-  | "emptyState"
-  | "tableMinWidth"
->;
-
-function TableGrid<T>({
-  columns,
-  rows,
-  showCheckbox = false,
-  checkboxColor = "black",
-  selectedRowKeys,
-  selectedRows,
-  onSelectedRowKeysChange,
-  onSelectRow,
-  onSelectAll,
-  onSort,
-  sortColumnKey,
-  sortDirection,
-  getRowKey,
-  emptyState = "暂无数据",
-  tableMinWidth,
-}: TableGridProps<T>) {
-  const getKey = (row: T, rowIndex: number) => getRowKey?.(row, rowIndex) ?? rowIndex;
-  const isRowSelected = (row: T, rowIndex: number) => (
-    selectedRowKeys?.has(getKey(row, rowIndex))
-    ?? selectedRows?.has(rowIndex)
-    ?? false
-  );
-  const allSelected = rows.length > 0 && rows.every(isRowSelected);
-
-  const updateKeySelection = (checked: boolean, rowIndexes: number[]) => {
-    if (selectedRowKeys == null) return;
-    const nextSelectedRowKeys = new Set(selectedRowKeys);
-    for (const rowIndex of rowIndexes) {
-      const rowKey = getKey(rows[rowIndex], rowIndex);
-      if (checked) nextSelectedRowKeys.add(rowKey);
-      else nextSelectedRowKeys.delete(rowKey);
-    }
-    onSelectedRowKeysChange?.(nextSelectedRowKeys);
-  };
-
-  return (
-    <div data-forge-table-scroll className="self-stretch overflow-x-auto">
-      <table
-        data-forge-table-content
-        className="w-full border-collapse"
-        style={{
-          minWidth: tableMinWidth ?? getDefaultTableMinWidth(columns, showCheckbox),
-        }}
-      >
-        <thead>
-          <tr className="border-t border-b border-fg-grey-200">
-            {showCheckbox && (
-              <th className="w-14 px-6 py-4 bg-background text-left">
-                <Checkbox
-                  aria-label="选择全部行"
-                  checked={allSelected}
-                  color={checkboxColor}
-                  onChange={(checked) => {
-                    updateKeySelection(checked, rows.map((_, rowIndex) => rowIndex));
-                    if (selectedRowKeys == null) onSelectAll?.(checked);
-                  }}
-                />
-              </th>
-            )}
-            {columns.map((col, colIndex) => {
-              const align = resolveTableColumnAlign(col);
-              const sortButton = col.sortable ? (
-                <button
-                  type="button"
-                  aria-label={`按${typeof col.header === "string" ? col.header : col.key}排序`}
-                  onClick={() => onSort?.(col.key)}
-                  className={cn(
-                    "w-4 h-4 flex items-center justify-center cursor-pointer text-fg-grey-500",
-                    sortColumnKey === col.key && sortDirection === "asc" && "rotate-180",
-                  )}
-                >
-                  <AltArrowDownLinear size={10} />
-                </button>
-              ) : null;
-              return (
-                <th
-                  key={col.key}
-                  data-forge-table-identity={isTableIdentityColumn(col, colIndex) ? "" : undefined}
-                  {...columnAlignDataAttrs(col)}
-                  aria-sort={
-                    col.sortable && sortColumnKey === col.key
-                      ? sortDirection === "asc"
-                        ? "ascending"
-                        : sortDirection === "desc"
-                          ? "descending"
-                          : "none"
-                      : undefined
-                  }
-                  className={tableColumnClass(col, colIndex, "header")}
-                  style={tableColumnStyle(col, colIndex)}
-                >
-                  <div
-                    className={cn(
-                      "flex w-full min-w-0 items-center gap-2",
-                      align === "right" ? "justify-end" : "justify-start",
-                    )}
-                  >
-                    {align === "right" ? sortButton : null}
-                    <span className="min-w-0">{col.header}</span>
-                    {align === "right" ? null : sortButton}
-                  </div>
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, rowIndex) => (
-            <tr key={getKey(row, rowIndex)} className="border-b border-fg-grey-200 bg-background">
-              {showCheckbox && (
-                <td className="w-14 px-6 py-4">
-                  <Checkbox
-                    aria-label={`选择第 ${rowIndex + 1} 行`}
-                    checked={isRowSelected(row, rowIndex)}
-                    color={checkboxColor}
-                    onChange={(checked) => {
-                      updateKeySelection(checked, [rowIndex]);
-                      if (selectedRowKeys == null) onSelectRow?.(rowIndex, checked);
-                    }}
-                  />
-                </td>
-              )}
-              {columns.map((col, colIndex) => (
-                <td
-                  key={col.key}
-                  data-forge-table-identity={isTableIdentityColumn(col, colIndex) ? "" : undefined}
-                  {...columnAlignDataAttrs(col)}
-                  className={tableColumnClass(col, colIndex, "body")}
-                  style={tableColumnStyle(col, colIndex)}
-                >
-                  <TableColumnAlignContext.Provider
-                    value={{ align: resolveTableColumnAlign(col), columnKey: col.key }}
-                  >
-                    {col.render(row, rowIndex)}
-                  </TableColumnAlignContext.Provider>
-                </td>
-              ))}
-            </tr>
-          ))}
-          {rows.length === 0 && (
-            <tr className="border-b border-fg-grey-200 bg-background">
-              <td
-                colSpan={columns.length + (showCheckbox ? 1 : 0)}
-                className="px-5 py-10 text-center text-sm text-fg-grey-700"
-              >
-                {emptyState}
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  );
 }
 
 function PaginationControls({
@@ -1101,8 +796,25 @@ export function DataTable<T>({
   onPageChange,
   paginationLabel,
   tableMinWidth,
+  loading,
+  maxHeight,
+  expandable,
+  getRowChildren,
+  expandedRowKeys,
+  defaultExpandedRowKeys,
+  onExpandedRowKeysChange,
+  columnSettings = false,
+  hiddenColumnKeys,
+  onHiddenColumnKeysChange,
+  bulkActions,
+  virtualized,
+  pageSize,
+  pageSizeOptions,
+  onPageSizeChange,
+  showQuickJumper = false,
   className,
 }: DataTableProps<T>) {
+  const [hidden, setHidden] = useHiddenColumns(hiddenColumnKeys, onHiddenColumnKeysChange);
   return (
     <div
       data-forge-data-table
@@ -1112,7 +824,7 @@ export function DataTable<T>({
       )}
     >
       {/* Header */}
-      {(title || headerActions) && (
+      {(title || headerActions || columnSettings) && (
         <div className="self-stretch p-5 bg-background flex justify-start items-center gap-3">
           {(title || subtitle || badge) && (
             <div className="flex-1 flex justify-start items-center gap-4">
@@ -1132,7 +844,12 @@ export function DataTable<T>({
             </div>
           )}
           {headerActions}
+          {columnSettings && <ColumnSettingsButton columns={columns} hidden={hidden} onChange={setHidden} />}
         </div>
+      )}
+
+      {bulkActions && selectedRowKeys && selectedRowKeys.size > 0 && (
+        <BulkActionBar count={selectedRowKeys.size} onClear={() => onSelectedRowKeysChange?.(new Set())}>{bulkActions(new Set(selectedRowKeys))}</BulkActionBar>
       )}
 
       <TableGrid
@@ -1151,11 +868,20 @@ export function DataTable<T>({
         getRowKey={getRowKey}
         emptyState={emptyState}
         tableMinWidth={tableMinWidth}
+        loading={loading}
+        maxHeight={maxHeight}
+        expandable={expandable}
+        getRowChildren={getRowChildren}
+        expandedRowKeys={expandedRowKeys}
+        defaultExpandedRowKeys={defaultExpandedRowKeys}
+        onExpandedRowKeysChange={onExpandedRowKeysChange}
+        hiddenColumnKeys={hidden}
+        virtualized={virtualized}
       />
 
       {/* Footer */}
       {(showPagination || footerLeft || footerRight) && (
-        <div className="self-stretch p-5 bg-background flex justify-start items-center gap-3">
+        <div className="self-stretch p-5 bg-background flex flex-wrap justify-start items-center gap-3">
           {paginationLabel ? (
             <div className="flex-1 justify-start text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">
               {paginationLabel}
@@ -1163,6 +889,7 @@ export function DataTable<T>({
           ) : (
             footerLeft && <div className="flex-1">{footerLeft}</div>
           )}
+          {showPagination && <PageSizeAndJumper pageSize={pageSize} pageSizeOptions={pageSizeOptions} onPageSizeChange={onPageSizeChange} showQuickJumper={showQuickJumper} totalPages={totalPages} onPageChange={onPageChange} />}
           {showPagination && (
             <PaginationControls
               color={color}
@@ -1225,8 +952,25 @@ export function FullWidthTable<T>({
   currentRowCount = 10,
   onRowCountChange,
   totalRows,
+  loading,
+  maxHeight,
+  expandable,
+  getRowChildren,
+  expandedRowKeys,
+  defaultExpandedRowKeys,
+  onExpandedRowKeysChange,
+  columnSettings = false,
+  hiddenColumnKeys,
+  onHiddenColumnKeysChange,
+  bulkActions,
+  virtualized,
+  pageSize,
+  pageSizeOptions,
+  onPageSizeChange,
+  showQuickJumper = false,
   className,
 }: FullWidthTableProps<T>) {
+  const [hidden, setHidden] = useHiddenColumns(hiddenColumnKeys, onHiddenColumnKeysChange);
   return (
     <div
       data-forge-full-width-table
@@ -1236,7 +980,7 @@ export function FullWidthTable<T>({
       )}
     >
       {/* Header */}
-      {(title || headerActions) && (
+      {(title || headerActions || columnSettings) && (
         <div className="self-stretch p-5 bg-background flex justify-start items-center gap-4">
           <div className="flex-1 flex justify-start items-center gap-4">
             <div className="inline-flex flex-col justify-center items-start gap-2">
@@ -1272,7 +1016,12 @@ export function FullWidthTable<T>({
               </select>
             </div>
           )}
+          {columnSettings && <ColumnSettingsButton columns={columns} hidden={hidden} onChange={setHidden} />}
         </div>
+      )}
+
+      {bulkActions && selectedRowKeys && selectedRowKeys.size > 0 && (
+        <BulkActionBar count={selectedRowKeys.size} onClear={() => onSelectedRowKeysChange?.(new Set())}>{bulkActions(new Set(selectedRowKeys))}</BulkActionBar>
       )}
 
       <TableGrid
@@ -1291,6 +1040,15 @@ export function FullWidthTable<T>({
         getRowKey={getRowKey}
         emptyState={emptyState}
         tableMinWidth={tableMinWidth}
+        loading={loading}
+        maxHeight={maxHeight}
+        expandable={expandable}
+        getRowChildren={getRowChildren}
+        expandedRowKeys={expandedRowKeys}
+        defaultExpandedRowKeys={defaultExpandedRowKeys}
+        onExpandedRowKeysChange={onExpandedRowKeysChange}
+        hiddenColumnKeys={hidden}
+        virtualized={virtualized}
       />
 
       {/* Footer */}
@@ -1306,6 +1064,7 @@ export function FullWidthTable<T>({
             {getPaginationSummary({ currentPage, pageSize: currentRowCount, rowCount: rows.length, totalRows })}
           </div>
         )}
+        {showPagination && <PageSizeAndJumper pageSize={pageSize} pageSizeOptions={pageSizeOptions} onPageSizeChange={onPageSizeChange} showQuickJumper={showQuickJumper} totalPages={totalPages} onPageChange={onPageChange} />}
         {showPagination && (
           <PaginationControls
             color={color}

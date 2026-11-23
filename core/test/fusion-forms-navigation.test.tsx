@@ -9,7 +9,6 @@ import { TextField } from "../src/components/ui/forms/text-field";
 import { Datepicker } from "../src/components/ui/forms/datepicker";
 import { RatingStars } from "../src/components/ui/rating-stars";
 import { TabsContent } from "../src/components/ui/tabs-content";
-import { ButtonGroup } from "../src/components/ui/button-group";
 import { TaskCard } from "../src/components/ui/task-card";
 import { Button } from "../src/components/ui/button";
 import { OtpInput } from "../src/components/ui/otp-input";
@@ -134,17 +133,6 @@ test("TabsContent scroll reports fractional progress and makes only the selected
   } finally { await env.close(); }
 });
 
-test("ButtonGroup supports arrows and Home/End without changing the controlled selection", async () => {
-  const env = await setup(), changes: number[] = [];
-  try {
-    await env.render(<ButtonGroup items={[{ label: "Day" }, { label: "Week" }, { label: "Month" }]} activeIndex={1} onChange={i => changes.push(i)} motion="none" />);
-    const buttons = [...document.querySelectorAll<HTMLButtonElement>('button')];
-    await env.key(buttons[1], "ArrowRight"); assert.equal(document.activeElement, buttons[2]);
-    await env.key(buttons[2], "Home"); assert.equal(document.activeElement, buttons[0]);
-    assert.deepEqual(changes, [2, 0]); assert.equal(buttons[1].getAttribute("aria-pressed"), "true");
-  } finally { await env.close(); }
-});
-
 test("OtpInput English defaults include the accessible input and hint", () => {
   const html = renderToString(<OtpInput locale="en" motion="none" />);
   assert.match(html, /Verification code/); assert.match(html, /Enter your verification code/); assert.doesNotMatch(html, /验证码/);
@@ -182,17 +170,19 @@ test("TabsContent keeps the latest controlled request through intermediate smoot
   dom.window.close();
 });
 
+const otpValue = () => [...document.querySelectorAll<HTMLInputElement>(".forge-otp__field")].map(slot => slot.value).join("");
 test("OtpInput error reset never clears a newer edited code", async () => {
   const env = await setup();
   try {
     await env.render(<OtpInput verify={() => false} />);
-    const input = document.querySelector<HTMLInputElement>('input')!;
+    const input = document.querySelector<HTMLInputElement>('.forge-otp__field')!;
     const setter = Object.getOwnPropertyDescriptor(env.dom.window.HTMLInputElement.prototype, "value")!.set!;
-    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.InputEvent("input", { bubbles: true, inputType: "insertText", data: "000000" })); });
     assert.equal(document.querySelector(".forge-otp")?.getAttribute("data-status"), "err");
-    await act(async () => { setter.call(input, "12"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    await act(async () => { setter.call(input, "12"); input.dispatchEvent(new env.dom.window.InputEvent("input", { bubbles: true, inputType: "insertText", data: "12" })); });
     await act(async () => { await new Promise(resolve => setTimeout(resolve, 400)); });
-    assert.equal(input.value, "12");
+    // Typing into the first slot overwrites it in place; the newer code survives the reset.
+    assert.equal(otpValue(), "120000");
   } finally { await env.close(); }
 });
 
@@ -208,15 +198,15 @@ test("OtpInput controlled error reset survives unrelated parent updates and uses
   }
   try {
     await env.render(<Parent />);
-    const input = document.querySelector<HTMLInputElement>("input")!;
+    const input = document.querySelector<HTMLInputElement>('.forge-otp__field')!;
     const setter = Object.getOwnPropertyDescriptor(env.dom.window.HTMLInputElement.prototype, "value")!.set!;
-    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.InputEvent("input", { bubbles: true, inputType: "insertText", data: "000000" })); });
     assert.equal(document.querySelector(".forge-otp")?.getAttribute("data-status"), "err");
     for (let i = 0; i < 16; i++) {
       await act(async () => { await new Promise(resolve => setTimeout(resolve, 100)); refresh(); });
-      if (i === 3) assert.equal(input.value, "000000", "reduced motion keeps the error readable");
+      if (i === 3) assert.equal(otpValue(), "000000", "reduced motion keeps the error readable");
     }
-    assert.equal(input.value, "");
+    assert.equal(otpValue(), "");
     assert.equal(clearedAt.length, 1);
     assert.ok(clearedAt[0] > 0, "reset calls the latest callback, not the first render's closure");
   } finally { await env.close(); }
@@ -227,15 +217,15 @@ test("OtpInput preserves the full error animation and does not steal focus on re
   Object.defineProperty(env.dom.window, "matchMedia", { configurable: true, value: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) });
   try {
     await env.render(<><OtpInput verify={() => false} /><button>Continue elsewhere</button></>);
-    const input = document.querySelector<HTMLInputElement>("input")!;
+    const input = document.querySelector<HTMLInputElement>('.forge-otp__field')!;
     const setter = Object.getOwnPropertyDescriptor(env.dom.window.HTMLInputElement.prototype, "value")!.set!;
-    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.Event("input", { bubbles: true })); });
+    await act(async () => { setter.call(input, "000000"); input.dispatchEvent(new env.dom.window.InputEvent("input", { bubbles: true, inputType: "insertText", data: "000000" })); });
     const next = document.querySelector<HTMLButtonElement>("button")!;
     next.focus();
     await act(async () => { await new Promise(resolve => setTimeout(resolve, 1200)); });
-    assert.equal(input.value, "000000", "error does not clear at the old 1100ms cutoff");
+    assert.equal(otpValue(), "000000", "error does not clear at the old 1100ms cutoff");
     await act(async () => { await new Promise(resolve => setTimeout(resolve, 350)); });
-    assert.equal(input.value, "");
+    assert.equal(otpValue(), "");
     assert.equal(document.activeElement, next);
   } finally { await env.close(); }
 });

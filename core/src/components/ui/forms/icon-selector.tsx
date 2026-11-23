@@ -1,6 +1,7 @@
 "use client";
 
-import { type ReactNode, useState, useRef, useEffect, useId } from "react";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { type ReactNode, useState, useRef, useId } from "react";
 import { cn } from "../../../lib/utils";
 import { MagniferLinear, AddCircleLinear } from "../../../icons";
 import { formAccents, type FormAccentColor } from "./form-utils";
@@ -150,48 +151,23 @@ export function IconSelector({
 }) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const containerRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const dialogId = useId();
   const labelId = useId();
   const accent = formAccents[color];
-
-  // Move focus into the popover and support dismissal from the keyboard or pointer.
-  useEffect(() => {
-    if (!open) return;
-    searchInputRef.current?.focus();
-
-    function handleClick(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key !== "Escape") return;
-      e.preventDefault();
-      setOpen(false);
-      triggerRef.current?.focus();
-    }
-    document.addEventListener("mousedown", handleClick);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [open]);
 
   const hasSelection = selectedIndex !== undefined && selectedIndex >= 0;
   const filteredIndexes = filterIconIndexes(labels, search, icons.length);
 
   return (
-    <div className={cn("inline-flex flex-col items-start gap-1", className)} ref={containerRef}>
+    <PopoverPrimitive.Root open={open} onOpenChange={setOpen} modal={false}>
+    <div className={cn("inline-flex flex-col items-start gap-1", className)}>
       {label && (
         <div className="self-stretch flex items-start gap-2">
           <span id={labelId} className="flex-1 text-fg-grey-700 text-sm font-medium leading-5 tracking-fg">{label}</span>
         </div>
       )}
-      <div className="self-stretch relative inline-flex items-center gap-3">
+      <div ref={anchorRef} className="self-stretch relative inline-flex items-center gap-3">
         {/* Preview circle */}
         <div
           className={cn(
@@ -209,30 +185,22 @@ export function IconSelector({
         </div>
 
         {/* Select / Close button */}
-        <button
-          ref={triggerRef}
-          type="button"
-          onClick={() => setOpen(!open)}
-          aria-expanded={open}
-          aria-haspopup="dialog"
-          aria-controls={dialogId}
-          className={cn("flex items-start gap-1 cursor-pointer", accent.text)}
-        >
+        <PopoverPrimitive.Trigger className={cn("flex items-start gap-1 cursor-pointer", accent.text)}>
           <AddCircleLinear size={20} />
           <span className="text-sm font-medium leading-5 tracking-fg">
             {open ? "关闭" : "选择"}
           </span>
-        </button>
+        </PopoverPrimitive.Trigger>
 
         {/* Popover */}
-        {open && (
-          <div
-            id={dialogId}
-            role="dialog"
-            aria-modal="false"
+        <PopoverPrimitive.Portal>
+          <PopoverPrimitive.Positioner anchor={anchorRef} side="bottom" align="start" alignOffset={76} sideOffset={-14} collisionPadding={16} className="z-50">
+          <PopoverPrimitive.Popup
+            initialFocus={searchInputRef}
+            data-motion="auto"
             aria-labelledby={label ? labelId : undefined}
             aria-label={label ? undefined : "图标选择器"}
-            className="absolute left-[76px] top-[50px] w-80 max-w-[calc(100vw-2rem)] z-50 rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-background shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]"
+            className="forge-popup w-80 max-w-[calc(100vw-2rem)] rounded-2xl outline outline-1 outline-offset-[-1px] outline-fg-grey-200 flex flex-col overflow-hidden bg-background shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)]"
           >
             {/* Search */}
             <div className="self-stretch p-4 border-b border-fg-grey-200 flex flex-col gap-2">
@@ -283,9 +251,11 @@ export function IconSelector({
                 <p className="w-full py-6 text-center text-sm text-fg-grey-700">未找到匹配图标</p>
               )}
             </div>
-          </div>
-        )}
+          </PopoverPrimitive.Popup>
+          </PopoverPrimitive.Positioner>
+        </PopoverPrimitive.Portal>
       </div>
     </div>
+    </PopoverPrimitive.Root>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { isValidElement, useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
+import { isValidElement, useEffect, useState, type ComponentProps, type ReactNode } from "react";
+import { AnchoredPanel } from "../../../internal/anchored-panel";
 import { AskAiCompactComposerContext } from "../../../internal/ask-ai-composer-context";
 import { cn } from "../../../lib/utils";
 import { ChatInputBar } from "../chat-input-bar";
@@ -64,19 +65,11 @@ export type AgentPanelProps = {
  */
 export function AgentPanel({ title, open, onOpenChange, launcher = true, launcherLabel, empty, followKey, children, onNewChat, sessions, currentSessionId, onSelectSession, onRenameSession, onDeleteSession, onPinSession, notice, composer }: AgentPanelProps) {
   const [historyOpen, setHistoryOpen] = useState(false);
-  const history = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     insetPage(open);
     return () => insetPage(false);
   }, [open]);
-
-  useEffect(() => {
-    if (!historyOpen) return;
-    const close = (event: PointerEvent) => { if (!history.current?.contains(event.target as Node)) setHistoryOpen(false); };
-    document.addEventListener("pointerdown", close);
-    return () => document.removeEventListener("pointerdown", close);
-  }, [historyOpen]);
 
   if (!open) {
     if (!launcher) return null;
@@ -99,10 +92,9 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
         <span className="flex items-center gap-1.5 text-sm font-medium tracking-fg text-fg-black"><StarsLinear size={16} color="var(--accent)" />{title}</span>
         <div className="flex items-center">
           {sessions && sessions.length > 0 && onSelectSession && (
-            <div ref={history} className="relative">
-              <IconButton variant="ghost" shape="square" size="sm" aria-label="历史对话" title="历史对话" aria-expanded={historyOpen} onClick={() => setHistoryOpen(value => !value)}><ClockCircleLinear size={16} /></IconButton>
-              {historyOpen && (
-                <div className="forge-fade-up absolute right-0 top-9 z-10 max-h-[28rem] w-72 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-background p-2 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+            <AnchoredPanel open={historyOpen} onOpenChange={setHistoryOpen} label="历史对话"
+              trigger={<IconButton variant="ghost" shape="square" size="sm" aria-label="历史对话" title="历史对话"><ClockCircleLinear size={16} /></IconButton>}>
+                <div className="max-h-[28rem] w-72 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-2xl bg-background p-2 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
                   <ConversationList
                     items={sessions}
                     currentId={currentSessionId}
@@ -112,8 +104,7 @@ export function AgentPanel({ title, open, onOpenChange, launcher = true, launche
                     onPin={onPinSession}
                   />
                 </div>
-              )}
-            </div>
+            </AnchoredPanel>
           )}
           {onNewChat && <IconButton variant="ghost" shape="square" size="sm" aria-label="新对话" title="新对话" onClick={onNewChat}><PenNewSquareLinear size={16} /></IconButton>}
           {/* The icon set has no bare cross; a turned plus keeps the same stroke. */}

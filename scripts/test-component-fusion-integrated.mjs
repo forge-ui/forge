@@ -28,6 +28,8 @@ await build({
     plugin.onResolve({ filter: /^next\// }, ({ path }) => ({ path: require.resolve(path), external: true })); } }],
   alias: { "@forge-ui-official/core": resolve(root, "core/src/index.ts"), "@forge-ui-official/core/icons": resolve(root, "core/src/icons.tsx") },
 });
+// Base UI chooses useLayoutEffect vs a no-op when it loads, so provide a document first.
+require("./core/test/setup/dom-globals.cjs");
 const examples = await import(pathToFileURL(resolve(temp, "examples.mjs")));
 after(() => rmSync(temp, { recursive: true, force: true }));
 const catalog = JSON.parse(readFileSync(resolve(root, "src/app/prototype/component-fusion/_catalog-data.json"), "utf8"));

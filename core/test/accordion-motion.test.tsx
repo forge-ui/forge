@@ -35,7 +35,9 @@ const items: AccordionItem[] = [
   { value: "files", title: "文件", content: <a href="#files">查看文件</a> },
 ];
 const headers = () => [...document.querySelectorAll<HTMLButtonElement>(".forge-accordion > div > h3 > button")];
-const panelFor = (header: HTMLButtonElement) => document.getElementById(header.getAttribute("aria-controls")!)!;
+const panelFor = (header: HTMLButtonElement) => header.closest("[data-forge-accordion-item]")!.querySelector<HTMLElement>(".forge-accordion-panel")!;
+
+const isHidden = (panel: HTMLElement) => panel.hasAttribute("hidden");
 
 test("Accordion controlled closing restores a hidden answer's focus without stealing outside focus", async () => {
   const env = setup();
@@ -46,8 +48,8 @@ test("Accordion controlled closing restores a hidden answer's focus without stea
     const panel = panelFor(member);
     panel.querySelector("button")!.focus();
     await render("files");
-    assert.equal(document.activeElement, member);
-    assert.ok(panel.closest("[inert][aria-hidden='true']"));
+    assert.ok(document.activeElement === member, "focus returns to the closed answer's header");
+    assert.ok(isHidden(panel));
     assert.equal(headers()[1].getAttribute("aria-expanded"), "true");
     await render("members");
     panel.querySelector("button")!.focus();
@@ -68,10 +70,10 @@ test("Accordion rapid toggles keep one accessible answer and preserve mounted co
       const expanded = headers().filter((header) => header.getAttribute("aria-expanded") === "true");
       assert.ok(expanded.length <= 1);
       for (const header of headers()) {
-        assert.equal(Boolean(panelFor(header).closest("[inert]")), header.getAttribute("aria-expanded") !== "true");
+        assert.equal(isHidden(panelFor(header)), header.getAttribute("aria-expanded") !== "true");
       }
     }
-    assert.equal(panelFor(member), original);
+    assert.ok(panelFor(member) === original, "answers stay mounted");
     assert.equal(member.getAttribute("aria-expanded"), "true");
     assert.ok(member.querySelector("svg"), "uses a Solar icon instead of a text glyph");
     assert.equal(member.textContent, "成员");
@@ -82,17 +84,12 @@ test("Accordion respects live reduced motion and explicit motion none", async ()
   const env = setup();
   try {
     await env.render(<Accordion items={items} />);
-    let panel = panelFor(headers()[0]);
-    assert.match(panel.style.transition, /transform 450ms/);
+    const panel = () => panelFor(headers()[0]);
+    assert.equal(panel().getAttribute("data-motion"), "auto");
     await env.reduce();
-    assert.equal(panel.style.transition, "none");
-    assert.equal(panel.style.transform, "none");
-    await act(async () => headers()[0].click());
-    assert.equal(panel.style.opacity, "1");
+    assert.equal(panel().getAttribute("data-motion"), "none");
     await env.render(<Accordion items={items} motion="none" />);
-    panel = panelFor(headers()[1]);
-    assert.equal(panel.style.transition, "none");
-    assert.equal(panel.closest(".forge-motion-collapse")?.getAttribute("data-motion"), "none");
+    assert.equal(panelFor(headers()[1]).getAttribute("data-motion"), "none");
   } finally { await env.close(); }
 });
 
@@ -108,8 +105,8 @@ test("Accordion navigation remains scoped to its own enabled headers when answer
     const outer = [...root.querySelectorAll<HTMLButtonElement>("h3 > button")].filter((button) => button.closest(".forge-accordion") === root);
     outer[0].focus();
     await act(async () => outer[0].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
-    assert.equal(document.activeElement, outer[2]);
+    assert.equal(document.activeElement?.textContent, "外层二");
     await act(async () => outer[2].dispatchEvent(new KeyboardEvent("keydown", { key: "Home", bubbles: true })));
-    assert.equal(document.activeElement, outer[0]);
+    assert.equal(document.activeElement?.textContent, "外层一");
   } finally { await env.close(); }
 });

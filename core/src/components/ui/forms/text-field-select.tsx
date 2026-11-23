@@ -1,12 +1,11 @@
 "use client";
 
+import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { useRef, useState } from "react";
 import type { MotionPreference } from "../../../lib/motion";
-import { MotionPresence, MotionMenu } from "../../../internal/motion";
-
-import { useState, useRef, useEffect } from "react";
 import { cn } from "../../../lib/utils";
 import { AltArrowDownLinear } from "../../../icons";
-import { formAccents, type FormAccentColor } from "./form-utils";
+import type { FormAccentColor } from "./form-utils";
 
 // ============================================================
 // TextFieldSelectSuffix — inline select dropdown designed to sit
@@ -39,53 +38,44 @@ export function TextFieldSelectSuffix({
   motion?: MotionPreference;
 }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const accent = formAccents[color];
-
-  useEffect(() => {
-    function onClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
-    function escape(event: KeyboardEvent) { if (event.key === "Escape" && ref.current?.contains(event.target as Node)) { setOpen(false); ref.current.querySelector<HTMLButtonElement>("button")?.focus(); } }
-    document.addEventListener("keydown", escape);
-    document.addEventListener("mousedown", onClickOutside);
-    return () => { document.removeEventListener("mousedown", onClickOutside); document.removeEventListener("keydown", escape); };
-  }, []);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   return (
-    <div ref={ref} className="relative">
-      <button
-        type="button"
-        aria-expanded={open}
+    <SelectPrimitive.Root value={value} onValueChange={(next) => { if (next != null) onChange?.(next); }} open={open} onOpenChange={setOpen} modal={false}>
+      <SelectPrimitive.Trigger
+        ref={triggerRef}
         data-motion={motion}
-        onClick={() => setOpen(!open)}
-        className="forge-motion-trigger flex items-center gap-1 cursor-pointer text-fg-grey-700 text-sm font-normal leading-5 tracking-fg hover:text-fg-black transition-colors"
+        className="forge-motion-trigger flex items-center gap-1 cursor-pointer text-fg-grey-700 text-sm font-normal leading-5 tracking-fg hover:text-fg-black transition-colors outline-none focus-visible:text-fg-black"
       >
-        {value}
+        <SelectPrimitive.Value>{value}</SelectPrimitive.Value>
         <span className="forge-chevron inline-flex" data-motion={motion} data-expanded={open}><AltArrowDownLinear size={16} /></span>
-      </button>
-
-      <MotionPresence open={open} motion={motion} className="absolute top-full right-0 mt-1 min-w-40 max-w-[calc(100vw-2rem)] py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] z-50 flex overflow-hidden">
-          <MotionMenu motion={motion} className="flex-1 flex flex-col overflow-y-auto max-h-60">
-            {options.map((opt) => (
-              <button type="button"
-                key={opt}
-                onClick={() => { if (!open) return; onChange?.(opt); setOpen(false); ref.current?.querySelector<HTMLButtonElement>("button")?.focus(); }}
-                className={cn(
-                  "h-12 px-4 py-3 flex items-center cursor-pointer hover:bg-fg-grey-100 transition-colors",
-                  opt === value ? `${accent.text} font-semibold` : "text-fg-grey-700 font-medium",
-                )}
-              >
-                {opt}
-              </button>
-            ))}
-          </MotionMenu>
-          {options.length > 4 && (
-            <div className="w-1 bg-fg-grey-100 self-stretch shrink-0 relative">
-              <div className={cn("absolute top-2 left-0 right-0 h-14 rounded-full", accent.bg)} />
-            </div>
-          )}
-        </MotionPresence>
-    </div>
+      </SelectPrimitive.Trigger>
+      <SelectPrimitive.Portal>
+        <SelectPrimitive.Positioner alignItemWithTrigger={false} side="bottom" align="end" sideOffset={4} collisionPadding={8} className="z-50">
+          <SelectPrimitive.Popup
+            data-motion={motion}
+            className="forge-popup min-w-40 max-w-[calc(100vw-2rem)] py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] flex overflow-hidden"
+          >
+            <SelectPrimitive.List className="flex-1 flex flex-col overflow-y-auto max-h-60 outline-none">
+              {options.map((opt) => (
+                <SelectPrimitive.Item
+                  key={opt}
+                  value={opt}
+                  className={cn("group h-12 px-4 py-3 flex items-center cursor-pointer outline-none text-fg-grey-700 font-medium data-highlighted:bg-fg-grey-100 data-selected:font-semibold", selectedText[color])}
+                >
+                  <SelectPrimitive.ItemText>{opt}</SelectPrimitive.ItemText>
+                </SelectPrimitive.Item>
+              ))}
+            </SelectPrimitive.List>
+          </SelectPrimitive.Popup>
+        </SelectPrimitive.Positioner>
+      </SelectPrimitive.Portal>
+    </SelectPrimitive.Root>
   );
 }
+
+const selectedText: Record<FormAccentColor, string> = {
+  purple: "data-selected:text-fg-violet",
+  blue: "data-selected:text-fg-blue",
+  black: "data-selected:text-fg-black",
+};

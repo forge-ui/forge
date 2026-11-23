@@ -1,6 +1,6 @@
 "use client";
 
-import { Tooltip, TooltipBubble, TooltipAnchor } from "@forge-ui-official/core";
+import { Tooltip, TooltipBubble, TooltipAnchor, PreviewCard, Avatar } from "@forge-ui-official/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -14,7 +14,26 @@ const LONG = "这里展示详细说明，帮助你了解当前操作。";
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { Tooltip, TooltipBubble, TooltipAnchor } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { Tooltip, TooltipBubble, TooltipAnchor, PreviewCard } from "@forge-ui-official/core";`;
+
+const CODE_PREVIEWCARD_USAGE = `<PreviewCard trigger={<a href="/members/lin">林晓</a>}>
+  <div className="flex items-center gap-3">
+    <Avatar src="https://i.pravatar.cc/80?img=32" size="lg" />
+    <div>
+      <p className="text-sm font-semibold text-fg-black">林晓</p>
+      <p className="text-xs text-fg-grey-700">产品设计 · 杭州</p>
+    </div>
+  </div>
+</PreviewCard>`;
+
+const PREVIEWCARD_PROPS: ApiTableRow[] = [
+  { attr: "trigger", type: "ReactElement", defaultValue: "—", description: "触发元素，通常是链接；需要把 ref 和属性传到 <a> 上。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "卡片内容。悬停或键盘聚焦链接时出现。" },
+  { attr: "side / align", type: "'top' | 'bottom' | 'left' | 'right' / 'start' | 'center' | 'end'", defaultValue: "'bottom' / 'center'", description: "弹出方向和对齐，空间不够时自动翻转。" },
+  { attr: "delay / closeDelay", type: "number", defaultValue: "400 / 200", description: "悬停多久打开、离开多久关闭（毫秒）。" },
+  { attr: "width", type: "string", defaultValue: "'320px'", description: "卡片宽度。" },
+  { attr: "open / onOpenChange", type: "boolean / (open) => void", defaultValue: "—", description: "受控展开状态。" },
+];
 
 const CODE_BUBBLE_USAGE = `<TooltipBubble content="示例文本" position="top" size="sm" />
 <TooltipBubble content="查看详细说明" position="top" size="lg" />`;
@@ -148,6 +167,20 @@ export default function TooltipCasePage() {
               <TooltipAnchor icon={<DangerCircleBoldDuotone size={14} />} state="active" />
             </div>
           </DocExample>
+          <DocExample id="previewcard" title="PreviewCard" summary="悬停或聚焦链接时，预览它指向的人、项目或文档。" code={CODE_PREVIEWCARD_USAGE} minHeight={140}>
+            <p className="text-sm text-fg-grey-700">
+              负责人：
+              <PreviewCard trigger={<a href="#previewcard" className="font-medium text-fg-blue underline-offset-4 hover:underline">林晓</a>}>
+                <div className="flex items-center gap-3">
+                  <Avatar src="https://i.pravatar.cc/80?img=32" size="lg" />
+                  <div>
+                    <p className="text-sm font-semibold text-fg-black">林晓</p>
+                    <p className="text-xs text-fg-grey-700">产品设计 · 杭州</p>
+                  </div>
+                </div>
+              </PreviewCard>
+            </p>
+          </DocExample>
         </ExampleGrid>
       </Section>
 
@@ -155,6 +188,7 @@ export default function TooltipCasePage() {
         <ApiBlock id="tooltipbubble" title="TooltipBubble" rows={BUBBLE_PROPS} />
         <ApiBlock id="tooltipanchor" title="TooltipAnchor" rows={ANCHOR_PROPS} />
         <ApiBlock id="tooltip" title="Tooltip" rows={TOOLTIP_PROPS} />
+        <ApiBlock id="previewcard" title="PreviewCard" rows={PREVIEWCARD_PROPS} />
       </Section>
     </div>
   );

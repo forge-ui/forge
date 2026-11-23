@@ -1,5 +1,6 @@
 "use client";
 
+import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import type { MotionPreference } from "../../lib/motion";
 import { useReducedMotion } from "../../internal/motion";
 
@@ -160,13 +161,12 @@ export function ChecklistItem({
   const popping = stage === "tick";
 
   return (
-    <button
-      type="button"
-      role="checkbox"
+    <CheckboxPrimitive.Root
+      nativeButton
+      render={<button type="button" />}
       data-motion={motion}
-      aria-checked={done}
-      onClick={() => {
-        const next = !done;
+      checked={done}
+      onCheckedChange={(next) => {
         if (checked === undefined) setOwn(next);
         onCheckedChange?.(next);
       }}
@@ -191,7 +191,7 @@ export function ChecklistItem({
       >
         {label}
       </span>
-    </button>
+    </CheckboxPrimitive.Root>
   );
 }
 

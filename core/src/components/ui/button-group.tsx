@@ -1,5 +1,7 @@
 "use client";
 
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
+import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
 import { useRef } from "react";
 import type { MotionPreference } from "../../lib/motion";
 import { useMovingIndicator } from "../../internal/motion";
@@ -49,11 +51,14 @@ export function ButtonGroup({
   const rootRef = useRef<HTMLDivElement>(null);
   const indicator = useMovingIndicator(rootRef, "[aria-pressed='true']", activeIndex);
   return (
-    <div
+    <ToggleGroupPrimitive
       ref={rootRef}
       data-motion={motion}
-      role="group"
       aria-label={ariaLabel}
+      value={[String(activeIndex)]}
+      // Pressing the active segment reports it again (hosts may treat that as "clear"), as before.
+      onValueChange={(next) => onChange?.(next[0] !== undefined ? Number(next[0]) : activeIndex)}
+      loopFocus
       className={cn(
         "relative isolate p-1 bg-background outline outline-1 outline-offset-[-1px] outline-fg-grey-200 inline-flex",
         isPill ? "rounded-full" : "rounded-xl",
@@ -62,15 +67,13 @@ export function ButtonGroup({
     >
       <span aria-hidden ref={indicator} className={cn("forge-moving-indicator forge-pill-indicator", activeItemColors[color], isPill ? "rounded-full" : "rounded-lg")} />
       {items.map((item, index) => (
-        <button
+        <TogglePrimitive
           key={index}
-          type="button"
-          aria-pressed={index === activeIndex}
-          onClick={() => onChange?.(index)}
+          value={String(index)}
+          // Like a segmented control, arrow keys select as focus moves (Base UI moves the focus).
           onKeyDown={event => {
             const next = event.key === "ArrowRight" || event.key === "ArrowDown" ? (index + 1) % items.length : event.key === "ArrowLeft" || event.key === "ArrowUp" ? (index - 1 + items.length) % items.length : event.key === "Home" ? 0 : event.key === "End" ? items.length - 1 : -1;
-            if (next < 0) return;
-            event.preventDefault(); onChange?.(next); rootRef.current?.querySelectorAll<HTMLButtonElement>("button")[next]?.focus();
+            if (next >= 0) onChange?.(next);
           }}
           className={cn(
             "relative z-[1] px-4 py-2 text-sm leading-5 cursor-pointer whitespace-nowrap",
@@ -81,8 +84,8 @@ export function ButtonGroup({
           )}
         >
           {item.label}
-        </button>
+        </TogglePrimitive>
       ))}
-    </div>
+    </ToggleGroupPrimitive>
   );
 }

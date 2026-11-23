@@ -1,5 +1,8 @@
+"use client";
+
 import type { MotionPreference } from "../../lib/motion";
 import { MotionMenu } from "../../internal/motion";
+import { Separator } from "@base-ui/react/separator";
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
@@ -33,7 +36,7 @@ export function DropdownPanel({
 export function DropdownDivider() {
   return (
     <div className="self-stretch px-2.5">
-      <div className="h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
+      <Separator className="h-0 outline outline-1 outline-offset-[-0.50px] outline-fg-grey-200" />
     </div>
   );
 }

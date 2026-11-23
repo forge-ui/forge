@@ -1,5 +1,6 @@
 "use client";
 
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { AnimatePresence, motion } from "motion/react";
 import { createContext, useContext, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from "react";
 import { PlusLinear } from "../../../icons";
@@ -223,19 +224,21 @@ export type ComposerActionProps = {
 export function ComposerAction({ label, icon, onClick, toggleQuickActions = false, active, showLabel = false }: ComposerActionProps) {
   const composer = useComposer("ComposerAction");
   const pressed = toggleQuickActions ? composer.quickOpen : active;
+  const press = () => (toggleQuickActions ? composer.setQuickOpen(!composer.quickOpen) : onClick?.());
+  // A plain action stays a button; an on/off action is a Base UI toggle (aria-pressed).
+  const Element = pressed === undefined ? "button" : TogglePrimitive;
   return (
-    <button
+    <Element
       type="button"
       aria-label={label}
       title={label}
-      aria-pressed={pressed}
+      {...(pressed === undefined ? { onClick: press } : { pressed, onPressedChange: press })}
       disabled={composer.disabled}
-      onClick={() => (toggleQuickActions ? composer.setQuickOpen(!composer.quickOpen) : onClick?.())}
       className={cn("forge-composer-plus inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-full text-sm font-medium text-fg-black transition-colors hover:bg-fg-grey-100 aria-pressed:bg-accent-soft aria-pressed:text-accent disabled:opacity-50", showLabel ? "px-3" : "w-9")}
     >
       {icon ?? <PlusLinear size={18} className={cn("transition-transform", toggleQuickActions && composer.quickOpen && "rotate-45")} />}
       {showLabel && label}
-    </button>
+    </Element>
   );
 }
 

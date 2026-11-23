@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent } from "react";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { useCallback, useState, useRef, useEffect, useId, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { cn } from "../../../lib/utils";
 import {
   CalendarLinear,
@@ -57,6 +58,7 @@ export function Datepicker({
   confirmSelection = false,
   rangeLabels,
   inline = false,
+  calendarOnly = false,
   minDate,
   maxDate,
   state = "idle",
@@ -75,6 +77,8 @@ export function Datepicker({
   /** Optional separate start/end triggers. */
   rangeLabels?: [string, string];
   inline?: boolean;
+  /** Render only the calendar panel (no field), to embed it in your own layout. */
+  calendarOnly?: boolean;
   minDate?: Date;
   maxDate?: Date;
   rangeStart?: Date;
@@ -121,8 +125,11 @@ export function Datepicker({
   const days = locale === "en" ? ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"] : DAYS;
   const months = locale === "en" ? Array.from({ length: 12 }, (_, i) => new Intl.DateTimeFormat("en", { month: "long" }).format(new Date(2026, i, 1))) : MONTHS;
   const blocked = (date: Date) => Boolean(minDate && toDateNum(date) < toDateNum(minDate) || maxDate && toDateNum(date) > toDateNum(maxDate));
-  const ref = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const anchorRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const closePopup = useCallback(() => { setOpen(false); setPickingEnd(false); setView("calendar"); }, []);
   const triggerId = useId();
   const dialogId = useId();
   const accent = formAccents[color];
@@ -135,35 +142,11 @@ export function Datepicker({
   const isFilled = state === "filled" || (hasValue && !open);
   const shapeClass = shape === "pill" ? "rounded-full" : "rounded-xl";
 
-  useEffect(() => {
-    if (!visible || inline) return;
-    function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-        setPickingEnd(false);
-        setView("calendar");
-      }
-    }
-    function handleEscape(e: KeyboardEvent) {
-      if (e.key !== "Escape") return;
-      e.preventDefault();
-      setOpen(false);
-      setPickingEnd(false);
-      setView("calendar");
-      triggerRef.current?.focus();
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [visible, inline]);
 
   useEffect(() => {
     if (!focusRequested.current) return;
     focusRequested.current = false;
-    ref.current?.querySelector<HTMLButtonElement>(`[data-date="${toDateNum(focusedDate)}"]`)?.focus();
+    (panelRef.current ?? ref.current)?.querySelector<HTMLButtonElement>(`[data-date="${toDateNum(focusedDate)}"]`)?.focus();
   }, [focusedDate, viewMonth, viewYear]);
   function toggleOpen() {
     if (!open) { setDraft({ start: rangeStart, end: rangeEnd }); setPickingEnd(false); setHoverDate(undefined); }
@@ -269,39 +252,8 @@ export function Datepicker({
     return { isSelectedSingle, isRangeStart, isRangeEnd, isInRange, isToday };
   }
 
-  return (
-    <div className="flex flex-col" ref={ref}>
-      {label && (
-        <label htmlFor={triggerId} className="text-sm font-medium text-fg-black mb-1">{label}</label>
-      )}
-      <div className="relative">
-        {mode === "range" && rangeLabels ? <div className="grid grid-cols-2 gap-2">{rangeLabels.map((text, i) => <button key={text} ref={i === 0 ? triggerRef : undefined} id={i === 0 ? triggerId : undefined} type="button" disabled={isDisabled} aria-expanded={visible} aria-controls={dialogId} onClick={() => { if (!inline && !open) { setDraft({ start: rangeStart, end: rangeEnd }); setOpen(true); } setPickingEnd(i === 1 && Boolean(pickedStart)); }} className={cn(wrapperClass, "flex-col items-start")}><span className="text-xs text-fg-grey-700">{text}</span><span className="text-sm">{(i === 0 ? pickedStart : pickedEnd) ? formatDate((i === 0 ? pickedStart : pickedEnd)!, locale) : placeholder}</span></button>)}</div> : <button
-          ref={triggerRef}
-          id={triggerId}
-          type="button"
-          disabled={isDisabled}
-          aria-haspopup="dialog"
-          aria-expanded={open && !isDisabled}
-          aria-controls={dialogId}
-          className={cn(wrapperClass, "text-left")}
-          onClick={toggleOpen}
-        >
-          <span
-            className={cn(
-              "flex-1 text-sm font-normal leading-5",
-              isError && "text-fg-red",
-              isDisabled && "text-fg-grey-700",
-              !hasValue && !isError && "text-fg-grey-700",
-              hasValue && !isError && !isDisabled && "text-fg-black",
-            )}
-          >
-            {displayText}
-          </span>
-          <span className="text-fg-grey-700"><CalendarLinear size={20} /></span>
-        </button>}
-
-        {visible && !isDisabled && (
-          <div id={dialogId} role="dialog" aria-label={label ?? placeholder} className={cn("mt-2 w-96 max-w-full bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 z-50", !inline && "absolute top-full left-0 max-w-[calc(100vw-2rem)] shadow-sm")}>
+  const panelBody = (
+    <>
             {/* Header */}
             <div className="flex items-center gap-2 border-b border-fg-grey-200 p-4">
               <button type="button" aria-label={locale === "zh" ? "上个月" : "Previous month"} onClick={prevMonth} className="p-2.5 rounded-full outline outline-1 outline-offset-[-1px] outline-fg-grey-200 cursor-pointer hover:bg-fg-grey-100 transition-colors">
@@ -457,7 +409,76 @@ export function Datepicker({
                 )}
               </>
             )}
+          </>
+  );
+
+  if (calendarOnly) {
+    return <div ref={panelRef} role="group" aria-label={label ?? placeholder} className={cn("w-80 max-w-full", className)}>{panelBody}</div>;
+  }
+
+  return (
+    <div className="flex flex-col" ref={ref}>
+      {label && (
+        <label htmlFor={triggerId} className="text-sm font-medium text-fg-black mb-1">{label}</label>
+      )}
+      <div className="relative" ref={anchorRef}>
+        {mode === "range" && rangeLabels ? <div className="grid grid-cols-2 gap-2">{rangeLabels.map((text, i) => <button key={text} ref={i === 0 ? triggerRef : undefined} id={i === 0 ? triggerId : undefined} type="button" disabled={isDisabled} aria-expanded={visible} aria-controls={dialogId} onClick={() => { if (!inline && !open) { setDraft({ start: rangeStart, end: rangeEnd }); setOpen(true); } setPickingEnd(i === 1 && Boolean(pickedStart)); }} className={cn(wrapperClass, "flex-col items-start")}><span className="text-xs text-fg-grey-700">{text}</span><span className="text-sm">{(i === 0 ? pickedStart : pickedEnd) ? formatDate((i === 0 ? pickedStart : pickedEnd)!, locale) : placeholder}</span></button>)}</div> : <button
+          ref={triggerRef}
+          id={triggerId}
+          type="button"
+          disabled={isDisabled}
+          aria-haspopup="dialog"
+          aria-expanded={open && !isDisabled}
+          aria-controls={dialogId}
+          className={cn(wrapperClass, "text-left")}
+          onClick={toggleOpen}
+        >
+          <span
+            className={cn(
+              "flex-1 text-sm font-normal leading-5",
+              isError && "text-fg-red",
+              isDisabled && "text-fg-grey-700",
+              !hasValue && !isError && "text-fg-grey-700",
+              hasValue && !isError && !isDisabled && "text-fg-black",
+            )}
+          >
+            {displayText}
+          </span>
+          <span className="text-fg-grey-700"><CalendarLinear size={20} /></span>
+        </button>}
+
+        {inline && !isDisabled && (
+          <div ref={panelRef} id={dialogId} role="dialog" aria-label={label ?? placeholder} className="mt-2 w-96 max-w-full bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+            {panelBody}
           </div>
+        )}
+        {!inline && (
+          <PopoverPrimitive.Root
+            open={open && !isDisabled}
+            modal={false}
+            onOpenChange={(next, details) => {
+              if (next) return;
+              // The triggers toggle the calendar themselves; a press on them is not an outside press.
+              if (details.reason === "outside-press" && anchorRef.current?.contains(details.event.target as Node)) { details.cancel(); return; }
+              closePopup();
+            }}
+          >
+            <PopoverPrimitive.Portal>
+              <PopoverPrimitive.Positioner anchor={anchorRef} side="bottom" align="start" sideOffset={8} collisionPadding={8} className="z-50">
+                <PopoverPrimitive.Popup
+                  ref={panelRef}
+                  id={dialogId}
+                  aria-label={label ?? placeholder}
+                  initialFocus={false}
+                  finalFocus={triggerRef}
+                  data-motion="auto"
+                  className="forge-popup w-96 max-w-[min(var(--available-width),calc(100vw-2rem))] bg-background rounded-[20px] outline outline-1 outline-offset-[-1px] outline-fg-grey-200 shadow-sm"
+                >
+                  {panelBody}
+                </PopoverPrimitive.Popup>
+              </PopoverPrimitive.Positioner>
+            </PopoverPrimitive.Portal>
+          </PopoverPrimitive.Root>
         )}
       </div>
     </div>

@@ -1,14 +1,14 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.10.1
+Package: @forge-ui-official/core@0.11.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: b92ff3048ae76708088f0ca0a292c10c4cb36e93f75c38049470e3ecc202f925
+Source fingerprint: e1b06ec8cb306e2f955b46704273e40b268e76139bcec2f059026d642e7869ae
 
 ## Adopted rules / 采用规则
 
 Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
-## Public exports (622, values and types distinguished)
+## Public exports (746, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -68,6 +68,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AgentTreeProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - AgentWelcome [value] — core/src/components/ui/agent/agent-welcome.tsx
 - AgentWelcomeProps [type] — core/src/components/ui/agent/agent-welcome.tsx
+- Alert [value] — core/src/components/ui/feedback.tsx
+- AlertProps [type] — core/src/components/ui/feedback.tsx
+- AlertTone [type] — core/src/components/ui/feedback.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
 - AppLayout [value] — core/src/components/layouts/app-layout.tsx
 - AppLayoutAccentColor [type] — core/src/components/layouts/app-layout.tsx
@@ -109,6 +112,12 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - AttachmentKind [type] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentList [value] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentListProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- Autocomplete [value] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteColor [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteOption [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteProps [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteShape [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteState [type] — core/src/components/ui/forms/autocomplete.tsx
 - AutonomyAction [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomyLevel [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomySelector [value] — core/src/components/ui/agent/agent-governance.tsx
@@ -160,6 +169,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - cardThemes [value] — core/src/components/ui/card-utils.tsx
 - CardTrend [value] — core/src/components/ui/card-utils.tsx
 - CardWidth [type] — core/src/components/ui/card-utils.tsx
+- Cascader [value] — core/src/components/ui/forms/cascader.tsx
+- CascaderOption [type] — core/src/components/ui/forms/cascader.tsx
+- CascaderProps [type] — core/src/components/ui/forms/cascader.tsx
 - CellActionKey [type] — core/src/components/ui/data-table.tsx
 - CellActions [value] — core/src/components/ui/data-table.tsx
 - CellCode [value] — core/src/components/ui/data-table.tsx
@@ -201,6 +213,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - Checkbox [value] — core/src/components/ui/checkbox.tsx
 - CheckboxColor [type] — core/src/components/ui/checkbox.tsx
 - CheckboxControl [value] — core/src/components/ui/checkbox.tsx
+- CheckboxGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- CheckboxGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - CheckboxWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - CheckIcon [value] — core/src/components/ui/plain-icons.tsx
 - Checklist [value] — core/src/components/ui/checklist.tsx
@@ -212,6 +226,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ChoiceAnswer [type] — core/src/components/ui/agent/question.tsx
 - ChoiceCard [value] — core/src/components/ui/agent/question.tsx
 - ChoiceCardProps [type] — core/src/components/ui/agent/question.tsx
+- ChoiceGroupColor [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOrientation [type] — core/src/components/ui/forms/choice-groups.tsx
 - ChoiceOption [type] — core/src/components/ui/agent/question.tsx
 - CircleIcon [value] — core/src/components/ui/badge.tsx
 - CircleIconColor [type] — core/src/components/ui/badge.tsx
@@ -224,12 +241,20 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - CitedAnswerProps [type] — core/src/components/ui/agent/cited-answer.tsx
 - CloseIcon [value] — core/src/components/ui/plain-icons.tsx
 - cn [value] — core/src/lib/utils.ts
+- Collapsible [value] — core/src/components/ui/collapsible.tsx
+- CollapsibleProps [type] — core/src/components/ui/collapsible.tsx
 - ColorPicker [value] — core/src/components/ui/forms/icon-selector.tsx
 - ColorScaleStop [type] — core/src/components/ui/style-guide.tsx
 - ColorSection [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatch [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatchSize [type] — core/src/components/ui/style-guide.tsx
-- ColumnDef [type] — core/src/components/ui/data-table.tsx
+- ColumnDef [type] — core/src/internal/table-columns.tsx
+- Combobox [value] — core/src/components/ui/forms/combobox.tsx
+- ComboboxColor [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxOption [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxProps [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxShape [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxState [type] — core/src/components/ui/forms/combobox.tsx
 - CommandSearch [value] — core/src/components/ui/agent/command-search.tsx
 - CommandSearchItem [type] — core/src/components/ui/agent/command-search.tsx
 - CommentData [type] — core/src/components/ui/comment-item.tsx
@@ -261,6 +286,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ContactItem [value] — core/src/components/ui/contact-item.tsx
 - ContextCards [value] — core/src/components/ui/agent/context-cards.tsx
 - ContextChunk [type] — core/src/components/ui/agent/context-cards.tsx
+- ContextMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
 - ContextSegment [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextSegmentKind [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextUsage [value] — core/src/components/ui/agent/agent-observe.tsx
@@ -271,6 +299,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ConversationList [value] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationListProps [type] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
+- CopyButton [value] — core/src/components/ui/data-display.tsx
+- CopyButtonProps [type] — core/src/components/ui/data-display.tsx
 - CreditCard [value] — core/src/components/ui/credit-card.tsx
 - CurrencyConverter [value] — core/src/components/ui/currency-converter.tsx
 - CurrencyConverterColor [type] — core/src/components/ui/currency-converter.tsx
@@ -284,22 +314,42 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - DatepickerMode [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerShape [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerState [type] — core/src/components/ui/forms/datepicker.tsx
+- DateTimePicker [value] — core/src/components/ui/forms/date-time-picker.tsx
+- DateTimePickerProps [type] — core/src/components/ui/forms/date-time-picker.tsx
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
+- Descriptions [value] — core/src/components/ui/data-display.tsx
+- DescriptionsItem [type] — core/src/components/ui/data-display.tsx
+- DescriptionsProps [type] — core/src/components/ui/data-display.tsx
 - DivergingBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
 - DivergingBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - DonutChart [value] — core/src/components/ui/charts/donut-chart.tsx
 - Drawer [value] — core/src/components/ui/drawer.tsx
 - DrawerProps [type] — core/src/components/ui/drawer.tsx
 - DropdownDivider [value] — core/src/components/ui/dropdown-panel.tsx
+- DropdownMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAccent [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuActionEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAlign [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuCheckboxEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuDividerEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuGroupEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSide [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSubmenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownPanel [value] — core/src/components/ui/dropdown-panel.tsx
+- EmptyState [value] — core/src/components/ui/feedback.tsx
+- EmptyStateProps [type] — core/src/components/ui/feedback.tsx
 - EventCard [value] — core/src/components/ui/event-card.tsx
 - EventCardColor [type] — core/src/components/ui/event-card.tsx
 - EventTag [value] — core/src/components/ui/event-tag.tsx
 - EventTagColor [type] — core/src/components/ui/event-tag.tsx
 - EventTagSize [type] — core/src/components/ui/event-tag.tsx
 - EventTagVariant [type] — core/src/components/ui/event-tag.tsx
+- Fieldset [value] — core/src/components/ui/forms/form.tsx
+- FieldsetProps [type] — core/src/components/ui/forms/form.tsx
 - FileCard [value] — core/src/components/ui/forms/file-upload.tsx
 - FileInput [value] — core/src/components/ui/forms/file-input.tsx
 - FileInputProps [type] — core/src/components/ui/forms/file-input.tsx
@@ -325,6 +375,12 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - FolderFloatProps [type] — core/src/components/ui/folder-float.tsx
 - FolderItem [type] — core/src/components/ui/folder.tsx
 - FolderProps [type] — core/src/components/ui/folder.tsx
+- Form [value] — core/src/components/ui/forms/form.tsx
+- FormField [value] — core/src/components/ui/forms/form.tsx
+- FormFieldProps [type] — core/src/components/ui/forms/form.tsx
+- FormProps [type] — core/src/components/ui/forms/form.tsx
+- FormValidationMode [type] — core/src/components/ui/forms/form.tsx
+- FormValues [type] — core/src/components/ui/forms/form.tsx
 - FullCalendar [value] — core/src/components/ui/full-calendar.tsx
 - FullWidthTable [value] — core/src/components/ui/data-table.tsx
 - FullWidthTableProps [type] — core/src/components/ui/data-table.tsx
@@ -379,6 +435,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightSeries [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightTone [type] — core/src/components/ui/agent/insight-cards.tsx
+- Kbd [value] — core/src/components/ui/data-display.tsx
 - KebabMenu [value] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuAccent [type] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuItem [type] — core/src/components/ui/kebab-menu.tsx
@@ -406,6 +463,7 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ListItemIconLead [type] — core/src/components/ui/list-item.tsx
 - ListItemImageLead [type] — core/src/components/ui/list-item.tsx
 - ListItemLead [type] — core/src/components/ui/list-item.tsx
+- LoadingOverlay [value] — core/src/components/ui/feedback.tsx
 - MapCard [value] — core/src/components/ui/map-card.tsx
 - MapContinent [type] — core/src/components/ui/map-card.tsx
 - MapRegion [type] — core/src/components/ui/map-card.tsx
@@ -414,6 +472,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - MediaItem [type] — core/src/components/ui/forms/media-upload.tsx
 - MediaUpload [value] — core/src/components/ui/forms/media-upload.tsx
 - MediaUploadColor [type] — core/src/components/ui/forms/media-upload.tsx
+- Menubar [value] — core/src/components/ui/menubar.tsx
+- MenubarMenu [type] — core/src/components/ui/menubar.tsx
+- MenubarProps [type] — core/src/components/ui/menubar.tsx
 - MenuItem [value] — core/src/components/ui/menu-item.tsx
 - MenuItemAccent [type] — core/src/components/ui/menu-item.tsx
 - MenuItemIntent [type] — core/src/components/ui/menu-item.tsx
@@ -429,10 +490,19 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ModalProps [type] — core/src/components/ui/modal.tsx
 - MotionPreference [type] — core/src/lib/motion.ts
 - MultilayerDonutChart [value] — core/src/components/ui/charts/multilayer-donut-chart.tsx
+- NavigationMenu [value] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuItem [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuLink [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuProps [type] — core/src/components/ui/navigation-menu.tsx
 - NotificationBadge [value] — core/src/components/ui/badge.tsx
 - NotificationBadgeColor [type] — core/src/components/ui/badge.tsx
 - NotificationItem [value] — core/src/components/ui/notification-item.tsx
 - NotificationItemColor [type] — core/src/components/ui/notification-item.tsx
+- NumberField [value] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldColor [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldProps [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldShape [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldState [type] — core/src/components/ui/forms/number-field.tsx
 - OtpInput [value] — core/src/components/ui/otp-input.tsx
 - OtpInputProps [type] — core/src/components/ui/otp-input.tsx
 - PageDot [value] — core/src/components/ui/page-dot.tsx
@@ -454,9 +524,22 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - PaginationColor [type] — core/src/components/ui/pagination.tsx
 - Panel [value] — core/src/components/ui/panel.tsx
 - PanelProps [type] — core/src/components/ui/panel.tsx
+- PeriodGranularity [type] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPicker [value] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPickerProps [type] — core/src/components/ui/forms/period-picker.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
+- Popconfirm [value] — core/src/components/ui/popconfirm.tsx
+- PopconfirmProps [type] — core/src/components/ui/popconfirm.tsx
+- Popover [value] — core/src/components/ui/popover.tsx
+- PopoverAlign [type] — core/src/components/ui/popover.tsx
+- PopoverProps [type] — core/src/components/ui/popover.tsx
+- PopoverSide [type] — core/src/components/ui/popover.tsx
+- PreviewCard [value] — core/src/components/ui/preview-card.tsx
+- PreviewCardAlign [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardProps [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardSide [type] — core/src/components/ui/preview-card.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
 - ProfileCardState [type] — core/src/components/ui/profile-card.tsx
@@ -488,6 +571,8 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - QuestionProps [type] — core/src/components/ui/agent/question.tsx
 - QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
+- RadioGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- RadioGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - RadioWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - RatingStars [value] — core/src/components/ui/rating-stars.tsx
 - RatingStarsSize [type] — core/src/components/ui/rating-stars.tsx
@@ -501,7 +586,10 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
-- resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
+- resolveTableColumnAlign [value] — core/src/internal/table-columns.tsx
+- Result [value] — core/src/components/ui/feedback.tsx
+- ResultProps [type] — core/src/components/ui/feedback.tsx
+- ResultStatus [type] — core/src/components/ui/feedback.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
 - RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
 - RunControlsProps [type] — core/src/components/ui/agent/composer-parts.tsx
@@ -509,6 +597,9 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - RunningNowProps [type] — core/src/components/ui/agent/agent-ops.tsx
 - RunProgress [value] — core/src/components/ui/agent/agent-run.tsx
 - RunStatus [type] — core/src/components/ui/agent/composer-parts.tsx
+- ScrollArea [value] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaOrientation [type] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaProps [type] — core/src/components/ui/scroll-area.tsx
 - SelectOption [value] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionBgVariant [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionColor [type] — core/src/components/ui/forms/select-option.tsx
@@ -517,15 +608,26 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - SelectOptionShape [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionState [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionType [type] — core/src/components/ui/forms/select-option.tsx
+- Separator [value] — core/src/components/ui/data-display.tsx
 - SidebarMenu [value] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuAccent [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuBgMode [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuItem [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuMode [type] — core/src/components/ui/sidebar-menu.tsx
+- Skeleton [value] — core/src/components/ui/feedback.tsx
+- SkeletonProps [type] — core/src/components/ui/feedback.tsx
+- Slider [value] — core/src/components/ui/forms/slider.tsx
+- SliderColor [type] — core/src/components/ui/forms/slider.tsx
+- SliderProps [type] — core/src/components/ui/forms/slider.tsx
+- SliderValue [type] — core/src/components/ui/forms/slider.tsx
 - SmallCalendar [value] — core/src/components/ui/small-calendar.tsx
 - SmallCalendarEvent [type] — core/src/components/ui/small-calendar.tsx
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
 - SmoothLineChart [value] — core/src/components/ui/charts/smooth-line-chart.tsx
+- Spinner [value] — core/src/components/ui/feedback.tsx
+- SpinnerSize [type] — core/src/components/ui/feedback.tsx
+- Splitter [value] — core/src/components/ui/splitter.tsx
+- SplitterProps [type] — core/src/components/ui/splitter.tsx
 - StatCard [value] — core/src/components/ui/stat-card.tsx
 - StatCardProps [type] — core/src/components/ui/stat-card.tsx
 - StatCardShell [value] — core/src/components/ui/card-utils.tsx
@@ -550,12 +652,18 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TabBarSurface [type] — core/src/components/ui/tab-bar.tsx
 - TabItem [type] — core/src/components/ui/tab-bar.tsx
 - TableCell [value] — core/src/components/ui/data-table.tsx
+- TableCellEdit [type] — core/src/internal/table-columns.tsx
 - TableCellProps [type] — core/src/components/ui/data-table.tsx
 - TableCellVariant [type] — core/src/components/ui/data-table.tsx
-- TableColumnAlign [type] — core/src/components/ui/data-table.tsx
-- TableValueKind [type] — core/src/components/ui/data-table.tsx
+- TableColumnAlign [type] — core/src/internal/table-columns.tsx
+- TableValueKind [type] — core/src/internal/table-columns.tsx
 - TabsContent [value] — core/src/components/ui/tabs-content.tsx
 - TabsContentProps [type] — core/src/components/ui/tabs-content.tsx
+- Tag [value] — core/src/components/ui/data-display.tsx
+- TagColor [type] — core/src/components/ui/data-display.tsx
+- TagInput [value] — core/src/components/ui/forms/tag-input.tsx
+- TagInputProps [type] — core/src/components/ui/forms/tag-input.tsx
+- TagProps [type] — core/src/components/ui/data-display.tsx
 - TaskCard [value] — core/src/components/ui/task-card.tsx
 - TaskCardColor [type] — core/src/components/ui/task-card.tsx
 - Team [type] — core/src/components/layouts/sidebar-popovers.tsx
@@ -576,10 +684,18 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - ThinkingRow [type] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingTrace [value] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingVariant [type] — core/src/components/ui/agent/thinking-trace.tsx
+- Timeline [value] — core/src/components/ui/data-display.tsx
+- TimelineItem [type] — core/src/components/ui/data-display.tsx
+- TimelineTone [type] — core/src/components/ui/data-display.tsx
+- TimePicker [value] — core/src/components/ui/forms/time-picker.tsx
+- TimePickerProps [type] — core/src/components/ui/forms/time-picker.tsx
 - ToastApi [type] — core/src/components/ui/toast.tsx
 - ToastOptions [type] — core/src/components/ui/toast.tsx
 - ToastProvider [value] — core/src/components/ui/toast.tsx
 - Toggle [value] — core/src/components/ui/forms/selection-control.tsx
+- ToggleGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - ToggleProps [type] — core/src/components/ui/forms/selection-control.tsx
 - Toolbar [value] — core/src/components/ui/toolbar.tsx
 - ToolbarActions [value] — core/src/components/ui/toolbar.tsx
@@ -619,8 +735,16 @@ Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks
 - TraceWaterfallProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - TrailStep [type] — core/src/components/ui/agent/agent-run.tsx
 - TrailSubstep [type] — core/src/components/ui/agent/agent-run.tsx
+- Transfer [value] — core/src/components/ui/forms/transfer.tsx
+- TransferItem [type] — core/src/components/ui/forms/transfer.tsx
+- TransferProps [type] — core/src/components/ui/forms/transfer.tsx
+- Tree [value] — core/src/components/ui/tree.tsx
 - TreeAgent [type] — core/src/components/ui/agent/agent-observe.tsx
 - TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
+- TreeNode [type] — core/src/components/ui/tree.tsx
+- TreeProps [type] — core/src/components/ui/tree.tsx
+- TreeSelect [value] — core/src/components/ui/forms/tree-select.tsx
+- TreeSelectProps [type] — core/src/components/ui/forms/tree-select.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx
@@ -639,7 +763,7 @@ Source: skills/forge-skill/references/components/accent-utils.md
 
 # accent-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accent-utils.ts`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AccentColor (type)
@@ -685,7 +809,7 @@ Source: skills/forge-skill/references/components/accordion.md
 
 # accordion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/accordion.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Accordion (value)
@@ -724,7 +848,7 @@ Source: skills/forge-skill/references/components/activity-card.md
 
 # activity-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/activity-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ActivityCard (value)
@@ -756,7 +880,7 @@ Source: skills/forge-skill/references/components/add-member.md
 
 # add-member
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/add-member.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AddMember (value)
@@ -830,7 +954,7 @@ Source: skills/forge-skill/references/components/agent-code-block.md
 
 # agent-code-block
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-code-block.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentCodeBlock (value)
@@ -902,7 +1026,7 @@ Source: skills/forge-skill/references/components/agent-conversation.md
 
 # agent-conversation
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-conversation.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-conversation.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessage (value)
@@ -1105,7 +1229,7 @@ Source: skills/forge-skill/references/components/agent-diff-table.md
 
 # agent-diff-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-diff-table.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentDiffChange (type)
@@ -1159,7 +1283,7 @@ Source: skills/forge-skill/references/components/agent-flowchart.md
 
 # agent-flowchart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-flowchart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentFlowchart (value)
@@ -1216,7 +1340,7 @@ Source: skills/forge-skill/references/components/agent-governance.md
 
 # agent-governance
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-governance.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-governance.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentCheckpoints (value)
@@ -1377,7 +1501,7 @@ Source: skills/forge-skill/references/components/agent-observe.md
 
 # agent-observe
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-observe.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-observe.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentLanes (value)
@@ -1605,7 +1729,7 @@ Source: skills/forge-skill/references/components/agent-ops.md
 
 # agent-ops
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-ops.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-ops.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentInbox (value)
@@ -1749,7 +1873,7 @@ Source: skills/forge-skill/references/components/agent-panel.md
 
 # agent-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-panel.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-panel.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AGENT_PANEL_WIDTH (value)
@@ -1833,7 +1957,7 @@ Source: skills/forge-skill/references/components/agent-parts.md
 
 # agent-parts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-parts.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentMessagePart (type)
@@ -1932,7 +2056,7 @@ Source: skills/forge-skill/references/components/agent-run.md
 
 # agent-run
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-run.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-run.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentPlan (value)
@@ -2084,7 +2208,7 @@ Source: skills/forge-skill/references/components/agent-task-rows.md
 
 # agent-task-rows
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-task-rows.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentTask (type)
@@ -2145,7 +2269,7 @@ Source: skills/forge-skill/references/components/agent-welcome.md
 
 # agent-welcome
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-welcome.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/agent-welcome.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AgentWelcome (value)
@@ -2190,7 +2314,7 @@ Source: skills/forge-skill/references/components/app-layout.md
 
 # app-layout
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/app-layout.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppLayout (value)
@@ -2427,7 +2551,7 @@ Source: skills/forge-skill/references/components/approval.md
 
 # approval
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Approval (value)
@@ -2578,7 +2702,7 @@ Source: skills/forge-skill/references/components/approval-card.md
 
 # approval-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/approval-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ApprovalCard (value)
@@ -2627,7 +2751,7 @@ Source: skills/forge-skill/references/components/ask-ai.md
 
 # ask-ai
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/ask-ai.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAi (value)
@@ -2696,7 +2820,7 @@ Source: skills/forge-skill/references/components/ask-ai-types.md
 
 # ask-ai-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/ask-ai-types.ts`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AskAiLink (type)
@@ -2747,11 +2871,109 @@ export interface AskAiSessionItem {
 
 ---
 
+Source: skills/forge-skill/references/components/autocomplete.md
+
+# autocomplete
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/autocomplete.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Autocomplete (value)
+
+```ts
+({ options, value, defaultValue, onChange, onSelect, label, placeholder, emptyText, errorMessage, state, shape, color, searchIcon, width, headerAction, name, locale, className, motion, }: AutocompleteProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `(string \| AutocompleteOption)[]` |  |
+| `value` | 否 | `string \| undefined` |  |
+| `defaultValue` | 否 | `string \| undefined` |  |
+| `onChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `onSelect` | 否 | `((option: AutocompleteOption) => void) \| undefined` | Fires when a suggestion is picked (not on free typing). |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `emptyText` | 否 | `ReactNode` | Shown when the text matches nothing. Omit to hide the list instead. |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `state` | 否 | `FloatingFieldState \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `searchIcon` | 否 | `boolean \| undefined` | Show a search icon at the start. |
+| `width` | 否 | `string \| undefined` |  |
+| `headerAction` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## AutocompleteColor (type)
+
+```ts
+export type AutocompleteColor = FormAccentColor;
+```
+
+## AutocompleteOption (type)
+
+```ts
+export interface AutocompleteOption {
+  /** Text written into the input when picked. */
+  value: string;
+  /** Display text; defaults to `value`. */
+  label?: string;
+  description?: string;
+  icon?: ReactNode;
+  disabled?: boolean;
+}
+```
+
+## AutocompleteProps (type)
+
+```ts
+export interface AutocompleteProps {
+  options: (string | AutocompleteOption)[];
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  /** Fires when a suggestion is picked (not on free typing). */
+  onSelect?: (option: AutocompleteOption) => void;
+  label?: string;
+  placeholder?: string;
+  /** Shown when the text matches nothing. Omit to hide the list instead. */
+  emptyText?: ReactNode;
+  errorMessage?: string;
+  state?: AutocompleteState;
+  shape?: AutocompleteShape;
+  color?: AutocompleteColor;
+  /** Show a search icon at the start. */
+  searchIcon?: boolean;
+  width?: string;
+  headerAction?: ReactNode;
+  name?: string;
+  locale?: "zh" | "en";
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+## AutocompleteShape (type)
+
+```ts
+export type AutocompleteShape = FloatingFieldShape;
+```
+
+## AutocompleteState (type)
+
+```ts
+export type AutocompleteState = FloatingFieldState;
+```
+
+---
+
 Source: skills/forge-skill/references/components/avatar.md
 
 # avatar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/avatar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Avatar (value)
@@ -2804,7 +3026,7 @@ Source: skills/forge-skill/references/components/badge.md
 
 # badge
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/badge.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ArtisticIcon (value)
@@ -2928,7 +3150,7 @@ Source: skills/forge-skill/references/components/balance-card.md
 
 # balance-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/balance-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BalanceCard (value)
@@ -2976,7 +3198,7 @@ Source: skills/forge-skill/references/components/bar-chart.md
 
 # bar-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChart (value)
@@ -3013,7 +3235,7 @@ Source: skills/forge-skill/references/components/bar-chart-stat-card.md
 
 # bar-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/bar-chart-stat-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarChartStatCard (value)
@@ -3066,7 +3288,7 @@ Source: skills/forge-skill/references/components/bar-horizontal-chart.md
 
 # bar-horizontal-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-horizontal-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarHorizontalChart (value)
@@ -3099,7 +3321,7 @@ Source: skills/forge-skill/references/components/bar-upside-down-chart.md
 
 # bar-upside-down-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bar-upside-down-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BarUpsideDownChart (value)
@@ -3129,7 +3351,7 @@ Source: skills/forge-skill/references/components/breadcrumbs.md
 
 # breadcrumbs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/breadcrumbs.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BreadcrumbColor (type)
@@ -3172,7 +3394,7 @@ Source: skills/forge-skill/references/components/bubble-chart.md
 
 # bubble-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/bubble-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## BubbleChart (value)
@@ -3193,7 +3415,7 @@ Source: skills/forge-skill/references/components/button.md
 
 # button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Button (value)
@@ -3571,7 +3793,7 @@ Source: skills/forge-skill/references/components/button-group.md
 
 # button-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/button-group.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ButtonGroup (value)
@@ -3624,7 +3846,7 @@ Source: skills/forge-skill/references/components/calendar-card.md
 
 # calendar-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarCard (value)
@@ -3679,7 +3901,7 @@ Source: skills/forge-skill/references/components/calendar-day-cell.md
 
 # calendar-day-cell
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-day-cell.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarDayCell (value)
@@ -3710,7 +3932,7 @@ Source: skills/forge-skill/references/components/calendar-week-row.md
 
 # calendar-week-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/calendar-week-row.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarWeekRow (value)
@@ -3735,7 +3957,7 @@ Source: skills/forge-skill/references/components/card-utils.md
 
 # card-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ALL_CARD_THEMES (value)
@@ -4045,11 +4267,85 @@ export function MyCustomCard({ theme = "blue" }) {
 
 ---
 
+Source: skills/forge-skill/references/components/cascader.md
+
+# cascader
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/cascader.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Cascader (value)
+
+```ts
+({ options, value, defaultValue, onChange, changeOnSelect, label, placeholder, separator, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: CascaderProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `CascaderOption[]` |  |
+| `value` | 否 | `string[] \| undefined` | Path of values from the top level to the chosen option. |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((path: string[], options: CascaderOption[]) => void) \| undefined` |  |
+| `changeOnSelect` | 否 | `boolean \| undefined` | Allow choosing a parent, not only a leaf (e.g. "整个省"). |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `separator` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CascaderOption (type)
+
+```ts
+export interface CascaderOption {
+  value: string;
+  label: string;
+  children?: CascaderOption[];
+  disabled?: boolean;
+}
+```
+
+## CascaderProps (type)
+
+```ts
+export interface CascaderProps {
+  options: CascaderOption[];
+  /** Path of values from the top level to the chosen option. */
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (path: string[], options: CascaderOption[]) => void;
+  /** Allow choosing a parent, not only a leaf (e.g. "整个省"). */
+  changeOnSelect?: boolean;
+  label?: string;
+  placeholder?: string;
+  separator?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/chart-card.md
 
 # chart-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartCard (value)
@@ -4077,7 +4373,7 @@ Source: skills/forge-skill/references/components/chart-legend-item.md
 
 # chart-legend-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-legend-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartLegendItem (value)
@@ -4100,7 +4396,7 @@ Source: skills/forge-skill/references/components/chart-list-item.md
 
 # chart-list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-list-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartListItem (value)
@@ -4125,7 +4421,7 @@ Source: skills/forge-skill/references/components/chart-stat-footer.md
 
 # chart-stat-footer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-stat-footer.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartStatFooter (value)
@@ -4145,7 +4441,7 @@ Source: skills/forge-skill/references/components/chart-tooltip.md
 
 # chart-tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-tooltip.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartTooltip (value)
@@ -4165,7 +4461,7 @@ Source: skills/forge-skill/references/components/chart-value-row.md
 
 # chart-value-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/chart-value-row.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartValueRow (value)
@@ -4188,7 +4484,7 @@ Source: skills/forge-skill/references/components/chat-bubble.md
 
 # chat-bubble
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-bubble.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatBubble (value)
@@ -4234,7 +4530,7 @@ Source: skills/forge-skill/references/components/chat-input-bar.md
 
 # chat-input-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/chat-input-bar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatInputBar (value)
@@ -4374,7 +4670,7 @@ Source: skills/forge-skill/references/components/chat-interactions.md
 
 # chat-interactions
 
-自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/chat-interactions.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChatReaction (type)
@@ -4395,21 +4691,25 @@ Source: skills/forge-skill/references/components/checkbox.md
 
 # checkbox
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checkbox.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checkbox (value)
 
 ```ts
-({ checked, color, onChange, disabled, motion, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type">) => JSX.Element
+({ checked, indeterminate, color, onChange, disabled, motion, name, value, required, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; indeterminate?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; name?: string; value?: string; required?: boolean; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type" | "value" | "name">) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `checked` | 否 | `boolean \| undefined` |  |
+| `indeterminate` | 否 | `boolean \| undefined` | Partially selected state; shown as a dash and announced as "mixed". |
 | `color` | 否 | `"purple" \| "blue" \| "orange" \| "green" \| "black" \| "red" \| undefined` |  |
 | `onChange` | 否 | `((checked: boolean) => void) \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; the checkbox submits `value` (default "on") when checked. |
+| `value` | 否 | `string \| undefined` |  |
+| `required` | 否 | `boolean \| undefined` |  |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `form` | 否 | `string \| undefined` |  |
 | `formAction` | 否 | `string \| ((formData: FormData) => void \| Promise<void>) \| undefined` |  |
@@ -4417,8 +4717,6 @@ Source: skills/forge-skill/references/components/checkbox.md
 | `formMethod` | 否 | `string \| undefined` |  |
 | `formNoValidate` | 否 | `boolean \| undefined` |  |
 | `formTarget` | 否 | `string \| undefined` |  |
-| `name` | 否 | `string \| undefined` |  |
-| `value` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
 | `defaultValue` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `suppressContentEditableWarning` | 否 | `boolean \| undefined` |  |
@@ -4705,15 +5003,19 @@ export type CheckboxColor = keyof typeof checkboxColors;
 ## CheckboxControl (value)
 
 ```ts
-({ checked, color, onChange, disabled, motion, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type">) => JSX.Element
+({ checked, indeterminate, color, onChange, disabled, motion, name, value, required, className, onClick, "aria-label": ariaLabel, ...props }: { checked?: boolean; indeterminate?: boolean; color?: CheckboxColor; onChange?: (checked: boolean) => void; motion?: MotionPreference; name?: string; value?: string; required?: boolean; } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "onChange" | "type" | "value" | "name">) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
 |---|---|---|---|
 | `checked` | 否 | `boolean \| undefined` |  |
+| `indeterminate` | 否 | `boolean \| undefined` | Partially selected state; shown as a dash and announced as "mixed". |
 | `color` | 否 | `"purple" \| "blue" \| "orange" \| "green" \| "black" \| "red" \| undefined` |  |
 | `onChange` | 否 | `((checked: boolean) => void) \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; the checkbox submits `value` (default "on") when checked. |
+| `value` | 否 | `string \| undefined` |  |
+| `required` | 否 | `boolean \| undefined` |  |
 | `disabled` | 否 | `boolean \| undefined` |  |
 | `form` | 否 | `string \| undefined` |  |
 | `formAction` | 否 | `string \| ((formData: FormData) => void \| Promise<void>) \| undefined` |  |
@@ -4721,8 +5023,6 @@ export type CheckboxColor = keyof typeof checkboxColors;
 | `formMethod` | 否 | `string \| undefined` |  |
 | `formNoValidate` | 否 | `boolean \| undefined` |  |
 | `formTarget` | 否 | `string \| undefined` |  |
-| `name` | 否 | `string \| undefined` |  |
-| `value` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
 | `defaultValue` | 否 | `string \| number \| readonly string[] \| undefined` |  |
 | `suppressContentEditableWarning` | 否 | `boolean \| undefined` |  |
@@ -5013,7 +5313,7 @@ Source: skills/forge-skill/references/components/checklist.md
 
 # checklist
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/checklist.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Checklist (value)
@@ -5076,11 +5376,165 @@ export type ChecklistTask = {
 
 ---
 
+Source: skills/forge-skill/references/components/choice-groups.md
+
+# choice-groups
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/choice-groups.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## CheckboxGroup (value)
+
+```ts
+({ options, value, defaultValue, onChange, selectAllLabel, name, disabled, color, orientation, ariaLabel, motion, className }: CheckboxGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ChoiceGroupOption[]` |  |
+| `value` | 否 | `string[] \| undefined` |  |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((value: string[]) => void) \| undefined` |  |
+| `selectAllLabel` | 否 | `string \| undefined` | Adds a parent checkbox that selects every option and shows a partial state. |
+| `name` | 否 | `string \| undefined` | Form field name; each checked option submits its value. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `orientation` | 否 | `ChoiceGroupOrientation \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CheckboxGroupProps (type)
+
+```ts
+export interface CheckboxGroupProps {
+  options: ChoiceGroupOption[];
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (value: string[]) => void;
+  /** Adds a parent checkbox that selects every option and shows a partial state. */
+  selectAllLabel?: string;
+  /** Form field name; each checked option submits its value. */
+  name?: string;
+  disabled?: boolean;
+  color?: ChoiceGroupColor;
+  orientation?: ChoiceGroupOrientation;
+  ariaLabel?: string;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
+
+## ChoiceGroupColor (type)
+
+```ts
+export type ChoiceGroupColor = FormAccentColor;
+```
+
+## ChoiceGroupOption (type)
+
+```ts
+export interface ChoiceGroupOption {
+  value: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+}
+```
+
+## ChoiceGroupOrientation (type)
+
+```ts
+export type ChoiceGroupOrientation = "vertical" | "horizontal";
+```
+
+## RadioGroup (value)
+
+```ts
+({ options, value, defaultValue, onChange, name, required, disabled, color, orientation, ariaLabel, className }: RadioGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ChoiceGroupOption[]` |  |
+| `value` | 否 | `string \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| undefined` |  |
+| `onChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits the chosen value. |
+| `required` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `orientation` | 否 | `ChoiceGroupOrientation \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name when there is no visible group label. |
+| `className` | 否 | `string \| undefined` |  |
+
+## RadioGroupProps (type)
+
+```ts
+export interface RadioGroupProps {
+  options: ChoiceGroupOption[];
+  value?: string | null;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  /** Form field name; submits the chosen value. */
+  name?: string;
+  required?: boolean;
+  disabled?: boolean;
+  color?: ChoiceGroupColor;
+  orientation?: ChoiceGroupOrientation;
+  /** Accessible name when there is no visible group label. */
+  ariaLabel?: string;
+  className?: string;
+}
+```
+
+## ToggleGroup (value)
+
+```ts
+(props: ToggleGroupProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ToggleGroupOption[]` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `value` | 否 | `string \| string[] \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| string[] \| undefined` |  |
+| `onChange` | 否 | `((value: string \| null) => void) \| ((value: string[]) => void) \| undefined` |  |
+
+## ToggleGroupOption (type)
+
+```ts
+export interface ToggleGroupOption {
+  value: string;
+  label?: string;
+  icon?: ReactNode;
+  /** Required when the option has only an icon. */
+  ariaLabel?: string;
+  disabled?: boolean;
+}
+```
+
+## ToggleGroupProps (type)
+
+```ts
+export type ToggleGroupProps = ToggleGroupBase & (
+  | { multiple?: false; value?: string | null; defaultValue?: string; onChange?: (value: string | null) => void }
+  | { multiple: true; value?: string[]; defaultValue?: string[]; onChange?: (value: string[]) => void }
+);
+```
+
+---
+
 Source: skills/forge-skill/references/components/cited-answer.md
 
 # cited-answer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/cited-answer.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/cited-answer.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Citation (value)
@@ -5169,11 +5623,125 @@ export type CitedAnswerProps = {
 
 ---
 
+Source: skills/forge-skill/references/components/collapsible.md
+
+# collapsible
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/collapsible.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Collapsible (value)
+
+```ts
+({ title, children, open, defaultOpen, onOpenChange, disabled, motion, className }: CollapsibleProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` | Text or content of the toggle row. |
+| `children` | 是 | `ReactNode` |  |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CollapsibleProps (type)
+
+```ts
+export interface CollapsibleProps {
+  /** Text or content of the toggle row. */
+  title: ReactNode;
+  children: ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
+
+---
+
+Source: skills/forge-skill/references/components/combobox.md
+
+# combobox
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/combobox.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Combobox (value)
+
+```ts
+(props: ComboboxProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `options` | 是 | `ComboboxOption[]` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `emptyText` | 否 | `ReactNode` | Shown when the query matches nothing. |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `state` | 否 | `FloatingFieldState \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `width` | 否 | `string \| undefined` | Field width, any CSS width. Defaults to 100% of the parent. |
+| `headerAction` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits the selected value(s). |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `value` | 否 | `string \| string[] \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| string[] \| null \| undefined` |  |
+| `onChange` | 否 | `((value: string \| null) => void) \| ((value: string[]) => void) \| undefined` |  |
+
+## ComboboxColor (type)
+
+```ts
+export type ComboboxColor = FormAccentColor;
+```
+
+## ComboboxOption (type)
+
+```ts
+export interface ComboboxOption {
+  value: string;
+  label: string;
+  description?: string;
+  icon?: ReactNode;
+  disabled?: boolean;
+}
+```
+
+## ComboboxProps (type)
+
+```ts
+export type ComboboxProps = ComboboxSingleProps | ComboboxMultipleProps;
+```
+
+## ComboboxShape (type)
+
+```ts
+export type ComboboxShape = FloatingFieldShape;
+```
+
+## ComboboxState (type)
+
+```ts
+export type ComboboxState = FloatingFieldState;
+```
+
+---
+
 Source: skills/forge-skill/references/components/command-search.md
 
 # command-search
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/command-search.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommandSearch (value)
@@ -5219,7 +5787,7 @@ Source: skills/forge-skill/references/components/comment-item.md
 
 # comment-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/comment-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CommentData (type)
@@ -5275,7 +5843,7 @@ Source: skills/forge-skill/references/components/composer.md
 
 # composer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/composer.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/composer.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Composer (value)
@@ -5456,7 +6024,7 @@ Source: skills/forge-skill/references/components/composer-parts.md
 
 # composer-parts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/composer-parts.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/composer-parts.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AttachmentItem (type)
@@ -5617,7 +6185,7 @@ Source: skills/forge-skill/references/components/composer-types.md
 
 # composer-types
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/composer-types.ts`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ComposerModel (type)
@@ -5650,7 +6218,7 @@ Source: skills/forge-skill/references/components/confirmation-dialog.md
 
 # confirmation-dialog
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/confirmation-dialog.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ConfirmationDialog (value)
@@ -5702,7 +6270,7 @@ Source: skills/forge-skill/references/components/contact-item.md
 
 # contact-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/contact-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContactItem (value)
@@ -5737,7 +6305,7 @@ Source: skills/forge-skill/references/components/context-cards.md
 
 # context-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/context-cards.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ContextCards (value)
@@ -5774,7 +6342,7 @@ Source: skills/forge-skill/references/components/conversation-list.md
 
 # conversation-list
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/conversation-list.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/conversation-list.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ConversationItem (type)
@@ -5850,7 +6418,7 @@ Source: skills/forge-skill/references/components/credit-card.md
 
 # credit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/credit-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CreditCard (value)
@@ -5884,7 +6452,7 @@ Source: skills/forge-skill/references/components/currency-converter.md
 
 # currency-converter
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/currency-converter.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CurrencyConverter (value)
@@ -5932,7 +6500,7 @@ Source: skills/forge-skill/references/components/dashboard-charts.md
 
 # dashboard-charts
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashboard-charts.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChartHeader (value)
@@ -6068,7 +6636,7 @@ Source: skills/forge-skill/references/components/dashed-half-donut-chart.md
 
 # dashed-half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/dashed-half-donut-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DashedHalfDonutChart (value)
@@ -6089,11 +6657,188 @@ Source: skills/forge-skill/references/components/dashed-half-donut-chart.md
 
 ---
 
+Source: skills/forge-skill/references/components/data-display.md
+
+# data-display
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-display.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## CopyButton (value)
+
+```ts
+({ value, label, copiedLabel, ariaLabel, onCopy, className }: CopyButtonProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 是 | `string` |  |
+| `label` | 否 | `string \| undefined` | Visible text; without it the button is icon-only. |
+| `copiedLabel` | 否 | `string \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name for the icon-only button. |
+| `onCopy` | 否 | `((value: string) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## CopyButtonProps (type)
+
+```ts
+export interface CopyButtonProps {
+  value: string;
+  /** Visible text; without it the button is icon-only. */
+  label?: string;
+  copiedLabel?: string;
+  /** Accessible name for the icon-only button. */
+  ariaLabel?: string;
+  onCopy?: (value: string) => void;
+  className?: string;
+}
+```
+
+## Descriptions (value)
+
+```ts
+({ items, title, extra, columns, variant, layout, className }: DescriptionsProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `DescriptionsItem[]` |  |
+| `title` | 否 | `ReactNode` |  |
+| `extra` | 否 | `ReactNode` | Actions on the right of the title, e.g. an "编辑" button. |
+| `columns` | 否 | `2 \| 1 \| 3 \| 4 \| undefined` | Columns on wide screens; collapses to one column on phones. |
+| `variant` | 否 | `"plain" \| "bordered" \| undefined` | `bordered` draws a table-like grid with shaded labels. |
+| `layout` | 否 | `"horizontal" \| "vertical" \| undefined` | `horizontal` puts the label beside the value. |
+| `className` | 否 | `string \| undefined` |  |
+
+## DescriptionsItem (type)
+
+```ts
+export interface DescriptionsItem {
+  label: ReactNode;
+  value: ReactNode;
+  /** Columns this item spans (desktop). */
+  span?: number;
+}
+```
+
+## DescriptionsProps (type)
+
+```ts
+export interface DescriptionsProps {
+  items: DescriptionsItem[];
+  title?: ReactNode;
+  /** Actions on the right of the title, e.g. an "编辑" button. */
+  extra?: ReactNode;
+  /** Columns on wide screens; collapses to one column on phones. */
+  columns?: 1 | 2 | 3 | 4;
+  /** `bordered` draws a table-like grid with shaded labels. */
+  variant?: "plain" | "bordered";
+  /** `horizontal` puts the label beside the value. */
+  layout?: "vertical" | "horizontal";
+  className?: string;
+}
+```
+
+## Kbd (value)
+
+```ts
+({ keys, children, className }: { keys?: string[]; children?: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `keys` | 否 | `string[] \| undefined` |  |
+| `children` | 否 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## Separator (value)
+
+```ts
+({ orientation, label, className }: { orientation?: "horizontal" | "vertical"; label?: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `orientation` | 否 | `"horizontal" \| "vertical" \| undefined` |  |
+| `label` | 否 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## Tag (value)
+
+```ts
+({ children, color, icon, onRemove, removeLabel, size, className }: TagProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `color` | 否 | `TagColor \| undefined` |  |
+| `icon` | 否 | `ReactNode` |  |
+| `onRemove` | 否 | `(() => void) \| undefined` | Shows a remove button, e.g. for active filters or selected values. |
+| `removeLabel` | 否 | `string \| undefined` |  |
+| `size` | 否 | `"md" \| "sm" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TagColor (type)
+
+```ts
+export type TagColor = "grey" | "blue" | "green" | "yellow" | "red" | "violet";
+```
+
+## TagProps (type)
+
+```ts
+export interface TagProps {
+  children: ReactNode;
+  color?: TagColor;
+  icon?: ReactNode;
+  /** Shows a remove button, e.g. for active filters or selected values. */
+  onRemove?: () => void;
+  removeLabel?: string;
+  size?: "sm" | "md";
+  className?: string;
+}
+```
+
+## Timeline (value)
+
+```ts
+({ items, pending, className }: { items: TimelineItem[]; pending?: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `TimelineItem[]` |  |
+| `pending` | 否 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TimelineItem (type)
+
+```ts
+export interface TimelineItem {
+  title: ReactNode;
+  description?: ReactNode;
+  /** Time or date label. */
+  time?: ReactNode;
+  tone?: TimelineTone;
+  /** Replaces the dot, e.g. an icon or avatar. */
+  icon?: ReactNode;
+}
+```
+
+## TimelineTone (type)
+
+```ts
+export type TimelineTone = "default" | "accent" | "success" | "warning" | "error";
+```
+
+---
+
 Source: skills/forge-skill/references/components/data-table.md
 
 # data-table
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/data-table.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CellActionKey (type)
@@ -6298,16 +7043,10 @@ export type CellLinkColor = keyof typeof cellLinkColors;
 | `title` | 是 | `string` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
 
-## ColumnDef (type)
-
-```ts
-export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
-```
-
 ## DataTable (value)
 
 ```ts
-<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, className, }: DataTableProps<T>) => JSX.Element
+<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, loading, maxHeight, expandable, getRowChildren, expandedRowKeys, defaultExpandedRowKeys, onExpandedRowKeysChange, columnSettings, hiddenColumnKeys, onHiddenColumnKeysChange, bulkActions, virtualized, pageSize, pageSizeOptions, onPageSizeChange, showQuickJumper, className, }: DataTableProps<T>) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -6339,6 +7078,22 @@ export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
 | `onPageChange` | 否 | `((page: number) => void) \| undefined` |  |
 | `paginationLabel` | 否 | `string \| undefined` |  |
 | `tableMinWidth` | 否 | `Property.MinWidth<string \| number> \| undefined` | Minimum width of the table content. Overflow stays inside the component. |
+| `loading` | 否 | `boolean \| undefined` | Shows skeleton rows when empty, otherwise a spinner over the current rows. |
+| `maxHeight` | 否 | `string \| number \| undefined` | Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. |
+| `expandable` | 否 | `{ render: (row: T, rowIndex: number) => ReactNode; rowExpandable?: ((row: T) => boolean) \| undefined; } \| undefined` | Extra content under a row, toggled by a chevron column. |
+| `getRowChildren` | 否 | `((row: T) => T[] \| undefined) \| undefined` | Nested rows (tree table); the first column gets the expand toggle and indentation. |
+| `expandedRowKeys` | 否 | `ReadonlySet<Key> \| undefined` | Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. |
+| `defaultExpandedRowKeys` | 否 | `Iterable<Key> \| undefined` |  |
+| `onExpandedRowKeysChange` | 否 | `((keys: Set<Key>) => void) \| undefined` |  |
+| `columnSettings` | 否 | `boolean \| undefined` | Adds a column settings menu to the header. |
+| `hiddenColumnKeys` | 否 | `ReadonlySet<string> \| undefined` |  |
+| `onHiddenColumnKeysChange` | 否 | `((keys: Set<string>) => void) \| undefined` |  |
+| `bulkActions` | 否 | `((selectedKeys: Set<Key>) => ReactNode) \| undefined` | Actions for the selected rows, shown in a bar above the table while something is selected. |
+| `virtualized` | 否 | `{ rowHeight: number; overscan?: number; } \| undefined` | Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. |
+| `pageSize` | 否 | `number \| undefined` | Rows per page selector in the footer. |
+| `pageSizeOptions` | 否 | `number[] \| undefined` |  |
+| `onPageSizeChange` | 否 | `((size: number) => void) \| undefined` |  |
+| `showQuickJumper` | 否 | `boolean \| undefined` | Adds a "go to page" field next to the pagination. |
 | `className` | 否 | `string \| undefined` |  |
 
 ## DataTableColor (type)
@@ -6382,6 +7137,35 @@ export type DataTableProps<T> = {
   paginationLabel?: string;
   /** Minimum width of the table content. Overflow stays inside the component. */
   tableMinWidth?: CSSProperties["minWidth"];
+  /** Shows skeleton rows when empty, otherwise a spinner over the current rows. */
+  loading?: boolean;
+  /** Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. */
+  maxHeight?: number | string;
+  /** Extra content under a row, toggled by a chevron column. */
+  expandable?: {
+    render: (row: T, rowIndex: number) => ReactNode;
+    rowExpandable?: (row: T) => boolean;
+  };
+  /** Nested rows (tree table); the first column gets the expand toggle and indentation. */
+  getRowChildren?: (row: T) => T[] | undefined;
+  /** Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. */
+  expandedRowKeys?: ReadonlySet<Key>;
+  defaultExpandedRowKeys?: Iterable<Key>;
+  onExpandedRowKeysChange?: (keys: Set<Key>) => void;
+  /** Adds a column settings menu to the header. */
+  columnSettings?: boolean;
+  hiddenColumnKeys?: ReadonlySet<string>;
+  onHiddenColumnKeysChange?: (keys: Set<string>) => void;
+  /** Actions for the selected rows, shown in a bar above the table while something is selected. */
+  bulkActions?: (selectedKeys: Set<Key>) => ReactNode;
+  /** Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. */
+  virtualized?: { rowHeight: number; overscan?: number };
+  /** Rows per page selector in the footer. */
+  pageSize?: number;
+  pageSizeOptions?: number[];
+  onPageSizeChange?: (size: number) => void;
+  /** Adds a "go to page" field next to the pagination. */
+  showQuickJumper?: boolean;
   className?: string;
 };
 ```
@@ -6389,7 +7173,7 @@ export type DataTableProps<T> = {
 ## FullWidthTable (value)
 
 ```ts
-<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, showRowCount, rowCountOptions, currentRowCount, onRowCountChange, totalRows, className, }: FullWidthTableProps<T>) => JSX.Element
+<T>({ title, subtitle, badge, columns, rows, headerActions, color, showCheckbox, checkboxColor, selectedRowKeys, onSelectedRowKeysChange, selectedRows, onSelectRow, onSelectAll, onSort, sortColumnKey, sortDirection, getRowKey, emptyState, footerLeft, footerRight, showPagination, currentPage, totalPages, onPageChange, paginationLabel, tableMinWidth, showRowCount, rowCountOptions, currentRowCount, onRowCountChange, totalRows, loading, maxHeight, expandable, getRowChildren, expandedRowKeys, defaultExpandedRowKeys, onExpandedRowKeysChange, columnSettings, hiddenColumnKeys, onHiddenColumnKeysChange, bulkActions, virtualized, pageSize, pageSizeOptions, onPageSizeChange, showQuickJumper, className, }: FullWidthTableProps<T>) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -6421,6 +7205,22 @@ export type DataTableProps<T> = {
 | `onPageChange` | 否 | `((page: number) => void) \| undefined` |  |
 | `paginationLabel` | 否 | `string \| undefined` |  |
 | `tableMinWidth` | 否 | `Property.MinWidth<string \| number> \| undefined` | Minimum width of the table content. Overflow stays inside the component. |
+| `loading` | 否 | `boolean \| undefined` | Shows skeleton rows when empty, otherwise a spinner over the current rows. |
+| `maxHeight` | 否 | `string \| number \| undefined` | Fixed body height (e.g. 480 or "60vh"); the header stays put while rows scroll. |
+| `expandable` | 否 | `{ render: (row: T, rowIndex: number) => ReactNode; rowExpandable?: ((row: T) => boolean) \| undefined; } \| undefined` | Extra content under a row, toggled by a chevron column. |
+| `getRowChildren` | 否 | `((row: T) => T[] \| undefined) \| undefined` | Nested rows (tree table); the first column gets the expand toggle and indentation. |
+| `expandedRowKeys` | 否 | `ReadonlySet<Key> \| undefined` | Expanded rows for `expandable` and tree rows. Uncontrolled when omitted. |
+| `defaultExpandedRowKeys` | 否 | `Iterable<Key> \| undefined` |  |
+| `onExpandedRowKeysChange` | 否 | `((keys: Set<Key>) => void) \| undefined` |  |
+| `columnSettings` | 否 | `boolean \| undefined` | Adds a column settings menu to the header. |
+| `hiddenColumnKeys` | 否 | `ReadonlySet<string> \| undefined` |  |
+| `onHiddenColumnKeysChange` | 否 | `((keys: Set<string>) => void) \| undefined` |  |
+| `bulkActions` | 否 | `((selectedKeys: Set<Key>) => ReactNode) \| undefined` | Actions for the selected rows, shown in a bar above the table while something is selected. |
+| `virtualized` | 否 | `{ rowHeight: number; overscan?: number; } \| undefined` | Render only the visible rows. Needs `maxHeight`; ignored with expandable or tree rows. |
+| `pageSize` | 否 | `number \| undefined` | Rows per page selector in the footer. |
+| `pageSizeOptions` | 否 | `number[] \| undefined` |  |
+| `onPageSizeChange` | 否 | `((size: number) => void) \| undefined` |  |
+| `showQuickJumper` | 否 | `boolean \| undefined` | Adds a "go to page" field next to the pagination. |
 | `className` | 否 | `string \| undefined` |  |
 | `showRowCount` | 否 | `boolean \| undefined` |  |
 | `rowCountOptions` | 否 | `number[] \| undefined` |  |
@@ -6463,19 +7263,6 @@ export type ProgressBadgeColor = keyof typeof progressBadgeColors;
 ```ts
 export type ProgressBarColor = ProgressColor;
 ```
-
-## resolveTableColumnAlign (value)
-
-```ts
-<T>(column: Pick<ColumnDef<T>, "key" | "valueKind" | "align" | "alignOverrideReason">) => TableColumnAlign
-```
-
-| 属性 | 必填 | 类型 | 说明 |
-|---|---|---|---|
-| `key` | 是 | `string` |  |
-| `valueKind` | 否 | `"number" \| "identifier" \| undefined` | 省略或 identifier：标识与普通文本，默认左对齐。列头与内容同向。 金额、数量、单价、百分比及同类可比较数值。省略 align 即右对齐。 |
-| `align` | 否 | `TableColumnAlign \| undefined` | 数字列离开默认右对齐。必须同时填写非空 `alignOverrideReason`。 漏写原因会在运行时警告，并标上 `data-forge-align-violation`。 |
-| `alignOverrideReason` | 否 | `string \| undefined` | 标识列一般不需要。数字列禁止用这个字段代替 `valueKind: "number"`。 |
 
 ## StatusBadge (value)
 
@@ -6549,18 +7336,6 @@ export type TableCellProps = {
 export type TableCellVariant = "header" | "body";
 ```
 
-## TableColumnAlign (type)
-
-```ts
-export type TableColumnAlign = "left" | "right";
-```
-
-## TableValueKind (type)
-
-```ts
-export type TableValueKind = "number" | "identifier";
-```
-
 ## 选型
 
 | 场景 | 选 |
@@ -6583,17 +7358,82 @@ export type TableValueKind = "number" | "identifier";
 
 ---
 
+Source: skills/forge-skill/references/components/date-time-picker.md
+
+# date-time-picker
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/date-time-picker.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## DateTimePicker (value)
+
+```ts
+({ value, defaultValue, onChange, withSeconds, step, minDate, maxDate, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: DateTimePickerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `Date \| null \| undefined` |  |
+| `defaultValue` | 否 | `Date \| null \| undefined` |  |
+| `onChange` | 否 | `((value: Date \| null) => void) \| undefined` |  |
+| `withSeconds` | 否 | `boolean \| undefined` |  |
+| `step` | 否 | `number \| undefined` | Minute (and second) step. |
+| `minDate` | 否 | `Date \| undefined` |  |
+| `maxDate` | 否 | `Date \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Submits an ISO-like local string "YYYY-MM-DDTHH:mm(:ss)". |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## DateTimePickerProps (type)
+
+```ts
+export interface DateTimePickerProps {
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (value: Date | null) => void;
+  withSeconds?: boolean;
+  /** Minute (and second) step. */
+  step?: number;
+  minDate?: Date;
+  maxDate?: Date;
+  label?: string;
+  placeholder?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  /** Submits an ISO-like local string "YYYY-MM-DDTHH:mm(:ss)". */
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/datepicker.md
 
 # datepicker
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/datepicker.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Datepicker (value)
 
 ```ts
-({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: "zh" | "en"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element
+({ value, rangeStart, rangeEnd, locale, placeholder, confirmSelection, rangeLabels, inline, calendarOnly, minDate, maxDate, state, shape, color, mode, label, onChange, onRangeChange, className, }: { value?: Date; locale?: "zh" | "en"; confirmSelection?: boolean; rangeLabels?: [string, string]; inline?: boolean; calendarOnly?: boolean; minDate?: Date; maxDate?: Date; rangeStart?: Date; rangeEnd?: Date; placeholder?: string; state?: DatepickerState; shape?: DatepickerShape; color?: DatepickerColor; mode?: DatepickerMode; label?: string; onChange?: (date: Date) => void; onRangeChange?: (start: Date, end: Date | null) => void; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -6603,6 +7443,7 @@ Source: skills/forge-skill/references/components/datepicker.md
 | `confirmSelection` | 否 | `boolean \| undefined` | Keep the range in a draft until the user applies it. |
 | `rangeLabels` | 否 | `[string, string] \| undefined` | Optional separate start/end triggers. |
 | `inline` | 否 | `boolean \| undefined` |  |
+| `calendarOnly` | 否 | `boolean \| undefined` | Render only the calendar panel (no field), to embed it in your own layout. |
 | `minDate` | 否 | `Date \| undefined` |  |
 | `maxDate` | 否 | `Date \| undefined` |  |
 | `rangeStart` | 否 | `Date \| undefined` |  |
@@ -6647,7 +7488,7 @@ Source: skills/forge-skill/references/components/debit-card.md
 
 # debit-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/debit-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DebitCard (value)
@@ -6680,7 +7521,7 @@ Source: skills/forge-skill/references/components/donut-chart.md
 
 # donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/donut-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DonutChart (value)
@@ -6712,7 +7553,7 @@ Source: skills/forge-skill/references/components/drawer.md
 
 # drawer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/drawer.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Drawer (value)
@@ -6747,11 +7588,169 @@ export interface DrawerProps extends ModalProps { side?: "left" | "right"; trans
 
 ---
 
+Source: skills/forge-skill/references/components/dropdown-menu.md
+
+# dropdown-menu
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-menu.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ContextMenu (value)
+
+```ts
+({ children, items, accent, open: openProp, defaultOpen, onOpenChange, className, areaClassName, motion, }: ContextMenuProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `DropdownMenuEntry[]` |  |
+| `accent` | 否 | `AccentColor \| undefined` | Highlight color for checked entries. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `children` | 是 | `ReactNode` | Area that opens the menu on right click or long press. |
+| `areaClassName` | 否 | `string \| undefined` | Class for the trigger area. |
+
+## ContextMenuEntry (type)
+
+```ts
+export type ContextMenuEntry = DropdownMenuEntry;
+```
+
+## ContextMenuProps (type)
+
+```ts
+export type ContextMenuProps = SharedMenuProps & {
+  /** Area that opens the menu on right click or long press. */
+  children: ReactNode;
+  /** Class for the trigger area. */
+  areaClassName?: string;
+};
+```
+
+## DropdownMenu (value)
+
+```ts
+({ trigger, items, accent, side, align, openOnHover, open: openProp, defaultOpen, onOpenChange, className, motion, }: DropdownMenuProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `DropdownMenuEntry[]` |  |
+| `accent` | 否 | `AccentColor \| undefined` | Highlight color for checked entries. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | Element that opens the menu. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). |
+| `side` | 否 | `DropdownMenuSide \| undefined` |  |
+| `align` | 否 | `DropdownMenuAlign \| undefined` |  |
+| `openOnHover` | 否 | `boolean \| undefined` | Open on hover as well as click. |
+
+## DropdownMenuAccent (type)
+
+```ts
+export type DropdownMenuAccent = AccentColor;
+```
+
+## DropdownMenuActionEntry (type)
+
+```ts
+export type DropdownMenuActionEntry = EntryBase & {
+  type?: "item";
+  label: ReactNode;
+  icon?: ReactNode;
+  description?: ReactNode;
+  /** Shortcut hint shown on the right, e.g. "⌘K". Display only. */
+  shortcut?: string;
+  danger?: boolean;
+  /** Renders the item as a link. */
+  href?: string;
+  onSelect?: () => void;
+};
+```
+
+## DropdownMenuAlign (type)
+
+```ts
+export type DropdownMenuAlign = "start" | "center" | "end";
+```
+
+## DropdownMenuCheckboxEntry (type)
+
+```ts
+export type DropdownMenuCheckboxEntry = EntryBase & {
+  type: "checkbox";
+  label: ReactNode;
+  icon?: ReactNode;
+  checked: boolean;
+  onCheckedChange: (checked: boolean) => void;
+};
+```
+
+## DropdownMenuDividerEntry (type)
+
+```ts
+export type DropdownMenuDividerEntry = { type: "divider"; key?: string };
+```
+
+## DropdownMenuEntry (type)
+
+```ts
+export type DropdownMenuEntry =
+  | DropdownMenuActionEntry
+  | DropdownMenuCheckboxEntry
+  | DropdownMenuSubmenuEntry
+  | DropdownMenuGroupEntry
+  | DropdownMenuDividerEntry;
+```
+
+## DropdownMenuGroupEntry (type)
+
+```ts
+export type DropdownMenuGroupEntry = { type: "group"; key?: string; label: ReactNode; items: DropdownMenuEntry[] };
+```
+
+## DropdownMenuProps (type)
+
+```ts
+export type DropdownMenuProps = SharedMenuProps & {
+  /** Element that opens the menu. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). */
+  trigger: ReactElement;
+  side?: DropdownMenuSide;
+  align?: DropdownMenuAlign;
+  /** Open on hover as well as click. */
+  openOnHover?: boolean;
+};
+```
+
+## DropdownMenuSide (type)
+
+```ts
+export type DropdownMenuSide = "top" | "bottom" | "left" | "right";
+```
+
+## DropdownMenuSubmenuEntry (type)
+
+```ts
+export type DropdownMenuSubmenuEntry = EntryBase & {
+  type: "submenu";
+  label: ReactNode;
+  icon?: ReactNode;
+  items: DropdownMenuEntry[];
+};
+```
+
+---
+
 Source: skills/forge-skill/references/components/dropdown-panel.md
 
 # dropdown-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/dropdown-panel.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DropdownDivider (value)
@@ -6786,7 +7785,7 @@ Source: skills/forge-skill/references/components/event-card.md
 
 # event-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventCard (value)
@@ -6821,7 +7820,7 @@ Source: skills/forge-skill/references/components/event-tag.md
 
 # event-tag
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/event-tag.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## EventTag (value)
@@ -6864,11 +7863,191 @@ export type EventTagVariant = "solid" | "outline";
 
 ---
 
+Source: skills/forge-skill/references/components/feedback.md
+
+# feedback
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/feedback.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Alert (value)
+
+```ts
+({ tone, title, children, icon, action, closable, onClose, closeLabel, banner, className }: AlertProps) => JSX.Element | null
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `tone` | 否 | `AlertTone \| undefined` |  |
+| `title` | 否 | `ReactNode` |  |
+| `children` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` | Replaces the tone icon; pass `null` to hide it. |
+| `action` | 否 | `ReactNode` | Buttons or links shown on the right (or below on narrow screens). |
+| `closable` | 否 | `boolean \| undefined` | Shows a close button. The alert hides itself unless `onClose` is controlled by the host. |
+| `onClose` | 否 | `(() => void) \| undefined` |  |
+| `closeLabel` | 否 | `string \| undefined` |  |
+| `banner` | 否 | `boolean \| undefined` | Full-width strip without rounding, for the top of a page or card. |
+| `className` | 否 | `string \| undefined` |  |
+
+## AlertProps (type)
+
+```ts
+export interface AlertProps {
+  tone?: AlertTone;
+  title?: ReactNode;
+  children?: ReactNode;
+  /** Replaces the tone icon; pass `null` to hide it. */
+  icon?: ReactNode | null;
+  /** Buttons or links shown on the right (or below on narrow screens). */
+  action?: ReactNode;
+  /** Shows a close button. The alert hides itself unless `onClose` is controlled by the host. */
+  closable?: boolean;
+  onClose?: () => void;
+  closeLabel?: string;
+  /** Full-width strip without rounding, for the top of a page or card. */
+  banner?: boolean;
+  className?: string;
+}
+```
+
+## AlertTone (type)
+
+```ts
+export type AlertTone = "info" | "success" | "warning" | "error";
+```
+
+## EmptyState (value)
+
+```ts
+({ title, description, icon, action, size, className }: EmptyStateProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `icon` | 否 | `ReactNode` |  |
+| `action` | 否 | `ReactNode` | Primary next step, e.g. a "新建" button. |
+| `size` | 否 | `"default" \| "compact" \| undefined` | `compact` for inside tables and cards. |
+| `className` | 否 | `string \| undefined` |  |
+
+## EmptyStateProps (type)
+
+```ts
+export interface EmptyStateProps {
+  title: ReactNode;
+  description?: ReactNode;
+  icon?: ReactNode;
+  /** Primary next step, e.g. a "新建" button. */
+  action?: ReactNode;
+  /** `compact` for inside tables and cards. */
+  size?: "compact" | "default";
+  className?: string;
+}
+```
+
+## LoadingOverlay (value)
+
+```ts
+({ loading, label, children, className }: { loading: boolean; label?: string; children: ReactNode; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `loading` | 是 | `boolean` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `children` | 是 | `ReactNode` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## Result (value)
+
+```ts
+({ status, title, description, actions, children, className }: ResultProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `status` | 是 | `ResultStatus` |  |
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `actions` | 否 | `ReactNode` | Buttons, e.g. "返回列表" and "查看详情". |
+| `children` | 否 | `ReactNode` | Extra detail below the actions, such as an error list. |
+| `className` | 否 | `string \| undefined` |  |
+
+## ResultProps (type)
+
+```ts
+export interface ResultProps {
+  status: ResultStatus;
+  title: ReactNode;
+  description?: ReactNode;
+  /** Buttons, e.g. "返回列表" and "查看详情". */
+  actions?: ReactNode;
+  /** Extra detail below the actions, such as an error list. */
+  children?: ReactNode;
+  className?: string;
+}
+```
+
+## ResultStatus (type)
+
+```ts
+export type ResultStatus = "success" | "error" | "warning" | "info" | "403" | "404";
+```
+
+## Skeleton (value)
+
+```ts
+({ shape, lines, width, height, className }: SkeletonProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `shape` | 否 | `"text" \| "circle" \| "rect" \| undefined` | `text` lines, a `circle` (avatar) or a `rect` block. |
+| `lines` | 否 | `number \| undefined` | Number of text lines; the last one is shorter. |
+| `width` | 否 | `string \| number \| undefined` |  |
+| `height` | 否 | `string \| number \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## SkeletonProps (type)
+
+```ts
+export interface SkeletonProps {
+  /** `text` lines, a `circle` (avatar) or a `rect` block. */
+  shape?: "text" | "circle" | "rect";
+  /** Number of text lines; the last one is shorter. */
+  lines?: number;
+  width?: number | string;
+  height?: number | string;
+  className?: string;
+}
+```
+
+## Spinner (value)
+
+```ts
+({ size, label, className }: { size?: SpinnerSize; label?: string; className?: string; }) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `size` | 否 | `SpinnerSize \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## SpinnerSize (type)
+
+```ts
+export type SpinnerSize = "sm" | "md" | "lg";
+```
+
+---
+
 Source: skills/forge-skill/references/components/file-input.md
 
 # file-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-input.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-input.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileInput (value)
@@ -7199,7 +8378,7 @@ Source: skills/forge-skill/references/components/file-upload.md
 
 # file-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/file-upload.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FileCard (value)
@@ -7280,7 +8459,7 @@ Source: skills/forge-skill/references/components/filter-group.md
 
 # filter-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-group.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterGroup (value)
@@ -7364,7 +8543,7 @@ Source: skills/forge-skill/references/components/filter-panel.md
 
 # filter-panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-panel.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterPanel (value)
@@ -7396,7 +8575,7 @@ Source: skills/forge-skill/references/components/filter-trigger.md
 
 # filter-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/filter-trigger.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FilterTrigger (value)
@@ -7424,7 +8603,7 @@ Source: skills/forge-skill/references/components/folder.md
 
 # folder
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Folder (value)
@@ -7505,7 +8684,7 @@ Source: skills/forge-skill/references/components/folder-float.md
 
 # folder-float
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/folder-float.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## FolderFloat (value)
@@ -7538,11 +8717,121 @@ export type FolderFloatProps = {
 
 ---
 
+Source: skills/forge-skill/references/components/form.md
+
+# form
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/form.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Fieldset (value)
+
+```ts
+({ legend, children, disabled, className }: FieldsetProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `legend` | 是 | `ReactNode` |  |
+| `children` | 是 | `ReactNode` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## FieldsetProps (type)
+
+```ts
+export interface FieldsetProps {
+  legend: ReactNode;
+  children: ReactNode;
+  disabled?: boolean;
+  className?: string;
+}
+```
+
+## Form (value)
+
+```ts
+({ children, onSubmit, errors, validationMode, className }: FormProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `onSubmit` | 否 | `((values: FormValues) => void) \| undefined` | Runs only when every field is valid; receives values keyed by field `name`. |
+| `errors` | 否 | `Record<string, string \| string[]> \| undefined` | Server-side errors keyed by field `name`; shown until that field changes. |
+| `validationMode` | 否 | `FormValidationMode \| undefined` | When fields validate. Invalid fields always re-validate as the user types. |
+| `className` | 否 | `string \| undefined` |  |
+
+## FormField (value)
+
+```ts
+({ name, children, label, description, validate, messages, disabled, className }: FormFieldProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `name` | 是 | `string` | Submitted key; also the key for `Form` `errors`. |
+| `children` | 是 | `ReactNode` | One field-aware control (see list above). |
+| `label` | 否 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `validate` | 否 | `((value: unknown, values: FormValues) => string \| string[] \| null \| void \| Promise<string \| string[] \| null \| void>) \| undefined` | Custom rule; return an error message (or messages) to mark the field invalid. May be async. |
+| `messages` | 否 | `Partial<Record<ValidityKey, string>> \| undefined` | Replace the browser's built-in messages, e.g. `{ valueMissing: "请填写邮箱" }`. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## FormFieldProps (type)
+
+```ts
+export interface FormFieldProps {
+  /** Submitted key; also the key for `Form` `errors`. */
+  name: string;
+  /** One field-aware control (see list above). */
+  children: ReactNode;
+  label?: ReactNode;
+  description?: ReactNode;
+  /** Custom rule; return an error message (or messages) to mark the field invalid. May be async. */
+  validate?: (value: unknown, values: FormValues) => string | string[] | null | void | Promise<string | string[] | null | void>;
+  /** Replace the browser's built-in messages, e.g. `{ valueMissing: "请填写邮箱" }`. */
+  messages?: Partial<Record<ValidityKey, string>>;
+  disabled?: boolean;
+  className?: string;
+}
+```
+
+## FormProps (type)
+
+```ts
+export interface FormProps {
+  children: ReactNode;
+  /** Runs only when every field is valid; receives values keyed by field `name`. */
+  onSubmit?: (values: FormValues) => void;
+  /** Server-side errors keyed by field `name`; shown until that field changes. */
+  errors?: Record<string, string | string[]>;
+  /** When fields validate. Invalid fields always re-validate as the user types. */
+  validationMode?: FormValidationMode;
+  className?: string;
+}
+```
+
+## FormValidationMode (type)
+
+```ts
+export type FormValidationMode = "onSubmit" | "onBlur" | "onChange";
+```
+
+## FormValues (type)
+
+```ts
+export type FormValues = Record<string, unknown>;
+```
+
+---
+
 Source: skills/forge-skill/references/components/full-calendar.md
 
 # full-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/full-calendar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CalendarEvent (type)
@@ -7588,7 +8877,7 @@ Source: skills/forge-skill/references/components/grid.md
 
 # grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/grid.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Grid (value)
@@ -7603,7 +8892,7 @@ Source: skills/forge-skill/references/components/grid.md
 | `gap` | 否 | `GridResponsive<GridGap> \| undefined` | Pixel presets, not Tailwind spacing units. |
 | `rowGap` | 否 | `GridResponsive<GridGap> \| undefined` |  |
 | `columnGap` | 否 | `GridResponsive<GridGap> \| undefined` |  |
-| `alignItems` | 否 | `"center" \| "start" \| "end" \| "stretch" \| "baseline" \| undefined` |  |
+| `alignItems` | 否 | `"start" \| "center" \| "end" \| "stretch" \| "baseline" \| undefined` |  |
 | `ref` | 否 | `Ref<HTMLDivElement> \| undefined` | Allows getting a ref to the component instance. Once the component unmounts, React will set `ref.current` to `null` (or call the ref with `null` if you passed a callback ref). |
 | `key` | 否 | `Key \| null \| undefined` |  |
 | `defaultChecked` | 否 | `boolean \| undefined` |  |
@@ -8236,7 +9525,7 @@ Source: skills/forge-skill/references/components/half-donut-chart.md
 
 # half-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/half-donut-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HalfDonutChart (value)
@@ -8261,7 +9550,7 @@ Source: skills/forge-skill/references/components/highlight-card.md
 
 # highlight-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/highlight-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HighlightCard (value)
@@ -8303,7 +9592,7 @@ Source: skills/forge-skill/references/components/history-grouped.md
 
 # history-grouped
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-grouped.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryGrouped (value)
@@ -8335,7 +9624,7 @@ Source: skills/forge-skill/references/components/history-item.md
 
 # history-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/history-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## HistoryItem (value)
@@ -8407,7 +9696,7 @@ Source: skills/forge-skill/references/components/icon-button.md
 
 # icon-button
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-button.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconButton (value)
@@ -8761,7 +10050,7 @@ Source: skills/forge-skill/references/components/icon-selector.md
 
 # icon-selector
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/icon-selector.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorPicker (value)
@@ -8821,7 +10110,7 @@ Source: skills/forge-skill/references/components/icon-trigger.md
 
 # icon-trigger
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/icon-trigger.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## IconTrigger (value)
@@ -8846,7 +10135,7 @@ Source: skills/forge-skill/references/components/icon-trigger.md
 | `panel` | 否 | `IconTriggerPanel` | Optional panel. `ReactNode` or `(close) => ReactNode` so inner elements can close it. |
 | `panelPlacement` | 否 | `IconTriggerPanelPlacement \| undefined` |  |
 | `initialFocus` | 否 | `false \| "first" \| "selected" \| undefined` |  |
-| `panelAlign` | 否 | `"center" \| "start" \| "end" \| undefined` |  |
+| `panelAlign` | 否 | `"start" \| "center" \| "end" \| undefined` |  |
 
 ## IconTriggerAccent (type)
 
@@ -8878,7 +10167,7 @@ Source: skills/forge-skill/references/components/image-grid.md
 
 # image-grid
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-grid.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageGrid (value)
@@ -8911,7 +10200,7 @@ Source: skills/forge-skill/references/components/image-stat-card.md
 
 # image-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/image-stat-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ImageStatCard (value)
@@ -8961,7 +10250,7 @@ Source: skills/forge-skill/references/components/info-row.md
 
 # info-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/info-row.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/info-row.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InfoRow (value)
@@ -8992,7 +10281,7 @@ Source: skills/forge-skill/references/components/inline-diff.md
 
 # inline-diff
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/inline-diff.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/inline-diff.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InlineDiff (value)
@@ -9107,7 +10396,7 @@ Source: skills/forge-skill/references/components/insight-cards.md
 
 # insight-cards
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/insight-cards.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## InsightCard (type)
@@ -9170,7 +10459,7 @@ Source: skills/forge-skill/references/components/kebab-menu.md
 
 # kebab-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/kebab-menu.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## KebabMenu (value)
@@ -9217,7 +10506,7 @@ Source: skills/forge-skill/references/components/line-chart-stat-card.md
 
 # line-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/line-chart-stat-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LineChartColor (type)
@@ -9277,7 +10566,7 @@ Source: skills/forge-skill/references/components/link.md
 
 # link
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/link.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LinkColor (type)
@@ -9316,7 +10605,7 @@ Source: skills/forge-skill/references/components/liquid-tabs.md
 
 # liquid-tabs
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/liquid-tabs.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## LiquidTabs (value)
@@ -9381,7 +10670,7 @@ Source: skills/forge-skill/references/components/list-group.md
 
 # list-group
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-group.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ListGroup (value)
@@ -9434,7 +10723,7 @@ Source: skills/forge-skill/references/components/list-item.md
 
 # list-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/list-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DescriptionItem (value)
@@ -9535,7 +10824,7 @@ Source: skills/forge-skill/references/components/map-card.md
 
 # map-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/map-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MapCard (value)
@@ -9600,7 +10889,7 @@ Source: skills/forge-skill/references/components/media-upload.md
 
 # media-upload
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/media-upload.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MediaItem (type)
@@ -9658,7 +10947,7 @@ Source: skills/forge-skill/references/components/menu-item.md
 
 # menu-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menu-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MenuItem (value)
@@ -9732,17 +11021,62 @@ export type MenuItemSurface = "default" | "onColoredBg";
 
 ---
 
+Source: skills/forge-skill/references/components/menubar.md
+
+# menubar
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/menubar.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Menubar (value)
+
+```ts
+({ menus, accent, ariaLabel, className, motion }: MenubarProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `menus` | 是 | `MenubarMenu[]` |  |
+| `accent` | 否 | `AccentColor \| undefined` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## MenubarMenu (type)
+
+```ts
+export interface MenubarMenu {
+  label: string;
+  items: DropdownMenuEntry[];
+  disabled?: boolean;
+}
+```
+
+## MenubarProps (type)
+
+```ts
+export interface MenubarProps {
+  menus: MenubarMenu[];
+  accent?: DropdownMenuAccent;
+  ariaLabel?: string;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/meter-chart.md
 
 # meter-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/meter-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MeterChart (value)
 
 ```ts
-({ segments, accent, trend, trendDirection, subtitle, height, }: MeterChartProps) => JSX.Element
+({ segments, accent, trend, trendDirection, subtitle, height, ariaLabel, }: MeterChartProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -9753,6 +11087,7 @@ Source: skills/forge-skill/references/components/meter-chart.md
 | `trendDirection` | 否 | `"up" \| "down" \| undefined` |  |
 | `subtitle` | 否 | `string \| undefined` |  |
 | `height` | 否 | `string \| undefined` | Meter bar height class. Default h-24 (96px) per figma. |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name; defaults to `subtitle`. |
 
 ---
 
@@ -9760,13 +11095,13 @@ Source: skills/forge-skill/references/components/modal.md
 
 # modal
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/modal.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Modal (value)
 
 ```ts
-({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element | null
+({ open, onOpenChange, title, ariaLabel, variant, width, children, footer, motion, locale, closeLabel, className }: ModalProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -9809,7 +11144,7 @@ Source: skills/forge-skill/references/components/motion.md
 
 # motion
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/motion.ts`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MotionPreference (type)
@@ -9824,7 +11159,7 @@ Source: skills/forge-skill/references/components/multilayer-donut-chart.md
 
 # multilayer-donut-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/multilayer-donut-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## MultilayerDonutChart (value)
@@ -9848,11 +11183,64 @@ Source: skills/forge-skill/references/components/multilayer-donut-chart.md
 
 ---
 
+Source: skills/forge-skill/references/components/navigation-menu.md
+
+# navigation-menu
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/navigation-menu.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## NavigationMenu (value)
+
+```ts
+({ items, ariaLabel, className, motion }: NavigationMenuProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `NavigationMenuItem[]` |  |
+| `ariaLabel` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## NavigationMenuItem (type)
+
+```ts
+export type NavigationMenuItem =
+  | { label: string; href: string; active?: boolean }
+  /** A dropdown panel: pass `links` for a link grid, or `content` for anything custom. */
+  | { label: string; links?: NavigationMenuLink[]; content?: ReactNode; columns?: 1 | 2 };
+```
+
+## NavigationMenuLink (type)
+
+```ts
+export interface NavigationMenuLink {
+  label: string;
+  href: string;
+  description?: string;
+  icon?: ReactNode;
+}
+```
+
+## NavigationMenuProps (type)
+
+```ts
+export interface NavigationMenuProps {
+  items: NavigationMenuItem[];
+  ariaLabel?: string;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/notification-item.md
 
 # notification-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/notification-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## NotificationItem (value)
@@ -9888,11 +11276,95 @@ export type NotificationItemColor = AccentColor;
 
 ---
 
+Source: skills/forge-skill/references/components/number-field.md
+
+# number-field
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/number-field.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## NumberField (value)
+
+```ts
+({ value, defaultValue, onChange, min, max, step, format, label, placeholder, suffix, errorMessage, state, shape, color, width, headerAction, name, locale, className, }: NumberFieldProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `number \| null \| undefined` |  |
+| `defaultValue` | 否 | `number \| undefined` |  |
+| `onChange` | 否 | `((value: number \| null) => void) \| undefined` | `null` when the input is cleared. |
+| `min` | 否 | `number \| undefined` |  |
+| `max` | 否 | `number \| undefined` |  |
+| `step` | 否 | `number \| undefined` |  |
+| `format` | 否 | `Intl.NumberFormatOptions \| undefined` | Display format, e.g. `{ style: "currency", currency: "CNY" }` or `{ style: "percent" }`. |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `suffix` | 否 | `ReactNode` | Text after the number, e.g. a unit. |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `state` | 否 | `FloatingFieldState \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `headerAction` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## NumberFieldColor (type)
+
+```ts
+export type NumberFieldColor = FormAccentColor;
+```
+
+## NumberFieldProps (type)
+
+```ts
+export interface NumberFieldProps {
+  value?: number | null;
+  defaultValue?: number;
+  /** `null` when the input is cleared. */
+  onChange?: (value: number | null) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+  /** Display format, e.g. `{ style: "currency", currency: "CNY" }` or `{ style: "percent" }`. */
+  format?: Intl.NumberFormatOptions;
+  label?: string;
+  placeholder?: string;
+  /** Text after the number, e.g. a unit. */
+  suffix?: ReactNode;
+  errorMessage?: string;
+  state?: NumberFieldState;
+  shape?: NumberFieldShape;
+  color?: NumberFieldColor;
+  width?: string;
+  headerAction?: ReactNode;
+  name?: string;
+  locale?: "zh" | "en";
+  className?: string;
+}
+```
+
+## NumberFieldShape (type)
+
+```ts
+export type NumberFieldShape = FloatingFieldShape;
+```
+
+## NumberFieldState (type)
+
+```ts
+export type NumberFieldState = FloatingFieldState;
+```
+
+---
+
 Source: skills/forge-skill/references/components/otp-input.md
 
 # otp-input
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/otp-input.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## OtpInput (value)
@@ -9957,7 +11429,7 @@ Source: skills/forge-skill/references/components/page-dot.md
 
 # page-dot
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-dot.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageDot (value)
@@ -9991,7 +11463,7 @@ Source: skills/forge-skill/references/components/page-header.md
 
 # page-header
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/page-header.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageHeader (value)
@@ -10176,7 +11648,7 @@ Source: skills/forge-skill/references/components/pagination.md
 
 # pagination
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/pagination.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Pagination (value)
@@ -10212,7 +11684,7 @@ Source: skills/forge-skill/references/components/panel.md
 
 # panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Panel (value)
@@ -10533,11 +12005,79 @@ export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
 
 ---
 
+Source: skills/forge-skill/references/components/period-picker.md
+
+# period-picker
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/period-picker.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## PeriodGranularity (type)
+
+```ts
+export type PeriodGranularity = "month" | "quarter" | "year";
+```
+
+## PeriodPicker (value)
+
+```ts
+({ granularity, value, defaultValue, onChange, minDate, maxDate, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: PeriodPickerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `granularity` | 是 | `PeriodGranularity` |  |
+| `value` | 否 | `Date \| null \| undefined` |  |
+| `defaultValue` | 否 | `Date \| null \| undefined` |  |
+| `onChange` | 否 | `((start: Date \| null) => void) \| undefined` |  |
+| `minDate` | 否 | `Date \| undefined` |  |
+| `maxDate` | 否 | `Date \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Submits "YYYY-MM", "YYYY-Qn" or "YYYY". |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## PeriodPickerProps (type)
+
+```ts
+export interface PeriodPickerProps {
+  granularity: PeriodGranularity;
+  value?: Date | null;
+  defaultValue?: Date | null;
+  onChange?: (start: Date | null) => void;
+  minDate?: Date;
+  maxDate?: Date;
+  label?: string;
+  placeholder?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  /** Submits "YYYY-MM", "YYYY-Qn" or "YYYY". */
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/pie-chart.md
 
 # pie-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/pie-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PieChart (value)
@@ -10559,7 +12099,7 @@ Source: skills/forge-skill/references/components/plain-icons.md
 
 # plain-icons
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/plain-icons.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckIcon (value)
@@ -10594,11 +12134,201 @@ Source: skills/forge-skill/references/components/plain-icons.md
 
 ---
 
+Source: skills/forge-skill/references/components/popconfirm.md
+
+# popconfirm
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/popconfirm.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Popconfirm (value)
+
+```ts
+({ trigger, title, description, confirmLabel, cancelLabel, tone, onConfirm, onCancel, side, align, open: openProp, onOpenChange, motion, className }: PopconfirmProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | The button that asks for confirmation. Must forward ref and props to a DOM element. |
+| `title` | 是 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `confirmLabel` | 否 | `string \| undefined` |  |
+| `cancelLabel` | 否 | `string \| undefined` |  |
+| `tone` | 否 | `"default" \| "danger" \| undefined` | `danger` for deletes and other irreversible actions. |
+| `onConfirm` | 是 | `() => void \| Promise<unknown>` | May return a promise; the button shows a spinner and the bubble stays open until it settles. |
+| `onCancel` | 否 | `(() => void) \| undefined` |  |
+| `side` | 否 | `"bottom" \| "top" \| "left" \| "right" \| undefined` |  |
+| `align` | 否 | `"start" \| "center" \| "end" \| undefined` |  |
+| `open` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## PopconfirmProps (type)
+
+```ts
+export interface PopconfirmProps {
+  /** The button that asks for confirmation. Must forward ref and props to a DOM element. */
+  trigger: ReactElement;
+  title: ReactNode;
+  description?: ReactNode;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  /** `danger` for deletes and other irreversible actions. */
+  tone?: "default" | "danger";
+  /** May return a promise; the button shows a spinner and the bubble stays open until it settles. */
+  onConfirm: () => void | Promise<unknown>;
+  onCancel?: () => void;
+  side?: "top" | "bottom" | "left" | "right";
+  align?: "start" | "center" | "end";
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
+
+---
+
+Source: skills/forge-skill/references/components/popover.md
+
+# popover
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/popover.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Popover (value)
+
+```ts
+({ trigger, children, title, description, side, align, sideOffset, open: openProp, defaultOpen, onOpenChange, openOnHover, width, className, motion, }: PopoverProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | Element that toggles the popover. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). |
+| `children` | 是 | `ReactNode \| ((close: () => void) => ReactNode)` | Panel content. Pass a function to receive `close`. |
+| `title` | 否 | `ReactNode` |  |
+| `description` | 否 | `ReactNode` |  |
+| `side` | 否 | `PopoverSide \| undefined` |  |
+| `align` | 否 | `PopoverAlign \| undefined` |  |
+| `sideOffset` | 否 | `number \| undefined` | Gap between trigger and panel, in pixels. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `defaultOpen` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `openOnHover` | 否 | `boolean \| undefined` | Open on hover as well as click. |
+| `width` | 否 | `string \| undefined` | Panel width, any CSS width. Defaults to content width (max 320px). |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## PopoverAlign (type)
+
+```ts
+export type PopoverAlign = "start" | "center" | "end";
+```
+
+## PopoverProps (type)
+
+```ts
+export interface PopoverProps {
+  /** Element that toggles the popover. It must forward `ref` and spread props onto a DOM element (Button, IconTrigger, native button). */
+  trigger: ReactElement;
+  /** Panel content. Pass a function to receive `close`. */
+  children: ReactNode | ((close: () => void) => ReactNode);
+  title?: ReactNode;
+  description?: ReactNode;
+  side?: PopoverSide;
+  align?: PopoverAlign;
+  /** Gap between trigger and panel, in pixels. */
+  sideOffset?: number;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  /** Open on hover as well as click. */
+  openOnHover?: boolean;
+  /** Panel width, any CSS width. Defaults to content width (max 320px). */
+  width?: string;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+## PopoverSide (type)
+
+```ts
+export type PopoverSide = "top" | "bottom" | "left" | "right";
+```
+
+---
+
+Source: skills/forge-skill/references/components/preview-card.md
+
+# preview-card
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/preview-card.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## PreviewCard (value)
+
+```ts
+({ trigger, children, side, align, delay, closeDelay, width, open: openProp, onOpenChange, className, motion, }: PreviewCardProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `trigger` | 是 | `ReactElement<unknown, string \| JSXElementConstructor<any>>` | Usually a link. It must forward `ref` and spread props onto an `<a>` element. |
+| `children` | 是 | `ReactNode` | Card content shown on hover or keyboard focus. |
+| `side` | 否 | `PreviewCardSide \| undefined` |  |
+| `align` | 否 | `PreviewCardAlign \| undefined` |  |
+| `delay` | 否 | `number \| undefined` | Hover delay before opening, in milliseconds. |
+| `closeDelay` | 否 | `number \| undefined` | Delay before closing after the pointer leaves, in milliseconds. |
+| `width` | 否 | `string \| undefined` | Card width, any CSS width. Defaults to 320px. |
+| `open` | 否 | `boolean \| undefined` |  |
+| `onOpenChange` | 否 | `((open: boolean) => void) \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+
+## PreviewCardAlign (type)
+
+```ts
+export type PreviewCardAlign = "start" | "center" | "end";
+```
+
+## PreviewCardProps (type)
+
+```ts
+export interface PreviewCardProps {
+  /** Usually a link. It must forward `ref` and spread props onto an `<a>` element. */
+  trigger: ReactElement;
+  /** Card content shown on hover or keyboard focus. */
+  children: ReactNode;
+  side?: PreviewCardSide;
+  align?: PreviewCardAlign;
+  /** Hover delay before opening, in milliseconds. */
+  delay?: number;
+  /** Delay before closing after the pointer leaves, in milliseconds. */
+  closeDelay?: number;
+  /** Card width, any CSS width. Defaults to 320px. */
+  width?: string;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+  motion?: MotionPreference;
+}
+```
+
+## PreviewCardSide (type)
+
+```ts
+export type PreviewCardSide = "top" | "bottom" | "left" | "right";
+```
+
+---
+
 Source: skills/forge-skill/references/components/product-row.md
 
 # product-row
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/product-row.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProductRow (value)
@@ -10625,7 +12355,7 @@ Source: skills/forge-skill/references/components/profile-card.md
 
 # profile-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/profile-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProfileCard (value)
@@ -10670,7 +12400,7 @@ Source: skills/forge-skill/references/components/progress-bar.md
 
 # progress-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-bar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressBar (value)
@@ -10733,7 +12463,7 @@ Source: skills/forge-skill/references/components/progress-card.md
 
 # progress-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressCard (value)
@@ -10767,7 +12497,7 @@ Source: skills/forge-skill/references/components/progress-stat-card.md
 
 # progress-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/progress-stat-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProgressStatCard (value)
@@ -10816,7 +12546,7 @@ Source: skills/forge-skill/references/components/project-card.md
 
 # project-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/project-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ProjectCard (value)
@@ -10860,7 +12590,7 @@ Source: skills/forge-skill/references/components/question.md
 
 # question
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/question.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/question.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ChoiceAnswer (type)
@@ -11015,7 +12745,7 @@ Source: skills/forge-skill/references/components/rating-stars.md
 
 # rating-stars
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/rating-stars.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RatingStars (value)
@@ -11054,7 +12784,7 @@ Source: skills/forge-skill/references/components/recommendation-card.md
 
 # recommendation-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/recommendation-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## RecommendationCard (value)
@@ -11109,7 +12839,7 @@ Source: skills/forge-skill/references/components/review-item.md
 
 # review-item
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/review-item.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ReviewItem (value)
@@ -11139,11 +12869,61 @@ Source: skills/forge-skill/references/components/review-item.md
 
 ---
 
+Source: skills/forge-skill/references/components/scroll-area.md
+
+# scroll-area
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/scroll-area.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ScrollArea (value)
+
+```ts
+({ children, orientation, maxHeight, height, className, contentClassName, ariaLabel, }: ScrollAreaProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `ReactNode` |  |
+| `orientation` | 否 | `ScrollAreaOrientation \| undefined` | Scroll direction(s) that get a styled scrollbar. |
+| `maxHeight` | 否 | `string \| undefined` | Max height of the scroll viewport, any CSS length. |
+| `height` | 否 | `string \| undefined` | Height of the scroll viewport, any CSS length. |
+| `className` | 否 | `string \| undefined` |  |
+| `contentClassName` | 否 | `string \| undefined` | Class for the inner content wrapper. |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name; set it when the area holds important content (it becomes focusable). |
+
+## ScrollAreaOrientation (type)
+
+```ts
+export type ScrollAreaOrientation = "vertical" | "horizontal" | "both";
+```
+
+## ScrollAreaProps (type)
+
+```ts
+export interface ScrollAreaProps {
+  children: ReactNode;
+  /** Scroll direction(s) that get a styled scrollbar. */
+  orientation?: ScrollAreaOrientation;
+  /** Max height of the scroll viewport, any CSS length. */
+  maxHeight?: string;
+  /** Height of the scroll viewport, any CSS length. */
+  height?: string;
+  className?: string;
+  /** Class for the inner content wrapper. */
+  contentClassName?: string;
+  /** Accessible name; set it when the area holds important content (it becomes focusable). */
+  ariaLabel?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/select-option.md
 
 # select-option
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/select-option.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SelectOption (value)
@@ -11226,13 +13006,13 @@ Source: skills/forge-skill/references/components/selection-control.md
 
 # selection-control
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/selection-control.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## CheckboxWithLabel (value)
 
 ```ts
-({ checked, motion, onChange, label, color, checkboxPosition, icon, avatar, dotColor, disabled, className, }: { checked?: boolean; motion?: MotionPreference; onChange?: (checked: boolean) => void; label: string; color?: ControlColor; checkboxPosition?: "left" | "right"; icon?: ReactNode; avatar?: string; dotColor?: string; disabled?: boolean; className?: string; }) => JSX.Element
+({ checked, motion, onChange, label, color, checkboxPosition, icon, avatar, dotColor, disabled, name, value, className, }: { checked?: boolean; motion?: MotionPreference; onChange?: (checked: boolean) => void; name?: string; value?: string; label: string; color?: ControlColor; checkboxPosition?: "left" | "right"; icon?: ReactNode; avatar?: string; dotColor?: string; disabled?: boolean; className?: string; }) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -11240,6 +13020,8 @@ Source: skills/forge-skill/references/components/selection-control.md
 | `checked` | 否 | `boolean \| undefined` |  |
 | `motion` | 否 | `MotionPreference \| undefined` |  |
 | `onChange` | 否 | `((checked: boolean) => void) \| undefined` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits `value` (default "on") when checked. |
+| `value` | 否 | `string \| undefined` |  |
 | `label` | 是 | `string` |  |
 | `color` | 否 | `FormAccentColor \| undefined` |  |
 | `checkboxPosition` | 否 | `"left" \| "right" \| undefined` |  |
@@ -11290,7 +13072,7 @@ export type ControlColor = FormAccentColor;
 ## Toggle (value)
 
 ```ts
-({ checked, defaultChecked, motion, onChange, color, disabled, size, ariaLabel, draggable, thumbIcon, }: ToggleProps) => JSX.Element
+({ checked, defaultChecked, motion, onChange, color, disabled, size, ariaLabel, draggable, thumbIcon, name, value, }: ToggleProps) => JSX.Element
 ```
 
 | 属性 | 必填 | 类型 | 说明 |
@@ -11305,6 +13087,8 @@ export type ControlColor = FormAccentColor;
 | `ariaLabel` | 否 | `string \| undefined` |  |
 | `draggable` | 否 | `boolean \| undefined` | Allow dragging the thumb; clicking and keyboard activation remain available. |
 | `thumbIcon` | 否 | `ReactNode` |  |
+| `name` | 否 | `string \| undefined` | Form field name; submits `value` (default "on") when on. |
+| `value` | 否 | `string \| undefined` |  |
 
 ## ToggleProps (type)
 
@@ -11322,6 +13106,9 @@ export type ToggleProps = {
   /** Allow dragging the thumb; clicking and keyboard activation remain available. */
   draggable?: boolean;
   thumbIcon?: ReactNode;
+  /** Form field name; submits `value` (default "on") when on. */
+  name?: string;
+  value?: string;
 };
 ```
 
@@ -11331,7 +13118,7 @@ Source: skills/forge-skill/references/components/sidebar-menu.md
 
 # sidebar-menu
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/sidebar-menu.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SidebarMenu (value)
@@ -11406,7 +13193,7 @@ Source: skills/forge-skill/references/components/sidebar-popovers.md
 
 # sidebar-popovers
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/layouts/sidebar-popovers.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## AppSwitcherDropdown (value)
@@ -11453,11 +13240,70 @@ export type TeamSwitcherLabels = {
 
 ---
 
+Source: skills/forge-skill/references/components/slider.md
+
+# slider
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/slider.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Slider (value)
+
+```ts
+<Value extends SliderValue = number>(props: SliderProps<Value>) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `min` | 否 | `number \| undefined` |  |
+| `max` | 否 | `number \| undefined` |  |
+| `step` | 否 | `number \| undefined` |  |
+| `format` | 否 | `Intl.NumberFormatOptions \| undefined` | Format for the value readout and screen readers, e.g. `{ style: "percent" }`. |
+| `label` | 否 | `ReactNode` |  |
+| `ariaLabel` | 否 | `string \| undefined` | Accessible name when there is no visible label. |
+| `showValue` | 否 | `boolean \| undefined` | Show the formatted value next to the label. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `value` | 否 | `Value \| undefined` |  |
+| `defaultValue` | 否 | `Value \| undefined` |  |
+| `onChange` | 否 | `((value: Value) => void) \| undefined` |  |
+| `onCommit` | 否 | `((value: Value) => void) \| undefined` | Fires once when the user releases the thumb. |
+
+## SliderColor (type)
+
+```ts
+export type SliderColor = FormAccentColor;
+```
+
+## SliderProps (type)
+
+```ts
+export type SliderProps<Value extends SliderValue = number> = SliderBaseProps & {
+  value?: Value;
+  defaultValue?: Value;
+  onChange?: (value: Value) => void;
+  /** Fires once when the user releases the thumb. */
+  onCommit?: (value: Value) => void;
+};
+```
+
+## SliderValue (type)
+
+```ts
+export type SliderValue = number | [number, number];
+```
+
+---
+
 Source: skills/forge-skill/references/components/small-calendar.md
 
 # small-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-calendar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmallCalendar (value)
@@ -11499,7 +13345,7 @@ Source: skills/forge-skill/references/components/small-daily-calendar.md
 
 # small-daily-calendar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/small-daily-calendar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## DailyEvent (type)
@@ -11545,7 +13391,7 @@ Source: skills/forge-skill/references/components/smooth-line-chart.md
 
 # smooth-line-chart
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/charts/smooth-line-chart.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SmoothLineChart (value)
@@ -11577,11 +13423,57 @@ Source: skills/forge-skill/references/components/smooth-line-chart.md
 
 ---
 
+Source: skills/forge-skill/references/components/splitter.md
+
+# splitter
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/splitter.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Splitter (value)
+
+```ts
+({ children, orientation, size, defaultSize, onSizeChange, min, max, handleLabel, className }: SplitterProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `children` | 是 | `[ReactNode, ReactNode]` | Exactly two panes: list and detail, editor and preview. |
+| `orientation` | 否 | `"horizontal" \| "vertical" \| undefined` |  |
+| `size` | 否 | `number \| undefined` | First pane size in percent. |
+| `defaultSize` | 否 | `number \| undefined` |  |
+| `onSizeChange` | 否 | `((size: number) => void) \| undefined` |  |
+| `min` | 否 | `number \| undefined` |  |
+| `max` | 否 | `number \| undefined` |  |
+| `handleLabel` | 否 | `string \| undefined` | Accessible name of the drag handle. |
+| `className` | 否 | `string \| undefined` |  |
+
+## SplitterProps (type)
+
+```ts
+export interface SplitterProps {
+  /** Exactly two panes: list and detail, editor and preview. */
+  children: [ReactNode, ReactNode];
+  orientation?: "horizontal" | "vertical";
+  /** First pane size in percent. */
+  size?: number;
+  defaultSize?: number;
+  onSizeChange?: (size: number) => void;
+  min?: number;
+  max?: number;
+  /** Accessible name of the drag handle. */
+  handleLabel?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/stat-card.md
 
 # stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stat-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StatCard (value)
@@ -11635,7 +13527,7 @@ Source: skills/forge-skill/references/components/stepper.md
 
 # stepper
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/stepper.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Stepper (value)
@@ -11680,7 +13572,7 @@ Source: skills/forge-skill/references/components/streaming-answer.md
 
 # streaming-answer
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/streaming-answer.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## StreamingAnswer (value)
@@ -11766,7 +13658,7 @@ Source: skills/forge-skill/references/components/style-guide.md
 
 # style-guide
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/style-guide.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ColorScaleStop (type)
@@ -11855,7 +13747,7 @@ Source: skills/forge-skill/references/components/surface-card.md
 
 # surface-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/surface-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## SurfaceCard (value)
@@ -12170,7 +14062,7 @@ Source: skills/forge-skill/references/components/tab-bar.md
 
 # tab-bar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tab-bar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabBar (value)
@@ -12225,11 +14117,65 @@ export interface TabItem {
 
 ---
 
+Source: skills/forge-skill/references/components/table-columns.md
+
+# table-columns
+
+自动生成；请勿编辑 API 部分。来源：`core/src/internal/table-columns.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## ColumnDef (type)
+
+```ts
+export type ColumnDef<T> = ColumnDefBase<T> & ColumnDefAlign;
+```
+
+## resolveTableColumnAlign (value)
+
+```ts
+<T>(column: Pick<ColumnDef<T>, "key" | "valueKind" | "align" | "alignOverrideReason">) => TableColumnAlign
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `key` | 是 | `string` |  |
+| `valueKind` | 否 | `"number" \| "identifier" \| undefined` | 省略或 identifier：标识与普通文本，默认左对齐。列头与内容同向。 金额、数量、单价、百分比及同类可比较数值。省略 align 即右对齐。 |
+| `align` | 否 | `TableColumnAlign \| undefined` | 数字列离开默认右对齐。必须同时填写非空 `alignOverrideReason`。 漏写原因会在运行时警告，并标上 `data-forge-align-violation`。 |
+| `alignOverrideReason` | 否 | `string \| undefined` | 标识列一般不需要。数字列禁止用这个字段代替 `valueKind: "number"`。 |
+
+## TableCellEdit (type)
+
+```ts
+export type TableCellEdit<T> = {
+  /** The raw value to put in the input. */
+  value: (row: T) => string | number;
+  /** May return a promise; the cell shows the new value only after the host updates `rows`. */
+  onSave: (row: T, value: string) => void | Promise<unknown>;
+  type?: "text" | "number";
+  /** Return a message to reject the value. */
+  validate?: (value: string, row: T) => string | null | undefined;
+};
+```
+
+## TableColumnAlign (type)
+
+```ts
+export type TableColumnAlign = "left" | "right";
+```
+
+## TableValueKind (type)
+
+```ts
+export type TableValueKind = "number" | "identifier";
+```
+
+---
+
 Source: skills/forge-skill/references/components/tabs-content.md
 
 # tabs-content
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tabs-content.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TabsContent (value)
@@ -12278,11 +14224,69 @@ export interface TabsContentProps {
 
 ---
 
+Source: skills/forge-skill/references/components/tag-input.md
+
+# tag-input
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/tag-input.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## TagInput (value)
+
+```ts
+({ value, defaultValue, onChange, label, placeholder, max, validate, separators, disabled, errorMessage, name, color, shape, locale, className }: TagInputProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `string[] \| undefined` |  |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((tags: string[]) => void) \| undefined` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `max` | 否 | `number \| undefined` | Upper limit; the input disables when reached. |
+| `validate` | 否 | `((tag: string) => string \| null \| undefined) \| undefined` | Return an error message to reject a tag, e.g. an invalid email. |
+| `separators` | 否 | `string[] \| undefined` | Keys that commit the typed text, besides Enter. |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TagInputProps (type)
+
+```ts
+export interface TagInputProps {
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (tags: string[]) => void;
+  label?: string;
+  placeholder?: string;
+  /** Upper limit; the input disables when reached. */
+  max?: number;
+  /** Return an error message to reject a tag, e.g. an invalid email. */
+  validate?: (tag: string) => string | null | undefined;
+  /** Keys that commit the typed text, besides Enter. */
+  separators?: string[];
+  disabled?: boolean;
+  errorMessage?: string;
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  locale?: "zh" | "en";
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/task-card.md
 
 # task-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/task-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TaskCard (value)
@@ -12329,7 +14333,7 @@ Source: skills/forge-skill/references/components/text-area.md
 
 # text-area
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-area.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextArea (value)
@@ -12683,7 +14687,7 @@ Source: skills/forge-skill/references/components/text-field.md
 
 # text-field
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextField (value)
@@ -13067,7 +15071,7 @@ Source: skills/forge-skill/references/components/text-field-select.md
 
 # text-field-select
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/text-field-select.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TextFieldSelectSuffix (value)
@@ -13090,7 +15094,7 @@ Source: skills/forge-skill/references/components/thinking.md
 
 # thinking
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Reasoning (value)
@@ -13216,7 +15220,7 @@ Source: skills/forge-skill/references/components/thinking-trace.md
 
 # thinking-trace
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/thinking-trace.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ThinkingRow (type)
@@ -13269,11 +15273,72 @@ export type ThinkingVariant = "steps" | "reasoning" | "search" | "coding";
 
 ---
 
+Source: skills/forge-skill/references/components/time-picker.md
+
+# time-picker
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/time-picker.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## TimePicker (value)
+
+```ts
+({ value, defaultValue, onChange, withSeconds, step, label, placeholder, clearable, disabled, errorMessage, name, color, shape, motion, locale, width, className }: TimePickerProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `value` | 否 | `string \| undefined` | "HH:mm" or "HH:mm:ss"; empty string or undefined for no value. |
+| `defaultValue` | 否 | `string \| undefined` |  |
+| `onChange` | 否 | `((value: string) => void) \| undefined` |  |
+| `withSeconds` | 否 | `boolean \| undefined` |  |
+| `step` | 否 | `number \| undefined` | Minute (and second) step, e.g. 5 or 15. |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TimePickerProps (type)
+
+```ts
+export interface TimePickerProps {
+  /** "HH:mm" or "HH:mm:ss"; empty string or undefined for no value. */
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
+  withSeconds?: boolean;
+  /** Minute (and second) step, e.g. 5 or 15. */
+  step?: number;
+  label?: string;
+  placeholder?: string;
+  clearable?: boolean;
+  disabled?: boolean;
+  errorMessage?: string;
+  name?: string;
+  color?: FormAccentColor;
+  shape?: FloatingFieldShape;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  width?: string;
+  className?: string;
+}
+```
+
+---
+
 Source: skills/forge-skill/references/components/toast.md
 
 # toast
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toast.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToastApi (type)
@@ -13313,7 +15378,7 @@ Source: skills/forge-skill/references/components/tool-call.md
 
 # tool-call
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-call.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-call.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToolCall (value)
@@ -13445,7 +15510,7 @@ Source: skills/forge-skill/references/components/tool-chips.md
 
 # tool-chips
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/agent/tool-chips.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ToolChipDetail (type)
@@ -13522,7 +15587,7 @@ Source: skills/forge-skill/references/components/toolbar.md
 
 # toolbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/toolbar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## PageTitleToolbar (value)
@@ -13788,7 +15853,7 @@ Source: skills/forge-skill/references/components/tooltip.md
 
 # tooltip
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tooltip.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Tooltip (value)
@@ -14164,7 +16229,7 @@ Source: skills/forge-skill/references/components/topbar.md
 
 # topbar
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/topbar.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## TopBar (value)
@@ -14193,11 +16258,184 @@ export type TopBarColor = keyof typeof topbarColors;
 
 ---
 
+Source: skills/forge-skill/references/components/transfer.md
+
+# transfer
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/transfer.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Transfer (value)
+
+```ts
+({ items, value, defaultValue, onChange, titles, searchable, color, motion, locale, className }: TransferProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `items` | 是 | `TransferItem[]` |  |
+| `value` | 否 | `string[] \| undefined` | Values in the right-hand ("chosen") list. |
+| `defaultValue` | 否 | `string[] \| undefined` |  |
+| `onChange` | 否 | `((value: string[]) => void) \| undefined` |  |
+| `titles` | 否 | `[ReactNode, ReactNode] \| undefined` |  |
+| `searchable` | 否 | `boolean \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TransferItem (type)
+
+```ts
+export interface TransferItem {
+  value: string;
+  label: string;
+  description?: string;
+  disabled?: boolean;
+}
+```
+
+## TransferProps (type)
+
+```ts
+export interface TransferProps {
+  items: TransferItem[];
+  /** Values in the right-hand ("chosen") list. */
+  value?: string[];
+  defaultValue?: string[];
+  onChange?: (value: string[]) => void;
+  titles?: [ReactNode, ReactNode];
+  searchable?: boolean;
+  color?: FormAccentColor;
+  motion?: MotionPreference;
+  locale?: "zh" | "en";
+  className?: string;
+}
+```
+
+---
+
+Source: skills/forge-skill/references/components/tree.md
+
+# tree
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/tree.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## Tree (value)
+
+```ts
+({ nodes, ariaLabel, expandedIds, defaultExpandedIds, onExpandedChange, selectedId, onSelect, checkable, checkedIds, defaultCheckedIds, onCheckedChange, motion, className }: TreeProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `nodes` | 是 | `TreeNode[]` |  |
+| `ariaLabel` | 是 | `string` | Accessible name, e.g. "组织架构". |
+| `expandedIds` | 否 | `string[] \| undefined` |  |
+| `defaultExpandedIds` | 否 | `string[] \| undefined` |  |
+| `onExpandedChange` | 否 | `((ids: string[]) => void) \| undefined` |  |
+| `selectedId` | 否 | `string \| null \| undefined` | Single selection (click a row). |
+| `onSelect` | 否 | `((id: string, node: TreeNode) => void) \| undefined` |  |
+| `checkable` | 否 | `boolean \| undefined` | Adds checkboxes. Checking a parent checks every enabled descendant; parents show a partial state. |
+| `checkedIds` | 否 | `string[] \| undefined` |  |
+| `defaultCheckedIds` | 否 | `string[] \| undefined` |  |
+| `onCheckedChange` | 否 | `((ids: string[]) => void) \| undefined` | Receives checked leaf and parent ids. |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+
+## TreeNode (type)
+
+```ts
+export interface TreeNode {
+  id: string;
+  label: ReactNode;
+  icon?: ReactNode;
+  /** Extra text on the right, e.g. a count. */
+  meta?: ReactNode;
+  children?: TreeNode[];
+  disabled?: boolean;
+}
+```
+
+## TreeProps (type)
+
+```ts
+export interface TreeProps {
+  nodes: TreeNode[];
+  /** Accessible name, e.g. "组织架构". */
+  ariaLabel: string;
+  expandedIds?: string[];
+  defaultExpandedIds?: string[];
+  onExpandedChange?: (ids: string[]) => void;
+  /** Single selection (click a row). */
+  selectedId?: string | null;
+  onSelect?: (id: string, node: TreeNode) => void;
+  /** Adds checkboxes. Checking a parent checks every enabled descendant; parents show a partial state. */
+  checkable?: boolean;
+  checkedIds?: string[];
+  defaultCheckedIds?: string[];
+  /** Receives checked leaf and parent ids. */
+  onCheckedChange?: (ids: string[]) => void;
+  motion?: MotionPreference;
+  className?: string;
+}
+```
+
+---
+
+Source: skills/forge-skill/references/components/tree-select.md
+
+# tree-select
+
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/forms/tree-select.tsx`；core **0.11.1**。
+默认值和运行行为以源码初始化为准；类型表不推测默认值。
+
+## TreeSelect (value)
+
+```ts
+(props: TreeSelectProps) => JSX.Element
+```
+
+| 属性 | 必填 | 类型 | 说明 |
+|---|---|---|---|
+| `nodes` | 是 | `TreeNode[]` |  |
+| `label` | 否 | `string \| undefined` |  |
+| `placeholder` | 否 | `string \| undefined` |  |
+| `searchable` | 否 | `boolean \| undefined` |  |
+| `defaultExpandedIds` | 否 | `string[] \| undefined` |  |
+| `clearable` | 否 | `boolean \| undefined` |  |
+| `disabled` | 否 | `boolean \| undefined` |  |
+| `errorMessage` | 否 | `string \| undefined` |  |
+| `name` | 否 | `string \| undefined` |  |
+| `color` | 否 | `FormAccentColor \| undefined` |  |
+| `shape` | 否 | `FloatingFieldShape \| undefined` |  |
+| `motion` | 否 | `MotionPreference \| undefined` |  |
+| `locale` | 否 | `"zh" \| "en" \| undefined` |  |
+| `width` | 否 | `string \| undefined` |  |
+| `className` | 否 | `string \| undefined` |  |
+| `multiple` | 否 | `boolean \| undefined` |  |
+| `value` | 否 | `string \| string[] \| null \| undefined` |  |
+| `defaultValue` | 否 | `string \| string[] \| null \| undefined` |  |
+| `onChange` | 否 | `((id: string \| null) => void) \| ((ids: string[]) => void) \| undefined` |  |
+
+## TreeSelectProps (type)
+
+```ts
+export type TreeSelectProps = TreeSelectBase & (
+  | { multiple?: false; value?: string | null; defaultValue?: string | null; onChange?: (id: string | null) => void }
+  /** Multiple: checking a parent selects its whole branch; reported ids include fully checked parents. */
+  | { multiple: true; value?: string[]; defaultValue?: string[]; onChange?: (ids: string[]) => void }
+);
+```
+
+---
+
 Source: skills/forge-skill/references/components/user-card.md
 
 # user-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/user-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## UserCard (value)
@@ -14232,7 +16470,7 @@ Source: skills/forge-skill/references/components/utils.md
 
 # utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/lib/utils.ts`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## cn (value)
@@ -14291,7 +16529,7 @@ Source: skills/forge-skill/references/components/wallet-goal-card.md
 
 # wallet-goal-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wallet-goal-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WalletGoalCard (value)
@@ -14350,7 +16588,7 @@ Source: skills/forge-skill/references/components/wheel-chart-stat-card.md
 
 # wheel-chart-stat-card
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.10.1**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/wheel-chart-stat-card.tsx`；core **0.11.1**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## WheelChartStatCard (value)

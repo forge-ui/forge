@@ -1,5 +1,6 @@
 "use client";
 
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { AnimatePresence, motion as animated } from "motion/react";
 import { useState } from "react";
 import { MagniferLinear, PenLinear, PenNewSquareLinear, PinLinear, TrashBinMinimalisticLinear } from "../../../icons";
@@ -132,7 +133,7 @@ export function ConversationList({ items, currentId, onSelect, onNew, onRename, 
                           </button>
                           {(onPin || onRename || onDelete) && (
                             <span className="absolute right-1 flex items-center rounded-lg bg-inherit opacity-0 transition-opacity focus-within:opacity-100 group-hover:opacity-100">
-                              {onPin && <button type="button" aria-label={item.pinned ? pick(locale, "取消置顶", "Unpin") : pick(locale, "置顶", "Pin")} aria-pressed={Boolean(item.pinned)} onClick={() => onPin(item.id, !item.pinned)} className={cn(iconAction, "aria-pressed:text-accent")}><PinLinear size={14} /></button>}
+                              {onPin && <TogglePrimitive aria-label={item.pinned ? pick(locale, "取消置顶", "Unpin") : pick(locale, "置顶", "Pin")} pressed={Boolean(item.pinned)} onPressedChange={next => onPin(item.id, next)} className={cn(iconAction, "aria-pressed:text-accent")}><PinLinear size={14} /></TogglePrimitive>}
                               {onRename && <button type="button" aria-label={pick(locale, "重命名", "Rename")} onClick={() => { setEditing(item.id); setDraft(item.title); }} className={iconAction}><PenLinear size={14} /></button>}
                               {onDelete && <button type="button" aria-label={pick(locale, "删除", "Delete")} onClick={() => setDeleting(item.id)} className={cn(iconAction, "hover:text-fg-red")}><TrashBinMinimalisticLinear size={14} /></button>}
                             </span>

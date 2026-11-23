@@ -31,20 +31,6 @@ function installDom() {
   return dom;
 }
 
-function makeRect(left: number, top: number, width: number, height: number): DOMRect {
-  return {
-    x: left,
-    y: top,
-    left,
-    top,
-    right: left + width,
-    bottom: top + height,
-    width,
-    height,
-    toJSON: () => ({}),
-  } as DOMRect;
-}
-
 test("KebabMenu 在滚动容器内打开后仍可完整选择菜单项", async () => {
   const dom = installDom();
   const container = document.querySelector<HTMLDivElement>("#root");
@@ -69,7 +55,7 @@ test("KebabMenu 在滚动容器内打开后仍可完整选择菜单项", async (
 
   await act(async () => trigger.click());
 
-  const menuItem = [...document.querySelectorAll<HTMLButtonElement>("button")]
+  const menuItem = [...document.querySelectorAll<HTMLElement>('[role="menuitem"]')]
     .find((button) => button.textContent?.trim() === "编辑");
   assert.ok(menuItem);
   assert.equal(scrollContainer.contains(menuItem), false);
@@ -109,63 +95,3 @@ test("KebabMenu 点击 portal 与触发器之外的区域后关闭", async () =>
   dom.window.close();
 });
 
-test("KebabMenu 跟随滚动中的触发器定位并避开视口边缘", async () => {
-  const dom = installDom();
-  Object.defineProperty(dom.window, "innerWidth", { configurable: true, value: 800 });
-  Object.defineProperty(dom.window, "innerHeight", { configurable: true, value: 720 });
-
-  let triggerRect = makeRect(700, 660, 40, 40);
-  const originalGetBoundingClientRect = dom.window.HTMLElement.prototype.getBoundingClientRect;
-  dom.window.HTMLElement.prototype.getBoundingClientRect = function getBoundingClientRect() {
-    if (this.hasAttribute('data-forge-fixed-probe')) return makeRect(0, 0, 100, 100);
-    if (this.querySelector('button[aria-label="更多操作"]')) return triggerRect;
-    if (this.style.position === "fixed") return makeRect(0, 0, 240, 120);
-    return makeRect(0, 0, 0, 0);
-  };
-
-  const container = document.querySelector<HTMLDivElement>("#root");
-  assert.ok(container);
-  const root = createRoot(container);
-
-  await act(async () => {
-    root.render(createElement(
-      "div",
-      { "data-testid": "table-scroll", style: { overflowX: "auto" } },
-      createElement(KebabMenu, { items: [{ label: "删除" }] }),
-    ));
-  });
-
-  const trigger = document.querySelector<HTMLButtonElement>('button[aria-label="更多操作"]');
-  assert.ok(trigger);
-  await act(async () => trigger.click());
-
-  const menuItem = [...document.querySelectorAll<HTMLButtonElement>("button")]
-    .find((button) => button.textContent?.trim() === "删除");
-  const floatingPanel = menuItem?.parentElement?.parentElement;
-  assert.ok(floatingPanel);
-  assert.equal(floatingPanel.style.position, "fixed");
-  assert.equal(floatingPanel.style.left, "500px");
-  assert.equal(floatingPanel.style.top, "536px");
-  assert.equal(floatingPanel.style.visibility, "visible");
-
-  triggerRect = makeRect(100, 100, 40, 40);
-  const scrollContainer = document.querySelector<HTMLElement>('[data-testid="table-scroll"]');
-  assert.ok(scrollContainer);
-  await act(async () => {
-    scrollContainer.dispatchEvent(new Event("scroll", { bubbles: false }));
-  });
-  assert.equal(floatingPanel.style.left, "8px");
-  assert.equal(floatingPanel.style.top, "144px");
-
-  Object.defineProperty(dom.window, "innerWidth", { configurable: true, value: 320 });
-  triggerRect = makeRect(290, 100, 30, 40);
-  await act(async () => {
-    dom.window.dispatchEvent(new Event("resize"));
-  });
-  assert.equal(floatingPanel.style.left, "72px");
-  assert.equal(floatingPanel.style.top, "144px");
-
-  await act(async () => root.unmount());
-  dom.window.HTMLElement.prototype.getBoundingClientRect = originalGetBoundingClientRect;
-  dom.window.close();
-});

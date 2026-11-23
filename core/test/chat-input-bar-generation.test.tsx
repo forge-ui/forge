@@ -43,13 +43,20 @@ function textarea() {
 }
 
 function button(label: string) {
-  const element = [...document.querySelectorAll<HTMLButtonElement>("button")]
+  const element = [...document.querySelectorAll<HTMLButtonElement>('button, [role^="menuitem"]')]
     .find((item) => item.getAttribute("aria-label") === label);
   assert.ok(element, `Expected a button named ${label}`);
   return element;
 }
 
-const click = (element: HTMLElement) => act(async () => element.click());
+// Base UI triggers open on pointer down, so send the full pointer sequence.
+const click = async (element: HTMLElement) => {
+  await act(async () => {
+    for (const type of ["pointerdown", "mousedown", "pointerup", "mouseup"]) element.dispatchEvent(new MouseEvent(type, { bubbles: true, cancelable: true, button: 0 }));
+    element.click();
+  });
+  await act(async () => { for (let index = 0; index < 4; index++) await new Promise(resolve => setTimeout(resolve, 5)); });
+};
 const key = (element: Element, value: string) => act(async () => {
   element.dispatchEvent(new KeyboardEvent("keydown", { key: value, bubbles: true, cancelable: true }));
 });
@@ -234,7 +241,8 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
     await key(document.activeElement!, "ArrowDown");
     assert.equal(document.activeElement?.textContent, "项目资料");
     await key(document.activeElement!, "Escape");
-    assert.equal(document.activeElement, button("Content and tools"));
+    await act(async () => { for (let index = 0; index < 4; index++) await new Promise(resolve => setTimeout(resolve, 5)); });
+    assert.ok(document.activeElement === button("Content and tools"), "focus: " + document.activeElement?.outerHTML.slice(0, 120));
     assert.equal(document.querySelector('[role="menu"]'), null);
     await click(button("Content and tools"));
     await click(document.querySelector<HTMLButtonElement>('[role="menuitem"]')!);
@@ -248,7 +256,7 @@ test("Fullscreen plus menu retains tools and @ / pickers filter and support keyb
     await key(textarea(), "Enter");
     await env.frame();
     assert.match(textarea().value, /@知识库/);
-    assert.equal(document.activeElement, textarea());
+    assert.ok(document.activeElement === textarea(), "focus: " + document.activeElement?.outerHTML.slice(0, 120));
 
     await typeText("/pl");
     assert.equal(document.querySelectorAll('[data-prompt-picker] [role="option"]').length, 1);
@@ -291,7 +299,7 @@ test("unified composer combines mentions, attachment, commands, permissions and 
     await click(button("Attach")); assert.equal(attached, 1);
     assert.ok(button("联网")); assert.ok(button("添加内容和工具")); assert.ok(button("Model: Auto"));
     await click(button("权限: 只读"));
-    await click([...document.querySelectorAll<HTMLButtonElement>('button[role="menuitemradio"]')].find(item => item.textContent === "可编辑")!);
+    await click([...document.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]')].find(item => item.textContent === "可编辑")!);
     assert.deepEqual(selected, ["write"]); assert.equal(textarea().value, "");
     await typeText("前文 /pl 后文");
     textarea().setSelectionRange(6, 6);

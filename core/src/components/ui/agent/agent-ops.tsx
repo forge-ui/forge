@@ -1,9 +1,10 @@
 "use client";
 
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { AnimatePresence, motion as animated } from "motion/react";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { AltArrowDownLinear, CheckCircleLinear, ClockCircleLinear, DangerTriangleLinear, PlusLinear } from "../../../icons";
-import { AgentCard, Collapse, SoftBadge, Spinner, accentButton, iconAction, type AgentTone } from "../../../internal/agent-kit";
+import { AgentCard, Disclosure, DisclosurePanel, DisclosureTrigger, SoftBadge, Spinner, accentButton, iconAction, type AgentTone } from "../../../internal/agent-kit";
 import { useReducedMotion } from "../../../internal/motion";
 import type { MotionPreference } from "../../../lib/motion";
 import { cn } from "../../../lib/utils";
@@ -109,7 +110,8 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                   data-status={task.status}
                   className={cn("flex flex-col rounded-xl transition-colors", expanded && "bg-fg-grey-50")}
                 >
-                  <button type="button" aria-expanded={expanded} onClick={() => setOpen(expanded ? undefined : task.id)} className="flex min-w-0 items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-fg-grey-50">
+                  <Disclosure open={expanded} onOpenChange={next => setOpen(next ? task.id : undefined)} className="contents">
+                  <DisclosureTrigger className="flex min-w-0 items-center gap-3 rounded-xl px-3 py-2.5 text-left hover:bg-fg-grey-50">
                     <StateIcon status={task.status} />
                     <span className="flex min-w-0 flex-1 flex-col">
                       <span className="truncate text-sm font-medium text-fg-black">{task.title}</span>
@@ -120,8 +122,8 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                       <TaskClock task={task} locale={locale} />
                     </span>
                     <AltArrowDownLinear size={12} color="var(--fg-grey-500)" className={cn("shrink-0 transition-transform", expanded && "rotate-180")} />
-                  </button>
-                  <Collapse open={expanded} motion={motion}>
+                  </DisclosureTrigger>
+                  <DisclosurePanel motion={motion}>
                     <div className="flex flex-col gap-3 px-3 pb-3 pl-10">
                       {task.recent && task.recent.length > 0 && (
                         <ol className="flex flex-col gap-1 border-l border-fg-grey-200 pl-3 text-xs text-fg-grey-700">{task.recent.map((line, index) => <li key={index}>{line}</li>)}</ol>
@@ -133,7 +135,8 @@ export function AgentInbox({ tasks, title, onApprove, onReject, onRetry, onOpen,
                         {task.status === "failed" && onRetry && <button type="button" className={accentButton} onClick={() => onRetry(task.id)}>{pick(locale, "重试", "Retry")}</button>}
                       </div>
                     </div>
-                  </Collapse>
+                  </DisclosurePanel>
+                  </Disclosure>
                 </animated.li>
               );
             })}
@@ -157,43 +160,36 @@ export type RunningNowProps = {
 /** Background agent work at a glance for a header: "3 个运行中 · 2 个待你处理", opening to the list. */
 export function RunningNow({ tasks, onOpen, locale = "zh", className }: RunningNowProps) {
   const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
   const running = tasks.filter(task => task.status === "running").length;
   const waiting = tasks.filter(task => task.status === "needs-you").length;
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: PointerEvent) => { if (!root.current?.contains(event.target as Node)) setOpen(false); };
-    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
-    document.addEventListener("pointerdown", close);
-    document.addEventListener("keydown", escape);
-    return () => { document.removeEventListener("pointerdown", close); document.removeEventListener("keydown", escape); };
-  }, [open]);
   if (!running && !waiting) return null;
   const active = [...tasks.filter(task => task.status === "needs-you"), ...tasks.filter(task => task.status === "running")];
 
   return (
-    <div ref={root} className={cn("relative inline-flex tracking-fg", className)}>
-      <button type="button" aria-expanded={open} onClick={() => setOpen(value => !value)} className="inline-flex h-9 items-center gap-2 rounded-full bg-background px-3.5 text-xs font-medium text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-50">
+    <div className={cn("relative inline-flex tracking-fg", className)}>
+      <MenuPrimitive.Root open={open} onOpenChange={setOpen} modal={false}>
+      <MenuPrimitive.Trigger className="inline-flex h-9 items-center gap-2 rounded-full bg-background px-3.5 text-xs font-medium text-fg-black outline outline-1 outline-offset-[-1px] outline-fg-grey-200 transition-colors hover:bg-fg-grey-50">
         {running > 0 && <span className="inline-flex items-center gap-1.5"><Spinner size={12} />{pick(locale, `${running} 个运行中`, `${running} running`)}</span>}
         {running > 0 && waiting > 0 && <span className="h-3 w-px bg-fg-grey-200" />}
         {waiting > 0 && <span className="inline-flex items-center gap-1.5 text-fg-yellow-700"><span className="forge-pulse-dot size-1.5 rounded-full bg-fg-yellow-500" />{pick(locale, `${waiting} 个待你处理`, `${waiting} need you`)}</span>}
-      </button>
-      {open && (
-        <ul role="menu" className="forge-fade-up absolute right-0 top-full z-30 mt-2 flex w-80 max-w-[calc(100vw-2rem)] flex-col rounded-2xl bg-background p-1.5 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
+      </MenuPrimitive.Trigger>
+      <MenuPrimitive.Portal>
+        <MenuPrimitive.Positioner side="bottom" align="end" sideOffset={8} collisionPadding={8} className="z-50">
+        <MenuPrimitive.Popup data-motion="auto" className="forge-popup flex max-h-(--available-height) overflow-y-auto w-80 max-w-[calc(100vw-2rem)] flex-col rounded-2xl bg-background p-1.5 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.20)] outline outline-1 outline-offset-[-1px] outline-fg-grey-200">
           {active.map(task => (
-            <li key={task.id} role="none">
-              <button type="button" role="menuitem" onClick={() => { onOpen?.(task.id); setOpen(false); }} className="flex w-full min-w-0 items-center gap-3 rounded-xl px-3 py-2 text-left hover:bg-fg-grey-100">
+              <MenuPrimitive.Item key={task.id} onClick={() => onOpen?.(task.id)} className="flex w-full min-w-0 cursor-pointer items-center gap-3 rounded-xl px-3 py-2 text-left outline-none data-highlighted:bg-fg-grey-100">
                 <StateIcon status={task.status} />
                 <span className="flex min-w-0 flex-1 flex-col">
                   <span className="truncate text-sm font-medium text-fg-black">{task.title}</span>
                   {task.summary && <span className="truncate text-xs text-fg-grey-500">{task.summary}</span>}
                 </span>
                 <TaskClock task={task} locale={locale} />
-              </button>
-            </li>
+              </MenuPrimitive.Item>
           ))}
-        </ul>
-      )}
+        </MenuPrimitive.Popup>
+        </MenuPrimitive.Positioner>
+      </MenuPrimitive.Portal>
+      </MenuPrimitive.Root>
     </div>
   );
 }

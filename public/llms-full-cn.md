@@ -1,8 +1,8 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.10.1
+Package: @forge-ui-official/core@0.11.1
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: b92ff3048ae76708088f0ca0a292c10c4cb36e93f75c38049470e3ecc202f925
+Source fingerprint: e1b06ec8cb306e2f955b46704273e40b268e76139bcec2f059026d642e7869ae
 
 中文入口：采用正文与英文入口完全同源，保留 API 原名。
 
@@ -290,7 +290,7 @@ export function ModuleOverview() {
 ## 规范依据
 
 [对应规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/admin-module-playbook.md) · [统一审计清单](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/audit-checklist.md)
-## Public exports (622, values and types distinguished)
+## Public exports (746, values and types distinguished)
 
 - AccentColor [type] — core/src/components/ui/accent-utils.ts
 - accentColors [value] — core/src/components/ui/accent-utils.ts
@@ -350,6 +350,9 @@ export function ModuleOverview() {
 - AgentTreeProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - AgentWelcome [value] — core/src/components/ui/agent/agent-welcome.tsx
 - AgentWelcomeProps [type] — core/src/components/ui/agent/agent-welcome.tsx
+- Alert [value] — core/src/components/ui/feedback.tsx
+- AlertProps [type] — core/src/components/ui/feedback.tsx
+- AlertTone [type] — core/src/components/ui/feedback.tsx
 - ALL_CARD_THEMES [value] — core/src/components/ui/card-utils.tsx
 - AppLayout [value] — core/src/components/layouts/app-layout.tsx
 - AppLayoutAccentColor [type] — core/src/components/layouts/app-layout.tsx
@@ -391,6 +394,12 @@ export function ModuleOverview() {
 - AttachmentKind [type] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentList [value] — core/src/components/ui/agent/composer-parts.tsx
 - AttachmentListProps [type] — core/src/components/ui/agent/composer-parts.tsx
+- Autocomplete [value] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteColor [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteOption [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteProps [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteShape [type] — core/src/components/ui/forms/autocomplete.tsx
+- AutocompleteState [type] — core/src/components/ui/forms/autocomplete.tsx
 - AutonomyAction [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomyLevel [type] — core/src/components/ui/agent/agent-governance.tsx
 - AutonomySelector [value] — core/src/components/ui/agent/agent-governance.tsx
@@ -442,6 +451,9 @@ export function ModuleOverview() {
 - cardThemes [value] — core/src/components/ui/card-utils.tsx
 - CardTrend [value] — core/src/components/ui/card-utils.tsx
 - CardWidth [type] — core/src/components/ui/card-utils.tsx
+- Cascader [value] — core/src/components/ui/forms/cascader.tsx
+- CascaderOption [type] — core/src/components/ui/forms/cascader.tsx
+- CascaderProps [type] — core/src/components/ui/forms/cascader.tsx
 - CellActionKey [type] — core/src/components/ui/data-table.tsx
 - CellActions [value] — core/src/components/ui/data-table.tsx
 - CellCode [value] — core/src/components/ui/data-table.tsx
@@ -483,6 +495,8 @@ export function ModuleOverview() {
 - Checkbox [value] — core/src/components/ui/checkbox.tsx
 - CheckboxColor [type] — core/src/components/ui/checkbox.tsx
 - CheckboxControl [value] — core/src/components/ui/checkbox.tsx
+- CheckboxGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- CheckboxGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - CheckboxWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - CheckIcon [value] — core/src/components/ui/plain-icons.tsx
 - Checklist [value] — core/src/components/ui/checklist.tsx
@@ -494,6 +508,9 @@ export function ModuleOverview() {
 - ChoiceAnswer [type] — core/src/components/ui/agent/question.tsx
 - ChoiceCard [value] — core/src/components/ui/agent/question.tsx
 - ChoiceCardProps [type] — core/src/components/ui/agent/question.tsx
+- ChoiceGroupColor [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ChoiceGroupOrientation [type] — core/src/components/ui/forms/choice-groups.tsx
 - ChoiceOption [type] — core/src/components/ui/agent/question.tsx
 - CircleIcon [value] — core/src/components/ui/badge.tsx
 - CircleIconColor [type] — core/src/components/ui/badge.tsx
@@ -506,12 +523,20 @@ export function ModuleOverview() {
 - CitedAnswerProps [type] — core/src/components/ui/agent/cited-answer.tsx
 - CloseIcon [value] — core/src/components/ui/plain-icons.tsx
 - cn [value] — core/src/lib/utils.ts
+- Collapsible [value] — core/src/components/ui/collapsible.tsx
+- CollapsibleProps [type] — core/src/components/ui/collapsible.tsx
 - ColorPicker [value] — core/src/components/ui/forms/icon-selector.tsx
 - ColorScaleStop [type] — core/src/components/ui/style-guide.tsx
 - ColorSection [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatch [value] — core/src/components/ui/style-guide.tsx
 - ColorSwatchSize [type] — core/src/components/ui/style-guide.tsx
-- ColumnDef [type] — core/src/components/ui/data-table.tsx
+- ColumnDef [type] — core/src/internal/table-columns.tsx
+- Combobox [value] — core/src/components/ui/forms/combobox.tsx
+- ComboboxColor [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxOption [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxProps [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxShape [type] — core/src/components/ui/forms/combobox.tsx
+- ComboboxState [type] — core/src/components/ui/forms/combobox.tsx
 - CommandSearch [value] — core/src/components/ui/agent/command-search.tsx
 - CommandSearchItem [type] — core/src/components/ui/agent/command-search.tsx
 - CommentData [type] — core/src/components/ui/comment-item.tsx
@@ -543,6 +568,9 @@ export function ModuleOverview() {
 - ContactItem [value] — core/src/components/ui/contact-item.tsx
 - ContextCards [value] — core/src/components/ui/agent/context-cards.tsx
 - ContextChunk [type] — core/src/components/ui/agent/context-cards.tsx
+- ContextMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- ContextMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
 - ContextSegment [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextSegmentKind [type] — core/src/components/ui/agent/agent-observe.tsx
 - ContextUsage [value] — core/src/components/ui/agent/agent-observe.tsx
@@ -553,6 +581,8 @@ export function ModuleOverview() {
 - ConversationList [value] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationListProps [type] — core/src/components/ui/agent/conversation-list.tsx
 - ConversationProps [type] — core/src/components/ui/agent/agent-conversation.tsx
+- CopyButton [value] — core/src/components/ui/data-display.tsx
+- CopyButtonProps [type] — core/src/components/ui/data-display.tsx
 - CreditCard [value] — core/src/components/ui/credit-card.tsx
 - CurrencyConverter [value] — core/src/components/ui/currency-converter.tsx
 - CurrencyConverterColor [type] — core/src/components/ui/currency-converter.tsx
@@ -566,22 +596,42 @@ export function ModuleOverview() {
 - DatepickerMode [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerShape [type] — core/src/components/ui/forms/datepicker.tsx
 - DatepickerState [type] — core/src/components/ui/forms/datepicker.tsx
+- DateTimePicker [value] — core/src/components/ui/forms/date-time-picker.tsx
+- DateTimePickerProps [type] — core/src/components/ui/forms/date-time-picker.tsx
 - DebitCard [value] — core/src/components/ui/debit-card.tsx
 - DescriptionItem [value] — core/src/components/ui/list-item.tsx
 - DescriptionItemLead [type] — core/src/components/ui/list-item.tsx
+- Descriptions [value] — core/src/components/ui/data-display.tsx
+- DescriptionsItem [type] — core/src/components/ui/data-display.tsx
+- DescriptionsProps [type] — core/src/components/ui/data-display.tsx
 - DivergingBarChart [value] — core/src/components/ui/charts/dashboard-charts.tsx
 - DivergingBarChartProps [type] — core/src/components/ui/charts/dashboard-charts.tsx
 - DonutChart [value] — core/src/components/ui/charts/donut-chart.tsx
 - Drawer [value] — core/src/components/ui/drawer.tsx
 - DrawerProps [type] — core/src/components/ui/drawer.tsx
 - DropdownDivider [value] — core/src/components/ui/dropdown-panel.tsx
+- DropdownMenu [value] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAccent [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuActionEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuAlign [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuCheckboxEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuDividerEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuGroupEntry [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuProps [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSide [type] — core/src/components/ui/dropdown-menu.tsx
+- DropdownMenuSubmenuEntry [type] — core/src/components/ui/dropdown-menu.tsx
 - DropdownPanel [value] — core/src/components/ui/dropdown-panel.tsx
+- EmptyState [value] — core/src/components/ui/feedback.tsx
+- EmptyStateProps [type] — core/src/components/ui/feedback.tsx
 - EventCard [value] — core/src/components/ui/event-card.tsx
 - EventCardColor [type] — core/src/components/ui/event-card.tsx
 - EventTag [value] — core/src/components/ui/event-tag.tsx
 - EventTagColor [type] — core/src/components/ui/event-tag.tsx
 - EventTagSize [type] — core/src/components/ui/event-tag.tsx
 - EventTagVariant [type] — core/src/components/ui/event-tag.tsx
+- Fieldset [value] — core/src/components/ui/forms/form.tsx
+- FieldsetProps [type] — core/src/components/ui/forms/form.tsx
 - FileCard [value] — core/src/components/ui/forms/file-upload.tsx
 - FileInput [value] — core/src/components/ui/forms/file-input.tsx
 - FileInputProps [type] — core/src/components/ui/forms/file-input.tsx
@@ -607,6 +657,12 @@ export function ModuleOverview() {
 - FolderFloatProps [type] — core/src/components/ui/folder-float.tsx
 - FolderItem [type] — core/src/components/ui/folder.tsx
 - FolderProps [type] — core/src/components/ui/folder.tsx
+- Form [value] — core/src/components/ui/forms/form.tsx
+- FormField [value] — core/src/components/ui/forms/form.tsx
+- FormFieldProps [type] — core/src/components/ui/forms/form.tsx
+- FormProps [type] — core/src/components/ui/forms/form.tsx
+- FormValidationMode [type] — core/src/components/ui/forms/form.tsx
+- FormValues [type] — core/src/components/ui/forms/form.tsx
 - FullCalendar [value] — core/src/components/ui/full-calendar.tsx
 - FullWidthTable [value] — core/src/components/ui/data-table.tsx
 - FullWidthTableProps [type] — core/src/components/ui/data-table.tsx
@@ -661,6 +717,7 @@ export function ModuleOverview() {
 - InsightChart [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightSeries [type] — core/src/components/ui/agent/insight-cards.tsx
 - InsightTone [type] — core/src/components/ui/agent/insight-cards.tsx
+- Kbd [value] — core/src/components/ui/data-display.tsx
 - KebabMenu [value] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuAccent [type] — core/src/components/ui/kebab-menu.tsx
 - KebabMenuItem [type] — core/src/components/ui/kebab-menu.tsx
@@ -688,6 +745,7 @@ export function ModuleOverview() {
 - ListItemIconLead [type] — core/src/components/ui/list-item.tsx
 - ListItemImageLead [type] — core/src/components/ui/list-item.tsx
 - ListItemLead [type] — core/src/components/ui/list-item.tsx
+- LoadingOverlay [value] — core/src/components/ui/feedback.tsx
 - MapCard [value] — core/src/components/ui/map-card.tsx
 - MapContinent [type] — core/src/components/ui/map-card.tsx
 - MapRegion [type] — core/src/components/ui/map-card.tsx
@@ -696,6 +754,9 @@ export function ModuleOverview() {
 - MediaItem [type] — core/src/components/ui/forms/media-upload.tsx
 - MediaUpload [value] — core/src/components/ui/forms/media-upload.tsx
 - MediaUploadColor [type] — core/src/components/ui/forms/media-upload.tsx
+- Menubar [value] — core/src/components/ui/menubar.tsx
+- MenubarMenu [type] — core/src/components/ui/menubar.tsx
+- MenubarProps [type] — core/src/components/ui/menubar.tsx
 - MenuItem [value] — core/src/components/ui/menu-item.tsx
 - MenuItemAccent [type] — core/src/components/ui/menu-item.tsx
 - MenuItemIntent [type] — core/src/components/ui/menu-item.tsx
@@ -711,10 +772,19 @@ export function ModuleOverview() {
 - ModalProps [type] — core/src/components/ui/modal.tsx
 - MotionPreference [type] — core/src/lib/motion.ts
 - MultilayerDonutChart [value] — core/src/components/ui/charts/multilayer-donut-chart.tsx
+- NavigationMenu [value] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuItem [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuLink [type] — core/src/components/ui/navigation-menu.tsx
+- NavigationMenuProps [type] — core/src/components/ui/navigation-menu.tsx
 - NotificationBadge [value] — core/src/components/ui/badge.tsx
 - NotificationBadgeColor [type] — core/src/components/ui/badge.tsx
 - NotificationItem [value] — core/src/components/ui/notification-item.tsx
 - NotificationItemColor [type] — core/src/components/ui/notification-item.tsx
+- NumberField [value] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldColor [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldProps [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldShape [type] — core/src/components/ui/forms/number-field.tsx
+- NumberFieldState [type] — core/src/components/ui/forms/number-field.tsx
 - OtpInput [value] — core/src/components/ui/otp-input.tsx
 - OtpInputProps [type] — core/src/components/ui/otp-input.tsx
 - PageDot [value] — core/src/components/ui/page-dot.tsx
@@ -736,9 +806,22 @@ export function ModuleOverview() {
 - PaginationColor [type] — core/src/components/ui/pagination.tsx
 - Panel [value] — core/src/components/ui/panel.tsx
 - PanelProps [type] — core/src/components/ui/panel.tsx
+- PeriodGranularity [type] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPicker [value] — core/src/components/ui/forms/period-picker.tsx
+- PeriodPickerProps [type] — core/src/components/ui/forms/period-picker.tsx
 - PieChart [value] — core/src/components/ui/charts/pie-chart.tsx
 - PlanStep [type] — core/src/components/ui/agent/agent-run.tsx
 - PlusIcon [value] — core/src/components/ui/plain-icons.tsx
+- Popconfirm [value] — core/src/components/ui/popconfirm.tsx
+- PopconfirmProps [type] — core/src/components/ui/popconfirm.tsx
+- Popover [value] — core/src/components/ui/popover.tsx
+- PopoverAlign [type] — core/src/components/ui/popover.tsx
+- PopoverProps [type] — core/src/components/ui/popover.tsx
+- PopoverSide [type] — core/src/components/ui/popover.tsx
+- PreviewCard [value] — core/src/components/ui/preview-card.tsx
+- PreviewCardAlign [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardProps [type] — core/src/components/ui/preview-card.tsx
+- PreviewCardSide [type] — core/src/components/ui/preview-card.tsx
 - ProductRow [value] — core/src/components/ui/product-row.tsx
 - ProfileCard [value] — core/src/components/ui/profile-card.tsx
 - ProfileCardState [type] — core/src/components/ui/profile-card.tsx
@@ -770,6 +853,8 @@ export function ModuleOverview() {
 - QuestionProps [type] — core/src/components/ui/agent/question.tsx
 - QueuedPrompt [type] — core/src/components/ui/agent/composer-parts.tsx
 - RadioButton [value] — core/src/components/ui/forms/selection-control.tsx
+- RadioGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- RadioGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - RadioWithLabel [value] — core/src/components/ui/forms/selection-control.tsx
 - RatingStars [value] — core/src/components/ui/rating-stars.tsx
 - RatingStarsSize [type] — core/src/components/ui/rating-stars.tsx
@@ -783,7 +868,10 @@ export function ModuleOverview() {
 - RecommendationOption [type] — core/src/components/ui/agent/recommendation-card.tsx
 - resolveCardTheme [value] — core/src/components/ui/card-utils.tsx
 - resolveInlineDiff [value] — core/src/components/ui/agent/inline-diff.tsx
-- resolveTableColumnAlign [value] — core/src/components/ui/data-table.tsx
+- resolveTableColumnAlign [value] — core/src/internal/table-columns.tsx
+- Result [value] — core/src/components/ui/feedback.tsx
+- ResultProps [type] — core/src/components/ui/feedback.tsx
+- ResultStatus [type] — core/src/components/ui/feedback.tsx
 - ReviewItem [value] — core/src/components/ui/review-item.tsx
 - RunControls [value] — core/src/components/ui/agent/composer-parts.tsx
 - RunControlsProps [type] — core/src/components/ui/agent/composer-parts.tsx
@@ -791,6 +879,9 @@ export function ModuleOverview() {
 - RunningNowProps [type] — core/src/components/ui/agent/agent-ops.tsx
 - RunProgress [value] — core/src/components/ui/agent/agent-run.tsx
 - RunStatus [type] — core/src/components/ui/agent/composer-parts.tsx
+- ScrollArea [value] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaOrientation [type] — core/src/components/ui/scroll-area.tsx
+- ScrollAreaProps [type] — core/src/components/ui/scroll-area.tsx
 - SelectOption [value] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionBgVariant [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionColor [type] — core/src/components/ui/forms/select-option.tsx
@@ -799,15 +890,26 @@ export function ModuleOverview() {
 - SelectOptionShape [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionState [type] — core/src/components/ui/forms/select-option.tsx
 - SelectOptionType [type] — core/src/components/ui/forms/select-option.tsx
+- Separator [value] — core/src/components/ui/data-display.tsx
 - SidebarMenu [value] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuAccent [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuBgMode [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuItem [type] — core/src/components/ui/sidebar-menu.tsx
 - SidebarMenuMode [type] — core/src/components/ui/sidebar-menu.tsx
+- Skeleton [value] — core/src/components/ui/feedback.tsx
+- SkeletonProps [type] — core/src/components/ui/feedback.tsx
+- Slider [value] — core/src/components/ui/forms/slider.tsx
+- SliderColor [type] — core/src/components/ui/forms/slider.tsx
+- SliderProps [type] — core/src/components/ui/forms/slider.tsx
+- SliderValue [type] — core/src/components/ui/forms/slider.tsx
 - SmallCalendar [value] — core/src/components/ui/small-calendar.tsx
 - SmallCalendarEvent [type] — core/src/components/ui/small-calendar.tsx
 - SmallDailyCalendar [value] — core/src/components/ui/small-daily-calendar.tsx
 - SmoothLineChart [value] — core/src/components/ui/charts/smooth-line-chart.tsx
+- Spinner [value] — core/src/components/ui/feedback.tsx
+- SpinnerSize [type] — core/src/components/ui/feedback.tsx
+- Splitter [value] — core/src/components/ui/splitter.tsx
+- SplitterProps [type] — core/src/components/ui/splitter.tsx
 - StatCard [value] — core/src/components/ui/stat-card.tsx
 - StatCardProps [type] — core/src/components/ui/stat-card.tsx
 - StatCardShell [value] — core/src/components/ui/card-utils.tsx
@@ -832,12 +934,18 @@ export function ModuleOverview() {
 - TabBarSurface [type] — core/src/components/ui/tab-bar.tsx
 - TabItem [type] — core/src/components/ui/tab-bar.tsx
 - TableCell [value] — core/src/components/ui/data-table.tsx
+- TableCellEdit [type] — core/src/internal/table-columns.tsx
 - TableCellProps [type] — core/src/components/ui/data-table.tsx
 - TableCellVariant [type] — core/src/components/ui/data-table.tsx
-- TableColumnAlign [type] — core/src/components/ui/data-table.tsx
-- TableValueKind [type] — core/src/components/ui/data-table.tsx
+- TableColumnAlign [type] — core/src/internal/table-columns.tsx
+- TableValueKind [type] — core/src/internal/table-columns.tsx
 - TabsContent [value] — core/src/components/ui/tabs-content.tsx
 - TabsContentProps [type] — core/src/components/ui/tabs-content.tsx
+- Tag [value] — core/src/components/ui/data-display.tsx
+- TagColor [type] — core/src/components/ui/data-display.tsx
+- TagInput [value] — core/src/components/ui/forms/tag-input.tsx
+- TagInputProps [type] — core/src/components/ui/forms/tag-input.tsx
+- TagProps [type] — core/src/components/ui/data-display.tsx
 - TaskCard [value] — core/src/components/ui/task-card.tsx
 - TaskCardColor [type] — core/src/components/ui/task-card.tsx
 - Team [type] — core/src/components/layouts/sidebar-popovers.tsx
@@ -858,10 +966,18 @@ export function ModuleOverview() {
 - ThinkingRow [type] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingTrace [value] — core/src/components/ui/agent/thinking-trace.tsx
 - ThinkingVariant [type] — core/src/components/ui/agent/thinking-trace.tsx
+- Timeline [value] — core/src/components/ui/data-display.tsx
+- TimelineItem [type] — core/src/components/ui/data-display.tsx
+- TimelineTone [type] — core/src/components/ui/data-display.tsx
+- TimePicker [value] — core/src/components/ui/forms/time-picker.tsx
+- TimePickerProps [type] — core/src/components/ui/forms/time-picker.tsx
 - ToastApi [type] — core/src/components/ui/toast.tsx
 - ToastOptions [type] — core/src/components/ui/toast.tsx
 - ToastProvider [value] — core/src/components/ui/toast.tsx
 - Toggle [value] — core/src/components/ui/forms/selection-control.tsx
+- ToggleGroup [value] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupOption [type] — core/src/components/ui/forms/choice-groups.tsx
+- ToggleGroupProps [type] — core/src/components/ui/forms/choice-groups.tsx
 - ToggleProps [type] — core/src/components/ui/forms/selection-control.tsx
 - Toolbar [value] — core/src/components/ui/toolbar.tsx
 - ToolbarActions [value] — core/src/components/ui/toolbar.tsx
@@ -901,8 +1017,16 @@ export function ModuleOverview() {
 - TraceWaterfallProps [type] — core/src/components/ui/agent/agent-observe.tsx
 - TrailStep [type] — core/src/components/ui/agent/agent-run.tsx
 - TrailSubstep [type] — core/src/components/ui/agent/agent-run.tsx
+- Transfer [value] — core/src/components/ui/forms/transfer.tsx
+- TransferItem [type] — core/src/components/ui/forms/transfer.tsx
+- TransferProps [type] — core/src/components/ui/forms/transfer.tsx
+- Tree [value] — core/src/components/ui/tree.tsx
 - TreeAgent [type] — core/src/components/ui/agent/agent-observe.tsx
 - TreeAgentStatus [type] — core/src/components/ui/agent/agent-observe.tsx
+- TreeNode [type] — core/src/components/ui/tree.tsx
+- TreeProps [type] — core/src/components/ui/tree.tsx
+- TreeSelect [value] — core/src/components/ui/forms/tree-select.tsx
+- TreeSelectProps [type] — core/src/components/ui/forms/tree-select.tsx
 - TrendDirection [type] — core/src/components/ui/card-utils.tsx
 - TypefaceBlock [value] — core/src/components/ui/style-guide.tsx
 - TypographySizeRow [value] — core/src/components/ui/style-guide.tsx
@@ -2568,7 +2692,7 @@ Source: skills/forge-skill/references/blocks/agent-catalog.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -2599,7 +2723,7 @@ Source: skills/forge-skill/references/blocks/agent-orchestration.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Panel、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、Panel、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2628,7 +2752,7 @@ Source: skills/forge-skill/references/blocks/agent-run.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -2657,7 +2781,7 @@ Source: skills/forge-skill/references/blocks/agent-usage.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
+依赖：core ^0.11.1；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2686,7 +2810,7 @@ Source: skills/forge-skill/references/blocks/ai-assistant-home.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
+依赖：core ^0.11.1；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
 
 ## 最小可用示例
 
@@ -2716,7 +2840,7 @@ Source: skills/forge-skill/references/blocks/ai-workspace-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
 
 ## 最小可用示例
 
@@ -2749,7 +2873,7 @@ Source: skills/forge-skill/references/blocks/autonomous-agents.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -2780,7 +2904,7 @@ Source: skills/forge-skill/references/blocks/calendar-month.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
+依赖：core ^0.11.1；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
 
 ## 最小可用示例
 
@@ -2813,7 +2937,7 @@ Source: skills/forge-skill/references/blocks/card-carousel.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：CreditCard、PageDot。
+依赖：core ^0.11.1；组件：CreditCard、PageDot。
 
 ## 最小可用示例
 
@@ -2846,7 +2970,7 @@ Source: skills/forge-skill/references/blocks/cards-management.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2877,7 +3001,7 @@ Source: skills/forge-skill/references/blocks/categories-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
+依赖：core ^0.11.1；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -2908,7 +3032,7 @@ Source: skills/forge-skill/references/blocks/client-directory.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -2939,7 +3063,7 @@ Source: skills/forge-skill/references/blocks/composition-card.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：DonutChart、Panel。
+依赖：core ^0.11.1；组件：DonutChart、Panel。
 
 ## 最小可用示例
 
@@ -3252,7 +3376,7 @@ Source: skills/forge-skill/references/blocks/crm-summary.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Panel、DescriptionItem、LineChartStatCard、SurfaceCard。
+依赖：core ^0.11.1；组件：Panel、DescriptionItem、LineChartStatCard、SurfaceCard。
 
 ## 最小可用示例
 
@@ -3314,7 +3438,7 @@ Source: skills/forge-skill/references/blocks/customer-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
+依赖：core ^0.11.1；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -3345,7 +3469,7 @@ Source: skills/forge-skill/references/blocks/customers-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3378,7 +3502,7 @@ Source: skills/forge-skill/references/blocks/deals-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3411,7 +3535,7 @@ Source: skills/forge-skill/references/blocks/dialog-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
 
 ## 最小可用示例
 
@@ -3440,7 +3564,7 @@ Source: skills/forge-skill/references/blocks/file-manager.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3472,7 +3596,7 @@ Source: skills/forge-skill/references/blocks/finance-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
+依赖：core ^0.11.1；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
 
 ## 最小可用示例
 
@@ -3506,7 +3630,7 @@ Source: skills/forge-skill/references/blocks/finance-workspace.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Panel、DescriptionItem、SurfaceCard、ToolbarKebabButton。
+依赖：core ^0.11.1；组件：Panel、DescriptionItem、SurfaceCard、ToolbarKebabButton。
 
 ## 最小可用示例
 
@@ -3599,7 +3723,7 @@ Source: skills/forge-skill/references/blocks/goal-progress-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
+依赖：core ^0.11.1；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
 
 ## 最小可用示例
 
@@ -3926,7 +4050,7 @@ Source: skills/forge-skill/references/blocks/integrations-directory.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3956,7 +4080,7 @@ Source: skills/forge-skill/references/blocks/invoice-document.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -3988,7 +4112,7 @@ Source: skills/forge-skill/references/blocks/invoice-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4020,7 +4144,7 @@ Source: skills/forge-skill/references/blocks/invoices-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4052,7 +4176,7 @@ Source: skills/forge-skill/references/blocks/kanban-board.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
+依赖：core ^0.11.1；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
 
 ## 最小可用示例
 
@@ -4083,7 +4207,7 @@ Source: skills/forge-skill/references/blocks/kpi-metrics.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
+依赖：core ^0.11.1；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
 
 ## 最小可用示例
 
@@ -4124,7 +4248,7 @@ Source: skills/forge-skill/references/blocks/layout-icon-rail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+依赖：core ^0.11.1；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4153,7 +4277,7 @@ Source: skills/forge-skill/references/blocks/layout-immersive.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：AppLayout、ChatBubble、ChatInputBar。
+依赖：core ^0.11.1；组件：AppLayout、ChatBubble、ChatInputBar。
 
 ## 最小可用示例
 
@@ -4182,7 +4306,7 @@ Source: skills/forge-skill/references/blocks/layout-settings.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
+依赖：core ^0.11.1；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
 
 ## 最小可用示例
 
@@ -4211,7 +4335,7 @@ Source: skills/forge-skill/references/blocks/layout-sidebar-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
+依赖：core ^0.11.1；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
 
 ## 最小可用示例
 
@@ -4240,7 +4364,7 @@ Source: skills/forge-skill/references/blocks/layout-topbar-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
+依赖：core ^0.11.1；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
 
 ## 最小可用示例
 
@@ -4269,7 +4393,7 @@ Source: skills/forge-skill/references/blocks/lead-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
+依赖：core ^0.11.1；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
 
 ## 最小可用示例
 
@@ -4299,7 +4423,7 @@ Source: skills/forge-skill/references/blocks/leads-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4332,7 +4456,7 @@ Source: skills/forge-skill/references/blocks/login-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
 
 ## 最小可用示例
 
@@ -4366,7 +4490,7 @@ Source: skills/forge-skill/references/blocks/member-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
+依赖：core ^0.11.1；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -4395,7 +4519,7 @@ Source: skills/forge-skill/references/blocks/message-channels.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4426,7 +4550,7 @@ Source: skills/forge-skill/references/blocks/onboarding-flow.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
+依赖：core ^0.11.1；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -4456,7 +4580,7 @@ Source: skills/forge-skill/references/blocks/order-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4487,7 +4611,7 @@ Source: skills/forge-skill/references/blocks/order-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4517,7 +4641,7 @@ Source: skills/forge-skill/references/blocks/orders-table-section.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
+依赖：core ^0.11.1；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
 
 ## 最小可用示例
 
@@ -4551,7 +4675,7 @@ Source: skills/forge-skill/references/blocks/overview-dashboard.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
+依赖：core ^0.11.1；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
 
 ## 最小可用示例
 
@@ -4586,7 +4710,7 @@ Source: skills/forge-skill/references/blocks/password-recovery.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、OtpInput、TextField、cn。
+依赖：core ^0.11.1；组件：Button、OtpInput、TextField、cn。
 
 ## 最小可用示例
 
@@ -4619,7 +4743,7 @@ Source: skills/forge-skill/references/blocks/product-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Panel、StatusBadge、TabBar、cn。
+依赖：core ^0.11.1；组件：Button、Panel、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -4649,7 +4773,7 @@ Source: skills/forge-skill/references/blocks/product-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4679,7 +4803,7 @@ Source: skills/forge-skill/references/blocks/products-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4713,7 +4837,7 @@ Source: skills/forge-skill/references/blocks/project-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4749,7 +4873,7 @@ Source: skills/forge-skill/references/blocks/project-portfolio.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
+依赖：core ^0.11.1；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
 
 ## 最小可用示例
 
@@ -4779,7 +4903,7 @@ Source: skills/forge-skill/references/blocks/prompt-evals.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4809,7 +4933,7 @@ Source: skills/forge-skill/references/blocks/provider-settings-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
 
 ## 最小可用示例
 
@@ -4838,7 +4962,7 @@ Source: skills/forge-skill/references/blocks/ranking-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：ChartListItem、ListGroup、cn。
+依赖：core ^0.11.1；组件：ChartListItem、ListGroup、cn。
 
 ## 最小可用示例
 
@@ -4880,7 +5004,7 @@ Source: skills/forge-skill/references/blocks/recent-records.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：DataTable、Panel。
+依赖：core ^0.11.1；组件：DataTable、Panel。
 
 ## 最小可用示例
 
@@ -5195,7 +5319,7 @@ Source: skills/forge-skill/references/blocks/region-distribution.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：MapCard。
+依赖：core ^0.11.1；组件：MapCard。
 
 ## 最小可用示例
 
@@ -5231,7 +5355,7 @@ Source: skills/forge-skill/references/blocks/register-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Checkbox、TextField、cn。
+依赖：core ^0.11.1；组件：Button、Checkbox、TextField、cn。
 
 ## 最小可用示例
 
@@ -5265,7 +5389,7 @@ Source: skills/forge-skill/references/blocks/runtime-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -5295,7 +5419,7 @@ Source: skills/forge-skill/references/blocks/savings-goals-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
+依赖：core ^0.11.1；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
 
 ## 最小可用示例
 
@@ -5325,7 +5449,7 @@ Source: skills/forge-skill/references/blocks/sellers-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5358,7 +5482,7 @@ Source: skills/forge-skill/references/blocks/settings-billing.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -5390,7 +5514,7 @@ Source: skills/forge-skill/references/blocks/settings-members.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5421,7 +5545,7 @@ Source: skills/forge-skill/references/blocks/settings-notifications.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、SelectOption、Toggle、cn。
+依赖：core ^0.11.1；组件：Button、SelectOption、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5451,7 +5575,7 @@ Source: skills/forge-skill/references/blocks/settings-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、SelectOption、TextArea、TextField、cn。
+依赖：core ^0.11.1；组件：Button、SelectOption、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -5482,7 +5606,7 @@ Source: skills/forge-skill/references/blocks/settings-roles.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
+依赖：core ^0.11.1；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -5513,7 +5637,7 @@ Source: skills/forge-skill/references/blocks/settings-security.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
+依赖：core ^0.11.1；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5543,7 +5667,7 @@ Source: skills/forge-skill/references/blocks/task-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
+依赖：core ^0.11.1；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
 
 ## 最小可用示例
 
@@ -5573,7 +5697,7 @@ Source: skills/forge-skill/references/blocks/task-run-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -5602,7 +5726,7 @@ Source: skills/forge-skill/references/blocks/transactions-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.11.1；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5633,7 +5757,7 @@ Source: skills/forge-skill/references/blocks/trend-chart.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
+依赖：core ^0.11.1；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
 
 ## 最小可用示例
 
@@ -5950,7 +6074,7 @@ Source: skills/forge-skill/references/blocks/wealth-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
+依赖：core ^0.11.1；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
 
 ## 最小可用示例
 
@@ -5982,7 +6106,7 @@ Source: skills/forge-skill/references/blocks/workflow-builder.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.10.1；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
+依赖：core ^0.11.1；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
 
 ## 最小可用示例
 
@@ -7468,7 +7592,7 @@ Source: skills/forge-skill/references/overlay-focus.md
 
 提炼自已采纳 batch1-rules-addendum 与 tooltip-group-timing-contract；适用性仍需核对安装版本与宿主组合。
 
-- 原生 dialog 内的 KebabMenu portal 留在所属 dialog；普通页面挂普通宿主，不能靠更高 z-index 修原生 top-layer。
+- Modal、Drawer、ConfirmationDialog 和所有菜单、浮层都基于 Base UI，弹层挂到 body 并按打开顺序叠放；弹窗里的菜单不用特殊处理。不要把 Forge 弹层放进宿主自己的原生 `<dialog>.showModal()` 里，原生模态会让外面的弹层不可操作。
 - Escape 先关闭最上层活动子层，再由宿主处理父层；不能靠 stopPropagation 掩盖多层关闭。
 - 选择或 Escape 后返回仍存在的 trigger；外点尊重新焦点。选择后开启子 Modal/导航则由新目标接管，不强抢旧 trigger。受控 open 由宿主确认回写，拒绝关闭后仍可再次操作。
 - 标题可换行，关闭控件不收缩；正常 body 单滚，头尾超预算时整层单滚；宽代码和表格只在所属区域横滚，不藏关闭按钮。菜单外边预算8px、通知/个人/团队/应用面板16px是采用契约，需按当前实现核对。

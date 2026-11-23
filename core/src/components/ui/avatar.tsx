@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { type ReactNode } from "react";
+"use client";
+
+import { useState, type ReactNode } from "react";
 
 // ============================================================
 // Avatar - 头像
@@ -53,25 +55,22 @@ export function Avatar({
   alt?: string;
   online?: boolean;
 }) {
-  const avatarInner = src ? (
+  const { bg, text } = avatarInitialColors[color];
+  const fallbackText = initials ?? alt.trim().slice(0, 1);
+  // The <img> renders on the server; if it fails to load, the initials take its place.
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const showImage = Boolean(src) && failedSrc !== src;
+  const avatarInner = showImage ? (
     <img
       src={src}
       alt={alt}
+      onError={() => setFailedSrc(src ?? null)}
       className={`${avatarSizes[size]} rounded-full object-cover`}
     />
   ) : (
-    (() => {
-      const { bg, text } = avatarInitialColors[color];
-      return (
-        <div
-          className={`${avatarSizes[size]} ${bg} rounded-full inline-flex justify-center items-center overflow-hidden`}
-        >
-          <span className={`${text} font-semibold leading-8 tracking-fg`}>
-            {initials}
-          </span>
-        </div>
-      );
-    })()
+    <div className={`${avatarSizes[size]} ${bg} rounded-full inline-flex justify-center items-center overflow-hidden`} role={alt ? "img" : undefined} aria-label={alt || undefined}>
+      <span className={`${text} font-semibold leading-8 tracking-fg`} aria-hidden={alt ? true : undefined}>{fallbackText}</span>
+    </div>
   );
 
   if (!online) return avatarInner;

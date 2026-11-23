@@ -299,7 +299,7 @@
   },
   "/docs/changelog": {
     "title": "更新日志",
-    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.10.1。"
+    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.11.1。"
   },
   "/docs/check": {
     "title": "页面检查",
