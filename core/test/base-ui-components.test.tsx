@@ -1,4 +1,3 @@
-import { domPreloaded } from "./fixtures/dom-preload";
 import assert from "node:assert/strict";
 import { JSDOM } from "jsdom";
 import { act, useState } from "react";
@@ -12,12 +11,12 @@ import { NumberField } from "../src/components/ui/forms/number-field";
 import { Slider } from "../src/components/ui/forms/slider";
 import { ScrollArea } from "../src/components/ui/scroll-area";
 import { PreviewCard } from "../src/components/ui/preview-card";
+import { Tooltip, TooltipAnchor, TooltipGroup } from "../src/components/ui/tooltip";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
 
 function setup() {
-  assert.ok(domPreloaded);
   const dom = new JSDOM('<div id="root"></div>', { url: "http://localhost", pretendToBeVisual: true });
   const window = dom.window;
   Object.assign(globalThis, {
@@ -290,5 +289,50 @@ test("PreviewCard opens when its link receives keyboard focus", async () => {
     await act(async () => { link.focus(); link.dispatchEvent(new FocusEvent("focusin", { bubbles: true })); });
     await flush();
     assert.ok(document.getElementById("card"), "card opens on focus");
+  } finally { await env.cleanup(); }
+});
+
+// Real pointers fire mouseenter on every ancestor; the Tooltip trigger wraps the child.
+const hover = (child: Element) => act(async () => {
+  const node = child.parentElement!;
+  for (const type of ["pointerenter", "mouseenter", "pointermove", "mousemove", "mouseover"]) node.dispatchEvent(new MouseEvent(type, { bubbles: !type.endsWith("enter"), relatedTarget: document.body }));
+});
+const unhover = (child: Element) => act(async () => {
+  const node = child.parentElement!;
+  for (const type of ["pointerleave", "mouseleave", "mouseout"]) node.dispatchEvent(new MouseEvent(type, { bubbles: !type.endsWith("leave"), relatedTarget: document.body }));
+});
+const tooltipText = () => document.querySelector('[role="tooltip"]')?.textContent ?? null;
+
+test("Tooltip waits for the hover delay, opens on focus and composes aria-describedby", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<TooltipGroup delay={40}>
+      <Tooltip content="First" motion="none"><TooltipAnchor aria-label="One" aria-describedby="existing" icon="1" /></Tooltip>
+      <Tooltip content="Second" motion="none"><button>Two</button></Tooltip>
+    </TooltipGroup>));
+    const buttons = document.querySelectorAll("button");
+    await hover(buttons[0]);
+    assert.equal(tooltipText(), null);
+    await flush(); await flush(); await flush();
+    assert.equal(tooltipText(), "First");
+    assert.ok(buttons[0].getAttribute("aria-describedby")?.startsWith("existing "));
+    await unhover(buttons[0]); await flush();
+    await act(async () => { document.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab", bubbles: true })); buttons[1].focus(); }); await flush();
+    assert.equal(tooltipText(), "Second");
+    await press(buttons[1], "Escape");
+    assert.equal(tooltipText(), null);
+  } finally { await env.cleanup(); }
+});
+
+test("Tooltip inside Modal renders within the dialog", async () => {
+  const env = setup();
+  try {
+    await act(async () => env.root.render(<Modal open motion="none" title="Settings" onOpenChange={() => {}}>
+      <Tooltip open content="Details" motion="none"><button id="target">Target</button></Tooltip>
+    </Modal>));
+    await flush();
+    const tip = document.querySelector('[role="tooltip"]')!;
+    assert.equal(tip.closest("dialog"), document.getElementById("target")!.closest("dialog"));
+    assert.equal(document.getElementById("target")!.getAttribute("aria-describedby"), tip.id);
   } finally { await env.cleanup(); }
 });

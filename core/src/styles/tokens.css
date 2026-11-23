@@ -1519,7 +1519,6 @@ body {
 .forge-toast-timer{height:2px;background:var(--color-fg-grey-100);margin-top:12px;overflow:hidden;border-radius:2px}
 .forge-toast-timer>span{display:block;height:100%;background:var(--color-fg-grey-500);transform-origin:left;animation:forge-toast-expiry linear forwards}
 .forge-toast-timer[data-paused]>span{animation-play-state:paused}
-.forge-tooltip-position [data-tooltip-arrow]{translate:var(--forge-tooltip-arrow-x,0) var(--forge-tooltip-arrow-y,0)}
 @keyframes forge-toast-expiry{to{transform:scaleX(0)}}
 
 /* Existing form/navigation primitives: optional interaction variants. */

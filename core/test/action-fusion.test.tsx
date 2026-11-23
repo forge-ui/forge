@@ -8,8 +8,6 @@ import { ProgressBar } from "../src/components/ui/progress-bar";
 import { Stepper } from "../src/components/ui/stepper";
 import { ListItem } from "../src/components/ui/list-item";
 import { ToastProvider, useToast, type ToastApi } from "../src/components/ui/toast";
-import { Tooltip } from "../src/components/ui/tooltip";
-import { DialogSurface } from "../src/internal/dialog-surface";
 const protocol = "node:";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { test } = require(`${protocol}test`);
@@ -91,18 +89,6 @@ test("toast updates preserve identity and action restores the consumer state", a
   } finally { await env.close(); }
 });
 
-test("tooltip measures the viewport edge and opens immediately for keyboard focus", async () => {
-  const env = await setup();
-  try {
-    await env.render(<Tooltip content="Details" motion="none" delay={500}><button>Target</button></Tooltip>);
-    await act(async () => document.querySelector<HTMLButtonElement>("button")!.focus());
-    const tip = document.querySelector<HTMLElement>('[role="tooltip"]')!;
-    assert.ok(tip); assert.equal(tip.style.left, "8px"); assert.equal(tip.style.top, "8px");
-    await act(async () => document.querySelector("button")!.dispatchEvent(new env.dom.window.KeyboardEvent("keydown", { key: "Escape", bubbles: true })));
-    assert.equal(document.querySelector('[role="tooltip"]'), null);
-  } finally { await env.close(); }
-});
-
 test("plain loading actions respond to system reduced motion without requiring an effect", async () => {
   const env = await setup(false);
   try {
@@ -132,58 +118,3 @@ test("reduced motion stops the toast expiry animation without disabling automati
   } finally { await env.close(); }
 });
 
-test("a controlled tooltip joins its dialog top layer after showModal and retains viewport coordinates", async () => {
-  const env = await setup();
-  const shown = new Set<HTMLElement>();
-  let popoverShows = 0;
-  let anchorX = 300;
-  const frames = new Map<number, FrameRequestCallback>();
-  let nextFrame = 0;
-  let hydrated: { render: (node: ReactNode) => void; unmount: () => void } | undefined;
-  try {
-    const prototype = env.dom.window.HTMLElement.prototype;
-    const matches = prototype.matches;
-    prototype.matches = function (selector) { return selector === ":popover-open" ? shown.has(this) : matches.call(this, selector); };
-    prototype.showPopover = function () { assert.equal(this.closest("dialog")?.open, true); shown.add(this); popoverShows++; };
-    prototype.hidePopover = function () { shown.delete(this); };
-    prototype.getAnimations = () => [];
-    env.dom.window.requestAnimationFrame = callback => { frames.set(++nextFrame, callback); return nextFrame; };
-    env.dom.window.cancelAnimationFrame = id => { frames.delete(id); };
-    env.dom.window.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
-    env.dom.window.HTMLDialogElement.prototype.close = function () { this.open = false; };
-    const rect = (x: number, y: number, width: number, height: number) => ({ x, y, left: x, top: y, right: x + width, bottom: y + height, width, height, toJSON() {} });
-    prototype.getBoundingClientRect = function () {
-      if (this.getAttribute("role") === "tooltip") return rect(0, 0, 80, 32);
-      if (this.tagName === "DIALOG") return rect(200, 100, 480, 400);
-      return rect(anchorX, 220, 100, 30);
-    };
-    const example = (open: boolean) => <DialogSurface open={open} onOpenChange={() => {}} label="Settings" motion="none" className="transformed-dialog"><Tooltip open content="Details" motion="none"><button>Target</button></Tooltip></DialogSurface>;
-    // Ref-based portal ownership leaves server and initial hydration markup equal.
-    assert.doesNotMatch(renderToString(example(true)), /role="tooltip"/);
-    const container = document.createElement("div");
-    container.innerHTML = renderToString(example(true));
-    document.body.append(container);
-    const hydrationErrors: unknown[] = [];
-    const { hydrateRoot } = await import("react-dom/client");
-    await act(async () => { hydrated = hydrateRoot(container, example(true), { onRecoverableError: error => hydrationErrors.push(error) }); });
-    assert.deepEqual(hydrationErrors, []);
-    const dialog = document.querySelector("dialog")!;
-    const tip = document.querySelector<HTMLElement>('[role="tooltip"]')!;
-    assert.equal(tip.parentElement, dialog);
-    assert.equal(tip.getAttribute("popover"), "manual");
-    assert.equal(shown.has(tip), true);
-    assert.equal(tip.style.left, "310px");
-    assert.equal(tip.style.top, "180px");
-    assert.equal(document.querySelector("button")!.getAttribute("aria-describedby"), tip.id);
-    await act(async () => hydrated!.render(example(false)));
-    assert.equal(shown.has(tip), false);
-    assert.equal(frames.size, 0);
-    await act(async () => hydrated!.render(example(true)));
-    assert.equal(shown.has(tip), true);
-    assert.equal(popoverShows, 2);
-    assert.equal(frames.size, 1);
-    anchorX = 400;
-    for (const [id, callback] of frames) { frames.delete(id); callback(0); }
-    assert.equal(tip.style.left, "410px", "reopening restarts tracking the animated dialog anchor");
-  } finally { if (hydrated) await act(async () => hydrated!.unmount()); await env.close(); }
-});

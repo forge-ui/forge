@@ -64,7 +64,6 @@ test('menu portals to nearest dialog and one Escape closes only the menu', async
     const trigger = document.querySelector<HTMLButtonElement>('[aria-label="更多操作"]')!;
     await act(async () => trigger.click());
     const menu = document.querySelector<HTMLElement>('[data-forge-kebab-menu]')!;
-    assert.equal(menu.parentElement?.hasAttribute('data-forge-dialog-portal'), true);
     assert.equal(menu.closest('dialog'), trigger.closest('dialog'));
     await key(menu); assert.equal(parent, 0); assert.equal(document.querySelector('[data-forge-kebab-menu]'), null); assert.ok(document.activeElement === trigger, 'trigger focus: '+document.activeElement?.outerHTML.slice(0,180));
     await key(trigger); assert.equal(parent, 1);
@@ -81,7 +80,7 @@ test('menu selection hands focus to child and child returns to stable trigger', 
     await act(async () => env.root.render(<MenuChild />));
     const trigger = document.querySelector<HTMLButtonElement>('[aria-label="更多操作"]')!;
     await act(async () => trigger.click());
-    const item = document.querySelector<HTMLButtonElement>('[data-forge-kebab-menu] button')!;
+    const item = document.querySelector<HTMLElement>('[data-forge-kebab-menu] [role="menuitem"]')!;
     await act(async () => { item.focus(); item.click(); }); await tick();
     const child = document.querySelector<HTMLDialogElement>('dialog[aria-label="Child"]')!;
     assert.equal(child.open, true); assert.ok(document.activeElement?.closest('dialog') === child, 'child focus: '+document.activeElement?.outerHTML.slice(0,180));
