@@ -162,6 +162,22 @@ test("ConfirmationDialog is an alert dialog that ignores outside presses", async
   } finally { await env.cleanup(); }
 });
 
+test("ConfirmationDialog keeps its last open text while it closes", async () => {
+  const env = setup();
+  const render = (open: boolean, name: string) => act(async () => env.root.render(<ConfirmationDialog open={open} color="red" title="删除记录" description={`确定删除「${name}」？`} onOpenChange={() => {}} />));
+  try {
+    await render(true, "报表A"); await flush();
+    // Hold the exit animation open so the closing popup stays mounted.
+    const original = Element.prototype.getAnimations;
+    Element.prototype.getAnimations = () => [{ effect: { getTiming: () => ({ duration: 200, iterations: 1 }) }, finished: new Promise(() => {}) } as unknown as Animation];
+    try { await render(false, ""); } finally { Element.prototype.getAnimations = original; }
+    const alert = document.querySelector<HTMLElement>('[role="alertdialog"]');
+    assert.ok(alert, "still mounted while closing"); assert.match(alert!.textContent ?? "", /确定删除「报表A」？/);
+    await render(true, "报表B"); await flush();
+    assert.match(document.querySelector<HTMLElement>('[role="alertdialog"]')!.textContent ?? "", /确定删除「报表B」？/);
+  } finally { await env.cleanup(); }
+});
+
 test("Drawer renders a side sheet that closes on Escape", async () => {
   const env = setup(); let closes = 0;
   try {
