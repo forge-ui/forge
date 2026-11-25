@@ -50,6 +50,8 @@ type BaseProps = {
   width?: string;
   className?: string;
   headerAction?: ReactNode;
+  /** Shown in the open list when there are no options yet (e.g. a field that depends on another). */
+  emptyLabel?: string;
 };
 
 type SingleProps = BaseProps & {
@@ -97,6 +99,7 @@ export function SelectOption(props: SelectOptionProps) {
     width,
     className,
     headerAction,
+    emptyLabel = "暂无选项",
   } = props;
 
   const [open, setOpen] = useState(false);
@@ -267,6 +270,7 @@ export function SelectOption(props: SelectOptionProps) {
                 style={surfaceStyle}
               >
                 <SelectPrimitive.List className="flex-1 flex flex-col overflow-y-auto overscroll-contain outline-none">
+                  {options.length === 0 && <div className="px-4 py-3 text-sm leading-5 tracking-fg text-fg-grey-500">{emptyLabel}</div>}
                   {options.map((item) => (
                     <SelectPrimitive.Item
                       key={item.value}

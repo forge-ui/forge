@@ -1212,6 +1212,26 @@ test("SelectOption 弹层至少和触发器一样宽，选项更长时按内容�
   assert.ok(!classes.includes("w-(--anchor-width)"));
 });
 
+test("SelectOption 没有选项时展开显示「暂无选项」", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  let text = "";
+  try {
+    await act(async () => { root.render(createElement(SelectOption, { label: "训练方式", options: [] })); });
+    const trigger = document.querySelector<HTMLElement>('[role="combobox"]');
+    assert.ok(trigger);
+    trigger.focus();
+    await act(async () => trigger.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
+    text = document.querySelector<HTMLElement>(".forge-popup")?.textContent ?? "";
+  } finally {
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
+  assert.equal(text, "暂无选项");
+});
+
 test("SelectOption 打开后支持方向键与 Home End 定位", async () => {
   const dom = installDom();
   const container = document.querySelector<HTMLDivElement>("#root");
