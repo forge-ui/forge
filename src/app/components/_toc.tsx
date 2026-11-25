@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { ChatDotsLinear, ArrowRightUpLinear } from "@forge-ui-official/core/icons";
+import { ChatDotsLinear, ArrowRightUpLinear } from "@aideui/core/icons";
 
 type TocItem = { id: string; title: string };
 

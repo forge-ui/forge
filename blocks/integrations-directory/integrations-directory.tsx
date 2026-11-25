@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button, Panel, StatusBadge, ToolbarSearchInput, cn } from "@forge-ui-official/core";
+import { Button, Panel, StatusBadge, ToolbarSearchInput, cn } from "@aideui/core";
 
 export type IntegrationState = "available" | "connecting" | "connected";
 

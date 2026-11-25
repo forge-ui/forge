@@ -2,13 +2,13 @@
 
 本指南对应 `codex/component-fusion-migration` 分支的正式实现。增强能力继续放在原有组件里；注册向导、扇形快捷菜单、通知面板等业务组合位于 `src/app/components/_fusion/`，不增加同名平行组件。编号与归属见 [融合实现对照](component-fusion-implementation.md)。
 
-以下片段均使用 `@forge-ui-official/core` 的公开入口；交互示例放在客户端组件文件中。项目仍需按 [core README](../../../core/README.md) 接入样式。示例中的异步函数、上传任务和消息状态由业务方提供。
+以下片段均使用 `@aideui/core` 的公开入口；交互示例放在客户端组件文件中。项目仍需按 [core README](../../../core/README.md) 接入样式。示例中的异步函数、上传任务和消息状态由业务方提供。
 
 ## 共同约定
 
 - `motion="auto"` 跟随系统减少动态效果偏好，`motion="none"` 关闭动效，不关闭操作能力。只向声明该参数的组件传递。
 - 提供 `locale` 的交互组件默认中文，切换英文用 `locale="en"`。业务标题、菜单项、`ariaLabel` 等外部内容由业务方翻译。`StatCard.locale` 用于数字格式，使用 `zh-CN`、`en-US` 等语言标记。
-- 主题沿用各组件现有的 `color`、`accent` 或 `theme` 参数，常用主题为蓝、紫、黑；图标从 `@forge-ui-official/core/icons` 选择 Solar 图标。
+- 主题沿用各组件现有的 `color`、`accent` 或 `theme` 参数，常用主题为蓝、紫、黑；图标从 `@aideui/core/icons` 选择 Solar 图标。
 - `onChange`、`onSelect`、`onStop` 等回调表达用户意图。调用接口、保存数据、撤销、鉴权、真正中止请求由业务代码完成。
 
 ## 按钮、链接与操作反馈
@@ -25,7 +25,7 @@
 ```tsx
 "use client";
 import { useState } from "react";
-import { Button } from "@forge-ui-official/core";
+import { Button } from "@aideui/core";
 
 export function SaveButton({ save }: { save: () => Promise<void> }) {
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ export function SaveButton({ save }: { save: () => Promise<void> }) {
 
 ```tsx
 "use client";
-import { Button } from "@forge-ui-official/core";
+import { Button } from "@aideui/core";
 
 export function DeleteButton({ confirmed, remove, undo }: {
   confirmed: boolean; remove: () => void; undo: () => void;
@@ -62,7 +62,7 @@ export function DeleteButton({ confirmed, remove, undo }: {
 `SurfaceCard.effect="tilt" | "layered"` 为原有内容卡片增加倾斜或层叠反馈。`StatCard` 和 `LineChartStatCard` 的 `animateValue` 只对数字值生效；字符串和自定义内容保留原样。不要把统计数字为了显示逗号提前转换成字符串，使用 `numberFormat`。
 
 ```tsx
-import { SurfaceCard, StatCard, ProgressBar, ListItem } from "@forge-ui-official/core";
+import { SurfaceCard, StatCard, ProgressBar, ListItem } from "@aideui/core";
 
 export function ProjectSummary({ count, progress, remove }: {
   count: number; progress: number; remove: () => void;
@@ -81,7 +81,7 @@ export function ProjectSummary({ count, progress, remove }: {
 多选操作继续使用 `Toolbar.selection`，不新增“批量操作栏”组件。保持 `selection` 对象存在，只把 `count` 改为 0，可保留普通工具栏内的输入状态。
 
 ```tsx
-import { Button, Toolbar } from "@forge-ui-official/core";
+import { Button, Toolbar } from "@aideui/core";
 
 export function SelectionToolbar({ count, clear, archive }: {
   count: number; clear: () => void; archive: () => void;
@@ -97,7 +97,7 @@ export function SelectionToolbar({ count, clear, archive }: {
 
 ```tsx
 "use client";
-import { Button, ToastProvider, useToast } from "@forge-ui-official/core";
+import { Button, ToastProvider, useToast } from "@aideui/core";
 
 function SaveAction({ save }: { save: () => Promise<void> }) {
   const { toast, update } = useToast();
@@ -130,8 +130,8 @@ export function SaveWithNotice({ save }: { save: () => Promise<void> }) {
 ```tsx
 "use client";
 import { useState } from "react";
-import { TextField, Toggle, RatingStars, OtpInput } from "@forge-ui-official/core";
-import { SunLinear } from "@forge-ui-official/core/icons";
+import { TextField, Toggle, RatingStars, OtpInput } from "@aideui/core";
+import { SunLinear } from "@aideui/core/icons";
 
 export function ProfileForm({ verify }: { verify: (code: string) => Promise<boolean> }) {
   const [name, setName] = useState("");
@@ -150,7 +150,7 @@ export function ProfileForm({ verify }: { verify: (code: string) => Promise<bool
 文件进度的 `progress` 是 0–100，字节字段是原始字节数。收到上传服务状态后更新 `file`；本地读取完成不代表服务器上传完成。
 
 ```tsx
-import { FileCard, type FileItem } from "@forge-ui-official/core";
+import { FileCard, type FileItem } from "@aideui/core";
 
 export function UploadRow({ file, cancel, retry }: {
   file: FileItem; cancel: (id: string) => void; retry: (id: string) => void;
@@ -171,7 +171,7 @@ export function UploadRow({ file, cancel, retry }: {
 ```tsx
 "use client";
 import { useState } from "react";
-import { Datepicker } from "@forge-ui-official/core";
+import { Datepicker } from "@aideui/core";
 
 export function DateRange() {
   const [range, setRange] = useState<{ start?: Date; end?: Date }>({});
@@ -191,7 +191,7 @@ export function DateRange() {
 ```tsx
 "use client";
 import { useId, useState } from "react";
-import { TabBar, TabsContent } from "@forge-ui-official/core";
+import { TabBar, TabsContent } from "@aideui/core";
 
 export function SwipeTabs() {
   const prefix = useId();
@@ -226,7 +226,7 @@ export function SwipeTabs() {
 "use client";
 import { useState } from "react";
 import { ChatBubble, ChatInputBar, type ComposerReply,
-  type ComposerStatus, type ComposerVoiceState } from "@forge-ui-official/core";
+  type ComposerStatus, type ComposerVoiceState } from "@aideui/core";
 
 export function Conversation({ send, stop, status, voice }: {
   send: (text: string, reply?: ComposerReply) => void;
@@ -259,7 +259,7 @@ export function Conversation({ send, stop, status, voice }: {
 `ToolChips` 行状态为 `pending | running | complete | error | cancelled`，整体 `state` 为 `idle | running | success | error | cancelled`。注意行完成是 `complete`，整体成功是 `success`。`result`、`actions` 是业务内容插槽，可放置真实结果与停止、重试等操作。
 
 ```tsx
-import { Button, ToolChips, StreamingAnswer } from "@forge-ui-official/core";
+import { Button, ToolChips, StreamingAnswer } from "@aideui/core";
 
 export function RunningTask({ text, stop }: { text: string; stop: () => void }) {
   return <>
@@ -277,7 +277,7 @@ export function RunningTask({ text, stop }: { text: string; stop: () => void }) 
 ```tsx
 "use client";
 import { useState } from "react";
-import { AgentCodeBlock } from "@forge-ui-official/core";
+import { AgentCodeBlock } from "@aideui/core";
 
 export function FoldedCode() {
   const [collapsed, setCollapsed] = useState(["load"]);
@@ -306,7 +306,7 @@ export function FoldedCode() {
 "use client";
 import { useState } from "react";
 import { BarChart, SmoothLineChart, DonutChart,
-  MultilayerDonutChart, BarHorizontalChart } from "@forge-ui-official/core";
+  MultilayerDonutChart, BarHorizontalChart } from "@aideui/core";
 
 export function Metrics() {
   const [pinned, setPinned] = useState<number>();

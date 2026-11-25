@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { Button, ConfirmationDialog, TextField } from "@forge-ui-official/core";
+import { Button, ConfirmationDialog, TextField } from "@aideui/core";
 import { MarkdownEditor } from "./_markdown-editor";
 import { useUnsavedChanges } from "./_use-unsaved-changes";
 

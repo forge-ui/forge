@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type Key } from "react";
-import { Button, CellImageText, CellRating, CellText, DataTable, IconButton, Modal, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef } from "@forge-ui-official/core";
-import { ChatRoundLinear, DownloadMinimalisticLinear, EyeLinear, LetterLinear } from "@forge-ui-official/core/icons";
+import { Button, CellImageText, CellRating, CellText, DataTable, IconButton, Modal, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef } from "@aideui/core";
+import { ChatRoundLinear, DownloadMinimalisticLinear, EyeLinear, LetterLinear } from "@aideui/core/icons";
 
 export interface SellerRecord {
   id: string;

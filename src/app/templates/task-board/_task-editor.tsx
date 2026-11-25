@@ -7,7 +7,7 @@ import {
   Modal,
   SelectOption,
   TextField,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { TaskComments } from "./_task-comments";
 import { Subtasks } from "./_subtasks";
 import { TaskLabels } from "./_task-labels";

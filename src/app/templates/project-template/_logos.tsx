@@ -10,7 +10,7 @@ import {
   StarsBold,
   TargetBold,
   TickerStarBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { projectLogoPalette } from "./_mock-palette";
 import type { ProjectLogoKey } from "./_data";
 

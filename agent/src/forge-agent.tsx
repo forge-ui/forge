@@ -4,7 +4,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, generateId, type UIMessage } from "ai";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { z } from "zod";
-import { AgentMessage, AgentPanel, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@forge-ui-official/core";
+import { AgentMessage, AgentPanel, AgentParts, MessageActions, PromptSuggestions, type AgentMessagePart } from "@aideui/core";
 import { splitBlocks, proseOf } from "./catalog/blocks";
 import { Command, PendingBlock, renderCatalog, sourcesFrom } from "./catalog/render";
 import { uiToolNames, type UiToolName } from "./catalog/schema";

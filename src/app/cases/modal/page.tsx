@@ -6,14 +6,14 @@ import {
   Toggle,
   type ConfirmationDialogColor,
   type ConfirmationDialogLayout,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   TrashBinMinimalisticBold,
   CheckCircleBold,
   DangerTriangleBold,
   CrownBold,
   ShieldCheckBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 type DialogSpec = {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
-import { Breadcrumbs, Button, ButtonGroup, KebabMenu, LineChartStatCard, ListGroup, PageTitleToolbar, PlusIcon, ProgressStatCard, SelectOption, SmoothLineChart } from "@forge-ui-official/core";
+import { Breadcrumbs, Button, ButtonGroup, KebabMenu, LineChartStatCard, ListGroup, PageTitleToolbar, PlusIcon, ProgressStatCard, SelectOption, SmoothLineChart } from "@aideui/core";
 
 export interface WorkspaceAggregation {
   application: { total: number; published: number; unpublished: number };

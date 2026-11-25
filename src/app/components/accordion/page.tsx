@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageHeading, Section } from "../_shared";
 import { AdditionalComponentApi } from "../_additional-component-api";
-import { Collapsible } from "@forge-ui-official/core";
+import { Collapsible } from "@aideui/core";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, type ApiTableRow } from "../_api-table";
 

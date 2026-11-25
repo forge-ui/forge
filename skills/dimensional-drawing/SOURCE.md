@@ -12,5 +12,5 @@
 - 审查：阅读两份 SKILL、示例 HTML 的外链、motion 模板与 `render.mjs`。没有发现读取凭据、外传业务数据或混淆执行。`render.mjs` 只读本地 scene/css。
 - 本仓库用法：`forge-starter-audit` 必须出图（缺图 = FAIL，写原因也不通过）；`forge-starter-new-page` 无图不得把设计标完成。交付 HTML 放 `artifacts/dimensional-drawing/`。变量来自源码、Forge token 或已量到的值，没有的写 `[TBD]`，不编造数字。画架构槽位，不画文案。
 - 分工：Kit 的 Dialog / DataTable 解剖示例与文档门禁在 forge 仓。starter 用同一套 skill 画本页整页、Dialog 和表。
-- 依赖：不进 `package.json`，不进 runtime，不打进 `@forge-ui-official/core`。
+- 依赖：不进 `package.json`，不进 runtime，不打进 `@aideui/core`。
 - 修改：上游画法和示例保持原样。只在两份 `SKILL.md` 文首加上 Forge Starter 约定，并改了 description，使默认主题是页面和布局。headless README 补了一句本仓库路径，并写明不默认安装、不用系统 Chrome。

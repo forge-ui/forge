@@ -1,16 +1,16 @@
 "use client";
 
-import { HistoryItem, HistoryGrouped } from "@forge-ui-official/core";
+import { HistoryItem, HistoryGrouped } from "@aideui/core";
 import {
   CheckCircleLinear,
   UserLinear,
   DocumentTextLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { HistoryItem, HistoryGrouped } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { HistoryItem, HistoryGrouped } from "@aideui/core";`;
 
 const CODE_ITEM_USAGE = `<HistoryItem
   title="订单已提交"

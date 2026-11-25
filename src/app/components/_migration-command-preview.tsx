@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button, CommandSearch, Modal, SurfaceCard } from "@forge-ui-official/core";
-import { AddCircleLinear, BellLinear, FileTextLinear, MagniferLinear } from "@forge-ui-official/core/icons";
+import { Button, CommandSearch, Modal, SurfaceCard } from "@aideui/core";
+import { AddCircleLinear, BellLinear, FileTextLinear, MagniferLinear } from "@aideui/core/icons";
 
 const documents = [
   { id: "guide", zh: "设计规范", en: "Design guidelines", bodyZh: "组件使用统一的蓝、紫、黑主题。图标优先选用 Solar，正文保持清晰、简洁的层级。", bodyEn: "Components share blue, purple and black themes. Use Solar icons and clear, concise typography." },

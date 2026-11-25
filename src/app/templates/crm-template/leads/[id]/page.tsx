@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { Suspense, useMemo, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -10,8 +10,8 @@ import {
   Pen2Linear,
   UsersGroupRoundedLinear,
   VideocameraRecordLinear,
-} from "@forge-ui-official/core/icons";
-import { Avatar, FileTypeIcon, HistoryItem, StatusBadge, TabBar } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { Avatar, FileTypeIcon, HistoryItem, StatusBadge, TabBar } from "@aideui/core";
 import { ProtaskActivityDialog, normalizeProtaskActivityDialogId } from "../../../_shared/protask-actions";
 import { CrmSurface, DetailLine } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell, leadStatusColor } from "../../_chrome";

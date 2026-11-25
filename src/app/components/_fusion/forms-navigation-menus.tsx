@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
-import { AppSwitcherDropdown, Button, ButtonGroup, CommandSearch, Drawer, DropdownPanel, IconButton, IconTrigger, MenuItem, NotificationItem, SelectOption, SmoothLineChart, Stepper, SurfaceCard, TabBar, TabsContent, TextField } from "@forge-ui-official/core";
-import { AddCircleLinear, AltArrowDownLinear, BellLinear, BookmarkLinear, CheckCircleLinear, DocumentTextLinear, FolderOpenLinear, HamburgerMenuLinear, HomeLinear, LinkRoundAngleLinear, MagniferLinear, PenLinear, UserLinear, WidgetLinear } from "@forge-ui-official/core/icons";
+import { AppSwitcherDropdown, Button, ButtonGroup, CommandSearch, Drawer, DropdownPanel, IconButton, IconTrigger, MenuItem, NotificationItem, SelectOption, SmoothLineChart, Stepper, SurfaceCard, TabBar, TabsContent, TextField } from "@aideui/core";
+import { AddCircleLinear, AltArrowDownLinear, BellLinear, BookmarkLinear, CheckCircleLinear, DocumentTextLinear, FolderOpenLinear, HamburgerMenuLinear, HomeLinear, LinkRoundAngleLinear, MagniferLinear, PenLinear, UserLinear, WidgetLinear } from "@aideui/core/icons";
 import type { FusionExampleProps } from "./types";
 import { useActionTimers } from "./actions-shared";
 type Props = FusionExampleProps;

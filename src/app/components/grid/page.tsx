@@ -1,5 +1,5 @@
 import GridExamples from "../../cases/grid/page";
-import { Grid, GridItem } from "@forge-ui-official/core";
+import { Grid, GridItem } from "@aideui/core";
 import { PageHeading, Section } from "../_shared";
 import { ApiTable, CodeBlock, type ApiTableRow } from "../_api-table";
 
@@ -13,7 +13,7 @@ const itemProps: ApiTableRow[] = [
   { attr: "span", type: "GridResponsive<GridColumns | 'full'>", defaultValue: "full", description: "跨度；full 从首列到末列并忽略 start。" },
   { attr: "start", type: "GridResponsive<GridColumns | 'auto'>", defaultValue: "auto", description: "从 1 开始的列号；auto 可重置较小断点的偏移。" },
 ];
-const example = `import { Grid, GridItem, StatCard } from "@forge-ui-official/core";
+const example = `import { Grid, GridItem, StatCard } from "@aideui/core";
 
 // Analytics 模板的比例区域；固定辅助栏保留原模板宽度。
 <Grid gap={16}>

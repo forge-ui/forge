@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FilterPanel, FilterGroup } from "@forge-ui-official/core";
+import { FilterPanel, FilterGroup } from "@aideui/core";
 
 const statusOptions = [
   { label: "Active", value: "active" },

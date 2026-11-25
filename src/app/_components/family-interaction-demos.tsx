@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import type { MotionPreference } from "@forge-ui-official/core";
+import type { MotionPreference } from "@aideui/core";
 import { Section } from "../components/_shared";
 import { ExampleCode } from "../components/_example-code";
 import { AdditionalComponentApi } from "../components/_additional-component-api";

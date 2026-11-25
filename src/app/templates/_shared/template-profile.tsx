@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, KebabMenu } from "@forge-ui-official/core";
+import { Avatar, KebabMenu } from "@aideui/core";
 import { useRouter } from "next/navigation";
 
 export function TemplateProfile({ template, onHelp }: {

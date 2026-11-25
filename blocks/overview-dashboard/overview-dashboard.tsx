@@ -1,8 +1,8 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { BarChartStatCard, Button, ChartHeader, ChartMetricRow, DonutChart, GroupedBarChart, LineChartStatCard, Panel, cn, type GroupedBarChartProps } from "@forge-ui-official/core";
-import { DownloadLinear } from "@forge-ui-official/core/icons";
+import { BarChartStatCard, Button, ChartHeader, ChartMetricRow, DonutChart, GroupedBarChart, LineChartStatCard, Panel, cn, type GroupedBarChartProps } from "@aideui/core";
+import { DownloadLinear } from "@aideui/core/icons";
 
 export type OverviewMetric = Omit<ComponentProps<typeof LineChartStatCard>, "density" | "size" | "width"> & {
   id: string;

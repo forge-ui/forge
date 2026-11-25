@@ -3,7 +3,7 @@
 **业务代码里不用**。这些是**扩卡片家族**（比如做一个新业务卡）时的 building block：
 
 ```tsx
-import { StatCardShell, CardIconChip, CardTrend, cardThemes } from "@forge-ui-official/core";
+import { StatCardShell, CardIconChip, CardTrend, cardThemes } from "@aideui/core";
 
 export function MyCustomCard({ theme = "blue" }) {
   const t = cardThemes[theme];

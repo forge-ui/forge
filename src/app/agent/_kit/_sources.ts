@@ -1,4 +1,4 @@
-import type { ComposerSource } from "@forge-ui-official/core";
+import type { ComposerSource } from "@aideui/core";
 
 /** Share typed mentions so every composer example demonstrates selected context cards. */
 export const demoSources: ComposerSource[] = [

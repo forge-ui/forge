@@ -17,8 +17,8 @@ import {
   ToastProvider,
   useToast,
   type ColumnDef,
-} from "@forge-ui-official/core";
-import { CalendarMinimalisticLinear, ChatRoundLineLinear, LetterLinear, PhoneLinear, WalletMoneyLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { CalendarMinimalisticLinear, ChatRoundLineLinear, LetterLinear, PhoneLinear, WalletMoneyLinear } from "@aideui/core/icons";
 import { BASE, BusinessShell } from "../../_chrome";
 import { ACTIVITIES, CONTRACTS, CUSTOMERS, SALES, TICKETS, contractStatusColor, stageColor, wan, yuan, type Contract } from "../../_data";
 

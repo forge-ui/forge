@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CopyLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
+import { CopyLinear, CheckCircleLinear } from "@aideui/core/icons";
 
 export function CodeBlock({
   code,

@@ -14,7 +14,7 @@ import {
   ProgressBar,
   ChatInputBar,
   type ChatInputBarQuickAction,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 function Panel({ title, children }: { title?: string; children: ReactNode }) {
   return (
     <section className="home-panel">

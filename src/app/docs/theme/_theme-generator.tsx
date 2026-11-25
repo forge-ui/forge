@@ -13,7 +13,7 @@ import {
   TextField,
   Toggle,
   cn,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   COLOR_PRESETS,
   DEFAULT_THEME,

@@ -16,8 +16,8 @@ import {
   ToolbarPillTabs,
   ToolbarSearchInput,
   type ColumnDef,
-} from "@forge-ui-official/core";
-import { CalendarBoldDuotone, DangerCircleBoldDuotone, WalletMoneyBoldDuotone, ClockCircleBoldDuotone } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { CalendarBoldDuotone, DangerCircleBoldDuotone, WalletMoneyBoldDuotone, ClockCircleBoldDuotone } from "@aideui/core/icons";
 import { BASE, BusinessShell } from "../_chrome";
 import { CONTRACTS, MONTHS, REVENUE_BY_MONTH, customerById, yuan } from "../_data";
 

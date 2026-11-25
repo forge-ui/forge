@@ -1,4 +1,4 @@
-import type { StatusBadgeColor } from "@forge-ui-official/core";
+import type { StatusBadgeColor } from "@aideui/core";
 
 const person = (name: string) => `/images/blocks/people/${name}.jpg`;
 

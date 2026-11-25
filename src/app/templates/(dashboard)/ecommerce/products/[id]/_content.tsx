@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -9,7 +9,7 @@ import {
   MagniferLinear,
   StarBold,
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Breadcrumbs,
   Button,
@@ -22,8 +22,8 @@ import {
   CellMuted,
   CellKebabMenu,
   CellImageText,
-} from "@forge-ui-official/core";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef, StatusBadgeColor } from "@aideui/core";
 
 // --- Data types ---
 

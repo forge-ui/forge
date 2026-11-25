@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { AppLayout, WalletGoalCard, DivergingBarChart } from "@forge-ui-official/core";
+import { AppLayout, WalletGoalCard, DivergingBarChart } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
 import { CardCarousel } from "@/blocks/card-carousel/card-carousel";
@@ -20,7 +20,7 @@ import {
   AltArrowDownLinear,
   ArrowRightUpLinear,
   ArrowRightDownLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   BalanceCard,
@@ -29,8 +29,8 @@ import {
     PlusIcon,
   KebabMenu,
   SurfaceCard,
-} from "@forge-ui-official/core";
-import type { AppLayoutMenuItem } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { AppLayoutMenuItem } from "@aideui/core";
 import { mainProfile, transactions, upsideDownBarData } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

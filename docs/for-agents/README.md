@@ -14,7 +14,7 @@
 1. 定页面角色（列表 / 表单 / 详情 / 看板）
 2. routes.md 场景速查 → 打开 case 源码
 3. components.md 确认组件是否在 Kit 内
-4. import from @forge-ui-official/core
+4. import from @aideui/core
 5. 没有 → FORGE-GAP
 ```
 

@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion as animated, useReducedMotion } from "motion/react";
-import { Button, ListGroup, ListItem, ToolbarSearchInput } from "@forge-ui-official/core";
-import { DangerTriangleLinear, FileTextLinear, MagniferLinear, RestartCircleLinear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Button, ListGroup, ListItem, ToolbarSearchInput } from "@aideui/core";
+import { DangerTriangleLinear, FileTextLinear, MagniferLinear, RestartCircleLinear, TrashBinMinimalisticLinear } from "@aideui/core/icons";
 import styles from "./_migration-empty-preview.module.css";
 
 type PreviewProps = { locale: "zh" | "en"; color: "blue" | "purple" | "black"; motion: "auto" | "none" };

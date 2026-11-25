@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { ListGroup, UserCard, type ListGroupProps } from "@forge-ui-official/core";
+import { ListGroup, UserCard, type ListGroupProps } from "@aideui/core";
 
 export type MemberListProps = Omit<ListGroupProps, "items"> & {
   items?: ListGroupProps["items"];

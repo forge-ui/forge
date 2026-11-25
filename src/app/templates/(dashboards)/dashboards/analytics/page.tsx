@@ -2,7 +2,7 @@
 
 import { PagedDataTable } from "../../../_shared/paged-data-table";
 
-import { AppLayout, WalletGoalCard, ChartHeader, GroupedBarChart, ChartMetricRow } from "@forge-ui-official/core";
+import { AppLayout, WalletGoalCard, ChartHeader, GroupedBarChart, ChartMetricRow } from "@aideui/core";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
 import { RegionDistribution } from "@/blocks/region-distribution/region-distribution";
@@ -22,7 +22,7 @@ import {
   CalendarMinimalisticLinear,
   VideocameraRecordLinear,
   PhoneLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   ProgressStatCard,
@@ -33,8 +33,8 @@ import {
     ChartListItem,
   Grid,
   GridItem,
-} from "@forge-ui-official/core";
-import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { AppLayoutMenuItem, ColumnDef, MapRegion } from "@aideui/core";
 import { mainProfile, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

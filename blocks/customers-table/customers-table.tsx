@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent, type Key } from "react";
-import { Avatar, Button, CellImageText, CellMuted, CellText, DataTable, IconButton, Modal, PlusIcon, StatusBadge, TextField, ToolbarSearchInput, cn, type ColumnDef } from "@forge-ui-official/core";
-import { DownloadMinimalisticLinear, LetterLinear, PhoneLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, CellImageText, CellMuted, CellText, DataTable, IconButton, Modal, PlusIcon, StatusBadge, TextField, ToolbarSearchInput, cn, type ColumnDef } from "@aideui/core";
+import { DownloadMinimalisticLinear, LetterLinear, PhoneLinear } from "@aideui/core/icons";
 
 export interface CustomerRecord {
   id: string;

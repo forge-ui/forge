@@ -11,7 +11,7 @@ recent-records；DataTable、StatusBadge。Blocks 是复制到项目的源码，
 ## 示例代码
 
 ```tsx
-import { StatusBadge } from "@forge-ui-official/core";
+import { StatusBadge } from "@aideui/core";
 
 export function OrderStatus() {
   return <StatusBadge variant="soft" color="green" label="已完成" />;

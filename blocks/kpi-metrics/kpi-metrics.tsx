@@ -1,6 +1,6 @@
-import { ArrowRightUpLinear, ArrowRightDownLinear } from "@forge-ui-official/core/icons";
+import { ArrowRightUpLinear, ArrowRightDownLinear } from "@aideui/core/icons";
 import type { ComponentProps, ReactNode } from "react";
-import { BarChartStatCard, LineChartStatCard, Panel, StatCard, cn, type StatCardProps } from "@forge-ui-official/core";
+import { BarChartStatCard, LineChartStatCard, Panel, StatCard, cn, type StatCardProps } from "@aideui/core";
 
 export interface KpiMetricsProps {
   metrics?: (StatCardProps & { id: string; visualization?: "line" | "bar"; data?: number[] })[];

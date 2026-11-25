@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { TabBar, ToggleGroup } from "@forge-ui-official/core";
-import { HamburgerMenuLinear, WidgetLinear } from "@forge-ui-official/core/icons";
+import { TabBar, ToggleGroup } from "@aideui/core";
+import { HamburgerMenuLinear, WidgetLinear } from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
 // ─── TabBar 代码片段 ───
 
-const CODE_IMPORT = `import { TabBar, ToggleGroup, ButtonGroup } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { TabBar, ToggleGroup, ButtonGroup } from "@aideui/core";`;
 
 const CODE_TABBAR_USAGE = `<TabBar
   tabs={[

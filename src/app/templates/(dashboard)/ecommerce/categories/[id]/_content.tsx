@@ -1,13 +1,13 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
   PenNewSquareLinear,
   MenuDotsBold,
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Breadcrumbs,
   Button,
@@ -19,8 +19,8 @@ import {
   ToolbarSearchInput,
   ToolbarFilterButton,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef, StatusBadgeColor } from "@aideui/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 
 const SHOW_PER_PAGE_OPTIONS = [

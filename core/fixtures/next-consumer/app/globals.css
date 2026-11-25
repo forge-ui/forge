@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "@forge-ui-official/core/styles.css";
-@source "../node_modules/@forge-ui-official/core/dist";
+@import "@aideui/core/styles.css";
+@source "../node_modules/@aideui/core/dist";
 
 body {
   margin: 0;

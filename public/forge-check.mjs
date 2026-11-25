@@ -21,13 +21,13 @@ const RULES = [
     rule: "foreign-ui-library", audit: "C1", severity: "error",
     pattern: /from\s+["'](?:lucide-react|react-icons[^"']*|@heroicons\/[^"']+|@radix-ui\/[^"']+|antd|@mui\/[^"']+|@chakra-ui\/[^"']+|@mantine\/[^"']+|@headlessui\/[^"']+|@\/components\/ui\/[^"']+)["']/g,
     message: "引入了 Forge 以外的组件或图标库。",
-    fix: "组件从 @forge-ui-official/core 引入，图标从 @forge-ui-official/core/icons 引入；缺失能力标记 FORGE-GAP 后再讨论。",
+    fix: "组件从 @aideui/core 引入，图标从 @aideui/core/icons 引入；缺失能力标记 FORGE-GAP 后再讨论。",
   },
   {
     rule: "direct-solar-import", audit: "M2", severity: "warning",
     pattern: /from\s+["']@solar-icons\/react[^"']*["']/g,
     message: "直接从 @solar-icons/react 引入图标。",
-    fix: "改从 @forge-ui-official/core/icons 引入同名图标，保持尺寸和默认颜色一致。",
+    fix: "改从 @aideui/core/icons 引入同名图标，保持尺寸和默认颜色一致。",
   },
   {
     rule: "raw-button", audit: "C1", severity: "warning",

@@ -1,8 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { ChatDotsLinear, ArrowRightUpLinear, HamburgerMenuLinear } from "@forge-ui-official/core/icons";
-import { cn } from "@forge-ui-official/core";
+import { ChatDotsLinear, ArrowRightUpLinear, HamburgerMenuLinear } from "@aideui/core/icons";
+import { cn } from "@aideui/core";
 
 export interface TocItem {
   id: string;

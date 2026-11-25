@@ -1,20 +1,20 @@
 "use client";
 
-import { Tooltip, TooltipBubble, TooltipAnchor, PreviewCard, Avatar } from "@forge-ui-official/core";
+import { Tooltip, TooltipBubble, TooltipAnchor, PreviewCard, Avatar } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 import {
   InfoCircleBoldDuotone,
   DangerCircleBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 
 const SHORT = "示例文本";
 const LONG = "这里展示详细说明，帮助你了解当前操作。";
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { Tooltip, TooltipBubble, TooltipAnchor, PreviewCard } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { Tooltip, TooltipBubble, TooltipAnchor, PreviewCard } from "@aideui/core";`;
 
 const CODE_PREVIEWCARD_USAGE = `<PreviewCard trigger={<a href="/members/lin">林晓</a>}>
   <div className="flex items-center gap-3">
@@ -79,7 +79,7 @@ const ANCHOR_PROPS: ApiTableRow[] = [
     attr: "icon",
     type: "ReactNode",
     defaultValue: "—",
-    description: "触发 icon，推荐 @forge-ui-official/core/icons 14px。",
+    description: "触发 icon，推荐 @aideui/core/icons 14px。",
   },
   {
     attr: "state",

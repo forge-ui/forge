@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Panel } from "@forge-ui-official/core";
-import { ArrowRightLinear } from "@forge-ui-official/core/icons";
+import { Panel } from "@aideui/core";
+import { ArrowRightLinear } from "@aideui/core/icons";
 import { SiteHeader } from "@/app/_components/site-header";
 import { variants } from "./_variants";
 

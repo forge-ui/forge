@@ -3,8 +3,8 @@
 import { TemplateSurface as MiscSurface } from "@/app/templates/_shared/template-surface";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, PhoneCallingRoundedLinear, VideocameraRecordLinear } from "@forge-ui-official/core/icons";
-import { Avatar, Button, ChatBubble, ChatInputBar, Checkbox, ContactItem, ToolbarSearchInput } from "@forge-ui-official/core";
+import { AddCircleLinear, PhoneCallingRoundedLinear, VideocameraRecordLinear } from "@aideui/core/icons";
+import { Avatar, Button, ChatBubble, ChatInputBar, Checkbox, ContactItem, ToolbarSearchInput } from "@aideui/core";
 import { Modal } from "../../_shared/modal";
 import { MicellaneousPageHeader, MicellaneousTemplateShell } from "../_chrome";
 import { contacts } from "../_data";

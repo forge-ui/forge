@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion as animated, useReducedMotion, useIsPresent } from "motion/react";
-import { Button, Checkbox, ListGroup, ListItem, Toolbar } from "@forge-ui-official/core";
-import { FileTextLinear } from "@forge-ui-official/core/icons";
+import { Button, Checkbox, ListGroup, ListItem, Toolbar } from "@aideui/core";
+import { FileTextLinear } from "@aideui/core/icons";
 
 export function SelectionToolbarPreview({ locale = "zh", color = "blue", motion = "auto" }: {
   locale?: "zh" | "en";

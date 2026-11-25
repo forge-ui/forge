@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Button, IconButton } from "@forge-ui-official/core";
-import { CheckCircleLinear, CloseCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton } from "@aideui/core";
+import { CheckCircleLinear, CloseCircleLinear, CopyLinear } from "@aideui/core/icons";
 
 export function CopyButton({ value, label = "复制", compact = false, variant = "tertiary" }: { value: string; label?: string; compact?: boolean; variant?: "primary" | "tertiary" }) {
   const [state, setState] = useState<"idle" | "copying" | "copied" | "failed">("idle");

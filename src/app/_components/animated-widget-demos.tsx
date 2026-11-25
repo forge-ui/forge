@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { AddMember, Button, CalendarCard, DropdownPanel, MenuItem, LiquidTabs, OtpInput, type MotionPreference, type AddMemberItem, type LiquidTabsTab } from "@forge-ui-official/core";
-import { BellLinear, ChatRoundLinear, SettingsBold } from "@forge-ui-official/core/icons";
+import { AddMember, Button, CalendarCard, DropdownPanel, MenuItem, LiquidTabs, OtpInput, type MotionPreference, type AddMemberItem, type LiquidTabsTab } from "@aideui/core";
+import { BellLinear, ChatRoundLinear, SettingsBold } from "@aideui/core/icons";
 import { AdditionalComponentApi } from "../components/_additional-component-api";
 import { Section } from "../cases/_shared";
 

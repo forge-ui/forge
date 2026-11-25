@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 import { PagedDataTable } from "../../../_shared/paged-data-table";
 
-import { AppLayout, WalletGoalCard, DivergingBarChart, Panel } from "@forge-ui-official/core";
+import { AppLayout, WalletGoalCard, DivergingBarChart, Panel } from "@aideui/core";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";
@@ -26,7 +26,7 @@ import {
   FilterLinear,
   AltArrowRightLinear,
   RefreshLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
     ContactItem,
@@ -42,12 +42,12 @@ import {
   KebabMenu,
   ListItem,
   PlusIcon,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { mainProfile, transactions, contacts, upsideDownBarData, type TransactionRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

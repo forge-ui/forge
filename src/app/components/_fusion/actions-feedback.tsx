@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Button, IconButton, ListItem, ProgressBar, Stepper, SurfaceCard, ToastProvider, Tooltip, TooltipGroup, useToast } from "@forge-ui-official/core";
-import { ArrowRightLinear, BellLinear, CheckCircleLinear, CloseCircleLinear, CompassLinear, CopyLinear, DeliveryLinear, FolderLinear, LetterLinear, LinkLinear, RefreshLinear, SettingsBold } from "@forge-ui-official/core/icons";
+import { Button, IconButton, ListItem, ProgressBar, Stepper, SurfaceCard, ToastProvider, Tooltip, TooltipGroup, useToast } from "@aideui/core";
+import { ArrowRightLinear, BellLinear, CheckCircleLinear, CloseCircleLinear, CompassLinear, CopyLinear, DeliveryLinear, FolderLinear, LetterLinear, LinkLinear, RefreshLinear, SettingsBold } from "@aideui/core/icons";
 import type { FusionExampleProps } from "./types";
 import { ActionHint, ActionStage, useActionTimers } from "./actions-shared";
 

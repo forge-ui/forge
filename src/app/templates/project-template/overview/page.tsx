@@ -2,8 +2,8 @@
 
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { useRouter } from "next/navigation";
-import { AddCircleLinear, FolderOpenLinear } from "@forge-ui-official/core/icons";
-import { Avatar, AvatarGroup, Button, LineChartStatCard, ProgressBar, StatusBadge } from "@forge-ui-official/core";
+import { AddCircleLinear, FolderOpenLinear } from "@aideui/core/icons";
+import { Avatar, AvatarGroup, Button, LineChartStatCard, ProgressBar, StatusBadge } from "@aideui/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { clients, members, projects, tasks } from "../_data";
 import { projectPageStackClass } from "../_density";

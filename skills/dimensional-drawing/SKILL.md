@@ -24,7 +24,7 @@ Draw one subject the way Apple's accessory dimensional drawings do (developer.ap
 - `forge-starter-new-page` 把设计标完成之前必须出图（整页，或该页关键 Dialog / 表）。无图不得交审。
 - 交付路径：`artifacts/dimensional-drawing/<模块>-<对象>.html`（相对仓库根）。`examples/` 是画法范例，不代替这份交付。
 - 解剖图不是浏览器验收截图。截图通道挂了，不能用来跳过这张图。
-- 仍只是 Agent skill：不进 `package.json`，不进 runtime，不打进 `@forge-ui-official/core`。
+- 仍只是 Agent skill：不进 `package.json`，不进 runtime，不打进 `@aideui/core`。
 - Dialog / DataTable 各一张 Kit 解剖示例和文档门禁句在 **forge 仓**做。本仓不补 Kit。
 
 组件级尺寸图的 Kit 示例在 forge 仓；starter 用同一套画法画页面、本页 Dialog 和本页表。

@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { AppLayout, type AppLayoutMenuSection } from "@forge-ui-official/core";
+import { AppLayout, type AppLayoutMenuSection } from "@aideui/core";
 import { useRouter } from "next/navigation";
 import {
   ChartBoldDuotone,
@@ -11,7 +11,7 @@ import {
   UsersGroupTwoRoundedBoldDuotone,
   WalletBoldDuotone,
   WidgetBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 
 export const BASE = "/templates/business";
 

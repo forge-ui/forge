@@ -12,11 +12,11 @@ test("repository sources generate all seven deterministic documents", () => {
   assert.equal(first.outputs.size, 7);
   assert.equal(first.fingerprint, second.fingerprint);
   for (const [name, content] of first.outputs) {
-    assert.ok(content.includes("@forge-ui-official/core@" + loadSources(root).core.version));
+    assert.ok(content.includes("@aideui/core@" + loadSources(root).core.version));
     if (name === "llms.txt") continue;
     assert.ok(content.includes(loadSources(root).blocks.length + " Blocks are implemented as copyable project source"));
     assert.match(content, /soft StatusBadge/);
-    assert.match(content, /@forge-ui-official\/core\/icons/);
+    assert.match(content, /@aideui\/core\/icons/);
     assert.doesNotMatch(content, /forge-app-design/);
   }
   assert.match(first.outputs.get("llms-full.md"), /dashboards\/finance-3/);

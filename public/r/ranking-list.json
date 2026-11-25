@@ -5,7 +5,7 @@
   "title": "排行列表卡",
   "description": "展示商品、渠道或客户的业绩排行，快速识别主要贡献来源。",
   "dependencies": [
-    "@forge-ui-official/core@^0.11.6"
+    "@aideui/core@^0.12.0"
   ],
   "meta": {
     "category": "数据列表",
@@ -61,7 +61,7 @@
           {
             "name": "color",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").AccentColor | undefined"
+            "type": "import(\"@aideui/core\").AccentColor | undefined"
           },
           {
             "name": "subtitle",
@@ -81,7 +81,7 @@
           {
             "name": "tabs",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").ListGroupTab[] | undefined"
+            "type": "import(\"@aideui/core\").ListGroupTab[] | undefined"
           },
           {
             "name": "activeTab",
@@ -106,7 +106,7 @@
           {
             "name": "density",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").CardDensity | undefined"
+            "type": "import(\"@aideui/core\").CardDensity | undefined"
           },
           {
             "name": "items",
@@ -127,7 +127,7 @@
       }
     ],
     "core": {
-      "version": "^0.11.6",
+      "version": "^0.12.0",
       "components": [
         "ChartListItem",
         "ListGroup",
@@ -140,7 +140,7 @@
       "path": "blocks/ranking-list/ranking-list.tsx",
       "type": "registry:component",
       "target": "@components/blocks/ranking-list.tsx",
-      "content": "import type { ComponentProps, ReactNode } from \"react\";\nimport { BoxBoldDuotone } from \"@forge-ui-official/core/icons\";\nimport { ChartListItem, ListGroup, cn, type ListGroupProps } from \"@forge-ui-official/core\";\n\nexport type RankingListProps = Omit<ListGroupProps, \"items\"> & {\n  items?: ReactNode;\n  entries?: { id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>[\"icon\"]; accent?: ComponentProps<typeof ChartListItem>[\"accent\"]; avatar?: string }[];\n  variant?: \"template\" | \"plain\";\n};\n\nexport function RankingList({ entries = [], items, variant = \"template\", className, ...props }: RankingListProps) {\n  return <ListGroup density=\"compact\" {...props} className={cn(\"w-full\", className)} items={items ?? entries.map((entry, index) => variant === \"plain\"\n    ? <div key={entry.id} className=\"flex justify-between gap-3 py-2\"><span>{entry.title}</span><span>{entry.value}</span></div>\n    : entry.avatar ? <div key={entry.id} className=\"flex items-center gap-3 py-2.5\"><span className=\"flex size-10 shrink-0 items-center justify-center rounded-lg bg-fg-violet-100 text-sm font-medium text-fg-violet\">{entry.avatar}</span><div className=\"min-w-0 flex-1\"><div className=\"truncate text-sm font-medium\">{entry.title}</div><div className=\"text-xs text-fg-grey-500\">{entry.subtitle}</div></div><span className=\"text-sm font-medium tabular-nums\">{entry.value}</span></div>\n      : <ChartListItem key={entry.id} title={entry.title} subtitle={entry.subtitle} value={entry.value} icon={entry.icon ?? BoxBoldDuotone} accent={entry.accent ?? (index % 2 ? \"blue\" : \"purple\")} />)} />;\n}\n"
+      "content": "import type { ComponentProps, ReactNode } from \"react\";\nimport { BoxBoldDuotone } from \"@aideui/core/icons\";\nimport { ChartListItem, ListGroup, cn, type ListGroupProps } from \"@aideui/core\";\n\nexport type RankingListProps = Omit<ListGroupProps, \"items\"> & {\n  items?: ReactNode;\n  entries?: { id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>[\"icon\"]; accent?: ComponentProps<typeof ChartListItem>[\"accent\"]; avatar?: string }[];\n  variant?: \"template\" | \"plain\";\n};\n\nexport function RankingList({ entries = [], items, variant = \"template\", className, ...props }: RankingListProps) {\n  return <ListGroup density=\"compact\" {...props} className={cn(\"w-full\", className)} items={items ?? entries.map((entry, index) => variant === \"plain\"\n    ? <div key={entry.id} className=\"flex justify-between gap-3 py-2\"><span>{entry.title}</span><span>{entry.value}</span></div>\n    : entry.avatar ? <div key={entry.id} className=\"flex items-center gap-3 py-2.5\"><span className=\"flex size-10 shrink-0 items-center justify-center rounded-lg bg-fg-violet-100 text-sm font-medium text-fg-violet\">{entry.avatar}</span><div className=\"min-w-0 flex-1\"><div className=\"truncate text-sm font-medium\">{entry.title}</div><div className=\"text-xs text-fg-grey-500\">{entry.subtitle}</div></div><span className=\"text-sm font-medium tabular-nums\">{entry.value}</span></div>\n      : <ChartListItem key={entry.id} title={entry.title} subtitle={entry.subtitle} value={entry.value} icon={entry.icon ?? BoxBoldDuotone} accent={entry.accent ?? (index % 2 ? \"blue\" : \"purple\")} />)} />;\n}\n"
     }
   ]
 }

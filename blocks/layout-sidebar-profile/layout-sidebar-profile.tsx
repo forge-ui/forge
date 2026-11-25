@@ -1,8 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { AppLayout, ProgressBar, StatusBadge, SurfaceCard, type AppLayoutMenuSection } from "@forge-ui-official/core";
-import { BookBoldDuotone, ChatDotsLinear, ClipboardListBoldDuotone, FolderWithFilesBoldDuotone, SettingsBoldDuotone, UserBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone } from "@forge-ui-official/core/icons";
+import { AppLayout, ProgressBar, StatusBadge, SurfaceCard, type AppLayoutMenuSection } from "@aideui/core";
+import { BookBoldDuotone, ChatDotsLinear, ClipboardListBoldDuotone, FolderWithFilesBoldDuotone, SettingsBoldDuotone, UserBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone } from "@aideui/core/icons";
 
 export const defaultSidebarMenu: AppLayoutMenuSection[] = [
   { label: "工作区", items: [

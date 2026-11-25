@@ -1,6 +1,6 @@
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import type { ReactNode } from "react";
-import { DescriptionItem, SurfaceCard, ToolbarKebabButton } from "@forge-ui-official/core";
+import { DescriptionItem, SurfaceCard, ToolbarKebabButton } from "@aideui/core";
 
 export function FinanceSurface({
   title,

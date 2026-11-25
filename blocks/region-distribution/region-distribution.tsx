@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { MapCard } from "@forge-ui-official/core";
+import { MapCard } from "@aideui/core";
 
 export type RegionDistributionProps = Omit<ComponentProps<typeof MapCard>, "regions"> & {
   regions?: (Omit<NonNullable<ComponentProps<typeof MapCard>["regions"]>[number], "flag"> & { flag?: string; countryCode?: string })[];

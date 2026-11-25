@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AppLayout, AppSwitcherDropdown, Button, ConfirmationDialog, Drawer, KebabMenu, Modal, PageHeader, TextField, type MotionPreference } from "@forge-ui-official/core";
+import { AppLayout, AppSwitcherDropdown, Button, ConfirmationDialog, Drawer, KebabMenu, Modal, PageHeader, TextField, type MotionPreference } from "@aideui/core";
 
 const AVATAR = "/images/protask/crm/john-hoegan-avatar.png";
 

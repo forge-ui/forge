@@ -1,4 +1,4 @@
-import type { AgentCodeDiffRow } from "@forge-ui-official/core";
+import type { AgentCodeDiffRow } from "@aideui/core";
 
 export type Project = { id: string; name: string; threadIds: string[] };
 

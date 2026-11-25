@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Avatar, Button, FullCalendar, Modal, SurfaceCard, cn, type CalendarEvent } from "@forge-ui-official/core";
-import { CalendarMinimalisticLinear, ClockCircleLinear, MapPointBoldDuotone, UsersGroupRoundedLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, FullCalendar, Modal, SurfaceCard, cn, type CalendarEvent } from "@aideui/core";
+import { CalendarMinimalisticLinear, ClockCircleLinear, MapPointBoldDuotone, UsersGroupRoundedLinear } from "@aideui/core/icons";
 
 export interface ScheduleEvent extends CalendarEvent {
   id: string;

@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { Button, IconButton, Panel, ReviewItem, SmoothLineChart, StatCard, StatusBadge, TabBar, cn, type StatusBadgeColor } from "@forge-ui-official/core";
-import { ChatRoundLinear, CheckCircleLinear, CopyLinear, PhoneCallingLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton, Panel, ReviewItem, SmoothLineChart, StatCard, StatusBadge, TabBar, cn, type StatusBadgeColor } from "@aideui/core";
+import { ChatRoundLinear, CheckCircleLinear, CopyLinear, PhoneCallingLinear } from "@aideui/core/icons";
 
 export interface CustomerProfileData {
   name: string;

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ButtonGroup, CellTextSubtitle, DataTable, DonutChart, IconButton, Modal, Panel, ProgressBar, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@forge-ui-official/core";
-import { EyeLinear } from "@forge-ui-official/core/icons";
+import { ButtonGroup, CellTextSubtitle, DataTable, DonutChart, IconButton, Modal, Panel, ProgressBar, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@aideui/core";
+import { EyeLinear } from "@aideui/core/icons";
 
 export type TransactionStatus = "success" | "pending" | "canceled";
 

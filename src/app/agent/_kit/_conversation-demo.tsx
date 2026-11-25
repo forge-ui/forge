@@ -13,7 +13,7 @@ import {
   Toggle,
   type AgentMessagePart,
   type MessageFeedback,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 type Turn = { id: number; role: "user" | "assistant"; text: string };
 

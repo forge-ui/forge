@@ -1,11 +1,11 @@
 "use client";
 
-import { CommentItem, ReviewItem } from "@forge-ui-official/core";
+import { CommentItem, ReviewItem } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { CommentItem, ReviewItem } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { CommentItem, ReviewItem } from "@aideui/core";`;
 
 const CODE_COMMENT_USAGE = `<CommentItem
   avatar="https://i.pravatar.cc/100?img=1"

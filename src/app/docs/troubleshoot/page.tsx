@@ -15,7 +15,7 @@ const ISSUES: Issue[] = [
       <>
         Tailwind 没扫到产物。确认 <code>globals.css</code> 里{" "}
         <code>@source</code> 的相对路径能从 css 文件定位到{" "}
-        <code>node_modules/@forge-ui-official/core/dist</code>。monorepo 里路径可能是{" "}
+        <code>node_modules/@aideui/core/dist</code>。monorepo 里路径可能是{" "}
         <code>../../../node_modules/...</code>。
       </>
     ),
@@ -24,13 +24,13 @@ const ISSUES: Issue[] = [
     id: "missing-styles-css",
     symptom: (
       <>
-        <code>Cannot find module &quot;@forge-ui-official/core/styles.css&quot;</code>
+        <code>Cannot find module &quot;@aideui/core/styles.css&quot;</code>
       </>
     ),
     fix: (
       <>
         装的是太旧的版本（<code>0.1.0</code> 之前）。跑{" "}
-        <code>pnpm update @forge-ui-official/core</code>，或检查 <code>package.json</code>{" "}
+        <code>pnpm update @aideui/core</code>，或检查 <code>package.json</code>{" "}
         里版本是不是 <code>^0.1.0</code>。
       </>
     ),

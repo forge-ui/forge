@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useState, useCallback } from "react";
 import {
   Breadcrumbs,
@@ -13,11 +13,11 @@ import {
   ConfirmationDialog,
   CloseIcon,
   CheckIcon,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   DangerTriangleLinear,
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 
 const categoryOptions = [
   { label: "Electronics", value: "electronics" },

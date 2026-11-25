@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useImperativeHandle, useRef, useState, type Ref } from "react";
-import { Avatar, Button, CommentItem, TextArea } from "@forge-ui-official/core";
-import { AltArrowDownLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, CommentItem, TextArea } from "@aideui/core";
+import { AltArrowDownLinear } from "@aideui/core/icons";
 import { validAttachments, type TaskComment, type TaskAttachment } from "./_data";
 import { useUnsavedChanges } from "./_use-unsaved-changes";
 import { ContextMenu } from "./_context-menu";

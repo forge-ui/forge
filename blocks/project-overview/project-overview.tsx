@@ -1,7 +1,7 @@
 "use client";
 
-import { Avatar, AvatarGroup, Panel, ProgressBar, StatusBadge, cn } from "@forge-ui-official/core";
-import { CheckCircleLinear, ClockCircleLinear } from "@forge-ui-official/core/icons";
+import { Avatar, AvatarGroup, Panel, ProgressBar, StatusBadge, cn } from "@aideui/core";
+import { CheckCircleLinear, ClockCircleLinear } from "@aideui/core/icons";
 
 export interface ProjectMember { id: string; name: string; role: string; avatar?: string }
 export interface ProjectMilestone { id: string; title: string; owner: string; dueDate: string; completed: boolean }

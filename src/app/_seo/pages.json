@@ -29,7 +29,7 @@
   },
   "/blocks": {
     "title": "shadcn 后台页面组件",
-    "description": "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。"
+    "description": "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @aideui/core，一条 shadcn 命令安装。"
   },
   "/cases": {
     "title": "跳转",
@@ -299,7 +299,7 @@
   },
   "/docs/changelog": {
     "title": "更新日志",
-    "description": "@forge-ui-official/core 各版本的变更。当前版本是 0.11.6。"
+    "description": "@aideui/core 各版本的变更。当前版本是 0.12.0。"
   },
   "/docs/check": {
     "title": "页面检查",

@@ -1,4 +1,4 @@
-import { BellBoldDuotone } from "@forge-ui-official/core/icons";
+import { BellBoldDuotone } from "@aideui/core/icons";
 import {
   NotificationBadge,
   Label,
@@ -13,7 +13,7 @@ import {
   type CircleIconVariant,
   type ArtisticIconColor,
   type ArtisticIconVariant,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const notificationColors: NotificationBadgeColor[] = [

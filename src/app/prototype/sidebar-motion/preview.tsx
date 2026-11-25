@@ -6,7 +6,7 @@ import {
   Button,
   type AppLayoutAccentColor,
   type AppLayoutMode,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { menuSections } from "./menu";
 
 const accents: { value: AppLayoutAccentColor; label: string }[] = [

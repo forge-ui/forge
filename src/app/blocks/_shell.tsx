@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ComponentType } from "react";
-import { AppLayout, Breadcrumbs, type AppLayoutMenuItem } from "@forge-ui-official/core";
+import { AppLayout, Breadcrumbs, type AppLayoutMenuItem } from "@aideui/core";
 import {
   BagBoldDuotone,
   BellBoldDuotone,
@@ -29,7 +29,7 @@ import {
   UsersGroupTwoRoundedBoldDuotone,
   WalletMoneyBoldDuotone,
   WidgetBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   BoltBoldDuotoneIcon,
   ChatRoundDotsBoldDuotoneIcon,

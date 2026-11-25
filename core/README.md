@@ -1,11 +1,11 @@
-# @forge-ui-official/core
+# @aideui/core
 
 Forge 的 React 组件包。面向后台业务页，基于 React 19 和 Tailwind v4。文档、组件展示和模板在 [forgeui.org](https://www.forgeui.org)，仓库说明见[根目录 README](https://github.com/forge-ui/forge)。
 
 ## 安装
 
 ```bash
-pnpm add @forge-ui-official/core
+pnpm add @aideui/core
 pnpm add -D tailwindcss @tailwindcss/postcss
 ```
 
@@ -13,17 +13,17 @@ Peer dependencies：React 19、React DOM 19、Next.js 15 或以上、Tailwind CS
 
 ```css
 @import "tailwindcss";
-@import "@forge-ui-official/core/styles.css";
+@import "@aideui/core/styles.css";
 
 /* app/globals.css 用第一行，src/app/globals.css 用第二行，只留一行 */
-@source "../node_modules/@forge-ui-official/core/dist";
-@source "../../node_modules/@forge-ui-official/core/dist";
+@source "../node_modules/@aideui/core/dist";
+@source "../../node_modules/@aideui/core/dist";
 ```
 
 字体：正文用 Inter，标题用 Plus Jakarta Sans。用 `@fontsource-variable/inter` 和 `@fontsource-variable/plus-jakarta-sans` 加载，再设置 `--font-inter` 和 `--font-plus-jakarta-sans`；没设置时退回系统字体。用过 `shadcn init` 的项目，把它写入的 `--font-sans: var(--font-sans)` 改成 `var(--font-inter)`。
 
 ```tsx
-import { Button } from "@forge-ui-official/core";
+import { Button } from "@aideui/core";
 ```
 
 ## 目录
@@ -54,7 +54,7 @@ src/index.ts           包导出入口
 `menuSections` 按数组顺序渲染任意多个侧栏分组，沿用菜单项的选中高亮、子菜单展开、收窄图标模式和移动端抽屉。空 `items` 的分组会跳过。`label` 省略或传空字符串时只渲染菜单项，不渲染标题行。
 
 ```tsx
-import { AppLayout, type AppLayoutMenuSection } from "@forge-ui-official/core";
+import { AppLayout, type AppLayoutMenuSection } from "@aideui/core";
 
 const menuSections: AppLayoutMenuSection[] = [
   { label: "工作区", items: [{ label: "总览", href: "/workspace" }] },
@@ -93,7 +93,7 @@ const menuSections: AppLayoutMenuSection[] = [
 默认 `500ms` 线性淡入。新到的内容平滑出现，已经显示的内容保持稳定。默认是纯文本。`format="markdown"` 渲染标题、列表、链接、表格和代码块。Markdown 由运行时依赖 `streamdown` 提供，样式在 `styles.css` 里。
 
 ```tsx
-import { StreamingAnswer } from "@forge-ui-official/core";
+import { StreamingAnswer } from "@aideui/core";
 
 <StreamingAnswer
   key={message.id}
@@ -229,7 +229,7 @@ AskAi 管理自己内置的请求生命周期。应用如果有外部的生成�
 `OtpInput`、`CalendarCard`、`LiquidTabs`、`AddMember` 从 core 根入口和同名 kebab-case 入口导出，沿用现有 Motion 依赖。样式在 `styles.css` 里，自动继承 Forge 主题。系统开启「减少动态效果」时停用位移和形变。示例：`/cases/motion#otpinput`。
 
 ```tsx
-import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-official/core";
+import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@aideui/core";
 
 <OtpInput length={6} verify={checkCodeOnServer} onSuccess={finishSignIn} />
 <CalendarCard value={date} onChange={setDate} locale="zh-CN" />
@@ -247,7 +247,7 @@ import { OtpInput, CalendarCard, LiquidTabs, AddMember } from "@forge-ui-officia
 ### CalendarCard 外观
 
 ```tsx
-import { CalendarCard, DropdownPanel, type ButtonColor } from "@forge-ui-official/core";
+import { CalendarCard, DropdownPanel, type ButtonColor } from "@aideui/core";
 
 // 保留原来的 300px 双层红色卡片，字体继承应用。
 <CalendarCard value={date} onChange={setDate} />

@@ -5,8 +5,8 @@ import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
 import { BubbleMenu } from "@tiptap/react/menus";
 import { Markdown } from "@tiptap/markdown";
 import StarterKit from "@tiptap/starter-kit";
-import { Button, IconButton, TextField } from "@forge-ui-official/core";
-import { CodeLinear, LinkLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton, TextField } from "@aideui/core";
+import { CodeLinear, LinkLinear } from "@aideui/core/icons";
 import { richTextDocument, safeRichLink, isLegacyRichText } from "./_markdown";
 
 export function MarkdownEditor({ value, onChange, label = "任务描述", autoFocus = false, compact = false }: { value: string; onChange: (value: string) => void; label?: string; autoFocus?: boolean; compact?: boolean }) {

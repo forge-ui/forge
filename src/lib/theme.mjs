@@ -134,7 +134,7 @@ export function themeCss(theme, reference) {
   if (!declarations.length) return `/* Forge 主题：${summary}。和默认主题相同，不需要额外 CSS。 */\n`;
   return [
     `/* Forge 主题：${summary}`,
-    `   放在 @import "@forge-ui-official/core/styles.css" 之后。:root:root 用来压过 core 的 :root。 */`,
+    `   放在 @import "@aideui/core/styles.css" 之后。:root:root 用来压过 core 的 :root。 */`,
     ":root:root {",
     ...declarations,
     "}",

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, Panel, StatusBadge, cn, type StatusBadgeColor } from "@forge-ui-official/core";
-import { RestartCircleLinear } from "@forge-ui-official/core/icons";
+import { Button, Panel, StatusBadge, cn, type StatusBadgeColor } from "@aideui/core";
+import { RestartCircleLinear } from "@aideui/core/icons";
 
 export type OrchestrationState = "done" | "running" | "waiting" | "failed";
 

@@ -35,7 +35,7 @@ export function scoreTask(workspace, taskId, compiled = typecheck(workspace)) {
   const files = sources(dir);
   const code = files.map(file => fs.readFileSync(file, "utf8")).join("\n");
   const findings = files.flatMap(file => checkCode(fs.readFileSync(file, "utf8"), path.relative(workspace, file)).findings);
-  const imported = new Set([...code.matchAll(/import\s*\{([^}]+)\}\s*from\s*["']@forge-ui-official\/core["']/g)].flatMap(match => match[1].split(",").map(part => part.replace(/\btype\b/, "").trim().split(/\s+as\s+/)[0]).filter(Boolean)));
+  const imported = new Set([...code.matchAll(/import\s*\{([^}]+)\}\s*from\s*["']@aideui\/core["']/g)].flatMap(match => match[1].split(",").map(part => part.replace(/\btype\b/, "").trim().split(/\s+as\s+/)[0]).filter(Boolean)));
   const pageErrors = compiled.errors.filter(line => line.includes(`app/${taskId}/`));
   const criteria = {
     page: fs.existsSync(path.join(dir, "page.tsx")),

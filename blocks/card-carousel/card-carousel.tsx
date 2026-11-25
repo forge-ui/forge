@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ComponentProps } from "react";
-import { CreditCard, PageDot } from "@forge-ui-official/core";
+import { CreditCard, PageDot } from "@aideui/core";
 
 export interface CardCarouselProps {
   cards: (ComponentProps<typeof CreditCard> & { id: string })[];

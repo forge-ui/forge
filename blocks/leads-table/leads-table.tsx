@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type Key, type ReactNode } from "react";
-import { Avatar, AvatarGroup, Button, ButtonGroup, CellImageText, CellMuted, CellText, DataTable, IconButton, Panel, PlusIcon, SmoothLineChart, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@forge-ui-official/core";
-import { CheckCircleBoldDuotone, CloseCircleBoldDuotone, DownloadMinimalisticLinear, EyeLinear, UsersGroupTwoRoundedBoldDuotone } from "@forge-ui-official/core/icons";
+import { Avatar, AvatarGroup, Button, ButtonGroup, CellImageText, CellMuted, CellText, DataTable, IconButton, Panel, PlusIcon, SmoothLineChart, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@aideui/core";
+import { CheckCircleBoldDuotone, CloseCircleBoldDuotone, DownloadMinimalisticLinear, EyeLinear, UsersGroupTwoRoundedBoldDuotone } from "@aideui/core/icons";
 
 export type LeadTemperature = "new" | "hot" | "warm" | "cold" | "won" | "lost";
 

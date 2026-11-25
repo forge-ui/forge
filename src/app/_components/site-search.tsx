@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { usePathname, useRouter } from "next/navigation";
-import { CommandSearch, type CommandSearchItem } from "@forge-ui-official/core";
-import { HamburgerMenuLinear, MagniferLinear } from "@forge-ui-official/core/icons";
+import { CommandSearch, type CommandSearchItem } from "@aideui/core";
+import { HamburgerMenuLinear, MagniferLinear } from "@aideui/core/icons";
 import { docsNavGroups } from "../docs/_nav";
 import { componentsNavGroups } from "../components/_nav";
 import { agentNavGroups } from "../agent/_nav";

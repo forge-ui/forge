@@ -29,14 +29,14 @@ import {
   type FinancialVariant,
   type EventCardColor,
   type ProfileCardState,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,
   CartLargeBoldDuotone,
   UsersGroupRoundedBoldDuotone,
   ShareLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const themes: CardTheme[] = [...ALL_CARD_THEMES];

@@ -8,16 +8,16 @@ import {
   UserBoldDuotone,
   UsersGroupTwoRoundedBoldDuotone,
   WidgetBoldDuotone,
-} from "@forge-ui-official/core/icons";
-import { AppLayout } from "@forge-ui-official/core";
-import { PageTitleToolbar } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { AppLayout } from "@aideui/core";
+import { PageTitleToolbar } from "@aideui/core";
 import type {
   AppLayoutMenuItem,
   PageTitleToolbarAction,
   PageTitleToolbarDateAction,
   PageTitleToolbarMenuAction,
   StatusBadgeColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { ProtaskLogoMark } from "../_shared/protask-logo";
 import { mainProfile, teamMeta, type CustomerStatus, type LeadStatus, type SaleStatus } from "./_data";
 

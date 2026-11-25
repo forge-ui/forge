@@ -14,7 +14,7 @@ import {
   ChatDotsLinear,
   FlagLinear,
   PinLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   TextField,
   TextArea,
@@ -50,7 +50,7 @@ import {
   type MediaItem,
   type MediaUploadColor,
   type IconSelectorColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 import { EyeBoldIcon, LetterBoldIcon, MagnifierBoldIcon } from "@solar-icons/react";
 

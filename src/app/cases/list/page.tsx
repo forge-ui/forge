@@ -9,7 +9,7 @@ import {
   NotificationBadge,
   type AccentColor,
   type ListGroupTab,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,
@@ -19,7 +19,7 @@ import {
   CartBoldDuotone,
   PenLinear,
   MenuDotsBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const groupColors = ["purple", "blue", "black"] as const satisfies readonly AccentColor[];

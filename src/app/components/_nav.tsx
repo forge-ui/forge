@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
-import { cn } from "@forge-ui-official/core";
+import { ArrowRightUpLinear } from "@aideui/core/icons";
+import { cn } from "@aideui/core";
 import { componentEntryGroups } from "../_components/kit-nav";
 
 type NavItem = { href: string; label: string; external?: boolean };

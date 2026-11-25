@@ -21,8 +21,8 @@ import {
   cn,
   type ComposerStatus,
   useToast,
-} from "@forge-ui-official/core";
-import { CodeLinear, DocumentTextLinear, FolderLinear, LightbulbLinear, PaperclipLinear, ShareLinear, SidebarMinimalisticLinear, StarsLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { CodeLinear, DocumentTextLinear, FolderLinear, LightbulbLinear, PaperclipLinear, ShareLinear, SidebarMinimalisticLinear, StarsLinear } from "@aideui/core/icons";
 import { IconAction, useSidebar } from "./_shell";
 import { FILE_CHANGES, MODELS, PROJECTS, REPLY, TERMINAL_LINES, THREADS, type Thread, type Turn } from "./_data";
 

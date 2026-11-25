@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
-import { Breadcrumbs, Button, ConfirmationDialog, Modal, PageTitleToolbar, StatusBadge } from "@forge-ui-official/core";
-import { DocumentTextLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, ConfirmationDialog, Modal, PageTitleToolbar, StatusBadge } from "@aideui/core";
+import { DocumentTextLinear } from "@aideui/core/icons";
 
 export type ArtifactCategory = "document" | "code" | "data" | "image";
 

@@ -1,20 +1,20 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useCallback } from "react";
 import { useParams } from "next/navigation";
 import {
   Breadcrumbs,
   Button,
   IconButton,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   PlainLinear,
   DownloadMinimalisticLinear,
   PrinterLinear,
   PenLinear,
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 
 interface InvoiceLineItem {
   key: string;

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   TrashBinMinimalisticLinear,
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Breadcrumbs,
   Button,
@@ -20,7 +20,7 @@ import {
   CloseIcon,
   CheckIcon,
   Grid,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 export default function AddProductPage() {
   const router = useRouter();

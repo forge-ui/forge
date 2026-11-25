@@ -1,4 +1,4 @@
-export { Panel, InfoRow } from "@forge-ui-official/core";
+export { Panel, InfoRow } from "@aideui/core";
 export { Modal } from "./modal";
 export { MockFilterPanel } from "./mock-filter";
 export {

@@ -4,7 +4,7 @@
 //   node evals/run.mjs --agent claude --conditions baseline,forge --tasks orders-list,login
 //   node evals/run.mjs --report evals/results/<run>      # rebuild report.md from results.json
 //
-// Both conditions get a Next.js project with @forge-ui-official/core installed. "forge" additionally runs
+// Both conditions get a Next.js project with @aideui/core installed. "forge" additionally runs
 // setup.sh (project scope: forge-skill, DESIGN.md, AGENTS.md pointer) and connects the Forge MCP server.
 
 import { execFileSync, spawnSync } from "node:child_process";
@@ -38,7 +38,7 @@ function prompt(task) {
   return [
     `在这个 Next.js 项目里新建页面 app/${task.id}/page.tsx（需要的话可以在 app/${task.id}/ 下加其他文件）。`,
     `需求：${task.prompt}`,
-    "项目已经安装 @forge-ui-official/core。用示例数据即可，不需要接口。",
+    "项目已经安装 @aideui/core。用示例数据即可，不需要接口。",
     "只改 app/" + task.id + "/ 目录。完成后运行 pnpm typecheck，修到没有错误为止。",
   ].join("\n");
 }
@@ -46,7 +46,7 @@ function prompt(task) {
 function prepareBase() {
   // Outside the repo so pnpm does not treat it as a workspace package.
   const base = path.join(os.homedir(), ".cache/forge-evals/base");
-  if (!fs.existsSync(path.join(base, "node_modules/@forge-ui-official/core"))) {
+  if (!fs.existsSync(path.join(base, "node_modules/@aideui/core"))) {
     fs.rmSync(base, { recursive: true, force: true });
     fs.mkdirSync(path.dirname(base), { recursive: true });
     fs.cpSync(path.join(here, "fixture"), base, { recursive: true });
@@ -88,7 +88,7 @@ function summarize(results) {
     `# Forge 页面生成评测`,
     "",
     `- 编码助手：${results[0]?.agent ?? "-"}；Forge core：${results[0]?.coreVersion ?? "-"}；日期：${results[0]?.date ?? "-"}`,
-    "- baseline：项目已装 @forge-ui-official/core，没有 Forge 的 Skill、MCP 和 DESIGN.md；forge：额外运行 setup.sh 并接入 MCP。",
+    "- baseline：项目已装 @aideui/core，没有 Forge 的 Skill、MCP 和 DESIGN.md；forge：额外运行 setup.sh 并接入 MCP。",
     "- 合格 = 页面存在、类型检查通过、从 core 引入组件、没有引入其他 UI 库、forge-check 无错误、用到任务要求的组件，六项全部通过。",
     "",
     "| 条件 | 题数 | 合格率 | 平均分 | 编译通过 | 用 core 组件 | 检查无错误 | 用对组件 | 平均警告 | 总耗时（分钟） |",
@@ -130,7 +130,7 @@ const conditions = String(args.conditions ?? "baseline,forge").split(",");
 const selected = args.tasks ? tasks.filter(task => String(args.tasks).split(",").includes(task.id)) : tasks;
 const out = path.resolve(args.out ?? path.join(here, "results", new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-")));
 const base = prepareBase();
-const coreVersion = JSON.parse(fs.readFileSync(path.join(base, "node_modules/@forge-ui-official/core/package.json"), "utf8")).version;
+const coreVersion = JSON.parse(fs.readFileSync(path.join(base, "node_modules/@aideui/core/package.json"), "utf8")).version;
 fs.mkdirSync(out, { recursive: true });
 // Re-running with the same --out resumes: finished condition/task pairs are kept and skipped.
 const resultsFile = path.join(out, "results.json");

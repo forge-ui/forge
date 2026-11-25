@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { EventCard, FullCalendar, Panel, type PanelProps } from "@forge-ui-official/core";
+import { EventCard, FullCalendar, Panel, type PanelProps } from "@aideui/core";
 
 export type ScheduleCardProps = Omit<PanelProps, "children"> & {
   children?: PanelProps["children"];

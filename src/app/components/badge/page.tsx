@@ -3,15 +3,15 @@ import {
   Label,
   CircleIcon,
   ArtisticIcon,
-} from "@forge-ui-official/core";
-import { BellBoldDuotone } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { BellBoldDuotone } from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { NotificationBadge, Label, CircleIcon, ArtisticIcon } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { NotificationBadge, Label, CircleIcon, ArtisticIcon } from "@aideui/core";`;
 
 // NotificationBadge
 const CODE_NB_USAGE = `<NotificationBadge>99+</NotificationBadge>
@@ -59,7 +59,7 @@ const CODE_CIRCLE_SIZES = `<CircleIcon size="lg"><BellBoldDuotone size={24} /></
 <CircleIcon size="xs"><BellBoldDuotone size={12} /></CircleIcon>`;
 
 const CIRCLE_PROPS: ApiTableRow[] = [
-  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 @forge-ui-official/core/icons BoldDuotone。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 @aideui/core/icons BoldDuotone。" },
   { attr: "color", type: "'purple' | 'blue' | 'red' | 'orange' | 'green' | 'yellow' | 'cyan' | 'black'", defaultValue: "'blue'", description: "主色，共 8 种。" },
   { attr: "variant", type: "'solid' | 'light' | 'neutral'", defaultValue: "'solid'", description: "实底 / 浅底 / 中性灰底。" },
   { attr: "size", type: "'lg' | 'md' | 'sm' | 'xs'", defaultValue: "'md'", description: "圆形直径，分别对应 40/32/28/20 px。" },
@@ -83,7 +83,7 @@ const CODE_CIRCLE_ALL = `${CODE_CIRCLE_SIZES}
 ${CODE_CIRCLE_VARIANTS}`;
 
 const ART_PROPS: ApiTableRow[] = [
-  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 @forge-ui-official/core/icons 24px BoldDuotone。" },
+  { attr: "children", type: "ReactNode", defaultValue: "—", description: "内嵌图标，推荐 @aideui/core/icons 24px BoldDuotone。" },
   { attr: "color", type: "'black' | 'blue' | 'purple' | 'green' | 'red' | 'yellow' | 'cyan'", defaultValue: "'blue'", description: "主色，共 7 种。" },
   { attr: "variant", type: "'gradient' | 'orbs'", defaultValue: "'gradient'", description: "渐变底 或 浮光球装饰。" },
 ];

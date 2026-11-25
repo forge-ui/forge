@@ -27,8 +27,8 @@ import {
   cn,
   type AgentFlowKind,
   type PlanStep,
-} from "@forge-ui-official/core";
-import { AltArrowRightLinear, CheckCircleLinear, DangerTriangleLinear, InfoCircleLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { AltArrowRightLinear, CheckCircleLinear, DangerTriangleLinear, InfoCircleLinear } from "@aideui/core/icons";
 import type { UiSpec } from "./schema";
 
 /**

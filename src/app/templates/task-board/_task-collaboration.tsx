@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { Button, ConfirmationDialog, Reasoning, SelectOption, TextArea } from "@forge-ui-official/core";
+import { Button, ConfirmationDialog, Reasoning, SelectOption, TextArea } from "@aideui/core";
 import { collaborationStates, transitionCollaboration, type TaskCollaboration } from "./_collaboration";
 import { MarkdownContent } from "./_markdown";
 import { useUnsavedChanges } from "./_use-unsaved-changes";

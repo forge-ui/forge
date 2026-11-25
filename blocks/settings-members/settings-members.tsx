@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type Key } from "react";
-import { Button, ButtonGroup, CellImageText, DataTable, Modal, Panel, PlusIcon, ProgressBar, SelectOption, TabBar, TextField, ToolbarSearchInput, cn, type ColumnDef } from "@forge-ui-official/core";
+import { Button, ButtonGroup, CellImageText, DataTable, Modal, Panel, PlusIcon, ProgressBar, SelectOption, TabBar, TextField, ToolbarSearchInput, cn, type ColumnDef } from "@aideui/core";
 
 export type MemberRole = "owner" | "admin" | "member" | "viewer";
 

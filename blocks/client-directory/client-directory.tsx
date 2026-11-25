@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type Key } from "react";
-import { Avatar, Button, ButtonGroup, CellImageText, CellMuted, CellText, DataTable, IconButton, Panel, PlusIcon, ToolbarSearchInput, cn, type ColumnDef } from "@forge-ui-official/core";
-import { EyeLinear, LetterLinear, PhoneLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, ButtonGroup, CellImageText, CellMuted, CellText, DataTable, IconButton, Panel, PlusIcon, ToolbarSearchInput, cn, type ColumnDef } from "@aideui/core";
+import { EyeLinear, LetterLinear, PhoneLinear } from "@aideui/core/icons";
 
 export interface ClientRecord {
   id: string;

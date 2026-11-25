@@ -4,7 +4,7 @@ import { PagedDataTable } from "../../../_shared/paged-data-table";
 import { ScheduleCard, GanttSchedule } from "@/app/templates/_shared/schedule-card";
 import { MemberList } from "@/app/templates/_shared/member-list";
 
-import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@forge-ui-official/core";
+import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -24,7 +24,7 @@ import {
   AltArrowRightLinear,
   PhoneCallingLinear,
   LetterLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   StatCard,
@@ -40,12 +40,12 @@ import {
   AvatarGroup,
   PlusIcon,
   IconButton,
-  } from "@forge-ui-official/core";
+  } from "@aideui/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { mainProfile, teamMeta, projects, teamMembers, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip, type ProjectRow } from "../_shared";
 import { asset } from "@/lib/asset";
 

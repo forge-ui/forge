@@ -1,11 +1,11 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Breadcrumbs,
   Button,
@@ -15,7 +15,7 @@ import {
   ConfirmationDialog,
   CloseIcon,
   CheckIcon,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 export default function AddCategoryPage() {
   const router = useRouter();

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TabBar, ToastProvider, useToast } from "@forge-ui-official/core";
+import { TabBar, ToastProvider, useToast } from "@aideui/core";
 import { SettingsProfile, defaultProfileValue } from "@/blocks/settings-profile/settings-profile";
 import { SettingsMembers } from "@/blocks/settings-members/settings-members";
 import { SettingsNotifications } from "@/blocks/settings-notifications/settings-notifications";

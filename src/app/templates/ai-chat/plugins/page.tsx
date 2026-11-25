@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, KebabMenu, Modal, TextField, cn, useToast } from "@forge-ui-official/core";
-import { AddCircleLinear, AltArrowDownLinear, AltArrowRightLinear, MagniferLinear, SidebarMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Button, KebabMenu, Modal, TextField, cn, useToast } from "@aideui/core";
+import { AddCircleLinear, AltArrowDownLinear, AltArrowRightLinear, MagniferLinear, SidebarMinimalisticLinear } from "@aideui/core/icons";
 import { SettingsIcon } from "@solar-icons/react/linear/settings";
 import { IconAction, useSidebar } from "../_shell";
 import { PLUGINS, type Plugin, type PluginSection } from "../_data";

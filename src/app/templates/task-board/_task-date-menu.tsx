@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { Button, Datepicker, DropdownPanel, MenuItem, SelectOption, TextField } from "@forge-ui-official/core";
-import { CalendarLinear } from "@forge-ui-official/core/icons";
+import { Button, Datepicker, DropdownPanel, MenuItem, SelectOption, TextField } from "@aideui/core";
+import { CalendarLinear } from "@aideui/core/icons";
 import { day, type Task } from "./_data";
 
 export type SchedulePatch = Pick<Task, "date" | "time" | "repeat" | "repeatAnchor" | "repeatRule">;

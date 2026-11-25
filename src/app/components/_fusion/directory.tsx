@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button, SelectOption, TextField } from "@forge-ui-official/core";
-import { RestartCircleLinear } from "@forge-ui-official/core/icons";
+import { Button, SelectOption, TextField } from "@aideui/core";
+import { RestartCircleLinear } from "@aideui/core/icons";
 import { fusionFamilies, fusionItems, officialCategory, officialHref } from "./registry";
 import { VisibleExample } from "./family-examples";
 import type { FusionSettings } from "./types";

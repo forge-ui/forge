@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, type FormEvent } from "react";
-import { Button, Modal, Panel, PlusIcon, SelectOption, StatusBadge, TabBar, TextArea, cn, type StatusBadgeColor } from "@forge-ui-official/core";
-import { CalendarBoldDuotone, CheckCircleBoldDuotone, DocumentTextBoldDuotone, PenNewSquareBoldDuotone, PhoneBoldDuotone } from "@forge-ui-official/core/icons";
+import { Button, Modal, Panel, PlusIcon, SelectOption, StatusBadge, TabBar, TextArea, cn, type StatusBadgeColor } from "@aideui/core";
+import { CalendarBoldDuotone, CheckCircleBoldDuotone, DocumentTextBoldDuotone, PenNewSquareBoldDuotone, PhoneBoldDuotone } from "@aideui/core/icons";
 
 export type LeadActivityKind = "call" | "meeting" | "note" | "status";
 

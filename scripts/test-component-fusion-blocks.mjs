@@ -21,7 +21,7 @@ await build({
     export { RegionDistribution } from './blocks/region-distribution/region-distribution';
     export { DashboardHeader } from './src/app/templates/_shared/dashboard-header';`, resolveDir: root, loader: "tsx" },
   outfile: resolve(temporary, "blocks.mjs"), bundle: true, packages: "external", platform: "node", format: "esm", jsx: "automatic", logLevel: "silent",
-  alias: { "@forge-ui-official/core": resolve(root, "core/src/index.ts"), "@forge-ui-official/core/icons": resolve(root, "core/src/icons.tsx") },
+  alias: { "@aideui/core": resolve(root, "core/src/index.ts"), "@aideui/core/icons": resolve(root, "core/src/icons.tsx") },
 });
 const blocks = await import(pathToFileURL(resolve(temporary, "blocks.mjs")));
 after(() => rmSync(temporary, { recursive: true, force: true }));

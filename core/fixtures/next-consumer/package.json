@@ -6,7 +6,7 @@
     "build": "next build"
   },
   "dependencies": {
-    "@forge-ui-official/core": "0.0.0-tarball",
+    "@aideui/core": "0.0.0-tarball",
     "next": "16.3.5",
     "react": "19.3.0",
     "react-dom": "19.3.0",

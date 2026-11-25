@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { DataTable, Panel, SmoothLineChart, StatusBadge, TabBar, cn, type ColumnDef, type StatusBadgeColor } from "@forge-ui-official/core";
+import { DataTable, Panel, SmoothLineChart, StatusBadge, TabBar, cn, type ColumnDef, type StatusBadgeColor } from "@aideui/core";
 
 export interface MemberProject {
   id: string;

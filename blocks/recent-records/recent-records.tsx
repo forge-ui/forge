@@ -1,6 +1,6 @@
 "use client";
 
-import { DataTable, Panel, type ColumnDef, type PanelProps } from "@forge-ui-official/core";
+import { DataTable, Panel, type ColumnDef, type PanelProps } from "@aideui/core";
 
 export type RecentRecordsProps<RecordType> = Omit<PanelProps, "children"> & {
   children?: PanelProps["children"];

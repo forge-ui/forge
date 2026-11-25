@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Breadcrumbs, Button, ConfirmationDialog, DataTable, Modal, PageTitleToolbar, PlusIcon, RadioWithLabel, SelectOption, StatusBadge, TextField, Toolbar, ToolbarSearchInput, type ColumnDef } from "@forge-ui-official/core";
+import { Breadcrumbs, Button, ConfirmationDialog, DataTable, Modal, PageTitleToolbar, PlusIcon, RadioWithLabel, SelectOption, StatusBadge, TextField, Toolbar, ToolbarSearchInput, type ColumnDef } from "@aideui/core";
 
 export interface Department {
   id: string;

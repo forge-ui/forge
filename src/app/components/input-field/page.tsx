@@ -25,7 +25,7 @@ import {
   RadioGroup,
   CheckboxGroup,
   Button,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   HomeBoldDuotone,
   SettingsBoldDuotone,
@@ -36,7 +36,7 @@ import {
   StarBoldDuotone,
   HeartBoldDuotone,
   
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { FormKitExamples } from "../_admin-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
@@ -194,7 +194,7 @@ const CODE_IMPORT = `import {
   IconSelector, IconPicker, ColorPicker,
   Combobox, Autocomplete, NumberField, Slider,
   Form, FormField, Fieldset, RadioGroup, CheckboxGroup,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_TF_COLORS = `<TextField color="purple" state="focus" placeholder="紫色聚焦" />
 <TextField color="blue" state="focus" placeholder="蓝色聚焦" />
@@ -348,7 +348,7 @@ const COLORPICKER_PROPS: ApiTableRow[] = [
 ];
 
 const ICONPICKER_PROPS: ApiTableRow[] = [
-  { attr: "icons", type: "ReactNode[]", defaultValue: "—", description: "图标节点列表，用 @forge-ui-official/core/icons 实例。" },
+  { attr: "icons", type: "ReactNode[]", defaultValue: "—", description: "图标节点列表，用 @aideui/core/icons 实例。" },
   { attr: "selectedIndex", type: "number", defaultValue: "—", description: "当前选中下标。" },
   { attr: "onChange", type: "(index: number) => void", defaultValue: "—", description: "切换回调。" },
   { attr: "color", type: "'purple' | 'blue' | 'black'", defaultValue: "'blue'", description: "选中态主色。" },

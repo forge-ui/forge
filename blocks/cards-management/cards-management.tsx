@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type ComponentProps } from "react";
-import { Button, CreditCard, Panel, PlusIcon, ProgressBar, StatusBadge, cn } from "@forge-ui-official/core";
-import { LockKeyholeLinear } from "@forge-ui-official/core/icons";
+import { Button, CreditCard, Panel, PlusIcon, ProgressBar, StatusBadge, cn } from "@aideui/core";
+import { LockKeyholeLinear } from "@aideui/core/icons";
 
 export interface ManagedCard {
   id: string;

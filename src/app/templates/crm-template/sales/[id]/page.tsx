@@ -1,10 +1,10 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "@forge-ui-official/core/icons";
-import { ProgressBar, StatusBadge } from "@forge-ui-official/core";
+import { ChartSquareLinear, Pen2Linear, UserCheckLinear, WalletMoneyLinear } from "@aideui/core/icons";
+import { ProgressBar, StatusBadge } from "@aideui/core";
 import { CrmSurface, DetailLine } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell, saleStatusColor } from "../../_chrome";
 import { sales } from "../../_data";

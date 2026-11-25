@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AskAi, Button, ChatInputBar, type ChatInputBarQuickAction } from "@forge-ui-official/core";
+import { AskAi, Button, ChatInputBar, type ChatInputBarQuickAction } from "@aideui/core";
 import { Section } from "../../cases/_shared";
 import { demoSources } from "./_sources";
 import { ChatInputBarGenerationDemo } from "./_generation-demo";

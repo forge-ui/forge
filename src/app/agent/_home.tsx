@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { cn, TabBar } from "@forge-ui-official/core";
-import { ArrowRightLinear, ChartSquareLinear, LockKeyholeLinear, PenLinear, StarsLinear, WidgetLinear } from "@forge-ui-official/core/icons";
+import { cn, TabBar } from "@aideui/core";
+import { ArrowRightLinear, ChartSquareLinear, LockKeyholeLinear, PenLinear, StarsLinear, WidgetLinear } from "@aideui/core/icons";
 import { CodeBlock } from "../components/_api-table";
 import { AGENT_DEMOS } from "./_kit/_agent-entries";
 import { GALLERY_PREVIEWS } from "./_kit/_gallery-previews";
@@ -11,11 +11,11 @@ import { AGENT_ENTRIES, AGENT_GROUPS, AGENT_PURPOSE, type AgentEntryMeta } from 
 import { HeroRun } from "./scenarios/_scenarios";
 
 const SETUP = [
-  { title: "装包", code: `pnpm add @forge-ui-official/agent zod` },
+  { title: "装包", code: `pnpm add @aideui/agent zod` },
   {
     title: "服务端接口",
     code: `// app/api/agent/route.ts
-import { createAgentHandler, createOpenAICompatible } from "@forge-ui-official/agent/server";
+import { createAgentHandler, createOpenAICompatible } from "@aideui/agent/server";
 
 const provider = createOpenAICompatible({ name: "my-agent", baseURL: process.env.AGENT_BASE_URL!, apiKey: process.env.AGENT_API_KEY! });
 
@@ -24,7 +24,7 @@ export const POST = createAgentHandler({ model: provider("qwen3.8-flash"), instr
   {
     title: "放上助手",
     code: `"use client";
-import { ForgeAgent } from "@forge-ui-official/agent";
+import { ForgeAgent } from "@aideui/agent";
 
 export function Assistant() {
   return <ForgeAgent endpoint="/api/agent" title="问助手" operate />;

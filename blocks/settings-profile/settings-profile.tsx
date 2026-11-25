@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, type FormEvent, type ReactNode } from "react";
-import { Button, SelectOption, TextArea, TextField, cn } from "@forge-ui-official/core";
-import { CloudUploadLinear } from "@forge-ui-official/core/icons";
+import { Button, SelectOption, TextArea, TextField, cn } from "@aideui/core";
+import { CloudUploadLinear } from "@aideui/core/icons";
 
 export interface ProfileValue {
   name: string;

@@ -1,4 +1,4 @@
-import type { AppLayoutMenuSection } from "@forge-ui-official/core";
+import type { AppLayoutMenuSection } from "@aideui/core";
 import {
   ChartSquareBoldDuotone,
   FolderBoldDuotone,
@@ -7,7 +7,7 @@ import {
   SettingsBoldDuotone,
   ShieldCheckBold,
   UsersGroupRoundedBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 
 export const previewRoot = "/prototype/sidebar-motion";
 

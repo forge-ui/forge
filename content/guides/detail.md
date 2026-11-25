@@ -11,7 +11,7 @@ Panel、Modal、Drawer；activity-feed。Blocks 是复制到项目的源码，�
 ## 示例代码
 
 ```tsx
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export function Details() {
   return <Panel><h2>订单详情</h2><p>订单编号：SO-128</p></Panel>;
@@ -25,7 +25,7 @@ export function Details() {
 ```tsx
 "use client";
 
-import { Modal } from "@forge-ui-official/core";
+import { Modal } from "@aideui/core";
 
 export function DetailDialog({ open, onOpenChange }: {
   open: boolean;

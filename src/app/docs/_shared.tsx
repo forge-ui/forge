@@ -1,6 +1,6 @@
 import { type ReactNode } from "react";
 import Link from "next/link";
-import { type BreadcrumbItem } from "@forge-ui-official/core";
+import { type BreadcrumbItem } from "@aideui/core";
 import { CopyPageMenu } from "../_components/copy-page-menu";
 import { DocsToc, type TocItem } from "./_toc";
 

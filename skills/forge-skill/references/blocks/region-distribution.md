@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：MapCard。
+依赖：core ^0.12.0；组件：MapCard。
 
 ## 最小可用示例
 
@@ -22,10 +22,10 @@ export default function Example() {
 |---|---|---|
 | title | 否 | `string \| undefined` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
+| color | 否 | `import("@aideui/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
-| variant | 否 | `import("@forge-ui-official/core").MapVariant \| undefined` |
-| highlights | 否 | `import("@forge-ui-official/core").MapContinent[] \| undefined` |
+| variant | 否 | `import("@aideui/core").MapVariant \| undefined` |
+| highlights | 否 | `import("@aideui/core").MapContinent[] \| undefined` |
 | onMenuClick | 否 | `(() => void) \| undefined` |
-| width | 否 | `import("@forge-ui-official/core").CardWidth \| undefined` |
-| regions | 否 | `(Omit<import("@forge-ui-official/core").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |
+| width | 否 | `import("@aideui/core").CardWidth \| undefined` |
+| regions | 否 | `(Omit<import("@aideui/core").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |

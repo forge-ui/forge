@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AddCircleLinear } from "@forge-ui-official/core/icons";
+import { AddCircleLinear } from "@aideui/core/icons";
 import {
   ToolbarSearchInput,
   ToolbarSelectDropdown,
@@ -14,7 +14,7 @@ import {
   Button,
   type ToolbarColor,
   type ButtonColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 const SELECT_OPTIONS = [
   { label: "All", value: "all" },

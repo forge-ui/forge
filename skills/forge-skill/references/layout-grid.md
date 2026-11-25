@@ -1,6 +1,6 @@
 # Forge layout grid
 
-Read this before choosing page columns or adapting a page to a narrow viewport. APIs are exported from `@forge-ui-official/core`; see `/components/grid` and `/cases/grid` for runnable examples. Existing consumers need a Core version that actually exports Grid/GridItem; do not invent imports against an older installed package.
+Read this before choosing page columns or adapting a page to a narrow viewport. APIs are exported from `@aideui/core`; see `/components/grid` and `/cases/grid` for runnable examples. Existing consumers need a Core version that actually exports Grid/GridItem; do not invent imports against an older installed package.
 
 ## Template first
 
@@ -36,7 +36,7 @@ Both components accept normal div attributes, className, style and ref and work 
 ## Composition
 
 ```tsx
-import { Grid, GridItem, StatCard } from "@forge-ui-official/core";
+import { Grid, GridItem, StatCard } from "@aideui/core";
 
 // Plain direct children auto-place into one cell each.
 <Grid columns={{ base: 1, sm: 2, lg: 4 }} gap={16}>

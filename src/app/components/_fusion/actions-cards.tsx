@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { Avatar, Button, IconButton, SurfaceCard } from "@forge-ui-official/core";
-import { ArrowRightLinear, BookmarkLinear, CheckCircleLinear, UserPlusLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, IconButton, SurfaceCard } from "@aideui/core";
+import { ArrowRightLinear, BookmarkLinear, CheckCircleLinear, UserPlusLinear } from "@aideui/core/icons";
 import type { FusionExampleProps } from "./types";
 import { ActionHint, ActionStage } from "./actions-shared";
 

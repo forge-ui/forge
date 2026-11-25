@@ -2,7 +2,7 @@
 
 import { PagedDataTable } from "../../../_shared/paged-data-table";
 
-import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@forge-ui-official/core";
+import { AppLayout, ChartHeader, GroupedBarChart, ChartMetricRow, Panel } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -23,7 +23,7 @@ import {
   VideocameraRecordLinear,
   UsersGroupRoundedLinear,
   DocumentTextLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   BarChartStatCard,
@@ -36,12 +36,12 @@ import {
   Label,
   KebabMenu,
     ActivityCard,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { mainProfile, teamMeta, leads, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip, type LeadRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

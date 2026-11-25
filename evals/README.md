@@ -2,7 +2,7 @@
 
 同样 20 道后台页面需求，比较编码助手在两种条件下写出的页面：
 
-- **baseline**：Next.js 项目已装 `@forge-ui-official/core`，没有 Forge 的 Skill、MCP、DESIGN.md。
+- **baseline**：Next.js 项目已装 `@aideui/core`，没有 Forge 的 Skill、MCP、DESIGN.md。
 - **forge**：在 baseline 上运行 `setup.sh --scope project --design`，并接入 Forge MCP 服务器。
 
 题目在 [`tasks.json`](tasks.json)，每题写一个 `app/<id>/page.tsx`。
@@ -15,7 +15,7 @@
 |---|---|
 | page | 生成了 `app/<id>/page.tsx` |
 | compiles | 该题目录内没有 TypeScript 错误 |
-| usesCore | 从 `@forge-ui-official/core` 引入了组件 |
+| usesCore | 从 `@aideui/core` 引入了组件 |
 | noForeignUi | 没有引入其他 UI 或图标库 |
 | checkClean | [`forge-check`](../public/forge-check.mjs) 没有错误 |
 | expectedComponents | 用到了题目要求的组件（每组任选其一） |

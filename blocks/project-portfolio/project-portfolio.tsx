@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
-import { Avatar, Breadcrumbs, Button, ButtonGroup, CardIconChip, CellMuted, CellProgressBar, CellText, CellTextSubtitle, ConfirmationDialog, DataTable, DonutChart, Grid, GridItem, IconButton, KebabMenu, PageTitleToolbar, ProgressBar, StatusBadge, SurfaceCard, Toolbar, ToolbarPillTabs, ToolbarSearchInput, ToolbarSelectDropdown, cardThemes, type ColumnDef } from "@forge-ui-official/core";
-import { ArrowRightLinear, CalendarMinimalisticLinear, MagniferLinear, PenLinear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Breadcrumbs, Button, ButtonGroup, CardIconChip, CellMuted, CellProgressBar, CellText, CellTextSubtitle, ConfirmationDialog, DataTable, DonutChart, Grid, GridItem, IconButton, KebabMenu, PageTitleToolbar, ProgressBar, StatusBadge, SurfaceCard, Toolbar, ToolbarPillTabs, ToolbarSearchInput, ToolbarSelectDropdown, cardThemes, type ColumnDef } from "@aideui/core";
+import { ArrowRightLinear, CalendarMinimalisticLinear, MagniferLinear, PenLinear, TrashBinMinimalisticLinear } from "@aideui/core/icons";
 
 export type ProjectStatus = "planned" | "in_progress" | "paused" | "completed" | "cancelled";
 export type ProjectPriority = "urgent" | "high" | "medium" | "low" | "none";

@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
-import { Button } from "@forge-ui-official/core";
-import { DownloadLinear } from "@forge-ui-official/core/icons";
+import { Button } from "@aideui/core";
+import { DownloadLinear } from "@aideui/core/icons";
 
 export interface DashboardHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
   title?: ReactNode;

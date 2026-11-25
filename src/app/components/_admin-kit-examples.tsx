@@ -26,8 +26,8 @@ import {
   Transfer,
   Tree,
   type TreeNode,
-} from "@forge-ui-official/core";
-import { FolderLinear, UsersGroupRoundedLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { FolderLinear, UsersGroupRoundedLinear } from "@aideui/core/icons";
 import { Section } from "./_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "./_doc-blocks";
 import type { ApiTableRow } from "./_api-table";

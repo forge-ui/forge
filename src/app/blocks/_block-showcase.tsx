@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { ButtonGroup } from "@forge-ui-official/core";
+import { ButtonGroup } from "@aideui/core";
 import { PreviewFrame } from "./_preview-frame";
 import { CopyButton } from "./_copy-button";
 

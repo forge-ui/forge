@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { cn } from "@forge-ui-official/core";
-import { ArrowRightUpLinear } from "@forge-ui-official/core/icons";
+import { cn } from "@aideui/core";
+import { ArrowRightUpLinear } from "@aideui/core/icons";
 import { AGENT_ENTRIES, AGENT_GROUPS } from "./_kit/_agent-meta";
 
 type NavItem = { href: string; label: string; external?: boolean };

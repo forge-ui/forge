@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { Button, Panel, StatusBadge, TabBar, cn } from "@forge-ui-official/core";
-import { PenNewSquareLinear, StarBold } from "@forge-ui-official/core/icons";
+import { Button, Panel, StatusBadge, TabBar, cn } from "@aideui/core";
+import { PenNewSquareLinear, StarBold } from "@aideui/core/icons";
 
 export interface ProductDetailData {
   name: string;

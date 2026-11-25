@@ -1,5 +1,5 @@
 // case 页通用展示框 — 仅排版用，不属于 UI Kit
-// case 内容必须从 @forge-ui-official/core import，禁止在 Section/SubSection 里手搓 UI 元素
+// case 内容必须从 @aideui/core import，禁止在 Section/SubSection 里手搓 UI 元素
 //
 // 两类排版 helper，各司其职：
 //   · Section / SubSection / Labeled — 小组件矩阵（button/tag/badge 的 color × size 小 demo）
@@ -13,7 +13,7 @@
 
 import { type ReactNode } from "react";
 import { componentLabel } from "./_labels";
-import { cn } from "@forge-ui-official/core";
+import { cn } from "@aideui/core";
 import { CopyPageMenu } from "../_components/copy-page-menu";
 
 export function slugify(text: string): string {

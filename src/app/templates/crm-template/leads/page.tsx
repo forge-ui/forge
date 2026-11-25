@@ -8,7 +8,7 @@ import {
   CloseCircleBoldDuotone,
   CloudDownloadLinear,
   UsersGroupTwoRoundedBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Avatar,
   AvatarGroup,
@@ -23,8 +23,8 @@ import {
   ToolbarDatepicker,
   ToolbarSearchInput,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import {
   ProtaskDeleteDialog,
   ProtaskEditDialog,

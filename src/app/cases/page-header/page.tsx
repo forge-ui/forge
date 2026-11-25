@@ -7,8 +7,8 @@ import {
   TopBar,
   type PageHeaderColor,
   type TopBarColor,
-} from "@forge-ui-official/core";
-import { Logout3Linear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { Logout3Linear } from "@aideui/core/icons";
 import { DemoPageHeader } from "../../components/page-header/ask-ai-example";
 import { PageHeading, Section, SubSection } from "../_shared";
 

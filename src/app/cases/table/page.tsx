@@ -35,8 +35,8 @@ import {
   type CheckboxColor,
   type CellActionKey,
   type CellLinkColor,
-} from "@forge-ui-official/core";
-import { CardBold } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { CardBold } from "@aideui/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 // ── Mock data for composite tables ─────────────────────────

@@ -9,8 +9,8 @@ import {
   Modal,
   SelectOption,
   TabBar,
-} from "@forge-ui-official/core";
-import { AltArrowUpLinear, AltArrowDownLinear, ArrowLeftLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { AltArrowUpLinear, AltArrowDownLinear, ArrowLeftLinear } from "@aideui/core/icons";
 import { MarkdownContent } from "./_markdown";
 import { TaskMenu } from "./_task-menu";
 import { TaskContentEditor } from "./_task-content-editor";

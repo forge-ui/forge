@@ -2,7 +2,7 @@
 
 import { PagedDataTable } from "../../../_shared/paged-data-table";
 
-import { AppLayout, ChartHeader, GroupedBarChart, Panel } from "@forge-ui-official/core";
+import { AppLayout, ChartHeader, GroupedBarChart, Panel } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { CompositionCard } from "@/blocks/composition-card/composition-card";
@@ -25,7 +25,7 @@ import {
   EyeLinear,
   TrashBinMinimalisticLinear,
   FilterLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   BarChartStatCard,
@@ -40,8 +40,8 @@ import {
   IconButton,
     ChartListItem,
   PlusIcon,
-} from "@forge-ui-official/core";
-import type { AppLayoutMenuItem, ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { AppLayoutMenuItem, ColumnDef, StatusBadgeColor } from "@aideui/core";
 import { mainProfile, orders, topProducts, regions, groupedStatisticBarData, groupedStatisticSeries, groupedStatisticTooltip, type OrderRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

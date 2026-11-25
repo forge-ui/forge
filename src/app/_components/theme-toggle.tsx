@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { MoonLinear, SunLinear } from "@forge-ui-official/core/icons";
+import { MoonLinear, SunLinear } from "@aideui/core/icons";
 import { THEME_STORAGE_KEY } from "@/lib/theme-boot";
 
 function subscribe(onChange: () => void) {

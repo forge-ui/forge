@@ -48,7 +48,7 @@ const program = ts.createProgram(catalog.map(item => path.join(root, `blocks/${i
 const checker = program.getTypeChecker();
 function portableType(type) {
   return type.replace(/import\("([^"]+)"\)/g, (match, module) => {
-    if (module.startsWith(path.join(root, "core") + path.sep)) return 'import("@forge-ui-official/core")';
+    if (module.startsWith(path.join(root, "core") + path.sep)) return 'import("@aideui/core")';
     if (module.includes("/node_modules/@types/react/")) return 'import("react")';
     if (path.isAbsolute(module)) throw new Error(`Non-portable Props type: ${module}`);
     return match;
@@ -74,12 +74,12 @@ const items = catalog.map(({ name, title, description, component, category, scre
       type: portableType(checker.typeToString(checker.getTypeOfSymbolAtLocation(property, parameter), parameter, ts.TypeFormatFlags.NoTruncation)),
     })) };
   });
-  const coreComponents = sourceFile.statements.filter(ts.isImportDeclaration).filter(statement => statement.moduleSpecifier.text === "@forge-ui-official/core").flatMap(statement => statement.importClause?.namedBindings?.elements?.filter(element => !element.isTypeOnly).map(element => element.name.text) ?? []);
+  const coreComponents = sourceFile.statements.filter(ts.isImportDeclaration).filter(statement => statement.moduleSpecifier.text === "@aideui/core").flatMap(statement => statement.importClause?.namedBindings?.elements?.filter(element => !element.isTypeOnly).map(element => element.name.text) ?? []);
   const example = `import { ${component} } from "@/components/blocks/${name}";\n\nexport default function Example() {\n  return (${examples[name]});\n}\n`;
   const item = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name, type: "registry:block", title, description,
-    dependencies: [`@forge-ui-official/core@^${core.version}`],
+    dependencies: [`@aideui/core@^${core.version}`],
     meta: { category, screens: relatedScreens(name, screens), example, props, core: { version: `^${core.version}`, components: coreComponents } },
     files: [{ path: source, type: "registry:component", target: `@components/blocks/${name}.tsx`, content }],
   };

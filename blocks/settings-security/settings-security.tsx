@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
-import { Button, Modal, StatusBadge, TextField, Toggle, cn } from "@forge-ui-official/core";
-import { KeyboardBoldDuotone, LockKeyholeLinear, PhoneLinear } from "@forge-ui-official/core/icons";
+import { Button, Modal, StatusBadge, TextField, Toggle, cn } from "@aideui/core";
+import { KeyboardBoldDuotone, LockKeyholeLinear, PhoneLinear } from "@aideui/core/icons";
 
 export interface LoginSession {
   id: string;

@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ChatBubble } from "@forge-ui-official/core";
+import { ChatBubble } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { ChatBubble } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { ChatBubble } from "@aideui/core";`;
 
 const CODE_BUBBLE_USAGE = `<ChatBubble type="received" avatar={avatar} senderName="林晓" content="最近进展怎么样？" />
 <ChatBubble type="sent" content="进展顺利，正在完善新的设计方案。" time="10:32" />`;

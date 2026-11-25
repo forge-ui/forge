@@ -1,7 +1,7 @@
 "use client";
 
-import { IconButton, MenuItem } from "@forge-ui-official/core";
-import { ClipboardListBoldDuotone, FolderBoldDuotone, PlusLinear } from "@forge-ui-official/core/icons";
+import { IconButton, MenuItem } from "@aideui/core";
+import { ClipboardListBoldDuotone, FolderBoldDuotone, PlusLinear } from "@aideui/core/icons";
 import type { Board } from "./_data";
 import { WORKSPACE_BASE, projectHref } from "./_workspace-context";
 const decodedPath=(value:string)=>{try{return decodeURIComponent(value);}catch{return value;}};

@@ -1,12 +1,12 @@
 "use client";
 
-import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@forge-ui-official/core";
+import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@aideui/core";
 import { DataDisplayKitExamples } from "../_admin-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { CurrencyConverter, RatingStars, ImageGrid, ProductRow, ScrollArea } from "@aideui/core";`;
 
 const scrollLogs = Array.from({ length: 24 }, (_, index) => `09:${String(index * 2).padStart(2, "0")} 同步任务 #${1024 + index} 完成`);
 

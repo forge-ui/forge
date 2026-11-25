@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import { z } from "zod";
-import { ForgeAgent, defineTool, type Playbook } from "@forge-ui-official/agent";
+import { ForgeAgent, defineTool, type Playbook } from "@aideui/agent";
 import { SCALE_STEPS, normalizeHex, previewVariables } from "@/lib/theme.mjs";
 import { THEME_STORAGE_KEY } from "@/lib/theme-boot";
 

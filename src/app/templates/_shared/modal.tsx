@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { Modal as CoreModal } from "@forge-ui-official/core";
+import { Modal as CoreModal } from "@aideui/core";
 
 export function Modal({
   open,

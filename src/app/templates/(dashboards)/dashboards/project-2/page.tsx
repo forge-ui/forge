@@ -2,7 +2,7 @@
 import { ScheduleCard } from "@/app/templates/_shared/schedule-card";
 import { MemberList } from "@/app/templates/_shared/member-list";
 
-import { AppLayout } from "@forge-ui-official/core";
+import { AppLayout } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { CompositionCard } from "@/blocks/composition-card/composition-card";
@@ -22,7 +22,7 @@ import {
   ArrowRightDownLinear,
   PhoneCallingLinear,
   LetterLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   ProgressStatCard,
   LineChartStatCard,
@@ -34,8 +34,8 @@ import {
   IconButton,
   KebabMenu,
     FullCalendar,
-} from "@forge-ui-official/core";
-import type { AppLayoutMenuItem, CalendarEvent } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { AppLayoutMenuItem, CalendarEvent } from "@aideui/core";
 import { mainProfile, teamMeta, teamMembers, months } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

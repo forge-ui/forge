@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type Key } from "react";
-import { Button, ButtonGroup, CellImageText, CellMuted, CellText, CellTextSubtitle, ConfirmationDialog, DataTable, IconButton, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@forge-ui-official/core";
-import { DownloadMinimalisticLinear, PenLinear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Button, ButtonGroup, CellImageText, CellMuted, CellText, CellTextSubtitle, ConfirmationDialog, DataTable, IconButton, PlusIcon, StatusBadge, ToolbarSearchInput, cn, type ColumnDef, type StatusBadgeColor } from "@aideui/core";
+import { DownloadMinimalisticLinear, PenLinear, TrashBinMinimalisticLinear } from "@aideui/core/icons";
 
 export type ProductStatus = "published" | "low-stock" | "sold-out" | "draft";
 

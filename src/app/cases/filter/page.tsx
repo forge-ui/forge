@@ -6,7 +6,7 @@ import {
   FilterPanel,
   FilterTrigger,
   type FilterGroupColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const colors = ["purple", "blue", "black"] as const satisfies readonly FilterGroupColor[];

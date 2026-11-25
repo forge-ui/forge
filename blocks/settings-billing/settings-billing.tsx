@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, ButtonGroup, CreditCard, Panel, ProgressBar, StatusBadge, cn } from "@forge-ui-official/core";
-import { CheckCircleLinear, DownloadMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Button, ButtonGroup, CreditCard, Panel, ProgressBar, StatusBadge, cn } from "@aideui/core";
+import { CheckCircleLinear, DownloadMinimalisticLinear } from "@aideui/core/icons";
 
 export interface BillingPlan {
   id: string;

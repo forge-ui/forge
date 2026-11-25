@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": { "typecheck": "tsc --noEmit" },
   "dependencies": {
-    "@forge-ui-official/core": "latest",
+    "@aideui/core": "latest",
     "@solar-icons/react": "^2.3.2",
     "next": "^16.0.0",
     "react": "^19.0.0",

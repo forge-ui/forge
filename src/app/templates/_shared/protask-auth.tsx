@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { EyeBoldIcon, LockKeyholeBoldIcon, LetterBoldIcon, UserBoldIcon } from "@solar-icons/react";
@@ -8,7 +8,7 @@ import {
   Button,
   Checkbox,
   TextField,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 type AuthMode = "login" | "register" | "forgot" | "reset";
 

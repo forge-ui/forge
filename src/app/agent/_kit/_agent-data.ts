@@ -20,7 +20,7 @@ export const CODE_IMPORT = `import {
   PromptSuggestions,
   ArtifactCard,
   AgentParts,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 export const CODE_CONVERSATION = `<Conversation followKey={messages.length}>
   {messages.map(message => (

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion as m, useReducedMotion } from "motion/react";
-import { AddMember, Avatar, AvatarGroup, Datepicker, Button, ButtonGroup, Checkbox, DataTable, EventCard, EventTag, IconButton, ProgressBar, ReviewItem, SurfaceCard, type ColumnDef } from "@forge-ui-official/core";
-import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear, CloseCircleLinear, CalendarLinear } from "@forge-ui-official/core/icons";
+import { AddMember, Avatar, AvatarGroup, Datepicker, Button, ButtonGroup, Checkbox, DataTable, EventCard, EventTag, IconButton, ProgressBar, ReviewItem, SurfaceCard, type ColumnDef } from "@aideui/core";
+import { AltArrowLeftLinear, AltArrowRightLinear, CheckCircleLinear, CloseCircleLinear, CalendarLinear } from "@aideui/core/icons";
 import type { FusionSettings } from "./types";
 
 const portraits = ["/images/protask/crm/john-hoegan-avatar.png", "/images/protask/crm/linda-blair-avatar.png", "/images/protask/crm/team-avatar.png"];

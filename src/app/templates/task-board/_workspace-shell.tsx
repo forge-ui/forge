@@ -24,13 +24,13 @@ import {
   ToastProvider,
   Toolbar,
   useToast,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   AltArrowDownLinear,
   PlusLinear,
   CheckCircleBoldDuotone,
   ClipboardListBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { Board, Task, taskDetailHash, parseTaskDetailHash, sectionLinkHash, parseSectionLinkHash, collectTaskLabels, day, isBoard, seedBoard, migrateBoard, projectSections, emptyBoard, writeTasks, copyTask, copyProject, copySection, moveSection, setSectionArchived, taskMatchesWorkspaceScope, STORAGE_KEY } from "./_data";
 import { ProjectProperties, type ProjectDetails } from "./_project-properties";
 import { TaskDetail } from "./_task-detail";

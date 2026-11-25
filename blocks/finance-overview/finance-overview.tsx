@@ -1,8 +1,8 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { ChartMetricRow, CreditCard, GroupedBarChart, Panel, WalletGoalCard, cn, type GroupedBarChartProps, type WalletGoalCardProps } from "@forge-ui-official/core";
-import { WalletBoldDuotone } from "@forge-ui-official/core/icons";
+import { ChartMetricRow, CreditCard, GroupedBarChart, Panel, WalletGoalCard, cn, type GroupedBarChartProps, type WalletGoalCardProps } from "@aideui/core";
+import { WalletBoldDuotone } from "@aideui/core/icons";
 
 export type FinanceAccount = ComponentProps<typeof CreditCard> & { id: string; name: string; balance: string };
 export const defaultFinanceAccounts: FinanceAccount[] = [

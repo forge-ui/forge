@@ -1,6 +1,6 @@
 # 安全与依赖维护
 
-图标使用 `@solar-icons/react`（React 实现为 MIT；480 Design 的 Solar 图形为 CC BY 4.0，署名见 THIRD_PARTY_NOTICES.md），通过 `@forge-ui-official/core/icons` 提供兼容入口。
+图标使用 `@solar-icons/react`（React 实现为 MIT；480 Design 的 Solar 图形为 CC BY 4.0，署名见 THIRD_PARTY_NOTICES.md），通过 `@aideui/core/icons` 提供兼容入口。
 
 本轮升级 Next.js 至 16.3.5、React 至 19.3.0，并更新锁文件中的受影响依赖；构建工具 esbuild 固定在已修复的 0.28 系列。React 类型声明固定为 19.2.14 / 19.2.3，以保持现有公共声明契约。
 

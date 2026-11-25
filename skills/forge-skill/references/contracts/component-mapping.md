@@ -32,7 +32,7 @@ forms:
 dialogs:
   destructive: "ConfirmationDialog with controlled open/onOpenChange; inline mode only inside an existing shell"
 icons:
-  package: "@forge-ui-official/core/icons"
+  package: "@aideui/core/icons"
   names: []
 missing_primitives:
   drawer: "Drawer (controlled open/onOpenChange); check installed version"
@@ -48,4 +48,4 @@ missing_primitives:
 - Use `TextField`, `TextArea`, `SelectOption`, `Datepicker`, `FileUpload`, `MediaUpload`, and `Stepper` for forms.
 - Use controlled `ConfirmationDialog` for standalone confirmation; omit `open` only for inline content in one existing shell.
 - Use `fg-*` color tokens only.
-- Use `@forge-ui-official/core/icons` icons with numeric `size`; currentColor may inherit from className, while an explicit color intentionally overrides it.
+- Use `@aideui/core/icons` icons with numeric `size`; currentColor may inherit from className, while an explicit color intentionally overrides it.

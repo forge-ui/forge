@@ -1,9 +1,9 @@
-import { ProgressBar } from "@forge-ui-official/core";
+import { ProgressBar } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { ProgressBar } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { ProgressBar } from "@aideui/core";`;
 
 const CODE_USAGE = `<ProgressBar value={45} />
 <ProgressBar value={75} showPercentage />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import { IconButton, DropdownPanel, IconPicker, TextField } from "@forge-ui-official/core";
+import { IconButton, DropdownPanel, IconPicker, TextField } from "@aideui/core";
 
 const emoji = [
   ["😀", "开心 笑脸 happy"], ["😄", "大笑 smile"], ["😂", "笑哭 laugh"], ["🥹", "感动"],

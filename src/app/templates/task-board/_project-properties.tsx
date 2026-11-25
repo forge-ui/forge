@@ -1,5 +1,5 @@
 "use client";
-import { ProgressBar, SelectOption, TextArea } from "@forge-ui-official/core";
+import { ProgressBar, SelectOption, TextArea } from "@aideui/core";
 export type ProjectDetails = { status: string; owner: string; priority: string; description: string };
 export function ProjectProperties({ value, total, done, onChange }: {value:ProjectDetails; total:number; done:number; onChange:(patch:Partial<ProjectDetails>)=>void}) {
   return <div className="project-properties-content">

@@ -1,11 +1,11 @@
 "use client";
 
-import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui-official/core";
+import { FilterGroup, FilterTrigger, FilterPanel } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { FilterGroup, FilterTrigger, FilterPanel } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { FilterGroup, FilterTrigger, FilterPanel } from "@aideui/core";`;
 
 const CODE_GROUP_CHECKBOX = `<FilterGroup
   title="分类"
