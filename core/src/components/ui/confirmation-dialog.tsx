@@ -2,7 +2,7 @@
 
 import { DialogSurface } from "../../internal/dialog-surface";
 import type { MotionPreference } from "../../lib/motion";
-import { type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { cn } from "../../lib/utils";
 
 // ============================================================
@@ -66,6 +66,13 @@ export function ConfirmationDialog({
   onOpenChange?: (open: boolean) => void;
   motion?: MotionPreference;
 }) {
+  // While a modal confirmation animates out, callers usually clear the target it describes.
+  // Keep showing what was on screen when it was open instead of flashing empty text.
+  const [kept, setKept] = useState({ title, description, confirmLabel, cancelLabel, color });
+  if (open !== false && (kept.title !== title || kept.description !== description || kept.confirmLabel !== confirmLabel || kept.cancelLabel !== cancelLabel || kept.color !== color)) {
+    setKept({ title, description, confirmLabel, cancelLabel, color });
+  }
+  if (open === false) ({ title, description, confirmLabel, cancelLabel, color } = kept);
   const content = (
     <div
       className={cn(
