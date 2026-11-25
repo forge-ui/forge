@@ -263,7 +263,7 @@ export function SelectOption(props: SelectOptionProps) {
                     event.stopPropagation();
                   }
                 }}
-                className="forge-popup flex w-(--anchor-width) max-h-[min(var(--available-height),15rem)] py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] overflow-hidden"
+                className="forge-popup flex w-max min-w-(--anchor-width) max-w-(--available-width) max-h-[min(var(--available-height),15rem)] py-2 bg-background rounded-xl outline outline-1 outline-offset-[-1px] outline-fg-grey-100 shadow-[0px_4px_30px_0px_rgba(77,84,100,0.05)] overflow-hidden"
                 style={surfaceStyle}
               >
                 <SelectPrimitive.List className="flex-1 flex flex-col overflow-y-auto overscroll-contain outline-none">
