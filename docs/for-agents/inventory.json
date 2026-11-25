@@ -1,11 +1,11 @@
 {
   "package": "@forge-ui-official/core",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "source": "core/src/index.ts",
-  "revision": "91db97c4512430ec5df2c04c4aa0d34793f233c6",
+  "revision": "69fdf560d0d2b3ce73f72856cb477911855241bd",
   "dirty": false,
-  "exportFingerprint": "e172743674131a7474a4379629dc9958d34ce306",
-  "generatedAt": "2026-11-25T09:56:13+08:00",
+  "exportFingerprint": "95f4476b93b833f391536b049efdbea823038388",
+  "generatedAt": "2026-11-25T12:55:35+08:00",
   "generatedAtBasis": "source revision timestamp for reproducibility",
   "componentCount": 746,
   "oneShotDefaultCount": 24,
@@ -32143,6 +32143,12 @@
           "optional": true,
           "type": "ReactNode",
           "description": ""
+        },
+        {
+          "name": "emptyLabel",
+          "optional": true,
+          "type": "string | undefined",
+          "description": "Shown in the open list when there are no options yet (e.g. a field that depends on another)."
         },
         {
           "name": "value",
