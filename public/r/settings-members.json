@@ -13,6 +13,10 @@
       {
         "href": "/templates/agent",
         "title": "智能体工作台"
+      },
+      {
+        "href": "/templates/business",
+        "title": "业务系统"
       }
     ],
     "example": "import { SettingsMembers } from \"@/components/blocks/settings-members\";\n\nexport default function Example() {\n  return (<SettingsMembers seats={10} onInvite={(email, role) => console.log(email, role)} />);\n}\n",

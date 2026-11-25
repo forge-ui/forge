@@ -11,6 +11,10 @@
     "category": "图表与指标",
     "screens": [
       {
+        "href": "/templates/business",
+        "title": "业务系统"
+      },
+      {
         "href": "/templates/crm-template",
         "title": "客户关系管理"
       }

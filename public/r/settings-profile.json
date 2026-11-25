@@ -13,6 +13,10 @@
       {
         "href": "/templates/agent",
         "title": "智能体工作台"
+      },
+      {
+        "href": "/templates/business",
+        "title": "业务系统"
       }
     ],
     "example": "import { SettingsProfile } from \"@/components/blocks/settings-profile\";\n\nexport default function Example() {\n  return (<SettingsProfile onSave={value => console.log(value.name)} />);\n}\n",

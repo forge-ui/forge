@@ -87,6 +87,8 @@ export interface CardThemeConfig {
   titleColor: string;
   /** Trend text color (badge-like indicator next to subtitle) */
   trendColor: string;
+  /** Trend color when the value went down; falls back to trendColor (colored cards keep white). */
+  trendDownColor?: string;
   /** Secondary text color (subtitle/helper) */
   subtextColor: string;
   /** Accent background for icon chip (used in Icon variant) */

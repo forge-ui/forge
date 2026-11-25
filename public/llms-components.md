@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.11.6
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 878f20ebccd0d9d6efc1cdad66b8909dc2ecffa0ba1595f105d6e15c535f59d7
+Source fingerprint: 1f839419f2fbea18f57d2c6f0dbfcbdfbe107bf506d40bba1f2b6573af0e0133
 
 ## Adopted rules / 采用规则
 
@@ -4044,6 +4044,8 @@ export interface CardThemeConfig {
   titleColor: string;
   /** Trend text color (badge-like indicator next to subtitle) */
   trendColor: string;
+  /** Trend color when the value went down; falls back to trendColor (colored cards keep white). */
+  trendDownColor?: string;
   /** Secondary text color (subtitle/helper) */
   subtextColor: string;
   /** Accent background for icon chip (used in Icon variant) */

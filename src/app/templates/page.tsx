@@ -15,6 +15,18 @@ type ShowcaseItem = {
 
 const items: ShowcaseItem[] = [
   {
+    href: "/templates/ai-chat",
+    title: "AI 对话",
+    thumbnail: asset("/images/showcase/ai-chat.png"),
+    description: "项目、插件、自动化和对话放在一起，右侧工作区看改动、预览和终端输出。",
+  },
+  {
+    href: "/templates/business",
+    title: "业务系统",
+    thumbnail: asset("/images/showcase/business.png"),
+    description: "客户、合同、回款、工单、报表和设置，列表、详情、看板和弹窗都能操作。",
+  },
+  {
     href: "/templates/agent",
     title: "智能体",
     thumbnail: asset("/images/showcase/agent-workspace.png"),
@@ -83,7 +95,7 @@ export default function ExamplesIndex() {
           <header className="flex flex-col gap-3">
             <h1 className="text-4xl font-bold tracking-fg text-fg-black">React 后台管理系统模板</h1>
             <p className="max-w-3xl text-base leading-7 text-fg-grey-900">
-              用 Forge 组件搭出来的完整后台：CRM、电商、财务、项目管理、任务看板、仪表盘和智能体工作台。每个模板都能直接打开、点击体验；需要的页面用一条 shadcn 命令复制进项目，或者用 Forge Starter 起一个带登录和权限的完整项目。
+              每个模板都能直接打开试用，需要的页面一条命令复制进项目。
             </p>
           </header>
 
