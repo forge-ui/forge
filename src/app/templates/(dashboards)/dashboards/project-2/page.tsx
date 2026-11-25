@@ -19,6 +19,7 @@ import {
   StarBoldDuotone,
   TagBoldDuotone,
   ArrowRightUpLinear,
+  ArrowRightDownLinear,
   PhoneCallingLinear,
   LetterLinear,
 } from "@forge-ui-official/core/icons";
@@ -148,13 +149,13 @@ export default function Project2Page() {
               ].map((s) => (
                 <div key={s.label} className="flex items-center gap-2">
                   <div className="size-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: s.color }}>
-                    <ArrowRightUpLinear size={16} />
+                    {s.up ? <ArrowRightUpLinear size={16} /> : <ArrowRightDownLinear size={16} />}
                   </div>
                   <div>
                     <div className="text-xs text-fg-grey-500">{s.label}</div>
                     <div className="flex items-center gap-2">
                       <span className="text-base font-semibold text-fg-black">{s.value}</span>
-                      <span className={`text-xs font-medium ${s.up ? "text-emerald-500" : "text-fg-red"}`}>{s.trend}</span>
+                      <span className={`text-xs font-medium ${s.up ? "text-fg-green-500" : "text-fg-red"}`}>{s.up ? "▲" : "▼"} {s.trend}</span>
                     </div>
                   </div>
                 </div>
