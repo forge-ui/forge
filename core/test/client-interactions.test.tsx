@@ -1188,6 +1188,30 @@ test("SelectOption 从触发器按方向键打开后将焦点移入首末 option
   assert.equal(upFocusedLast, true);
 });
 
+test("SelectOption 弹层至少和触发器一样宽，选项更长时按内容撑开", async () => {
+  const dom = installDom();
+  const container = document.querySelector<HTMLDivElement>("#root");
+  assert.ok(container);
+  const root = createRoot(container);
+  let classes: string[] = [];
+  try {
+    await act(async () => {
+      root.render(createElement(SelectOption, { width: "80px", options: [{ value: "all", label: "全部" }, { value: "legacy", label: "历史目录（未附样本）" }] }));
+    });
+    const trigger = document.querySelector<HTMLElement>('[role="combobox"]');
+    assert.ok(trigger);
+    trigger.focus();
+    await act(async () => trigger.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })));
+    classes = (document.querySelector<HTMLElement>(".forge-popup")?.className ?? "").split(/\s+/);
+  } finally {
+    await act(async () => root.unmount());
+    dom.window.close();
+  }
+  assert.ok(classes.includes("min-w-(--anchor-width)"));
+  assert.ok(classes.includes("w-max"));
+  assert.ok(!classes.includes("w-(--anchor-width)"));
+});
+
 test("SelectOption 打开后支持方向键与 Home End 定位", async () => {
   const dom = installDom();
   const container = document.querySelector<HTMLDivElement>("#root");
