@@ -17,11 +17,13 @@ const items: ShowcaseItem[] = [
   {
     href: "/templates/ai-chat",
     title: "AI 对话",
+    thumbnail: asset("/images/showcase/ai-chat.png"),
     description: "项目、插件、自动化和对话放在一起，右侧工作区看改动、预览和终端输出。",
   },
   {
     href: "/templates/business",
     title: "业务系统",
+    thumbnail: asset("/images/showcase/business.png"),
     description: "客户、合同、回款、工单、报表和设置，列表、详情、看板和弹窗都能操作。",
   },
   {
