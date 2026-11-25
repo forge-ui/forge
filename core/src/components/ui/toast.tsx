@@ -32,15 +32,17 @@ function toManagerOptions(options: Partial<ToastOptions>) {
 
 /** Exposes Forge's `toast / dismiss / update` API on top of Base UI's toast manager. */
 function ToastApiBridge({ children }: { children: ReactNode }) {
-  const manager = ToastPrimitive.useToastManager();
+  // The manager object changes with every toast; its methods do not. Depending on the methods keeps
+  // useToast() stable, so consumers can list it in effect deps without re-running on each toast.
+  const { add, close, update } = ToastPrimitive.useToastManager();
   const api = useMemo<ToastApi>(() => ({
-    toast: (options) => manager.add(toManagerOptions(options)),
-    dismiss: (id) => manager.close(id),
-    update: (id, options) => manager.update(id, (previous) => {
+    toast: (options) => add(toManagerOptions(options)),
+    dismiss: (id) => close(id),
+    update: (id, options) => update(id, (previous) => {
       const data = previous.data as ToastData | undefined;
       return toManagerOptions({ status: data?.status, action: data?.action, duration: data?.duration, ...options });
     }),
-  }), [manager]);
+  }), [add, close, update]);
   return <Context.Provider value={api}>{children}</Context.Provider>;
 }
 
