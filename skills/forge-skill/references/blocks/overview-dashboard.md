@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
+依赖：core ^0.12.0；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
 
 ## 最小可用示例
 
@@ -24,7 +24,7 @@ export default function Example() {
 | description | 否 | `string \| undefined` |
 | periodLabel | 否 | `string \| undefined` |
 | metrics | 否 | `OverviewMetric[] \| undefined` |
-| trend | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| trend | 否 | `{ data: import("@aideui/core").GroupedBarPoint[]; series: import("@aideui/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@aideui/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | composition | 否 | `DonutChartProps \| undefined` |
 | onExport | 否 | `(() => void) \| undefined` |
 | className | 否 | `string \| undefined` |

@@ -84,7 +84,7 @@ test("the current page and operating rules reach the model only when the browser
 test("only topic titles ride along; a matching question brings its topic, and read_topic serves the rest", async () => {
   let loads = 0;
   const topics = [
-    { id: "quick-start", title: "快速开始", summary: "安装与接入", content: () => { loads++; return "pnpm add @forge-ui-official/core"; }, match: [/怎么安装/] },
+    { id: "quick-start", title: "快速开始", summary: "安装与接入", content: () => { loads++; return "pnpm add @aideui/core"; }, match: [/怎么安装/] },
     { id: "mcp", title: "MCP 服务器", summary: "地址和工具", content: "MCP 地址 https://www.forgeui.org/api/mcp" },
   ];
   const plain = mockModel();
@@ -98,7 +98,7 @@ test("only topic titles ride along; a matching question brings its topic, and re
   const asked = mockModel();
   const question = { id: "u2", role: "user", parts: [{ type: "text", text: "Forge 怎么安装？" }] };
   await (await createAgentHandler({ model: asked, instructions: "x", topics })(post({ messages: [question] }))).text();
-  assert.match(JSON.stringify(asked.doStreamCalls[0].prompt), /已经读好[\s\S]*pnpm add @forge-ui-official\/core/);
+  assert.match(JSON.stringify(asked.doStreamCalls[0].prompt), /已经读好[\s\S]*pnpm add @aideui\/core/);
   assert.equal(loads, 1);
 });
 

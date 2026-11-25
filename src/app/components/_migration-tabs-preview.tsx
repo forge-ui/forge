@@ -1,8 +1,8 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Button, Checkbox, ListGroup, ListItem, ProgressBar, TabBar, TabsContent } from "@forge-ui-official/core";
-import { FileTextLinear } from "@forge-ui-official/core/icons";
+import { Button, Checkbox, ListGroup, ListItem, ProgressBar, TabBar, TabsContent } from "@aideui/core";
+import { FileTextLinear } from "@aideui/core/icons";
 
 export function TabsMotionPreview({ locale = "zh", color = "blue", motion = "auto" }: {
   locale?: "zh" | "en"; color?: "blue" | "purple" | "black"; motion?: "auto" | "none";

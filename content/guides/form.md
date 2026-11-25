@@ -11,7 +11,7 @@ Panel、Button；参考真实表单案例。Blocks 是复制到项目的源码�
 ## 示例代码
 
 ```tsx
-import { Button, Panel } from "@forge-ui-official/core";
+import { Button, Panel } from "@aideui/core";
 
 export function BasicForm() {
   return <Panel><form><label>名称<input name="name" required /></label><Button type="submit">保存</Button></form></Panel>;

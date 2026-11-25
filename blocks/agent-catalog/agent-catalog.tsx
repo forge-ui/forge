@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState, type CSSProperties } from "react";
-import { Breadcrumbs, Button, ButtonGroup, ConfirmationDialog, IconButton, Modal, PageTitleToolbar, PlusIcon, SelectOption, StatusBadge, TextField } from "@forge-ui-official/core";
-import { ChatRoundLinear, PenLinear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, ButtonGroup, ConfirmationDialog, IconButton, Modal, PageTitleToolbar, PlusIcon, SelectOption, StatusBadge, TextField } from "@aideui/core";
+import { ChatRoundLinear, PenLinear, TrashBinMinimalisticLinear } from "@aideui/core/icons";
 
 export interface AppAgent {
   id: string;

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Modal, TextArea, TextField, Toggle, cn, useToast } from "@forge-ui-official/core";
-import { ClockCircleLinear, FolderLinear } from "@forge-ui-official/core/icons";
+import { Button, Modal, TextArea, TextField, Toggle, cn, useToast } from "@aideui/core";
+import { ClockCircleLinear, FolderLinear } from "@aideui/core/icons";
 import { PlayIcon } from "@solar-icons/react/linear/play";
 import { PageFrame } from "../_shell";
 import { AUTOMATIONS, PROJECTS, type Automation } from "../_data";

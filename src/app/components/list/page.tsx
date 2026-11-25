@@ -9,13 +9,13 @@ import {
   NotificationItem,
   ProfileCard,
   Label,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   WalletBoldDuotone,
   ChartBoldDuotone,
   FolderBoldDuotone,
   LetterBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -23,7 +23,7 @@ import { CodeBlock, type ApiTableRow } from "../_api-table";
 const CODE_IMPORT = `import {
   ListItem, DescriptionItem, ListGroup,
   ContactItem, NotificationItem, ProfileCard,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_LISTITEM_USAGE = `<ListItem
   lead={{ kind: "icon", icon: <WalletBoldDuotone size={20} />, color: "purple" }}

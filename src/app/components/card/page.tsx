@@ -19,12 +19,12 @@ import {
   HighlightCard,
   ActivityCard,
   Label,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   ChartSquareBoldDuotone,
   VideocameraBoldDuotone,
   PhoneBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { PreviewBlock } from "../_preview-block";
@@ -42,7 +42,7 @@ const CODE_IMPORT = `import {
   BalanceCard, DebitCard, CreditCard,
   ProgressCard, ProjectCard, TaskCard, UserCard,
   HighlightCard, ActivityCard, FileCard,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_STATCARD_USAGE = `<StatCard
   title="总收入"

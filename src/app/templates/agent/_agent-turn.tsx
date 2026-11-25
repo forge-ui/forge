@@ -17,8 +17,8 @@ import {
   InsightCards,
   AgentFlowchart,
   useToast,
-} from "@forge-ui-official/core";
-import { StarBoldDuotone } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { StarBoldDuotone } from "@aideui/core/icons";
 import { useDemoStream } from "@/app/_demos/use-demo-stream";
 import { ANSWERS, type Turn } from "./_data";
 

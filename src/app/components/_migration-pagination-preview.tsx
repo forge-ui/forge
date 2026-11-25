@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion as animated, useReducedMotion } from "motion/react";
-import { Button, ListGroup, ListItem, Pagination } from "@forge-ui-official/core";
-import { FileTextLinear } from "@forge-ui-official/core/icons";
+import { Button, ListGroup, ListItem, Pagination } from "@aideui/core";
+import { FileTextLinear } from "@aideui/core/icons";
 
 export function PaginationMotionPreview({ locale, color, motion }: {
   locale: "zh" | "en";

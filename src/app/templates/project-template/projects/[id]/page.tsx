@@ -1,7 +1,7 @@
 "use client";
 
 import { ProjectSection } from "@/app/templates/_shared/project-section";
-import { Panel as CorePanel } from "@forge-ui-official/core";
+import { Panel as CorePanel } from "@aideui/core";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import {
@@ -10,7 +10,7 @@ import {
   Pen2Linear,
   
   UserPlusLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Avatar,
   AvatarGroup,
@@ -25,8 +25,8 @@ import {
   TextField,
   ToolbarFilterButton,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
-import type { StatusBadgeColor } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { StatusBadgeColor } from "@aideui/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, fileItems, members, projects, tasks, type ProjectStatus, type Task } from "../../_data";
 import { projectPageStackClass, projectPanelClass } from "../../_density";

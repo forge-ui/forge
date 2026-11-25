@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, type ReactNode, type RefObject } from "react";
-import { Button, ButtonGroup, Checkbox, DropdownPanel, SelectOption, TextField } from "@forge-ui-official/core";
+import { Button, ButtonGroup, Checkbox, DropdownPanel, SelectOption, TextField } from "@aideui/core";
 import { collaborationStates } from "./_collaboration";
 import { type ViewPreference } from "./_view-preferences";
 

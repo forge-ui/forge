@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useState, useMemo } from "react";
 import {
   DataTable,
@@ -18,8 +18,8 @@ import {
   ToolbarDatepicker,
   ToolbarFilterButton,
   Grid,
-} from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 import {
   PhoneCallingLinear,
@@ -30,7 +30,7 @@ import {
   TrashBinMinimalisticLinear,
   CopyLinear,
   StarBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 
 // --- Types ---
 

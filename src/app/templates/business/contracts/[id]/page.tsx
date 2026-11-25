@@ -3,8 +3,8 @@
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Avatar, Button, ConfirmationDialog, DataTable, Panel, StatusBadge, ToastProvider, useToast } from "@forge-ui-official/core";
-import { CheckCircleBoldDuotone, ClockCircleLinear, FileTextLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, ConfirmationDialog, DataTable, Panel, StatusBadge, ToastProvider, useToast } from "@aideui/core";
+import { CheckCircleBoldDuotone, ClockCircleLinear, FileTextLinear } from "@aideui/core/icons";
 import { BASE, BusinessShell } from "../../_chrome";
 import { CONTRACTS, contractStatusColor, customerById, yuan, type Contract } from "../../_data";
 

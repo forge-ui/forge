@@ -5,7 +5,7 @@
   "title": "最近记录表卡",
   "description": "在一张卡片内查看最近订单、交易或业务记录。",
   "dependencies": [
-    "@forge-ui-official/core@^0.11.6"
+    "@aideui/core@^0.12.0"
   ],
   "meta": {
     "category": "数据列表",
@@ -1492,7 +1492,7 @@
       }
     ],
     "core": {
-      "version": "^0.11.6",
+      "version": "^0.12.0",
       "components": [
         "DataTable",
         "Panel"
@@ -1504,7 +1504,7 @@
       "path": "blocks/recent-records/recent-records.tsx",
       "type": "registry:component",
       "target": "@components/blocks/recent-records.tsx",
-      "content": "\"use client\";\n\nimport { DataTable, Panel, type ColumnDef, type PanelProps } from \"@forge-ui-official/core\";\n\nexport type RecentRecordsProps<RecordType> = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  columns?: ColumnDef<RecordType>[];\n  data?: RecordType[];\n  getRowKey?: (row: RecordType, index: number) => string;\n};\n\nexport function RecentRecords<RecordType>({ columns, data, getRowKey, children, ...panel }: RecentRecordsProps<RecordType>) {\n  return <Panel {...panel}>{children ?? (columns && data ? <div className=\"@container min-w-0\">\n    <div className=\"hidden @min-[720px]:block\"><DataTable columns={columns} rows={data} getRowKey={getRowKey} /></div>\n    <ul aria-label=\"最近记录\" className=\"divide-y divide-fg-grey-200 rounded-2xl border border-fg-grey-200 @min-[720px]:hidden\">{data.map((row, rowIndex) => <li key={getRowKey?.(row, rowIndex) ?? rowIndex} className=\"min-w-0 p-4\"><dl className=\"grid min-w-0 grid-cols-1 gap-3 @min-[360px]:grid-cols-2\">{columns.map(column => <div key={column.key} className=\"min-w-0 break-words\"><dt className=\"text-xs text-fg-grey-500\">{column.header}</dt><dd className=\"mt-1 text-sm text-fg-black\">{column.render(row, rowIndex)}</dd></div>)}</dl></li>)}</ul>\n  </div> : null)}</Panel>;\n}\n"
+      "content": "\"use client\";\n\nimport { DataTable, Panel, type ColumnDef, type PanelProps } from \"@aideui/core\";\n\nexport type RecentRecordsProps<RecordType> = Omit<PanelProps, \"children\"> & {\n  children?: PanelProps[\"children\"];\n  columns?: ColumnDef<RecordType>[];\n  data?: RecordType[];\n  getRowKey?: (row: RecordType, index: number) => string;\n};\n\nexport function RecentRecords<RecordType>({ columns, data, getRowKey, children, ...panel }: RecentRecordsProps<RecordType>) {\n  return <Panel {...panel}>{children ?? (columns && data ? <div className=\"@container min-w-0\">\n    <div className=\"hidden @min-[720px]:block\"><DataTable columns={columns} rows={data} getRowKey={getRowKey} /></div>\n    <ul aria-label=\"最近记录\" className=\"divide-y divide-fg-grey-200 rounded-2xl border border-fg-grey-200 @min-[720px]:hidden\">{data.map((row, rowIndex) => <li key={getRowKey?.(row, rowIndex) ?? rowIndex} className=\"min-w-0 p-4\"><dl className=\"grid min-w-0 grid-cols-1 gap-3 @min-[360px]:grid-cols-2\">{columns.map(column => <div key={column.key} className=\"min-w-0 break-words\"><dt className=\"text-xs text-fg-grey-500\">{column.header}</dt><dd className=\"mt-1 text-sm text-fg-black\">{column.render(row, rowIndex)}</dd></div>)}</dl></li>)}</ul>\n  </div> : null)}</Panel>;\n}\n"
     }
   ]
 }

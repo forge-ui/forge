@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { AppLayout, ChatBubble, ChatInputBar, type AppLayoutMenuItem } from "@forge-ui-official/core";
-import { BookBoldDuotone, ChatDotsLinear, FolderWithFilesBoldDuotone, SettingsBoldDuotone, WidgetBoldDuotone } from "@forge-ui-official/core/icons";
+import { AppLayout, ChatBubble, ChatInputBar, type AppLayoutMenuItem } from "@aideui/core";
+import { BookBoldDuotone, ChatDotsLinear, FolderWithFilesBoldDuotone, SettingsBoldDuotone, WidgetBoldDuotone } from "@aideui/core/icons";
 
 export const defaultImmersiveMenu: AppLayoutMenuItem[] = [
   { label: "工作台", icon: <WidgetBoldDuotone size={20} />, href: "#overview" },

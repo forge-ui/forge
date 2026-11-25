@@ -2,12 +2,12 @@
 import Link from "next/link";
 
 import { DemoPageHeader } from "./ask-ai-example";
-import { Breadcrumbs } from "@forge-ui-official/core";
+import { Breadcrumbs } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { PageHeader, Breadcrumbs } from "@aideui/core";`;
 
 const CODE_HEADER_SEARCH = `<PageHeader
   askAi={{ onSend: (message, request) => askYourAiService(message, request) }}

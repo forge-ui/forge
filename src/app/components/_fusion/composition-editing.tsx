@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion as m, useReducedMotion } from "motion/react";
-import { AgentCodeBlock, Button, IconButton, StreamingAnswer, SurfaceCard, TextArea, TextField, Toolbar } from "@forge-ui-official/core";
-import { ArrowLeftLinear, ArrowRightLinear, CloseCircleLinear, RestartCircleLinear } from "@forge-ui-official/core/icons";
+import { AgentCodeBlock, Button, IconButton, StreamingAnswer, SurfaceCard, TextArea, TextField, Toolbar } from "@aideui/core";
+import { ArrowLeftLinear, ArrowRightLinear, CloseCircleLinear, RestartCircleLinear } from "@aideui/core/icons";
 import type { FusionSettings } from "./types";
 
 const initialCode = ["function grow(seed) {", "  const light = 8;", "  return seed + light;", "}", "", "function water() {", "  return 'moist enough';", "}"];

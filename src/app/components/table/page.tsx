@@ -28,14 +28,14 @@ import {
   CircleIcon,
   ToolbarDatepicker,
   ToolbarFilterButton,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import type {
   ColumnDef,
   StatusBadgeColor,
   ProgressBadgeColor,
   AvatarInitialColor,
-} from "@forge-ui-official/core";
-import { AddCircleLinear, CheckCircleLinear, CardBold } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { AddCircleLinear, CheckCircleLinear, CardBold } from "@aideui/core/icons";
 import { TableKitExamples } from "../_table-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
@@ -154,7 +154,7 @@ const CODE_IMPORT = `import {
   CellStatusDot, CellCode, CellRating,
   CellActions, CellLink, CellKebabMenu,
   type ColumnDef,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_PROGRESS_USAGE = `<ProgressBadge label="+12%" color="green" />
 <ProgressBadge label="-5%" color="red" />
@@ -348,7 +348,7 @@ const FILE_PROPS: ApiTableRow[] = [
 const ACTIONS_PROPS: ApiTableRow[] = [
   { attr: "actions", type: "CellActionKey[]", defaultValue: "[]", description: "'mail' | 'phone' | 'chat' | 'eye' | 'pen' | 'trash' 的任意组合。" },
   { attr: "showKebab", type: "boolean", defaultValue: "true", description: "是否追加 kebab menu。" },
-  { attr: "iconColor", type: "string", defaultValue: "'var(--fg-grey-700)'", description: "所有 icon 颜色（@forge-ui-official/core/icons 需用 color prop）。" },
+  { attr: "iconColor", type: "string", defaultValue: "'var(--fg-grey-700)'", description: "所有 icon 颜色（@aideui/core/icons 需用 color prop）。" },
   { attr: "onAction / onKebab", type: "(key) => void", defaultValue: "—", description: "点击回调。" },
 ];
 

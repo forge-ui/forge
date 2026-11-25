@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { Suspense, useMemo, useState, type ReactNode } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
@@ -15,7 +15,7 @@ import {
   PhoneLinear,
   PlayCircleBold,
   VideocameraRecordLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Avatar,
   Button,
@@ -28,7 +28,7 @@ import {
   ToolbarActions,
   ToolbarSearchInput,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { ProtaskActivityDialog, ProtaskFilterTrigger, normalizeProtaskActivityDialogId } from "../../../_shared/protask-actions";
 import { CrmPageHeader, CrmTemplateShell, saleStatusColor } from "../../_chrome";
 import { crmAsset, customers, mainProfile, type Customer, type SaleStatus } from "../../_data";

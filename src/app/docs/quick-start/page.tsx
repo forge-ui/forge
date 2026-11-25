@@ -14,10 +14,10 @@ const toc = [
 ];
 
 const GLOBALS_CSS = `@import "tailwindcss";
-@import "@forge-ui-official/core/styles.css";
+@import "@aideui/core/styles.css";
 
 /* app/globals.css 用这一行；src/app/globals.css 改成 ../../node_modules */
-@source "../node_modules/@forge-ui-official/core/dist";`;
+@source "../node_modules/@aideui/core/dist";`;
 
 const FONTS = `// app/layout.tsx
 import "@fontsource-variable/inter";
@@ -29,7 +29,7 @@ import "@fontsource-variable/plus-jakarta-sans";
   --font-plus-jakarta-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
 }`;
 
-const USE = `import { Button } from "@forge-ui-official/core";
+const USE = `import { Button } from "@aideui/core";
 
 export default function Page() {
   return <Button>开始使用</Button>;
@@ -68,7 +68,7 @@ export default function QuickStartPage() {
 
         <Steps>
           <Step id="install" title="安装组件库">
-            <Code label="终端">{`pnpm add @forge-ui-official/core@${coreVersion}`}</Code>
+            <Code label="终端">{`pnpm add @aideui/core@${coreVersion}`}</Code>
             <p className="leading-7 text-fg-black/85">当前版本是 {coreVersion}。用 npm 或 yarn 也可以，把 <code>pnpm add</code> 换成对应的命令。</p>
           </Step>
           <Step id="styles" title="接入样式">

@@ -21,10 +21,10 @@
     "paths": {
       "@/blocks/*": ["./blocks/*"],
       "@/*": ["./src/*"],
-      "@forge-ui-official/core": ["./core/src/index.ts"],
-      "@forge-ui-official/core/*": ["./core/src/*"],
-      "@forge-ui-official/agent": ["./agent/src/index.ts"],
-      "@forge-ui-official/agent/server": ["./agent/src/server/index.ts"]
+      "@aideui/core": ["./core/src/index.ts"],
+      "@aideui/core/*": ["./core/src/*"],
+      "@aideui/agent": ["./agent/src/index.ts"],
+      "@aideui/agent/server": ["./agent/src/server/index.ts"]
     }
   },
   "include": [

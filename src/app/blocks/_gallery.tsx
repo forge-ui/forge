@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { ButtonGroup } from "@forge-ui-official/core";
+import { ButtonGroup } from "@aideui/core";
 import { blocks, categoryItems, installationCommand } from "./_catalog";
 import { CopyButton } from "./_copy-button";
 import { PreviewFrame } from "./_preview-frame";

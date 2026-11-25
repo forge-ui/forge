@@ -89,7 +89,7 @@ export default function AgentsMdPage() {
           <li>组件清单，按用途分组</li>
           <li>颜色 token 全表：8 色 × 10 shade</li>
           <li>
-            Icon 规范：<code className="font-mono text-[13px]">@forge-ui-official/core/icons</code> 用法与两个常见踩坑
+            Icon 规范：<code className="font-mono text-[13px]">@aideui/core/icons</code> 用法与两个常见踩坑
           </li>
           <li>
             <code className="font-mono text-[13px]">AppLayout</code> props 与示例

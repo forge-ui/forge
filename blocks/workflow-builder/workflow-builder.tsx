@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
-import { Breadcrumbs, Button, CellText, StatusBadge, TabBar } from "@forge-ui-official/core";
-import { AddSquareLinear, AltArrowDownLinear, CheckCircleLinear, FullScreenLinear, MinusSquareLinear, TrashBinMinimalisticLinear, WidgetLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, CellText, StatusBadge, TabBar } from "@aideui/core";
+import { AddSquareLinear, AltArrowDownLinear, CheckCircleLinear, FullScreenLinear, MinusSquareLinear, TrashBinMinimalisticLinear, WidgetLinear } from "@aideui/core/icons";
 
 export type WorkflowNodeKind = "base" | "start" | "knowledge" | "condition" | "reply" | "ai" | "intent" | "form" | "variable" | "tool";
 

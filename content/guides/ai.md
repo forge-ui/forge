@@ -11,7 +11,7 @@ forge-skill、MCP、llms.txt 与统一审计清单。Blocks 是复制到项目�
 ## 示例代码
 
 ```tsx
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export function ReviewScope() {
   return <Panel><p>按 Screen → Blocks → Components 实施，并提交真实验证证据。</p></Panel>;

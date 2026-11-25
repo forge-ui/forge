@@ -11,7 +11,7 @@ StatusBadge soft、ToastProvider/useToast；现有空态与加载组件。Blocks
 ## 示例代码
 
 ```tsx
-import { StatusBadge } from "@forge-ui-official/core";
+import { StatusBadge } from "@aideui/core";
 
 export function PendingStatus() {
   return <StatusBadge variant="soft" color="yellow" label="待处理" />;

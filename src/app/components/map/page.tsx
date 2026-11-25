@@ -1,7 +1,7 @@
 "use client";
 
-import { MapCard } from "@forge-ui-official/core";
-import type { MapRegion } from "@forge-ui-official/core";
+import { MapCard } from "@aideui/core";
+import type { MapRegion } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
@@ -21,8 +21,8 @@ const REGIONS: MapRegion[] = [
   { name: "法国", flag: FLAGS.france, salesLabel: "147 笔销售", value: "$7,456" },
 ];
 
-const CODE_IMPORT = `import { MapCard } from "@forge-ui-official/core";
-import type { MapRegion } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { MapCard } from "@aideui/core";
+import type { MapRegion } from "@aideui/core";`;
 
 const CODE_USAGE = `<MapCard
   variant="sm"

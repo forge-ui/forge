@@ -42,9 +42,9 @@ test("page briefs do not require unauthorized system modules", () => {
 test("project-info reports version drift, starter layout and copied blocks", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "forge-project-"));
   try {
-    fs.mkdirSync(path.join(dir, "node_modules/@forge-ui-official/core"), { recursive: true });
-    fs.writeFileSync(path.join(dir, "node_modules/@forge-ui-official/core/package.json"), JSON.stringify({ version: "0.1.0" }));
-    fs.writeFileSync(path.join(dir, "package.json"), JSON.stringify({ dependencies: { "@forge-ui-official/core": "0.1.0", react: "^18.2.0", next: "16.0.0" } }));
+    fs.mkdirSync(path.join(dir, "node_modules/@aideui/core"), { recursive: true });
+    fs.writeFileSync(path.join(dir, "node_modules/@aideui/core/package.json"), JSON.stringify({ version: "0.1.0" }));
+    fs.writeFileSync(path.join(dir, "package.json"), JSON.stringify({ dependencies: { "@aideui/core": "0.1.0", react: "^18.2.0", next: "16.0.0" } }));
     fs.mkdirSync(path.join(dir, "src/app"), { recursive: true });
     fs.writeFileSync(path.join(dir, "src/app/page.tsx"), 'import { KanbanBoard } from "@/components/blocks/kanban-board";\n');
     fs.writeFileSync(path.join(dir, "components.json"), JSON.stringify({ registries: { "@acme": "https://acme.dev/r/{name}.json" } }));

@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：CreditCard、PageDot。
+依赖：core ^0.12.0；组件：CreditCard、PageDot。
 
 ## 最小可用示例
 
@@ -20,7 +20,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| cards | 是 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@forge-ui-official/core").FinancialTheme; variant?: import("@forge-ui-official/core").FinancialVariant; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[]` |
+| cards | 是 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@aideui/core").FinancialTheme; variant?: import("@aideui/core").FinancialVariant; width?: import("@aideui/core").CardWidth; className?: string; } & { id: string; })[]` |
 | size | 否 | `"default" \| "compact" \| undefined` |
 | index | 否 | `number \| undefined` |
 | defaultIndex | 否 | `number \| undefined` |

@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from "react";
 import { AnimatePresence, motion as animated, useReducedMotion } from "motion/react";
-import { Button, ChatBubble, ChatInputBar, FileCard, StreamingAnswer, ThinkingIndicator, ToolCall, ToolCallGroup } from "@forge-ui-official/core";
-import type { ComposerReply, ComposerVoiceState } from "@forge-ui-official/core/components/ui/composer-types";
-import type { ChatReaction, ChatReactionOption } from "@forge-ui-official/core/components/ui/chat-bubble";
-import type { FileItem } from "@forge-ui-official/core/components/ui/forms/file-upload";
+import { Button, ChatBubble, ChatInputBar, FileCard, StreamingAnswer, ThinkingIndicator, ToolCall, ToolCallGroup } from "@aideui/core";
+import type { ComposerReply, ComposerVoiceState } from "@aideui/core/components/ui/composer-types";
+import type { ChatReaction, ChatReactionOption } from "@aideui/core/components/ui/chat-bubble";
+import type { FileItem } from "@aideui/core/components/ui/forms/file-upload";
 import { ChartExamples } from "./agent-charts-plots";
 import type { FusionExampleProps, FusionSettings } from "./types";
 

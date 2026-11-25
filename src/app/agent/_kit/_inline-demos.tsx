@@ -14,7 +14,7 @@ import {
   ToolCall,
   ToolCallGroup,
   type ToolCallStatus,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { StreamingAnswerDemo } from "./_streaming-demo";
 import { CODE_DIFF, CODE_LINES, DIFF_ROWS } from "./_agent-data";
 

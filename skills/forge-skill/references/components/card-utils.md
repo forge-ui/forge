@@ -1,6 +1,6 @@
 # card-utils
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.11.6**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/card-utils.tsx`；core **0.12.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## ALL_CARD_THEMES (value)
@@ -294,7 +294,7 @@ export type TrendDirection = "up" | "down";
 **业务代码里不用**。这些是**扩卡片家族**（比如做一个新业务卡）时的 building block：
 
 ```tsx
-import { StatCardShell, CardIconChip, CardTrend, cardThemes } from "@forge-ui-official/core";
+import { StatCardShell, CardIconChip, CardTrend, cardThemes } from "@aideui/core";
 
 export function MyCustomCard({ theme = "blue" }) {
   const t = cardThemes[theme];

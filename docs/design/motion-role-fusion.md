@@ -33,7 +33,7 @@ Animate UI 只借两件事：角色怎么划分，以及每个角色用哪一组
 
 ## Starter
 
-forge-starter 只消费 `@forge-ui-official/core` 和 `styles.css`。它不自带 `motion`。业务页不要为了 Dialog 再装动画库。
+forge-starter 只消费 `@aideui/core` 和 `styles.css`。它不自带 `motion`。业务页不要为了 Dialog 再装动画库。
 
 ## 预览
 

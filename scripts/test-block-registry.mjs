@@ -27,7 +27,7 @@ test("registry generation is deterministic and every catalog item can be copied 
       assert.ok(screen.title);
       assert.ok(isScreenRoute(screen.href), `${entry.name}: missing Screen ${screen.href}`);
     }
-    assert.deepEqual(item.dependencies, ["@forge-ui-official/core@^" + JSON.parse(fs.readFileSync("core/package.json", "utf8")).version]);
+    assert.deepEqual(item.dependencies, ["@aideui/core@^" + JSON.parse(fs.readFileSync("core/package.json", "utf8")).version]);
     assert.equal(item.files.length, 1);
     const file = item.files[0];
     assert.ok(item.meta.example.includes(entry.component));
@@ -38,7 +38,7 @@ test("registry generation is deterministic and every catalog item can be copied 
     assert.equal(file.content, fs.readFileSync(file.path, "utf8"));
     const source = ts.createSourceFile(file.target, file.content, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
     for (const statement of source.statements.filter(ts.isImportDeclaration)) {
-      assert.ok(["react", "@forge-ui-official/core", "@forge-ui-official/core/icons"].includes(statement.moduleSpecifier.text), `${entry.name} uses a private dependency`);
+      assert.ok(["react", "@aideui/core", "@aideui/core/icons"].includes(statement.moduleSpecifier.text), `${entry.name} uses a private dependency`);
     }
     assert.doesNotMatch(file.content, /#[\da-f]{3,8}\b|(?:bg|text|border)-(?:blue|purple|gray|slate)-\d|!important/);
   }
@@ -95,7 +95,7 @@ test("copied registry sources typecheck against built public declarations withou
       jsx: ts.JsxEmit.ReactJSX, target: ts.ScriptTarget.ES2020,
       module: ts.ModuleKind.ESNext, moduleResolution: ts.ModuleResolutionKind.Bundler,
       esModuleInterop: true, baseUrl: process.cwd(),
-      paths: { "@forge-ui-official/core": ["core/dist/index.d.ts"], "@forge-ui-official/core/icons": ["core/dist/icons/index.d.ts"] },
+      paths: { "@aideui/core": ["core/dist/index.d.ts"], "@aideui/core/icons": ["core/dist/icons/index.d.ts"] },
     });
     const diagnostics = ts.getPreEmitDiagnostics(program);
     assert.equal(diagnostics.length, 0, ts.formatDiagnosticsWithColorAndContext(diagnostics, { getCurrentDirectory: () => process.cwd(), getCanonicalFileName: file => file, getNewLine: () => "\n" }));

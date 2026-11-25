@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ButtonGroup, Panel, ProgressBar, SmoothLineChart, StatCard, StatusBadge, cn } from "@forge-ui-official/core";
+import { ButtonGroup, Panel, ProgressBar, SmoothLineChart, StatCard, StatusBadge, cn } from "@aideui/core";
 
 export interface UsageBreakdown {
   id: string;

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { ArrowRightLinear } from "@forge-ui-official/core/icons";
+import { ArrowRightLinear } from "@aideui/core/icons";
 import { asset } from "@/lib/asset";
 import { HomeCopyPrompt } from "./home-copy-prompt";
 import { changelogHref } from "../docs/_changelog";
@@ -65,7 +65,7 @@ const footerColumns = [
   { title: "产品", links: [{ label: "组件", href: "/components" }, { label: "页面组件", href: "/blocks" }, { label: "模板", href: "/templates" }, { label: "Forge Starter", href: "https://github.com/forge-ui/forge-starter" }] },
   { title: "文档", links: [{ label: "快速开始", href: "/docs/quick-start" }, { label: "使用指南", href: "/guides" }, { label: "文章", href: "/articles" }, { label: "详细安装", href: "/docs/installation" }, { label: "故障排查", href: "/docs/troubleshoot" }, { label: "更新日志", href: "/docs/changelog" }] },
   { title: "给编码助手", links: [{ label: "Skill", href: "/docs/ui-for-agents" }, { label: "MCP 服务器", href: "/docs/mcp" }, { label: "AGENTS.md", href: "/docs/agents-md" }, { label: "DESIGN.md", href: "/docs/design-md" }, { label: "LLMs.txt", href: "/docs/llms-txt" }] },
-  { title: "社区", links: [{ label: "GitHub", href: "https://github.com/forge-ui/forge" }, { label: "反馈问题", href: "https://github.com/forge-ui/forge/issues" }, { label: "npm", href: "https://www.npmjs.com/package/@forge-ui-official/core" }] },
+  { title: "社区", links: [{ label: "GitHub", href: "https://github.com/forge-ui/forge" }, { label: "反馈问题", href: "https://github.com/forge-ui/forge/issues" }, { label: "npm", href: "https://www.npmjs.com/package/@aideui/core" }] },
 ];
 
 export function HomeSections() {

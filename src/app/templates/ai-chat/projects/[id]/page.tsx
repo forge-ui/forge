@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Button, Composer, ComposerAction, ComposerInput, ComposerSend, ComposerToolbar, TextArea, useToast } from "@forge-ui-official/core";
-import { ChatRoundLineLinear, FileTextLinear, PaperclipLinear, PenLinear } from "@forge-ui-official/core/icons";
+import { Button, Composer, ComposerAction, ComposerInput, ComposerSend, ComposerToolbar, TextArea, useToast } from "@aideui/core";
+import { ChatRoundLineLinear, FileTextLinear, PaperclipLinear, PenLinear } from "@aideui/core/icons";
 import { BASE, PageFrame } from "../../_shell";
 import { PROJECTS, PROJECT_DETAILS, THREADS } from "../../_data";
 

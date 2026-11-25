@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
+依赖：core ^0.12.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
 
 ## 最小可用示例
 
@@ -304,7 +304,7 @@ export default function Example() {
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
 | children | 否 | `import("react").ReactNode` |
-| chart | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| chart | 否 | `{ data: import("@aideui/core").GroupedBarPoint[]; series: import("@aideui/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@aideui/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | periods | 否 | `TrendPeriod[] \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |
 | activePeriod | 否 | `string \| undefined` |

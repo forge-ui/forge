@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ComponentProps } from "react";
-import { ChartHeader, ChartMetricRow, GroupedBarChart, SmoothLineChart, Panel, cn, type GroupedBarChartProps, type PanelProps } from "@forge-ui-official/core";
+import { ChartHeader, ChartMetricRow, GroupedBarChart, SmoothLineChart, Panel, cn, type GroupedBarChartProps, type PanelProps } from "@aideui/core";
 
 type TrendPeriod = { label: string; chart?: GroupedBarChartProps; countChart?: ComponentProps<typeof SmoothLineChart> };
 

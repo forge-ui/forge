@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Panel, SurfaceCard, Button, FileInput, InfoRow, Modal, StatCard, ProgressStatCard, LineChartStatCard, BarChartStatCard, WheelChartStatCard, BalanceCard, ImageStatCard, HighlightCard, ListGroup, WalletGoalCard, ChartHeader, ChartMetricRow, GroupedBarChart, DivergingBarChart, type CardDensity } from "@forge-ui-official/core";
+import { Panel, SurfaceCard, Button, FileInput, InfoRow, Modal, StatCard, ProgressStatCard, LineChartStatCard, BarChartStatCard, WheelChartStatCard, BalanceCard, ImageStatCard, HighlightCard, ListGroup, WalletGoalCard, ChartHeader, ChartMetricRow, GroupedBarChart, DivergingBarChart, type CardDensity } from "@aideui/core";
 import { PageHeading, Section } from "../_shared";
 
 export default function DashboardKitCases() {

@@ -18,7 +18,7 @@ import {
   type ProfileCardState,
   type SidebarMenuBgMode,
   type SidebarMenuMode,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   HomeBoldDuotone,
   ChartBoldDuotone,
@@ -35,7 +35,7 @@ import {
   AddCircleBoldDuotone,
   UsersGroupRoundedBoldDuotone,
   Logout3BoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const accentColors = ["purple", "blue", "black"] as const satisfies readonly AccentColor[];

@@ -189,7 +189,7 @@
           "attr": "children",
           "type": "ReactNode",
           "defaultValue": "—",
-          "description": "内嵌图标，推荐 @forge-ui-official/core/icons BoldDuotone。",
+          "description": "内嵌图标，推荐 @aideui/core/icons BoldDuotone。",
           "file": "src/app/components/badge/page.tsx",
           "line": 83
         },
@@ -247,7 +247,7 @@
           "attr": "children",
           "type": "ReactNode",
           "defaultValue": "—",
-          "description": "内嵌图标，推荐 @forge-ui-official/core/icons 24px BoldDuotone。",
+          "description": "内嵌图标，推荐 @aideui/core/icons 24px BoldDuotone。",
           "file": "src/app/components/badge/page.tsx",
           "line": 106
         },
@@ -408,7 +408,7 @@
           "attr": "iconLeft",
           "type": "ReactNode",
           "defaultValue": "—",
-          "description": "文本左侧的图标槽，建议传 @forge-ui-official/core/icons 16px 图标。",
+          "description": "文本左侧的图标槽，建议传 @aideui/core/icons 16px 图标。",
           "file": "src/app/components/button-link/page.tsx",
           "line": 75
         },
@@ -579,7 +579,7 @@
           "attr": "children",
           "type": "ReactNode",
           "defaultValue": "—",
-          "description": "图标节点，建议 @forge-ui-official/core/icons 20px 以匹配 md 尺寸。",
+          "description": "图标节点，建议 @aideui/core/icons 20px 以匹配 md 尺寸。",
           "file": "src/app/components/button-link/page.tsx",
           "line": 132
         },
@@ -5657,7 +5657,7 @@
           "attr": "icon",
           "type": "ComponentType<{ size?, color? }>",
           "defaultValue": "—",
-          "description": "传 @forge-ui-official/core/icons 组件本身（不实例化），accent 驱动颜色与底色。",
+          "description": "传 @aideui/core/icons 组件本身（不实例化），accent 驱动颜色与底色。",
           "file": "src/app/components/chart/page.tsx",
           "line": 203
         },
@@ -8407,7 +8407,7 @@
           "attr": "icons",
           "type": "ReactNode[]",
           "defaultValue": "—",
-          "description": "图标节点列表，用 @forge-ui-official/core/icons 实例。",
+          "description": "图标节点列表，用 @aideui/core/icons 实例。",
           "file": "src/app/components/input-field/page.tsx",
           "line": 243
         },
@@ -8638,7 +8638,7 @@
           "attr": "icon",
           "type": "ReactNode",
           "defaultValue": "—",
-          "description": "左上方的 32px 图标，建议 @forge-ui-official/core/icons Bold 系列。",
+          "description": "左上方的 32px 图标，建议 @aideui/core/icons Bold 系列。",
           "file": "src/app/components/modal/page.tsx",
           "line": 73
         },
@@ -8821,7 +8821,7 @@
           "attr": "icon",
           "type": "ReactNode",
           "defaultValue": "—",
-          "description": "触发 icon，推荐 @forge-ui-official/core/icons 14px。",
+          "description": "触发 icon，推荐 @aideui/core/icons 14px。",
           "file": "src/app/components/tooltip/page.tsx",
           "line": 59
         },
@@ -11938,7 +11938,7 @@
           "attr": "iconColor",
           "type": "string",
           "defaultValue": "'var(--fg-grey-700)'",
-          "description": "所有 icon 颜色（@forge-ui-official/core/icons 需用 color prop）。",
+          "description": "所有 icon 颜色（@aideui/core/icons 需用 color prop）。",
           "file": "src/app/components/table/page.tsx",
           "line": 355
         },

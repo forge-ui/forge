@@ -12,15 +12,15 @@
 
 ## 铁律（违反必须重写）
 
-1. **组件只从 `@forge-ui-official/core` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
+1. **组件只从 `@aideui/core` 导入**。禁止手搓 `<div class="bg-...">` 复刻设计稿的卡片、按钮、输入框等。Kit 里没有就停下问，不要自行画。
 2. **颜色只用 `fg-*` token**。禁用 Tailwind 默认色（如 `text-blue-500` `bg-gray-100`），全部换成 `text-fg-violet` `bg-fg-grey-100`。没对上的颜色去 `src/app/globals.css` 的 `@theme inline` 里扩 token，不要就地写 hex。
-3. **Icon 用 `@forge-ui-official/core/icons`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾，底层是 Solar Icons（React 实现为 MIT，480 Design 图形为 CC BY 4.0）。优先用 `size={N}` 和 `color="#HEX"` prop 保证渲染稳定；兼容层也支持 `currentColor` 和标准 SVG props。
-4. **布局用 `<AppLayout>`**（`@forge-ui-official/core`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
+3. **Icon 用 `@aideui/core/icons`**，导出名以 `Linear` / `BoldDuotone` / `Bold` 等后缀结尾，底层是 Solar Icons（React 实现为 MIT，480 Design 图形为 CC BY 4.0）。优先用 `size={N}` 和 `color="#HEX"` prop 保证渲染稳定；兼容层也支持 `currentColor` 和标准 SVG props。
+4. **布局用 `<AppLayout>`**（`@aideui/core`），不要自己拼 sidebar + topbar。登录页直接用 `/sign-in` `/sign-up` `/forgot-password` `/reset-password` 现成页面。
 5. **不确定就看 `/cases/<name>`**。每个组件都有一页示例（`src/app/cases/<name>/page.tsx`）。先读示例里的用法，再写 props。
 
 ## 可用资源索引
 
-### 组件清单（`@forge-ui-official/core`）
+### 组件清单（`@aideui/core`）
 
 按类别分组，括号里是 `cases/` 下对应的示例页：
 
@@ -75,7 +75,7 @@
 - `CurrencyConverter` / `RatingStars` / `ImageGrid` / `ProductRow` / `MapCard`（cases/map）
 
 **布局模板**
-- `AppLayout`（从 `@forge-ui-official/core` 导入）— 侧栏、顶栏和内容区。业务页用它，不要再拼一套侧栏。
+- `AppLayout`（从 `@aideui/core` 导入）— 侧栏、顶栏和内容区。业务页用它，不要再拼一套侧栏。
 
 ### 颜色 Token（`src/app/globals.css`）
 
@@ -95,10 +95,10 @@
 - 运行时取 hex：`var(--fg-violet)` / `var(--fg-grey-700)`
 - 深浅调性通常：`50/100` 作浅底、`500` 作主色、`700+` 作深底或高对比文字
 
-### Icon（`@forge-ui-official/core/icons`）
+### Icon（`@aideui/core/icons`）
 
 ```tsx
-import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
+import { MagniferLinear, BellBoldDuotone } from "@aideui/core/icons";
 
 <MagniferLinear size={16} color="#71717A" />
 <BellBoldDuotone size={24} color="var(--fg-violet)" />
@@ -113,7 +113,7 @@ import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
 ### 布局（`AppLayout`）
 
 ```tsx
-import { AppLayout } from "@forge-ui-official/core";
+import { AppLayout } from "@aideui/core";
 
 <AppLayout
   mode="light"              // light | dark
@@ -177,7 +177,7 @@ accordion / agent / badge / button-link / calendar / card / chart / chat / chat-
 - 先写页面骨架（AppLayout + Toolbar + 主内容容器）
 - 主内容按页面组件拆：每块对应一个 Kit 组件或组件组合
 - 遇到不确定的组件 → 打开 `/cases/<name>` 对应示例页复制用法
-- 颜色选 `fg-*`，icon 选 `@forge-ui-official/core/icons`
+- 颜色选 `fg-*`，icon 选 `@aideui/core/icons`
 
 **Step 4. 缺件停下**
 如果 Kit 里没有合适组件（不是变体缺失，是真的没有），**立即停下问人**。不要自己手搓 div 复刻。用户会判断要不要扩 Kit。
@@ -191,7 +191,7 @@ accordion / agent / badge / button-link / calendar / card / chart / chat / chat-
 
 - [ ] 没有手搓 div 复刻 Kit 已有组件
 - [ ] 颜色全部走 `fg-*` token，无裸 Tailwind 默认色
-- [ ] Icon 全部 `@forge-ui-official/core/icons` + `color` prop
+- [ ] Icon 全部 `@aideui/core/icons` + `color` prop
 - [ ] 布局用 `<AppLayout>` 或继承自模板
 - [ ] tsc 通过
 - [ ] 截图与设计对照过

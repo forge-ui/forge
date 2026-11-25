@@ -16,8 +16,8 @@ import {
   PenLinear,
   StarsLinear,
   WidgetLinear,
-} from "@forge-ui-official/core/icons";
-import { cn } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { cn } from "@aideui/core";
 
 type NavIcon = typeof DocumentTextLinear;
 

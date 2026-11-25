@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
-import { Button, SelectOption, StyledLink, TextField } from "@forge-ui-official/core";
-import { CheckCircleLinear, DownloadLinear, MagniferLinear, RestartCircleLinear } from "@forge-ui-official/core/icons";
+import { Button, SelectOption, StyledLink, TextField } from "@aideui/core";
+import { CheckCircleLinear, DownloadLinear, MagniferLinear, RestartCircleLinear } from "@aideui/core/icons";
 import { FusionExample } from "../../components/_fusion/example";
 import { officialHref } from "../../components/_fusion/registry";
 import { LabPreview } from "./_lab-preview";

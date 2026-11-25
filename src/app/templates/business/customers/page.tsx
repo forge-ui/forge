@@ -22,8 +22,8 @@ import {
   useToast,
   ToastProvider,
   type ColumnDef,
-} from "@forge-ui-official/core";
-import { CheckCircleBoldDuotone, UserBoldDuotone, WalletMoneyBoldDuotone } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { CheckCircleBoldDuotone, UserBoldDuotone, WalletMoneyBoldDuotone } from "@aideui/core/icons";
 import { CrmMetricCard } from "@/blocks/crm-summary/crm-summary";
 import { BASE, BusinessShell } from "../_chrome";
 import { CUSTOMERS, stageColor, wan, type Customer, type CustomerStage } from "../_data";

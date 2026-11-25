@@ -8,7 +8,7 @@ import {
   EventCard,
   SmallCalendar,
   FullCalendar,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -16,7 +16,7 @@ import { CodeBlock, type ApiTableRow } from "../_api-table";
 const CODE_IMPORT = `import {
   CalendarCard, EventTag, CalendarDayCell, EventCard,
   SmallCalendar, FullCalendar,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_CALENDAR_USAGE = `<CalendarCard value={date} onChange={setDate} />`;
 

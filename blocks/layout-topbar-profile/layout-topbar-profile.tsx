@@ -1,8 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { AppLayout, Breadcrumbs, Button, DataTable, PageTitleToolbar, StatCard, StatusBadge, type AppLayoutMenuSection, type ColumnDef } from "@forge-ui-official/core";
-import { BagBoldDuotone, BoxBoldDuotone, ChartSquareBoldDuotone, SettingsBoldDuotone, UsersGroupRoundedBoldDuotone, WalletMoneyBoldDuotone, WidgetBoldDuotone } from "@forge-ui-official/core/icons";
+import { AppLayout, Breadcrumbs, Button, DataTable, PageTitleToolbar, StatCard, StatusBadge, type AppLayoutMenuSection, type ColumnDef } from "@aideui/core";
+import { BagBoldDuotone, BoxBoldDuotone, ChartSquareBoldDuotone, SettingsBoldDuotone, UsersGroupRoundedBoldDuotone, WalletMoneyBoldDuotone, WidgetBoldDuotone } from "@aideui/core/icons";
 
 interface RecentOrder {
   id: string;

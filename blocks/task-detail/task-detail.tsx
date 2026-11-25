@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, type FormEvent } from "react";
-import { Avatar, AvatarGroup, Button, Checkbox, IconButton, Panel, PlusIcon, ProgressBar, StatusBadge, TextField, cn, type StatusBadgeColor } from "@forge-ui-official/core";
-import { TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Avatar, AvatarGroup, Button, Checkbox, IconButton, Panel, PlusIcon, ProgressBar, StatusBadge, TextField, cn, type StatusBadgeColor } from "@aideui/core";
+import { TrashBinMinimalisticLinear } from "@aideui/core/icons";
 
 export interface TaskChecklistItem {
   id: string;

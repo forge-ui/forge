@@ -1,11 +1,11 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear } from "@forge-ui-official/core/icons";
-import { Button, CellActions, CellText, DataTable, SelectOption, TextField } from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+import { AddCircleLinear } from "@aideui/core/icons";
+import { Button, CellActions, CellText, DataTable, SelectOption, TextField } from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import { ProtaskDeleteDialog, ProtaskSaveChangesDialog } from "../../../_shared/protask-actions";
 import { FieldLine, FinanceSurface } from "@/blocks/finance-workspace/finance-workspace";
 import { FinancePageHeader, FinanceTemplateShell } from "../../_chrome";

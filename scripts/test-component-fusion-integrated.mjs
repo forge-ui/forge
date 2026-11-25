@@ -26,7 +26,7 @@ await build({
     plugin.onResolve({ filter: /^next\/image$/ }, () => ({ path: "next-image", namespace: "next-default" }));
     plugin.onLoad({ filter: /.*/, namespace: "next-default" }, () => ({ contents: 'import entry from "next/image.js"; export default entry.default ?? entry;', loader: "js", resolveDir: root }));
     plugin.onResolve({ filter: /^next\// }, ({ path }) => ({ path: require.resolve(path), external: true })); } }],
-  alias: { "@forge-ui-official/core": resolve(root, "core/src/index.ts"), "@forge-ui-official/core/icons": resolve(root, "core/src/icons.tsx") },
+  alias: { "@aideui/core": resolve(root, "core/src/index.ts"), "@aideui/core/icons": resolve(root, "core/src/icons.tsx") },
 });
 // Base UI chooses useLayoutEffect vs a no-op when it loads, so provide a document first.
 require("./core/test/setup/dom-globals.cjs");

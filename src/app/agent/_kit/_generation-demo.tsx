@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Checkbox, ChatInputBar, StreamingAnswer } from "@forge-ui-official/core";
+import { Checkbox, ChatInputBar, StreamingAnswer } from "@aideui/core";
 import { demoSources } from "./_sources";
 import { useDemoStream } from "@/app/_demos/use-demo-stream";
 

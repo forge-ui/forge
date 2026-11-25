@@ -1,12 +1,12 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Pen2Linear } from "@forge-ui-official/core/icons";
-import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard, TabBar } from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+import { Pen2Linear } from "@aideui/core/icons";
+import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, LineChartStatCard, TabBar } from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, members, projects, tasks, type Project, type Task } from "../../_data";
 import { projectPageStackClass, projectPanelClass } from "../../_density";

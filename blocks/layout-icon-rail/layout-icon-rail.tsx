@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { AppLayout, Breadcrumbs, Button, DataTable, PageTitleToolbar, PlusIcon, StatusBadge, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown, type AppLayoutMenuItem, type ColumnDef } from "@forge-ui-official/core";
-import { BagBoldDuotone, BillListBoldDuotone, BoxBoldDuotone, ChartSquareBoldDuotone, SettingsBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone } from "@forge-ui-official/core/icons";
+import { AppLayout, Breadcrumbs, Button, DataTable, PageTitleToolbar, PlusIcon, StatusBadge, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown, type AppLayoutMenuItem, type ColumnDef } from "@aideui/core";
+import { BagBoldDuotone, BillListBoldDuotone, BoxBoldDuotone, ChartSquareBoldDuotone, SettingsBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone } from "@aideui/core/icons";
 
 export const defaultRailMenu: AppLayoutMenuItem[] = [
   { label: "概览", icon: <WidgetBoldDuotone size={20} />, href: "#overview" },

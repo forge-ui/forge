@@ -159,7 +159,7 @@ export default function ExamplesIndex() {
               <h2 className="text-xl font-bold tracking-fg text-fg-black">技术栈</h2>
               <ul className="ml-5 list-disc space-y-2 text-sm leading-6 text-fg-grey-900">
                 <li>Next.js 16、React 19、Tailwind CSS v4、TypeScript</li>
-                <li>组件来自 <Link href="/components/button-link" className="text-fg-blue hover:underline">@forge-ui-official/core</Link>，支持浅色和深色模式，主色、圆角、字体可以在<Link href="/docs/theme" className="text-fg-blue hover:underline">主题定制</Link>里换</li>
+                <li>组件来自 <Link href="/components/button-link" className="text-fg-blue hover:underline">@aideui/core</Link>，支持浅色和深色模式，主色、圆角、字体可以在<Link href="/docs/theme" className="text-fg-blue hover:underline">主题定制</Link>里换</li>
                 <li>配套给 Claude Code、Codex、Cursor 用的<Link href="/docs/ui-for-agents" className="text-fg-blue hover:underline">前端设计 Skill</Link>，让编码助手照着模板的写法加新页面</li>
               </ul>
             </div>

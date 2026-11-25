@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChartListItem、ListGroup、cn。
+依赖：core ^0.12.0；组件：ChartListItem、ListGroup、cn。
 
 ## 最小可用示例
 
@@ -22,16 +22,16 @@ export default function Example() {
 |---|---|---|
 | title | 是 | `string` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
+| color | 否 | `import("@aideui/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
 | action | 否 | `ReactNode` |
 | badge | 否 | `ReactNode` |
-| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
+| tabs | 否 | `import("@aideui/core").ListGroupTab[] \| undefined` |
 | activeTab | 否 | `string \| undefined` |
 | onTabChange | 否 | `((value: string) => void) \| undefined` |
 | closable | 否 | `boolean \| undefined` |
 | onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
+| density | 否 | `import("@aideui/core").CardDensity \| undefined` |
 | items | 否 | `ReactNode` |
 | entries | 否 | `{ id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>["icon"]; accent?: ComponentProps<typeof ChartListItem>["accent"]; avatar?: string; }[] \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |

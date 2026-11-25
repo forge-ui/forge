@@ -8,7 +8,7 @@ import {
   ToolbarShowSelect,
   FilterPanel,
   FilterGroup,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 const SELECT_OPTIONS = [
   { label: "All", value: "all" },

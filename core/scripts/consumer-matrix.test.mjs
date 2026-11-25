@@ -26,7 +26,7 @@ test("consumer package pins every external dependency while keeping the tarball 
   );
 
   assert.equal(packageJson.dependencies.next, "15.5.24");
-  assert.equal(packageJson.dependencies["@forge-ui-official/core"], "file:/tmp/forge-core.tgz");
+  assert.equal(packageJson.dependencies["@aideui/core"], "file:/tmp/forge-core.tgz");
   assert.deepEqual(findUnpinnedExternalDependencies(packageJson), []);
 });
 

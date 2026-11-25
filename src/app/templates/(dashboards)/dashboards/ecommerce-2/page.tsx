@@ -2,7 +2,7 @@
 
 import { PagedDataTable } from "../../../_shared/paged-data-table";
 
-import { AppLayout, Panel } from "@forge-ui-official/core";
+import { AppLayout, Panel } from "@aideui/core";
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -23,7 +23,7 @@ import {
   AltArrowRightLinear,
   FilterLinear,
   ArrowRightUpLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   ProgressStatCard,
@@ -39,13 +39,13 @@ import {
   StatusBadge,
   KebabMenu,
     ChartListItem,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
   MapRegion,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { mainProfile, orders, topProducts, months, type OrderRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

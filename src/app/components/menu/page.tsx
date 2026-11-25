@@ -14,7 +14,7 @@ import {
   Toggle,
   Menubar,
   NavigationMenu,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   HomeBoldDuotone,
   SettingsBoldDuotone,
@@ -25,7 +25,7 @@ import {
   CopyBoldDuotone,
   TrashBinTrashBoldDuotone,
   Logout3BoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PopconfirmExample, POPCONFIRM_PROPS } from "../_admin-kit-examples";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
@@ -35,7 +35,7 @@ const CODE_IMPORT = `import {
   MenuItem, DropdownPanel, DropdownDivider,
   IconTrigger, KebabMenu,
   DropdownMenu, ContextMenu, Popover, Menubar, NavigationMenu,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_MENUITEM_USAGE = `<MenuItem lead={{ kind: "icon", icon: <HomeBoldDuotone size={20} /> }} label="首页" />
 <MenuItem lead={{ kind: "icon", icon: <SettingsBoldDuotone size={20} /> }} label="设置" active />`;

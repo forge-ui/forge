@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Button, IconButton, ProgressBar, SurfaceCard, TextField, Tooltip } from "@forge-ui-official/core";
-import { ArrowRightLinear, BellLinear, BookmarkLinear, CheckCircleLinear, CopyLinear, DownloadLinear, HeartLinear, HeartBoldDuotone, LetterLinear, LockKeyholeLinear, MinusSquareLinear, PlainLinear, PlayBoldDuotone, PlusLinear, PauseLinear, RefreshLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton, ProgressBar, SurfaceCard, TextField, Tooltip } from "@aideui/core";
+import { ArrowRightLinear, BellLinear, BookmarkLinear, CheckCircleLinear, CopyLinear, DownloadLinear, HeartLinear, HeartBoldDuotone, LetterLinear, LockKeyholeLinear, MinusSquareLinear, PlainLinear, PlayBoldDuotone, PlusLinear, PauseLinear, RefreshLinear } from "@aideui/core/icons";
 import type { FusionExampleProps } from "./types";
 import { ActionHint, ActionStage, useActionTimers } from "./actions-shared";
 import { ArrowRightBoldIcon } from "@solar-icons/react";
@@ -100,7 +100,7 @@ export function CopyExample(settings: FusionExampleProps) {
   const { later, clear } = useActionTimers();
   const mounted = useRef(true);
   useEffect(() => { mounted.current = true; return () => { mounted.current = false; }; }, []);
-  const command = "pnpm add @forge-ui-official/core";
+  const command = "pnpm add @aideui/core";
   const copy = async () => { clear(); try { await navigator.clipboard.writeText(command); if (mounted.current) setStatus("success"); } catch { if (mounted.current) setStatus("error"); } if (mounted.current) later(() => setStatus("idle"), 2400); };
   return <ActionStage settings={settings}><div className="fusion-copy-command" data-copied={status === "success"}><code>{command}</code><Tooltip content={status === "success" ? (en ? "Copied" : "已复制") : (en ? "Copy command" : "复制命令")} motion={motion}><IconButton color={color} variant="ghost" motion={motion} aria-label={en ? "Copy command" : "复制命令"} result={status} effect="morph" onClick={copy}><CopyLinear size={20} /></IconButton></Tooltip></div><ActionHint>{status === "error" ? (en ? "Clipboard access failed. Select and copy the command." : "剪贴板访问失败，请选择命令手动复制。") : status === "success" ? (en ? "Command copied" : "安装命令已复制") : (en ? "Install Forge in your project" : "在项目中安装 Forge")}</ActionHint></ActionStage>;
 }

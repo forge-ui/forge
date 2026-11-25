@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { Button, HistoryItem, InfoRow, Label, Modal, Panel, SelectOption, StatusBadge, cn, type StatusBadgeColor } from "@forge-ui-official/core";
-import { BoxBoldDuotone, CardBoldDuotone, DocumentBoldDuotone, EyeLinear, LetterBoldDuotone, MapPointBoldDuotone, PhoneBoldDuotone, UserBoldDuotone } from "@forge-ui-official/core/icons";
+import { Button, HistoryItem, InfoRow, Label, Modal, Panel, SelectOption, StatusBadge, cn, type StatusBadgeColor } from "@aideui/core";
+import { BoxBoldDuotone, CardBoldDuotone, DocumentBoldDuotone, EyeLinear, LetterBoldDuotone, MapPointBoldDuotone, PhoneBoldDuotone, UserBoldDuotone } from "@aideui/core/icons";
 
 export type OrderDetailStatus = "processing" | "shipped" | "delivered" | "canceled";
 

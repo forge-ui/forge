@@ -1,21 +1,21 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import { ConfirmationDialog, type ConfirmationDialogColor } from "@forge-ui-official/core";
+import { ConfirmationDialog, type ConfirmationDialogColor } from "@aideui/core";
 import {
   DangerBold,
   PlainBold,
   DangerTriangleBold,
   RocketBold,
   BellBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { PreviewBlock } from "../_preview-block";
 import { ApiTable, CodeBlock, InlineCode, type ApiTableRow } from "../_api-table";
 
 // ─── 代码片段 ───
 
-const CODE_IMPORT = `import { ConfirmationDialog } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { ConfirmationDialog } from "@aideui/core";`;
 
 const CODE_USAGE = `<ConfirmationDialog
   color="red"
@@ -246,7 +246,7 @@ const PROPS: ApiTableRow[] = [
     attr: "icon",
     type: "ReactNode",
     defaultValue: "—",
-    description: "左上方的 32px 图标，建议 @forge-ui-official/core/icons Bold 系列。",
+    description: "左上方的 32px 图标，建议 @aideui/core/icons Bold 系列。",
   },
   {
     attr: "onConfirm",

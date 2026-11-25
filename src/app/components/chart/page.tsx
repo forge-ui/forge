@@ -18,8 +18,8 @@ import {
   BarHorizontalChart,
   BarUpsideDownChart,
   SmoothLineChart,
-} from "@forge-ui-official/core";
-import { WalletLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { WalletLinear } from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { PreviewBlock } from "../_preview-block";
@@ -30,7 +30,7 @@ const CODE_IMPORT = `import {
   MeterChart, HalfDonutChart, DashedHalfDonutChart, DonutChart, PieChart,
   MultilayerDonutChart, BubbleChart, BarChart, BarHorizontalChart, BarUpsideDownChart,
   SmoothLineChart,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_USAGE = `<ChartCard title="收入" subtitle="每月">
   <DonutChart segments={[{ value: 60 }, { value: 40 }]} centerValue="$8.4k" size="sm" />

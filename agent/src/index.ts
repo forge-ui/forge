@@ -3,7 +3,7 @@ export type { AgentTool, ForgeAgentProps, OperateMode, OperateOptions, Playbook,
 export { uiSchemas, uiToolNames } from "./catalog/schema";
 export type { UiSpec, UiToolName } from "./catalog/schema";
 // The panel and the interaction cards live in core since 0.9.0; re-exported for existing imports.
-export { AgentPanel, AGENT_PANEL_WIDTH as PANEL_WIDTH, ChoiceCard, ConfirmCard, RunProgress } from "@forge-ui-official/core";
-export type { AgentPanelProps, AgentSession, ChoiceAnswer, ChoiceOption, ConfirmField, ProgressStep } from "@forge-ui-official/core";
+export { AgentPanel, AGENT_PANEL_WIDTH as PANEL_WIDTH, ChoiceCard, ConfirmCard, RunProgress } from "@aideui/core";
+export type { AgentPanelProps, AgentSession, ChoiceAnswer, ChoiceOption, ConfirmField, ProgressStep } from "@aideui/core";
 export { takeOverPage } from "./takeover";
 export type { PageTakeover } from "./takeover";

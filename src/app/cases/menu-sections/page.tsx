@@ -1,6 +1,6 @@
 "use client";
 
-import { AppLayout, type AppLayoutMenuSection } from "@forge-ui-official/core";
+import { AppLayout, type AppLayoutMenuSection } from "@aideui/core";
 import {
   HomeBoldDuotone,
   FolderBoldDuotone,
@@ -8,7 +8,7 @@ import {
   ListCheckLinear,
   SettingsBoldDuotone,
   ShieldCheckBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { usePathname } from "next/navigation";
 import { PageHeading } from "../_shared";
 

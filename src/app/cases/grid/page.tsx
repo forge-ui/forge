@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
-import { Grid, GridItem, ButtonGroup, Checkbox, type GridColumns, type GridGap } from "@forge-ui-official/core";
+import { Grid, GridItem, ButtonGroup, Checkbox, type GridColumns, type GridGap } from "@aideui/core";
 import { PageHeading, Section } from "../../components/_shared";
 import { CodeBlock } from "../../components/_api-table";
 

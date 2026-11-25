@@ -1,16 +1,16 @@
-import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";
+import { Button, IconButton, StyledLink, ButtonGroup } from "@aideui/core";
 import {
   StarLinear,
   ArrowRightLinear,
   HeartLinear,
   TrashBinTrashLinear,
   AddCircleLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { Button, IconButton, StyledLink, ButtonGroup } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { Button, IconButton, StyledLink, ButtonGroup } from "@aideui/core";`;
 
 const CODE_BUTTON_USAGE = `<Button>保存修改</Button>
 <Button variant="secondary">次要按钮</Button>
@@ -88,7 +88,7 @@ const BUTTON_PROPS: ApiTableRow[] = [
     attr: "iconLeft",
     type: "ReactNode",
     defaultValue: "—",
-    description: "文本左侧的图标槽，建议传 @forge-ui-official/core/icons 16px 图标。",
+    description: "文本左侧的图标槽，建议传 @aideui/core/icons 16px 图标。",
   },
   {
     attr: "iconRight",
@@ -137,7 +137,7 @@ const ICONBUTTON_PROPS: ApiTableRow[] = [
     attr: "children",
     type: "ReactNode",
     defaultValue: "—",
-    description: "图标节点，建议 @forge-ui-official/core/icons 20px 以匹配 md 尺寸。",
+    description: "图标节点，建议 @aideui/core/icons 20px 以匹配 md 尺寸。",
   },
   {
     attr: "color",

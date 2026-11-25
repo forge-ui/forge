@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import { AppLayout, Button, type AppLayoutMenuItem, type AppLayoutMode } from "@forge-ui-official/core";
+import { AppLayout, Button, type AppLayoutMenuItem, type AppLayoutMode } from "@aideui/core";
 import { menuSections, previewRoot, routeLabels } from "../sidebar-motion/menu";
 
 type SidebarSettings = {

@@ -12,8 +12,8 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "paths": {
-      "@forge-ui-official/core": ["../core/src/index.ts"],
-      "@forge-ui-official/core/*": ["../core/src/*"]
+      "@aideui/core": ["../core/src/index.ts"],
+      "@aideui/core/*": ["../core/src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "test/**/*.ts"]

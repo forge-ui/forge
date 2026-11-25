@@ -86,13 +86,13 @@ function recommend({ need }) {
   const blocks = pick("blocks", 4);
   const used = new Map();
   for (const screen of screens) for (const name of data.screens.find(item => item.slug === screen.slug)?.components ?? []) used.set(name, (used.get(name) ?? 0) + 1);
-  for (const block of blocks) for (const file of data.blocks.find(item => item.slug === block.slug)?.registry.files ?? []) for (const match of file.content.matchAll(/import \{([^}]+)\} from "@forge-ui-official\/core"/g)) for (const name of match[1].split(",").map(part => part.trim()).filter(part => part && !part.startsWith("type "))) used.set(name, (used.get(name) ?? 0) + 1);
+  for (const block of blocks) for (const file of data.blocks.find(item => item.slug === block.slug)?.registry.files ?? []) for (const match of file.content.matchAll(/import \{([^}]+)\} from "@aideui\/core"/g)) for (const name of match[1].split(",").map(part => part.trim()).filter(part => part && !part.startsWith("type "))) used.set(name, (used.get(name) ?? 0) + 1);
   const components = [...used].sort((left, right) => right[1] - left[1]).map(([name]) => data.components.find(item => item.name === name)).filter(item => item?.kind === "value" && /^[A-Z]/.test(item.name)).slice(0, 10).map(summary);
   return {
     need, role, coreVersion: data.coreVersion,
     screens, blocks, components: components.length ? components : pick("components", 8),
     rules: roleRules[role].map(slug => ({ slug, title: data.rules.find(rule => rule.slug === slug)?.title })),
-    next: ["先 get_screen 或 get_block 看最接近的现成页面，能复用就不重写。", "再用 get_component 查组件参数，组件一律从 @forge-ui-official/core 引入。", "颜色用 get_tokens 查语义 token，不写 hex。", "写完后调用 check_code 检查，再按 audit-checklist 人工核对视觉和交互。"],
+    next: ["先 get_screen 或 get_block 看最接近的现成页面，能复用就不重写。", "再用 get_component 查组件参数，组件一律从 @aideui/core 引入。", "颜色用 get_tokens 查语义 token，不写 hex。", "写完后调用 check_code 检查，再按 audit-checklist 人工核对视觉和交互。"],
   };
 }
 
@@ -156,7 +156,7 @@ export function createServer() {
   }
   server.registerResource("forge-rules", "forge://rules", { description: "Forge 唯一规范目录", mimeType: "application/json" }, async uri => ({ contents: [{ uri: uri.href, mimeType: "application/json", text: JSON.stringify(data.rules.map(summary)) }] }));
   server.registerPrompt("forge-dashboard", { description: "按 Forge 规范规划运营看板", argsSchema: { goal: z.string().min(1).max(500) } }, async ({ goal }) => ({ messages: [{ role: "user", content: { type: "text", text: "目标：" + goal + "。先 get_rules 读取 page-standards、status、audit-checklist，再 list_screens 选择主模板，检索 Blocks 与组件 API。按 Screen → Blocks → Components 输出配方，缺失能力标记 FORGE-GAP 并询问。区分技术检查与浏览器验收。" } }] }));
-  server.registerPrompt("forge-page", { description: "按 Forge 规范实现任意后台页面", argsSchema: { need: z.string().min(1).max(500) } }, async ({ need }) => ({ messages: [{ role: "user", content: { type: "text", text: "需求：" + need + "。先调用 recommend 拿到页面角色和最接近的模板页面、页面组件；能复用就复制，不重写。再用 get_component 查参数、get_tokens 查颜色。组件从 @forge-ui-official/core 引入，图标从 @forge-ui-official/core/icons 引入，不写 hex。写完调用 check_code 修完所有错误，再按 audit-checklist 自查。" } }] }));
+  server.registerPrompt("forge-page", { description: "按 Forge 规范实现任意后台页面", argsSchema: { need: z.string().min(1).max(500) } }, async ({ need }) => ({ messages: [{ role: "user", content: { type: "text", text: "需求：" + need + "。先调用 recommend 拿到页面角色和最接近的模板页面、页面组件；能复用就复制，不重写。再用 get_component 查参数、get_tokens 查颜色。组件从 @aideui/core 引入，图标从 @aideui/core/icons 引入，不写 hex。写完调用 check_code 修完所有错误，再按 audit-checklist 自查。" } }] }));
   return server;
 }
 

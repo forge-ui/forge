@@ -124,7 +124,7 @@ setup_design() {
   local root; root="$(pwd)"
   bold "DESIGN.md → ${root}"
   if [[ ! -f "$root/DESIGN.md" ]]; then run curl -fsSL "${SITE}/DESIGN.md" -o "$root/DESIGN.md"; else ok "DESIGN.md already exists, left unchanged"; fi
-  local line="Follow [DESIGN.md](./DESIGN.md) for all visual and interaction decisions; build UI with @forge-ui-official/core."
+  local line="Follow [DESIGN.md](./DESIGN.md) for all visual and interaction decisions; build UI with @aideui/core."
   if [[ -f "$root/AGENTS.md" ]] && grep -qF "DESIGN.md" "$root/AGENTS.md"; then ok "AGENTS.md already points to DESIGN.md"; return; fi
   if [[ $DRY_RUN == 1 ]]; then printf "  [dry-run] append to AGENTS.md: %s\n" "$line"; else printf '\n%s\n' "$line" >> "$root/AGENTS.md"; ok "AGENTS.md points to DESIGN.md"; fi
 }

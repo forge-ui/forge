@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Avatar, Button, DataTable, IconButton, Modal, Pagination, Panel, StatusBadge, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown, cn, type ColumnDef, type StatusBadgeColor } from "@forge-ui-official/core";
-import { DownloadLinear, EyeLinear } from "@forge-ui-official/core/icons";
+import { Avatar, Button, DataTable, IconButton, Modal, Pagination, Panel, StatusBadge, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown, cn, type ColumnDef, type StatusBadgeColor } from "@aideui/core";
+import { DownloadLinear, EyeLinear } from "@aideui/core/icons";
 
 export interface OrderRecord {
   id: string;

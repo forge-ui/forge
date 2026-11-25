@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { AppLayout, Avatar, Breadcrumbs, Button, PageTitleToolbar, SelectOption, TextArea, TextField, Toggle, type AppLayoutMenuItem } from "@forge-ui-official/core";
-import { BellBoldDuotone, CardBoldDuotone, ShieldKeyholeBoldDuotone, UserBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone, SettingsBoldDuotone } from "@forge-ui-official/core/icons";
+import { AppLayout, Avatar, Breadcrumbs, Button, PageTitleToolbar, SelectOption, TextArea, TextField, Toggle, type AppLayoutMenuItem } from "@aideui/core";
+import { BellBoldDuotone, CardBoldDuotone, ShieldKeyholeBoldDuotone, UserBoldDuotone, UsersGroupRoundedBoldDuotone, WidgetBoldDuotone, SettingsBoldDuotone } from "@aideui/core/icons";
 
 export const defaultSettingsMenu: AppLayoutMenuItem[] = [
   { label: "工作台", icon: <WidgetBoldDuotone size={20} />, href: "#overview" },

@@ -10,7 +10,7 @@
 <p align="center">面向中文企业后台和 SaaS 的 React 组件库：组件、页面组件、模板，以及给编码助手的接入。</p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@forge-ui-official/core"><img alt="npm @forge-ui-official/core" src="https://img.shields.io/npm/v/@forge-ui-official/core?label=npm&color=3553FF"></a>
+  <a href="https://www.npmjs.com/package/@aideui/core"><img alt="npm @aideui/core" src="https://img.shields.io/npm/v/@aideui/core?label=npm&color=3553FF"></a>
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/github/license/forge-ui/forge?color=000A19"></a>
 </p>
 
@@ -45,7 +45,7 @@
 ## 为什么用 Forge
 
 - **整页有现成源码。** 70 个页面组件覆盖看板首屏、数据列表、详情、表单、设置、认证和智能体产品页，用 shadcn 命令一行装进项目；订单、商品、客户、项目等多页模板可以直接改。
-- **视觉规范在组件里。** Button、Form、DataTable、Calendar、Chart、Card、Toolbar、Dialog 等走 `@forge-ui-official/core`。颜色、字体、圆角、边框和密度不用每页重写。
+- **视觉规范在组件里。** Button、Form、DataTable、Calendar、Chart、Card、Toolbar、Dialog 等走 `@aideui/core`。颜色、字体、圆角、边框和密度不用每页重写。
 - **后台壳已经装好。** `AppLayout` 带 sidebar、topbar、profile、notification、language switcher、team switcher 和 page header。
 - **编码助手按同一套规则写，还能自查。** Skill 和只读 MCP 服务器提供组件参数、页面组件和模板；写完用 `check_code` 或 `forge-check` 按审计清单检查。
 
@@ -67,7 +67,7 @@ pnpm dev
 ### 已有项目
 
 ```bash
-pnpm add @forge-ui-official/core
+pnpm add @aideui/core
 pnpm add -D tailwindcss @tailwindcss/postcss
 ```
 
@@ -75,17 +75,17 @@ pnpm add -D tailwindcss @tailwindcss/postcss
 
 ```css
 @import "tailwindcss";
-@import "@forge-ui-official/core/styles.css";
+@import "@aideui/core/styles.css";
 
 /* app/globals.css */
-@source "../node_modules/@forge-ui-official/core/dist";
+@source "../node_modules/@aideui/core/dist";
 
 /* src/app/globals.css */
-@source "../../node_modules/@forge-ui-official/core/dist";
+@source "../../node_modules/@aideui/core/dist";
 ```
 
 ```tsx
-import { AppLayout, Button, DataTable, SurfaceCard } from "@forge-ui-official/core";
+import { AppLayout, Button, DataTable, SurfaceCard } from "@aideui/core";
 ```
 
 更细的安装说明见[文档站的快速开始](https://www.forgeui.org/docs/quick-start)。
@@ -108,8 +108,8 @@ npx shadcn@latest add https://www.forgeui.org/r/kanban-board.json
 
 | | 做什么 | 从哪里开始 |
 | --- | --- | --- |
-| `@forge-ui-official/core` | 组件、设计 token、`AppLayout` | `pnpm add @forge-ui-official/core` |
-| `@forge-ui-official/agent` | 嵌进应用的 AI 助手：回答问题、调用接口、用 Forge 组件回答、操作页面 | [agent/README.md](agent/README.md) |
+| `@aideui/core` | 组件、设计 token、`AppLayout` | `pnpm add @aideui/core` |
+| `@aideui/agent` | 嵌进应用的 AI 助手：回答问题、调用接口、用 Forge 组件回答、操作页面 | [agent/README.md](agent/README.md) |
 | [Forge Starter](https://github.com/forge-ui/forge-starter) | 后台脚手架：登录、样板模块、加页面 | `git clone` 后 `pnpm dev` |
 | [页面组件](https://www.forgeui.org/blocks) | 70 个可复制的整页源码 | `npx shadcn@latest add https://www.forgeui.org/r/<name>.json` |
 | [Forge Skill](https://www.forgeui.org/docs/ui-for-agents) 与 [MCP](https://www.forgeui.org/docs/mcp) | 让 Codex、Claude Code、Cursor 按组件和 token 写页面 | `curl -fsSL https://www.forgeui.org/setup.sh \| bash` |
@@ -200,8 +200,8 @@ Forge Design Extension 地址：https://github.com/forge-ui/forge-design-extensi
 
 请先确认本地已经安装或可读取 Forge Skill。
 然后 clone Forge Starter 并初始化环境。
-请确认项目已经安装 @forge-ui-official/core；如果 starter 没有带上，请执行 pnpm add @forge-ui-official/core。
-同时确认入口 CSS 已引入 @forge-ui-official/core/styles.css，并且 Tailwind v4 已配置 @source 指向 @forge-ui-official/core/dist。
+请确认项目已经安装 @aideui/core；如果 starter 没有带上，请执行 pnpm add @aideui/core。
+同时确认入口 CSS 已引入 @aideui/core/styles.css，并且 Tailwind v4 已配置 @source 指向 @aideui/core/dist。
 最后确认 pnpm dev、pnpm typecheck、pnpm build 都可用。
 
 环境就绪后，先主动向我确认业务目标、用户角色、需要的页面/模块、核心数据对象、主要操作流程和验收标准。
@@ -235,15 +235,15 @@ pnpm dev
 pnpm check           # 类型、lint 和全部测试（CI 跑的就是它）
 pnpm build           # 构建组件包和文档站
 pnpm typecheck       # 检查组件包和站点类型
-pnpm core:build      # 只构建 @forge-ui-official/core
+pnpm core:build      # 只构建 @aideui/core
 pnpm core:typecheck  # 只检查组件包类型
 pnpm lint            # ESLint
 ```
 
 | 路径 | 说明 |
 | --- | --- |
-| `core/` | `@forge-ui-official/core` 源码 |
-| `agent/` | `@forge-ui-official/agent` 源码 |
+| `core/` | `@aideui/core` 源码 |
+| `agent/` | `@aideui/agent` 源码 |
 | `blocks/` | 页面组件源码，生成到 `public/r/` 供 shadcn 安装 |
 | `content/guides/` | 使用指南（Markdown） |
 | `docs/for-agents/` | 给 AI 的组件路由表和介绍表，先读 `README.md` |

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Checkbox, ProgressBar, SelectOption, TextField, Toggle, cn } from "@forge-ui-official/core";
-import { CheckCircleBold } from "@forge-ui-official/core/icons";
+import { Button, Checkbox, ProgressBar, SelectOption, TextField, Toggle, cn } from "@aideui/core";
+import { CheckCircleBold } from "@aideui/core/icons";
 
 export interface OnboardingValue {
   workspace: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type CSSProperties } from "react";
-import { Breadcrumbs, Button, CheckboxWithLabel, ConfirmationDialog, Grid, KebabMenu, Modal, PageTitleToolbar, PlusIcon, RadioWithLabel, SelectOption, StatusBadge, SurfaceCard, TextField, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown } from "@forge-ui-official/core";
+import { Breadcrumbs, Button, CheckboxWithLabel, ConfirmationDialog, Grid, KebabMenu, Modal, PageTitleToolbar, PlusIcon, RadioWithLabel, SelectOption, StatusBadge, SurfaceCard, TextField, Toolbar, ToolbarSearchInput, ToolbarSelectDropdown } from "@aideui/core";
 
 export type ChannelKind = "clawbot" | "wecom" | "feishu" | "dingtalk" | "qq";
 export type ConnectionStatus = "connected" | "connecting" | "error" | "disabled" | "configured" | "pending";

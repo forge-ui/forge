@@ -20,12 +20,12 @@ import {
   type ChatInputBarQuickAction,
   type ChatInputBarSendContext,
   type ComposerSource,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   PlusLinear,
   LetterBoldDuotone,
   StarBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { ANSWERS, EXAMPLES, WORKSPACE_KEY, parseSessions, parseWorkspaces, workspaceSessionKey, initialWorkspaceSessions, type Workspace, type Session, type Turn } from "./_data";
 import { ConversationHeader } from "@/app/templates/_shared/conversation-header";
 import { AgentTurn } from "./_agent-turn";

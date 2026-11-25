@@ -13,7 +13,7 @@ const answer = [
   "npx shadcn@latest add https://www.forgeui.org/r/orders-table-section.json",
   "```",
   "```tsx",
-  'import { DataTable } from "@forge-ui-official/core";',
+  'import { DataTable } from "@aideui/core";',
   "export default function Page() {}",
   "```",
   "```forge:followups",

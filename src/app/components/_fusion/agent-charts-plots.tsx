@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { BarChart, BarHorizontalChart, Button, DonutChart, MultilayerDonutChart, SmoothLineChart } from "@forge-ui-official/core";
+import { BarChart, BarHorizontalChart, Button, DonutChart, MultilayerDonutChart, SmoothLineChart } from "@aideui/core";
 import type { FusionExampleProps, FusionSettings } from "./types";
 
 type Settings = FusionSettings;

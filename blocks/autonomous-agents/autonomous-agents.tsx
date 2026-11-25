@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, type CSSProperties, type ReactNode } from "react";
-import { Breadcrumbs, Button, Checkbox, ConfirmationDialog, Grid, Modal, PageTitleToolbar, PlusIcon, RadioWithLabel, SelectOption, StatusBadge, SurfaceCard, TextArea, TextField } from "@forge-ui-official/core";
+import { Breadcrumbs, Button, Checkbox, ConfirmationDialog, Grid, Modal, PageTitleToolbar, PlusIcon, RadioWithLabel, SelectOption, StatusBadge, SurfaceCard, TextArea, TextField } from "@aideui/core";
 
 export type ApprovalMode = "none" | "on_risky_tool" | "before_final";
 export type TaskStatus = "waiting_approval" | "waiting_input" | "running" | "queued" | "succeeded" | "failed" | "cancelled";

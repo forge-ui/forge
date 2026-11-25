@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
+依赖：core ^0.12.0；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
 
 ## 最小可用示例
 
@@ -20,7 +20,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("@forge-ui-official/core").MotionPreference; trend?: string; trendDirection?: import("@forge-ui-official/core").TrendDirection; subtitle?: string; theme?: import("@forge-ui-official/core").CardTheme \| ("dark" \| "orange"); size?: import("@forge-ui-official/core").StatCardSize; icon?: ReactNode; badgeVariant?: import("@forge-ui-official/core").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("@forge-ui-official/core").CardDensity; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
+| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("@aideui/core").MotionPreference; trend?: string; trendDirection?: import("@aideui/core").TrendDirection; subtitle?: string; theme?: import("@aideui/core").CardTheme \| ("dark" \| "orange"); size?: import("@aideui/core").StatCardSize; icon?: ReactNode; badgeVariant?: import("@aideui/core").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("@aideui/core").CardDensity; width?: import("@aideui/core").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
 | children | 否 | `ReactNode` |
 | className | 否 | `string \| undefined` |
 | variant | 否 | `"chart" \| "plain" \| undefined` |

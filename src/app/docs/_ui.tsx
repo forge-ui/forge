@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { CheckCircleLinear, CopyLinear, InfoCircleLinear } from "@forge-ui-official/core/icons";
+import { CheckCircleLinear, CopyLinear, InfoCircleLinear } from "@aideui/core/icons";
 
 // ============================================================
 // Docs page building blocks — only used under /docs

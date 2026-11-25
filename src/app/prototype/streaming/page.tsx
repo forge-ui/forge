@@ -3,7 +3,7 @@
 // Accepted interaction demo, rendered by the shared Core component.
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Button, StreamingAnswer } from "@forge-ui-official/core";
+import { Button, StreamingAnswer } from "@aideui/core";
 import { SAMPLES } from "./samples";
 import { useDemoStream } from "./use-demo-stream";
 import styles from "./prototype.module.css";

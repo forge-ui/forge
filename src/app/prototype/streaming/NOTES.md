@@ -2,7 +2,7 @@
 
 - 状态：用户已确认采用默认淡入；`userAccepted=true`。
 - 确认效果：`fade`、`500ms`、`linear`。`blur` 与 `raw` 保留作为对照。
-- 实现：正文已接入 `@forge-ui-official/core` 的 `StreamingAnswer`。
+- 实现：正文已接入 `@aideui/core` 的 `StreamingAnswer`。
 - 数据：固定原创文案模拟网络分块，宿主将已接收正文与接收状态交给 Core。
 
 ## 参考依据

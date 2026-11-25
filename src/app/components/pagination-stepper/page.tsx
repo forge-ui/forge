@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Pagination, Stepper, PageDot } from "@forge-ui-official/core";
+import { Pagination, Stepper, PageDot } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { Pagination, Stepper, PageDot } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { Pagination, Stepper, PageDot } from "@aideui/core";`;
 
 const CODE_PAGINATION_USAGE = `<Pagination totalPages={10} currentPage={3} onPageChange={(p) => setPage(p)} />`;
 

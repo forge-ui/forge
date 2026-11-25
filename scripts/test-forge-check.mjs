@@ -40,8 +40,8 @@ test("flags each static rule with line, audit id and fix", () => {
 
 test("does not flag Forge-conforming code or data that only looks like hex", () => {
   const code = [
-    'import { Button, DataTable, StatusBadge } from "@forge-ui-official/core";',
-    'import { StarLinear } from "@forge-ui-official/core/icons";',
+    'import { Button, DataTable, StatusBadge } from "@aideui/core";',
+    'import { StarLinear } from "@aideui/core/icons";',
     'const orders = [{ id: "#302012", sku: "#ABC" }];',
     '<a href="#details">详情</a>',
     '<div className="w-[280px] gap-6 p-6 text-fg-grey-700"><StatusBadge label="已完成" color="green" /></div>',

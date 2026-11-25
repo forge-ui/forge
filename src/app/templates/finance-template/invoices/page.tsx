@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, CloudDownloadLinear } from "@forge-ui-official/core/icons";
+import { AddCircleLinear, CloudDownloadLinear } from "@aideui/core/icons";
 import {
   CellActions,
   CellImageText,
@@ -15,8 +15,8 @@ import {
   ToolbarDatepicker,
   ToolbarSearchInput,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import {
   ProtaskDeleteDialog,
   ProtaskFilterTrigger,

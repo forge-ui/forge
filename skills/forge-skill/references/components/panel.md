@@ -1,6 +1,6 @@
 # panel
 
-自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.11.6**。
+自动生成；请勿编辑 API 部分。来源：`core/src/components/ui/panel.tsx`；core **0.12.0**。
 默认值和运行行为以源码初始化为准；类型表不推测默认值。
 
 ## Panel (value)
@@ -317,4 +317,4 @@ export interface PanelProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
 
 模板风格标题容器用 Panel；dashboard 为圆角24px、边框、padding16，template 兼容原共享容器。SurfaceCard 原有分区内容容器不变，不做全局替换。title/subtitle/action/footer 为插槽；无插槽时只渲染 children。
 
-导入自 `@forge-ui-official/core`；交互示例 `/cases/dashboard-kit`，Blocks 画廊 `/blocks`。源码实现不等于截图验收或 npm 已发布。
+导入自 `@aideui/core`；交互示例 `/cases/dashboard-kit`，Blocks 画廊 `/blocks`。源码实现不等于截图验收或 npm 已发布。

@@ -15,7 +15,7 @@ import {
   Panel,
   SmoothLineChart,
   WheelChartStatCard,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { BusinessShell } from "../_chrome";
 import { CUSTOMERS, MONTHS, SALES } from "../_data";

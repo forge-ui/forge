@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { Button, Checkbox, ConfirmationDialog, Modal, SelectOption, TextField } from "@forge-ui-official/core";
-import { PlusLinear } from "@forge-ui-official/core/icons";
+import { Button, Checkbox, ConfirmationDialog, Modal, SelectOption, TextField } from "@aideui/core";
+import { PlusLinear } from "@aideui/core/icons";
 import { collectTaskLabels, copySubtask, day, type Subtask, type Task } from "./_data";
 import { TaskDateMenu, type SchedulePatch } from "./_task-date-menu";
 import { TaskLabels } from "./_task-labels";

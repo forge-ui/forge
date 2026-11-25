@@ -6,8 +6,8 @@ import {
   DownloadMinimalisticLinear,
   PenLinear,
   TrashBinMinimalisticLinear,
-} from "@forge-ui-official/core/icons";
-import { PlusIcon } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { PlusIcon } from "@aideui/core";
 import {
   PageHeader,
   Breadcrumbs,
@@ -24,8 +24,8 @@ import {
   ConfirmationDialog,
   ToolbarDatepicker,
   ToolbarFilterButton,
-} from "@forge-ui-official/core";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef, StatusBadgeColor } from "@aideui/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 import { downloadCsv } from "../../../_shared/download-csv";
 

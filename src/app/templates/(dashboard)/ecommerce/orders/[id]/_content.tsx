@@ -14,7 +14,7 @@ import {
   HistoryItem,
   Label,
   type LabelColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   FileTextBoldDuotone,
   TrashBinTrashLinear,
@@ -27,7 +27,7 @@ import {
   MapPointBoldDuotone,
   DocumentBoldDuotone,
   MenuDotsLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { Panel, Modal, InfoRow } from "@/app/templates/_shared";
 
 interface OrderLineItem {

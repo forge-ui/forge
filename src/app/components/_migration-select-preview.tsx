@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, SelectOption } from "@forge-ui-official/core";
-import { BellLinear, CalendarLinear, ChatDotsLinear, ClockCircleLinear, LetterLinear } from "@forge-ui-official/core/icons";
+import { Button, SelectOption } from "@aideui/core";
+import { BellLinear, CalendarLinear, ChatDotsLinear, ClockCircleLinear, LetterLinear } from "@aideui/core/icons";
 
 export function SelectMotionPreview({ locale, color, motion }: {
   locale: "zh" | "en";

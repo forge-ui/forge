@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { Breadcrumbs, Button, MediaUpload, PageTitleToolbar, RadioWithLabel, SelectOption, TextArea, TextField } from "@forge-ui-official/core";
+import { Breadcrumbs, Button, MediaUpload, PageTitleToolbar, RadioWithLabel, SelectOption, TextArea, TextField } from "@aideui/core";
 
 export interface ProductDraft {
   name: string;

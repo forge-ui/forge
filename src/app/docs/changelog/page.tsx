@@ -26,7 +26,7 @@ export default function ChangelogPage() {
           { label: "更新日志" },
         ]}
         title="更新日志"
-        description={`@forge-ui-official/core 各版本的变更。当前版本是 ${coreVersion}。`}
+        description={`@aideui/core 各版本的变更。当前版本是 ${coreVersion}。`}
       />
 
       {releases.map((release) => (

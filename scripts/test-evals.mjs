@@ -18,7 +18,7 @@ test("scorer separates a Forge page from a hand-built one", () => {
   const workspace = fs.mkdtempSync(path.join(os.tmpdir(), "forge-eval-"));
   try {
     const write = (id, code) => { fs.mkdirSync(path.join(workspace, "app", id), { recursive: true }); fs.writeFileSync(path.join(workspace, "app", id, "page.tsx"), code); };
-    write("orders-list", 'import { DataTable, StatusBadge } from "@forge-ui-official/core";\nexport default function Page() { return <DataTable columns={[]} rows={[]} />; }\n');
+    write("orders-list", 'import { DataTable, StatusBadge } from "@aideui/core";\nexport default function Page() { return <DataTable columns={[]} rows={[]} />; }\n');
     write("login", 'import { Mail } from "lucide-react";\nexport default function Page() { return <form><input /><button style={{ color: "#7c3aed" }} onClick={() => {}}>登录</button></form>; }\n');
     const good = scoreTask(workspace, "orders-list", { ok: true, errors: [] });
     assert.equal(good.pass, true);

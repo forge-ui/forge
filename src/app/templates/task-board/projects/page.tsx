@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { Button, Checkbox, Grid, SurfaceCard, TextField } from "@forge-ui-official/core";
-import { FolderBoldDuotone } from "@forge-ui-official/core/icons";
+import { Button, Checkbox, Grid, SurfaceCard, TextField } from "@aideui/core";
+import { FolderBoldDuotone } from "@aideui/core/icons";
 import { useWorkspace } from "../_workspace-context";
 import { CreateButton, EmptyModule, ModulePage } from "../_workspace-ui";
 import { taskIsArchived } from "../_data";

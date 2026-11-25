@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Folder, FolderFloat, type FolderProps } from "@forge-ui-official/core";
+import { Folder, FolderFloat, type FolderProps } from "@aideui/core";
 import { Section } from "../_shared";
 
 export function FolderPreview() {
@@ -30,7 +30,7 @@ export function FolderPreview() {
       <div className="flex justify-center"><FolderFloat label="设计反馈" color={color} trigger={trigger} items={[{id:"layout",label:"调整页面布局"},{id:"color",label:"确认品牌配色"},{id:"copy",label:"精简提示文案"},{id:"review",label:"安排设计评审"}]} onSelect={id => setNote(`已选择：${({layout:"调整页面布局",color:"确认品牌配色",copy:"精简提示文案",review:"安排设计评审"} as Record<string,string>)[id]}`)} /></div>
       <p role="status" className="text-sm text-fg-grey-600">{note}</p>
     </Section>
-    <Section title="使用说明" description="从 @forge-ui-official/core 导入 Folder。label 为文件夹名称，items 接收 id、label 和可选 content。通过 open / onOpenChange 控制展开状态，onItemClick 接收所选文件。">
+    <Section title="使用说明" description="从 @aideui/core 导入 Folder。label 为文件夹名称，items 接收 id、label 和可选 content。通过 open / onOpenChange 控制展开状态，onItemClick 接收所选文件。">
       <p className="text-sm text-fg-grey-600">浮动便签使用 FolderFloat，通过 onSelect 获取选中的便签。</p>
     </Section>
   </div>;

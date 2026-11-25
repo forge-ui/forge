@@ -1,6 +1,6 @@
 "use client";
 
-import { Checklist, ChecklistItem } from "@forge-ui-official/core";
+import { Checklist, ChecklistItem } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 const ONBOARDING = [

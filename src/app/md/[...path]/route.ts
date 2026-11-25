@@ -34,7 +34,7 @@ function familyMarkdown(slug: string) {
   return [
     `# ${family.label}`,
     `> Forge 组件 · ${family.group} · core ${data.coreVersion}。页面：${SITE}/components/${slug} · 案例：${SITE}/cases/${slug}`,
-    "组件从 `@forge-ui-official/core` 引入，图标从 `@forge-ui-official/core/icons` 引入。完整参数和源码可用 MCP 的 get_component（detail=\"full\"）查询。",
+    "组件从 `@aideui/core` 引入，图标从 `@aideui/core/icons` 引入。完整参数和源码可用 MCP 的 get_component（detail=\"full\"）查询。",
     ...listed.map(componentSection),
     members.length > listed.length ? `## 其他相关导出\n\n${members.slice(listed.length).map((component) => component.name).join("、")}` : "",
   ].filter(Boolean).join("\n\n") + "\n";
@@ -55,7 +55,7 @@ function blocksIndex() {
   const categories = [...new Set(data.blocks.map((block) => block.category))];
   return [
     "# 页面组件",
-    `> ${data.blocks.length} 个可复制进项目的整页区块，基于 @forge-ui-official/core ${data.coreVersion}。每个都可以用 shadcn 命令安装。`,
+    `> ${data.blocks.length} 个可复制进项目的整页区块，基于 @aideui/core ${data.coreVersion}。每个都可以用 shadcn 命令安装。`,
     ...categories.map((category) => `## ${category}\n\n` + data.blocks.filter((block) => block.category === category).map((block) => `- [${block.title}](${SITE}/blocks/${block.slug}.md): ${block.description}`).join("\n")),
   ].join("\n\n") + "\n";
 }

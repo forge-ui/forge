@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { CopyLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
-import { cn } from "@forge-ui-official/core";
+import { CopyLinear, CheckCircleLinear } from "@aideui/core/icons";
+import { cn } from "@aideui/core";
 
 const COLLAPSED_MAX_HEIGHT = 320;
 const COLLAPSE_THRESHOLD_LINES = 12;

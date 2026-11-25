@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Breadcrumbs, Button, IconButton, PageTitleToolbar, PlusIcon, SelectOption, TextArea, TextField } from "@forge-ui-official/core";
-import { TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, IconButton, PageTitleToolbar, PlusIcon, SelectOption, TextArea, TextField } from "@aideui/core";
+import { TrashBinMinimalisticLinear } from "@aideui/core/icons";
 
 export interface InvoiceItemDraft {
   id: string;

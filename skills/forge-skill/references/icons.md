@@ -1,11 +1,11 @@
-# Icons — @forge-ui-official/core/icons
+# Icons — @aideui/core/icons
 
 Forge 项目唯一 icon 源。禁止用 `lucide-react`、inline SVG 等，**除**文件类型 icon（`public/images/file-icons/*.svg` 是 Figma 原图资产）。
 
 ## 基础用法
 
 ```tsx
-import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
+import { MagniferLinear, BellBoldDuotone } from "@aideui/core/icons";
 
 <MagniferLinear size={16} color="#71717A" />
 <BellBoldDuotone size={24} color="var(--fg-violet)" />
@@ -118,7 +118,7 @@ import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
 如果不确定某语义的 icon 名：
 
 ```bash
-ls node_modules/@forge-ui-official/core/icons/dist/icons/ | grep -i <关键词>
+ls node_modules/@aideui/core/icons/dist/icons/ | grep -i <关键词>
 ```
 
 常用关键词 → 文件名 映射：用"搜索 = magnifer"、"邮件 = letter"、"钱包 = wallet"、"编辑 = pen"、"删除 = trash" 等英文词 grep。

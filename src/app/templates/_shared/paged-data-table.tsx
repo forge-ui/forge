@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DataTable, type DataTableProps } from "@forge-ui-official/core";
+import { DataTable, type DataTableProps } from "@aideui/core";
 
 type PagedDataTableProps<T> = Omit<DataTableProps<T>, "showPagination" | "currentPage" | "totalPages" | "onPageChange" | "paginationLabel"> & {
   pageSize?: number;

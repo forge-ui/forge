@@ -9,14 +9,14 @@ import {
   StarBoldDuotone,
   MagniferBoldDuotone,
   SettingsBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import type {
   AppLayoutMenuItem,
   AppLayoutMode,
   AppLayoutProfile,
   AppLayoutProfilePosition,
   AppLayoutAccentColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 export type BuilderVariant = {
   slug: string;

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, ButtonGroup, DataTable, Panel, SmoothLineChart, StatusBadge, cn, type ColumnDef } from "@forge-ui-official/core";
-import { PlayBoldDuotone } from "@forge-ui-official/core/icons";
+import { Button, ButtonGroup, DataTable, Panel, SmoothLineChart, StatusBadge, cn, type ColumnDef } from "@aideui/core";
+import { PlayBoldDuotone } from "@aideui/core/icons";
 
 export type EvalResult = "pass" | "partial" | "fail";
 

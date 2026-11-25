@@ -1,8 +1,8 @@
 "use client";
 
-import { Button, KebabMenu, PageDot } from "@forge-ui-official/core";
-import { WalletBoldDuotone } from "@forge-ui-official/core/icons";
-import { Panel, WalletGoalCard, type PanelProps, type WalletGoalCardProps } from "@forge-ui-official/core";
+import { Button, KebabMenu, PageDot } from "@aideui/core";
+import { WalletBoldDuotone } from "@aideui/core/icons";
+import { Panel, WalletGoalCard, type PanelProps, type WalletGoalCardProps } from "@aideui/core";
 
 export type GoalProgressListProps = Omit<PanelProps, "children"> & {
   children?: PanelProps["children"];

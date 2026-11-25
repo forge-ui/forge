@@ -15,8 +15,8 @@ import {
   SmoothLineChart,
   WheelChartStatCard,
   type CalendarEvent,
-} from "@forge-ui-official/core";
-import { ArrowRightDownLinear, ArrowRightUpLinear, DocumentBoldDuotone, LetterLinear, PhoneCallingLinear, UsersGroupTwoRoundedBoldDuotone, WalletMoneyBoldDuotone } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { ArrowRightDownLinear, ArrowRightUpLinear, DocumentBoldDuotone, LetterLinear, PhoneCallingLinear, UsersGroupTwoRoundedBoldDuotone, WalletMoneyBoldDuotone } from "@aideui/core/icons";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { CompositionCard } from "@/blocks/composition-card/composition-card";
 import { RankingList } from "@/blocks/ranking-list/ranking-list";

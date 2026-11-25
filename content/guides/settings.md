@@ -11,7 +11,7 @@ Panel、Button；设置类 Screen 或案例。Blocks 是复制到项目的源码
 ## 示例代码
 
 ```tsx
-import { Button, Panel } from "@forge-ui-official/core";
+import { Button, Panel } from "@aideui/core";
 
 export function Settings() {
   return <Panel><h2>通知偏好</h2><label><input type="checkbox" name="email" />邮件通知</label><Button type="button">保存设置</Button></Panel>;

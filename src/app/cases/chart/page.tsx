@@ -16,8 +16,8 @@ import {
   BarHorizontalChart,
   BarUpsideDownChart,
   SmoothLineChart,
-} from "@forge-ui-official/core";
-import { WalletLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { WalletLinear } from "@aideui/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 export default function ChartCasePage() {

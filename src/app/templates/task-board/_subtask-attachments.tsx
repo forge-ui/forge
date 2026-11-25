@@ -1,9 +1,9 @@
 "use client";
 
-import { FileInput } from "@forge-ui-official/core";
+import { FileInput } from "@aideui/core";
 import { useEffect, useRef, useState } from "react";
-import { Button, IconButton } from "@forge-ui-official/core";
-import { PlusLinear, PaperclipLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton } from "@aideui/core";
+import { PlusLinear, PaperclipLinear } from "@aideui/core/icons";
 import { type Subtask } from "./_data";
 
 export function SubtaskAttachments({ value, onChange, onBusyChange, label = "子任务附件", compact = false }: {

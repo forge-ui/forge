@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRightLinear } from "@forge-ui-official/core/icons";
+import { ArrowRightLinear } from "@aideui/core/icons";
 import { SiteHeader } from "@/app/_components/site-header";
 import { asset } from "@/lib/asset";
 

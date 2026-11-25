@@ -23,7 +23,7 @@ function documentedVersion() {
 }
 
 function installedVersion() {
-  const installed = readJson(path.join(root, "node_modules/@forge-ui-official/core/package.json"));
+  const installed = readJson(path.join(root, "node_modules/@aideui/core/package.json"));
   return installed?.version ?? null;
 }
 
@@ -55,7 +55,7 @@ const info = {
   project: root,
   hasPackageJson: Boolean(pkg),
   forge: {
-    declared: dependencies["@forge-ui-official/core"] ?? null,
+    declared: dependencies["@aideui/core"] ?? null,
     installed: installedVersion(),
     documentedBySkill: documentedVersion(),
   },
@@ -68,7 +68,7 @@ const info = {
 
 const notes = [];
 if (!info.hasPackageJson) notes.push("没有找到 package.json：确认当前目录是项目根目录。");
-else if (!info.forge.declared) notes.push("项目还没装 Forge：pnpm add @forge-ui-official/core，并按 https://www.forgeui.org/docs/quick-start 接入样式。");
+else if (!info.forge.declared) notes.push("项目还没装 Forge：pnpm add @aideui/core，并按 https://www.forgeui.org/docs/quick-start 接入样式。");
 if (info.forge.installed && info.forge.documentedBySkill && info.forge.installed !== info.forge.documentedBySkill) {
   const [installedMajor, installedMinor] = major(info.forge.installed) ?? [];
   const [skillMajor, skillMinor] = major(info.forge.documentedBySkill) ?? [];

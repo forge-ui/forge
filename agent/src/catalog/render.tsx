@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { AgentCodeBlock, ChoiceCard, DataTable, Panel, PromptSuggestions, StatCard, StatusBadge, type ColumnDef } from "@forge-ui-official/core";
-import { CheckCircleLinear, CopyLinear } from "@forge-ui-official/core/icons";
+import { AgentCodeBlock, ChoiceCard, DataTable, Panel, PromptSuggestions, StatCard, StatusBadge, type ColumnDef } from "@aideui/core";
+import { CheckCircleLinear, CopyLinear } from "@aideui/core/icons";
 import { BLOCK_GUIDE, parseBlock, type UiSpec, type UiToolName } from "./schema";
 import { Actions, Callout, Changes, Chart, Compare, Confirm, Flow, Form, Funnel, Images, ListBlock, Plan, Progress, Questions, RecordCard, Tags, Timeline } from "./widgets";
 

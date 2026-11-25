@@ -3,7 +3,7 @@
 import {
   InfoCircleBoldDuotone,
   QuestionCircleBoldDuotone,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Tooltip,
   TooltipBubble,
@@ -11,7 +11,7 @@ import {
   type TooltipPosition,
   type TooltipSize,
   type TooltipAnchorState,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const positions: TooltipPosition[] = ["top", "right", "bottom", "left"];

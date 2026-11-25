@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, type ReactNode } from "react";
-import { StarsLinear } from "@forge-ui-official/core/icons";
+import { StarsLinear } from "@aideui/core/icons";
 import { PageHeading, Section } from "../components/_shared";
 import { AgentApi } from "./_kit/_agent-api";
 import { AgentPreview } from "./_kit/_agent-entries";

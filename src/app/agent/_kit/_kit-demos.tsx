@@ -49,7 +49,7 @@ import {
   type QuestionAnswer,
   type QueuedPrompt,
   type RunStatus,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 /** Quick-action cards for an agent composer; the kinds pick ChatInputBar's built-in illustrations. */
 export const AGENT_QUICK_ACTIONS: ChatInputBarQuickAction[] = [

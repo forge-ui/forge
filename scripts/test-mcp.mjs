@@ -14,7 +14,7 @@ test("all tool handlers, pagination, lookup failures", () => {
   assert.equal(component.defaults.variant, '"soft"');
   assert.equal(component.defaults.color, '"grey"');
   assert.ok(component.props.some(prop => prop.name === "label"));
-  assert.ok(component.import.includes("@forge-ui-official/core"));
+  assert.ok(component.import.includes("@aideui/core"));
   const screen = executeTool("get_screen", { slug: "dashboards/analytics" });
   assert.equal(screen.previewUrl, "https://www.forgeui.org/templates/dashboards/analytics");
 });

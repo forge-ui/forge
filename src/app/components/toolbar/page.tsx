@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Login2Linear } from "@forge-ui-official/core/icons";
+import { Login2Linear } from "@aideui/core/icons";
 import {
   Button,
   Toolbar,
@@ -13,7 +13,7 @@ import {
   ToolbarFavoriteButton,
   ToolbarPillTabs,
   PageTitleToolbar,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -40,7 +40,7 @@ const CODE_IMPORT = `import {
   ToolbarFilterButton, ToolbarShowSelect, ToolbarActions,
   ToolbarKebabButton, ToolbarFavoriteButton, ToolbarPillTabs,
   PageTitleToolbar,
-} from "@forge-ui-official/core";`;
+} from "@aideui/core";`;
 
 const CODE_SEARCH_FILTER_USAGE = `// Row 1: 搜索 + 一组筛选 + 主按钮
 <Toolbar

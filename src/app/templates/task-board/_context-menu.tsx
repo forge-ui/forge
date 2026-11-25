@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
-import { Button, DropdownPanel, IconButton, MenuItem } from "@forge-ui-official/core";
-import { MenuDotsBold } from "@forge-ui-official/core/icons";
+import { Button, DropdownPanel, IconButton, MenuItem } from "@aideui/core";
+import { MenuDotsBold } from "@aideui/core/icons";
 
 type ContextMenuEntry = { label: string; danger?: boolean; onSelect?: () => void; children?: ContextMenuEntry[] };
 

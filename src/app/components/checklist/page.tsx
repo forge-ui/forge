@@ -1,11 +1,11 @@
 "use client";
 
-import { Checklist, ChecklistItem } from "@forge-ui-official/core";
+import { Checklist, ChecklistItem } from "@aideui/core";
 import { PageHeading, Section, SubSection } from "../_shared";
 import { ApiBlock, DocExample, ExampleGrid } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
 
-const CODE_IMPORT = `import { Checklist, ChecklistItem } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { Checklist, ChecklistItem } from "@aideui/core";`;
 
 const LIST_PROPS: ApiTableRow[] = [
   { attr: "tasks", type: "ChecklistTask[]", defaultValue: "—", description: "受控列表。" },

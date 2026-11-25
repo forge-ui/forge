@@ -27,7 +27,7 @@ export default function ThemePage() {
       </DocSection>
       <DocSection {...toc[1]}>
         <ol className="ml-5 list-decimal space-y-1.5">
-          <li>把生成的 CSS 放进全局样式文件，写在 <code>@import &quot;@forge-ui-official/core/styles.css&quot;</code> 之后。</li>
+          <li>把生成的 CSS 放进全局样式文件，写在 <code>@import &quot;@aideui/core/styles.css&quot;</code> 之后。</li>
           <li>换了字体的话，确认项目里加载了对应字体。如果在 <code>&lt;html style&gt;</code> 里写过 <code>--font-inter</code>，内联样式优先，要改那里。</li>
           <li>用编码助手的项目，把主色也写进 <Link href="/docs/design-md" className="text-fg-blue hover:underline">DESIGN.md</Link> 的 primary，助手生成页面时才会和主题一致。</li>
         </ol>

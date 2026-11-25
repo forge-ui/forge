@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 ```tsx
 "use client";
 import { useChat } from "@ai-sdk/react";
-import { AgentMessage, AgentParts, ChatInputBar, Conversation } from "@forge-ui-official/core";
+import { AgentMessage, AgentParts, ChatInputBar, Conversation } from "@aideui/core";
 
 export function Chat() {
   const { messages, sendMessage, status, stop } = useChat();

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent, type Key } from "react";
-import { Button, CellImageText, CellMuted, CellText, ConfirmationDialog, DataTable, IconButton, Modal, PlusIcon, TextArea, TextField, cn, type ColumnDef } from "@forge-ui-official/core";
-import { PenLinear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+import { Button, CellImageText, CellMuted, CellText, ConfirmationDialog, DataTable, IconButton, Modal, PlusIcon, TextArea, TextField, cn, type ColumnDef } from "@aideui/core";
+import { PenLinear, TrashBinMinimalisticLinear } from "@aideui/core/icons";
 
 export interface CategoryRecord {
   id: string;

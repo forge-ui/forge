@@ -1,4 +1,4 @@
-# @forge-ui-official/agent
+# @aideui/agent
 
 把一个 AI 助手嵌进你的 React 应用：它能回答产品问题、调用你的接口、用 Forge 组件（卡片、表格、图表、步骤）回答，还能在页面上替用户点、填、选。模型和数据都在你自己的服务器上，可以接通义千问、DeepSeek 等任何 OpenAI 兼容接口。
 
@@ -6,18 +6,18 @@
 
 ## 快速开始
 
-需要一个已经接好 [@forge-ui-official/core](https://www.forgeui.org/docs/quick-start)（0.8.3 及以上）的 Next.js 15+ 项目（React 19、Tailwind v4）。
+需要一个已经接好 [@aideui/core](https://www.forgeui.org/docs/quick-start)（0.8.3 及以上）的 Next.js 15+ 项目（React 19、Tailwind v4）。
 
 ### 1. 安装
 
 ```bash
-pnpm add @forge-ui-official/agent zod
+pnpm add @aideui/agent zod
 ```
 
 在全局样式文件里让 Tailwind 也扫描 agent 包（和 core 那行放在一起，路径同样按样式文件的位置）：
 
 ```css
-@source "../node_modules/@forge-ui-official/agent/dist";
+@source "../node_modules/@aideui/agent/dist";
 ```
 
 ### 2. 服务端接口
@@ -25,7 +25,7 @@ pnpm add @forge-ui-official/agent zod
 `app/api/agent/route.ts`：
 
 ```ts
-import { createAgentHandler, createOpenAICompatible } from "@forge-ui-official/agent/server";
+import { createAgentHandler, createOpenAICompatible } from "@aideui/agent/server";
 
 const provider = createOpenAICompatible({
   name: "my-agent",
@@ -53,7 +53,7 @@ AGENT_API_KEY=sk-...
 ```tsx
 "use client";
 
-import { ForgeAgent } from "@forge-ui-official/agent";
+import { ForgeAgent } from "@aideui/agent";
 
 export function Assistant() {
   return <ForgeAgent endpoint="/api/agent" title="问助手" suggestions={["这个页面能做什么？"]} storageKey="my-agent" operate />;
@@ -69,7 +69,7 @@ export function Assistant() {
 **浏览器工具**在用户的浏览器里、用用户当前的登录态执行，适合改筛选、打开记录、调用已有的前端接口：
 
 ```tsx
-import { ForgeAgent, defineTool } from "@forge-ui-official/agent";
+import { ForgeAgent, defineTool } from "@aideui/agent";
 import { z } from "zod";
 
 const tools = [
@@ -99,7 +99,7 @@ const tools = [
 **服务端工具**用服务端的凭据执行，适合查数据库、调内部服务：
 
 ```ts
-import { createAgentHandler, tool } from "@forge-ui-official/agent/server";
+import { createAgentHandler, tool } from "@aideui/agent/server";
 import { z } from "zod";
 
 export const POST = createAgentHandler({

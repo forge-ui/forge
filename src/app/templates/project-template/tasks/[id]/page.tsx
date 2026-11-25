@@ -1,11 +1,11 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { ProjectSection } from "@/app/templates/_shared/project-section";
 import { useMemo, useState } from "react";
 import { useParams } from "next/navigation";
-import { AddCircleLinear, Pen2Linear, UserPlusLinear } from "@forge-ui-official/core/icons";
-import { Avatar, AvatarGroup, Button, Checkbox, FileCard, ProgressBar, StatusBadge } from "@forge-ui-official/core";
+import { AddCircleLinear, Pen2Linear, UserPlusLinear } from "@aideui/core/icons";
+import { Avatar, AvatarGroup, Button, Checkbox, FileCard, ProgressBar, StatusBadge } from "@aideui/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, fileItems, tasks } from "../../_data";
 import { projectPageStackClass, projectPanelClass } from "../../_density";

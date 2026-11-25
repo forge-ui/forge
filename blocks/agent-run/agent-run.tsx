@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Breadcrumbs, Button, ChatInputBar, Modal, PageTitleToolbar, StatusBadge, type ChatInputBarQuickAction } from "@forge-ui-official/core";
-import { DocumentTextLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, ChatInputBar, Modal, PageTitleToolbar, StatusBadge, type ChatInputBarQuickAction } from "@aideui/core";
+import { DocumentTextLinear } from "@aideui/core/icons";
 
 export interface ConversationTurn {
   role: "user" | "assistant";

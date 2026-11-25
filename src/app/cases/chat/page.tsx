@@ -6,7 +6,7 @@ import {
   ChatBubble,
   ChatInputBar,
   Button,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   MagniferLinear,
   AddSquareLinear,
@@ -16,7 +16,7 @@ import {
   MenuDotsBold,
   CloseSquareLinear,
   UserLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading } from "../_shared";
 
 const COLORS = ["purple", "blue", "black"] as const;

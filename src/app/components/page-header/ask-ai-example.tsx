@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type ComponentProps } from "react";
-import { PageHeader, type AskAiProps, type AskAiSessionItem } from "@forge-ui-official/core";
+import { PageHeader, type AskAiProps, type AskAiSessionItem } from "@aideui/core";
 
 const SEED: AskAiSessionItem[] = [
   { id: "demo-1", title: "这个页面可以做什么？" },

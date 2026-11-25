@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@forge-ui-official/core";
+import { cn } from "@aideui/core";
 import { asset } from "@/lib/asset";
 import { SiteSearch } from "./site-search";
 import { ThemeToggle } from "./theme-toggle";

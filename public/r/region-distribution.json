@@ -5,7 +5,7 @@
   "title": "地区分布卡",
   "description": "结合地图与地区明细，查看客户或收入的地域分布。",
   "dependencies": [
-    "@forge-ui-official/core@^0.11.6"
+    "@aideui/core@^0.12.0"
   ],
   "meta": {
     "category": "图表与指标",
@@ -41,7 +41,7 @@
           {
             "name": "color",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").AccentColor | undefined"
+            "type": "import(\"@aideui/core\").AccentColor | undefined"
           },
           {
             "name": "subtitle",
@@ -51,12 +51,12 @@
           {
             "name": "variant",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").MapVariant | undefined"
+            "type": "import(\"@aideui/core\").MapVariant | undefined"
           },
           {
             "name": "highlights",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").MapContinent[] | undefined"
+            "type": "import(\"@aideui/core\").MapContinent[] | undefined"
           },
           {
             "name": "onMenuClick",
@@ -66,18 +66,18 @@
           {
             "name": "width",
             "required": false,
-            "type": "import(\"@forge-ui-official/core\").CardWidth | undefined"
+            "type": "import(\"@aideui/core\").CardWidth | undefined"
           },
           {
             "name": "regions",
             "required": false,
-            "type": "(Omit<import(\"@forge-ui-official/core\").MapRegion, \"flag\"> & { flag?: string; countryCode?: string; })[] | undefined"
+            "type": "(Omit<import(\"@aideui/core\").MapRegion, \"flag\"> & { flag?: string; countryCode?: string; })[] | undefined"
           }
         ]
       }
     ],
     "core": {
-      "version": "^0.11.6",
+      "version": "^0.12.0",
       "components": [
         "MapCard"
       ]
@@ -88,7 +88,7 @@
       "path": "blocks/region-distribution/region-distribution.tsx",
       "type": "registry:component",
       "target": "@components/blocks/region-distribution.tsx",
-      "content": "import type { ComponentProps } from \"react\";\nimport { MapCard } from \"@forge-ui-official/core\";\n\nexport type RegionDistributionProps = Omit<ComponentProps<typeof MapCard>, \"regions\"> & {\n  regions?: (Omit<NonNullable<ComponentProps<typeof MapCard>[\"regions\"]>[number], \"flag\"> & { flag?: string; countryCode?: string })[];\n};\n\nexport function RegionDistribution({ regions, ...props }: RegionDistributionProps) {\n  return <MapCard color=\"purple\" width=\"full\" {...props} regions={regions?.map(region => {\n    const countryCode = region.countryCode?.toUpperCase();\n    const label = countryCode && /^[A-Z]{2}$/.test(countryCode)\n      ? String.fromCodePoint(...Array.from(countryCode, letter => letter.charCodeAt(0) + 127397))\n      : region.name.slice(0, 2).replace(/[<>&\"']/g, \"\");\n    return { ...region, flag: region.flag ?? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"44\" height=\"44\"><text x=\"22\" y=\"30\" text-anchor=\"middle\" font-size=\"22\">${label}</text></svg>`)}` };\n  })} />;\n}\n"
+      "content": "import type { ComponentProps } from \"react\";\nimport { MapCard } from \"@aideui/core\";\n\nexport type RegionDistributionProps = Omit<ComponentProps<typeof MapCard>, \"regions\"> & {\n  regions?: (Omit<NonNullable<ComponentProps<typeof MapCard>[\"regions\"]>[number], \"flag\"> & { flag?: string; countryCode?: string })[];\n};\n\nexport function RegionDistribution({ regions, ...props }: RegionDistributionProps) {\n  return <MapCard color=\"purple\" width=\"full\" {...props} regions={regions?.map(region => {\n    const countryCode = region.countryCode?.toUpperCase();\n    const label = countryCode && /^[A-Z]{2}$/.test(countryCode)\n      ? String.fromCodePoint(...Array.from(countryCode, letter => letter.charCodeAt(0) + 127397))\n      : region.name.slice(0, 2).replace(/[<>&\"']/g, \"\");\n    return { ...region, flag: region.flag ?? `data:image/svg+xml,${encodeURIComponent(`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"44\" height=\"44\"><text x=\"22\" y=\"30\" text-anchor=\"middle\" font-size=\"22\">${label}</text></svg>`)}` };\n  })} />;\n}\n"
     }
   ]
 }

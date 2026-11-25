@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MotionConfig, useReducedMotion } from "motion/react";
-import { Button, FileTypeIcon } from "@forge-ui-official/core";
+import { Button, FileTypeIcon } from "@aideui/core";
 import { MetricNumberPreview } from "./_migration-number-preview";
 import { SelectionToolbarPreview } from "./_migration-selection-preview";
 import { EmptyExamplesPreview } from "./_migration-empty-preview";

@@ -1,6 +1,6 @@
 {
-  "name": "@forge-ui-official/agent",
-  "version": "0.5.1",
+  "name": "@aideui/agent",
+  "version": "0.6.0",
   "description": "Forge Agent — an embeddable AI agent that understands your product, calls its tools and answers with Forge components",
   "license": "MIT",
   "private": false,
@@ -37,7 +37,7 @@
     "prepublishOnly": "pnpm build && pnpm typecheck && pnpm test"
   },
   "peerDependencies": {
-    "@forge-ui-official/core": ">=0.9.0",
+    "@aideui/core": ">=0.12.0",
     "react": ">=19",
     "react-dom": ">=19"
   },
@@ -48,7 +48,7 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@forge-ui-official/core": "workspace:*",
+    "@aideui/core": "workspace:*",
     "@types/jsdom": "^28.0.3",
     "jsdom": "^29.1.1",
     "tsup": "^8.5.0",
@@ -58,7 +58,7 @@
   "homepage": "https://www.forgeui.org",
   "repository": {
     "type": "git",
-    "url": "git+https://atomgit.com/bitlink/forge.git",
+    "url": "git+https://github.com/aideui/aideui.git",
     "directory": "agent"
   },
   "publishConfig": {

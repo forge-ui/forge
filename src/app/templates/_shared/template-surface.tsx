@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SurfaceCard } from "@forge-ui-official/core";
+import { SurfaceCard } from "@aideui/core";
 
 export function TemplateSurface({ title, subtitle, action, children, className = "" }: { title?: string; subtitle?: string; action?: ReactNode; children: ReactNode; className?: string }) {
   const padding = className.includes("p-0") ? "none" : "sm";

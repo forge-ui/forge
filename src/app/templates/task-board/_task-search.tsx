@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { CommandSearch, Modal } from "@forge-ui-official/core";
-import { CheckCircleBoldDuotone, ClipboardListBoldDuotone, FolderBoldDuotone } from "@forge-ui-official/core/icons";
+import { CommandSearch, Modal } from "@aideui/core";
+import { CheckCircleBoldDuotone, ClipboardListBoldDuotone, FolderBoldDuotone } from "@aideui/core/icons";
 import { taskSearchEntries, type Board, type Task } from "./_data";
 
 export function TaskSearch({ board, open, onOpenChange, onTask, onProject }: {

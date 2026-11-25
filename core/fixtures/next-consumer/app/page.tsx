@@ -13,12 +13,12 @@ import {
   type ComposerStatus,
   type ColumnDef,
   type AppLayoutMenuSection,
-} from "@forge-ui-official/core";
-import { AppLayout } from "@forge-ui-official/core/components/layouts/app-layout";
-import { BellBoldDuotone } from "@forge-ui-official/core/icons";
-import { PageHeader } from "@forge-ui-official/core/components/ui/page-header";
-import { LiquidTabs } from "@forge-ui-official/core/components/ui/liquid-tabs";
-import { AddMember } from "@forge-ui-official/core/components/ui/add-member";
+} from "@aideui/core";
+import { AppLayout } from "@aideui/core/components/layouts/app-layout";
+import { BellBoldDuotone } from "@aideui/core/icons";
+import { PageHeader } from "@aideui/core/components/ui/page-header";
+import { LiquidTabs } from "@aideui/core/components/ui/liquid-tabs";
+import { AddMember } from "@aideui/core/components/ui/add-member";
 
 type Row = {
   id: string;

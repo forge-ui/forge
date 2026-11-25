@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Button, ButtonGroup, Checkbox, StreamingAnswer } from "@forge-ui-official/core";
+import { Button, ButtonGroup, Checkbox, StreamingAnswer } from "@aideui/core";
 import { useDemoStream } from "@/app/_demos/use-demo-stream";
 
 const EXAMPLES = [

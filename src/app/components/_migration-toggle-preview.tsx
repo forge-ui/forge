@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Toggle } from "@forge-ui-official/core";
+import { Button, Toggle } from "@aideui/core";
 
 export function ToggleMotionPreview({ locale, color, motion }: {
   locale: "zh" | "en";

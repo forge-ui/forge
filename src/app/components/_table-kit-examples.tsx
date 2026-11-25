@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState, type Key } from "react";
-import { Button, DataTable, StatusBadge, type ColumnDef } from "@forge-ui-official/core";
+import { Button, DataTable, StatusBadge, type ColumnDef } from "@aideui/core";
 import { Section } from "./_shared";
 import { ApiBlock, DocExample } from "./_doc-blocks";
 import type { ApiTableRow } from "./_api-table";

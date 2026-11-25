@@ -19,8 +19,8 @@ import {
   ToolbarSearchInput,
   useToast,
   type ColumnDef,
-} from "@forge-ui-official/core";
-import { BillCheckBoldDuotone, ClockCircleBoldDuotone, DocumentBoldDuotone, WalletMoneyBoldDuotone } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { BillCheckBoldDuotone, ClockCircleBoldDuotone, DocumentBoldDuotone, WalletMoneyBoldDuotone } from "@aideui/core/icons";
 import { BASE, BusinessShell } from "../_chrome";
 import { CONTRACTS, SALES, contractStatusColor, customerById, wan, yuan, type Contract, type ContractStatus } from "../_data";
 

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { Datepicker, DropdownDivider, DropdownPanel, IconButton, MenuItem, type KebabMenuItem } from "@forge-ui-official/core";
-import { MenuDotsBold } from "@forge-ui-official/core/icons";
+import { Datepicker, DropdownDivider, DropdownPanel, IconButton, MenuItem, type KebabMenuItem } from "@aideui/core";
+import { MenuDotsBold } from "@aideui/core/icons";
 import { day, projectSections, type Board, type Task } from "./_data";
 
 export function TaskMenu({ task, board, items, onPatch, label }: {

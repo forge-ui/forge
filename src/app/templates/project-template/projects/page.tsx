@@ -1,14 +1,14 @@
 "use client";
 
 import { KpiMetrics } from "@/blocks/kpi-metrics/kpi-metrics";
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   AddCircleLinear,
   CloudDownloadLinear,
   Pen2Linear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Avatar,
   AvatarGroup,
@@ -25,8 +25,8 @@ import {
   ToolbarFilterButton,
   ToolbarPillTabs,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef, StatusBadgeColor } from "@aideui/core";
 import { PageTop, ProjectTemplateShell } from "../_chrome";
 import { projects, type Project, type ProjectStatus } from "../_data";
 import { projectPageStackClass } from "../_density";

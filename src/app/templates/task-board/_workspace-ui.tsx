@@ -1,7 +1,7 @@
 "use client";
 import type { ReactNode } from "react";
-import { Breadcrumbs, Button, PageTitleToolbar } from "@forge-ui-official/core";
-import { PlusLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, PageTitleToolbar } from "@aideui/core";
+import { PlusLinear } from "@aideui/core/icons";
 import { useWorkspace, WORKSPACE_BASE } from "./_workspace-context";
 import { collaborationStates } from "./_collaboration";
 import type { Task } from "./_data";

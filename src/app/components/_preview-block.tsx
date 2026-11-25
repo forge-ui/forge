@@ -4,8 +4,8 @@
 // 不是 tab 切换，两个区并存在一个卡片里
 
 import { useState, type ReactNode } from "react";
-import { CopyLinear, CheckCircleLinear } from "@forge-ui-official/core/icons";
-import { cn } from "@forge-ui-official/core";
+import { CopyLinear, CheckCircleLinear } from "@aideui/core/icons";
+import { cn } from "@aideui/core";
 
 const COLLAPSED_HEIGHT = 180;
 const COLLAPSIBLE_MIN_LINES = 7;

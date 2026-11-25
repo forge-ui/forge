@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, LineChartStatCard, StatCard } from "@forge-ui-official/core";
-import { ChartBoldDuotone, UsersGroupRoundedBoldDuotone } from "@forge-ui-official/core/icons";
+import { Button, LineChartStatCard, StatCard } from "@aideui/core";
+import { ChartBoldDuotone, UsersGroupRoundedBoldDuotone } from "@aideui/core/icons";
 
 export function MetricNumberPreview({ locale, color, motion }: {
   locale: "zh" | "en";

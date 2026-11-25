@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Checkbox, Panel, PlusIcon, StatusBadge, cn } from "@forge-ui-official/core";
+import { Button, Checkbox, Panel, PlusIcon, StatusBadge, cn } from "@aideui/core";
 
 export interface PermissionNode {
   id: string;

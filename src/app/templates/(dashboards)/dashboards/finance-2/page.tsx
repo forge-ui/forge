@@ -4,7 +4,7 @@ import { PagedDataTable } from "../../../_shared/paged-data-table";
 
 import { WalletProgressPanel } from "@/blocks/goal-progress-list/goal-progress-list";
 
-import { AppLayout, DivergingBarChart, Panel } from "@forge-ui-official/core";
+import { AppLayout, DivergingBarChart, Panel } from "@aideui/core";
 import { KpiMetrics, FinanceMetricCard } from "@/blocks/kpi-metrics/kpi-metrics";
 import { TrendChart } from "@/blocks/trend-chart/trend-chart";
 import { RecentRecords } from "@/blocks/recent-records/recent-records";
@@ -25,7 +25,7 @@ import {
   ArrowRightUpLinear,
   ArrowRightDownLinear,
   FilterLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   DashedHalfDonutChart,
@@ -36,12 +36,12 @@ import {
   StatusBadge,
   KebabMenu,
   PlusIcon,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import type {
   AppLayoutMenuItem,
   ColumnDef,
   StatusBadgeColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { mainProfile, transactions, upsideDownBarData, type TransactionRow } from "../_shared";
 
 const menuItems: AppLayoutMenuItem[] = [

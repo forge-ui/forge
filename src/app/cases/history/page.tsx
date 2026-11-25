@@ -9,20 +9,20 @@ import {
   ImageGrid,
   ProductRow,
   RatingStars,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import type {
   HistoryItemColor,
   HistoryItemProps,
   HistoryItemVariant,
   HistoryItemShowDatetime,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import {
   CheckCircleBold,
   StarLinear,
   AltArrowRightLinear,
   CartBoldDuotone,
   MenuDotsBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PageHeading, Section, SubSection } from "../_shared";
 
 // ─────────────────────────────────────────────────────────────

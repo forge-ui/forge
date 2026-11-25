@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Avatar, BarChartStatCard, CreditCard, ProgressBar, StatusBadge, type ColumnDef } from "@forge-ui-official/core";
+import { Avatar, BarChartStatCard, CreditCard, ProgressBar, StatusBadge, type ColumnDef } from "@aideui/core";
 import { CardCarousel } from "@/blocks/card-carousel/card-carousel";
 import { CompositionCard } from "@/blocks/composition-card/composition-card";
 import { CrmMetricCard } from "@/blocks/crm-summary/crm-summary";

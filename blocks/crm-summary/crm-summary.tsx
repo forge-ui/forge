@@ -1,7 +1,7 @@
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import type { ReactNode } from "react";
-import { UsersGroupTwoRoundedBoldDuotone } from "@forge-ui-official/core/icons";
-import { DescriptionItem, LineChartStatCard, SurfaceCard } from "@forge-ui-official/core";
+import { UsersGroupTwoRoundedBoldDuotone } from "@aideui/core/icons";
+import { DescriptionItem, LineChartStatCard, SurfaceCard } from "@aideui/core";
 
 export function CrmSurface({
   title,

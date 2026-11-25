@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
-import { Accordion, Button } from "@forge-ui-official/core";
+import { Accordion, Button } from "@aideui/core";
 
 export function AccordionMotionPreview({ locale = "zh", color = "blue", motion = "auto" }: {
   locale?: "zh" | "en"; color?: "blue" | "purple" | "black"; motion?: "auto" | "none";

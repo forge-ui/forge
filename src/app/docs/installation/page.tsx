@@ -11,21 +11,21 @@ const toc = [
   { id: "upgrade", title: "升级" },
 ];
 
-const INSTALL = `pnpm add @forge-ui-official/core@${coreVersion}`;
+const INSTALL = `pnpm add @aideui/core@${coreVersion}`;
 
 const GLOBALS_CSS = `@import "tailwindcss";
-@import "@forge-ui-official/core/styles.css";
+@import "@aideui/core/styles.css";
 
 /* 让 Tailwind v4 扫描组件产物，否则 bg-fg-violet、tracking-fg 这类 class 不会生成。
    app/globals.css 用第一行，src/app/globals.css 用第二行，只保留一行。 */
-@source "../node_modules/@forge-ui-official/core/dist";
-@source "../../node_modules/@forge-ui-official/core/dist";`;
+@source "../node_modules/@aideui/core/dist";
+@source "../../node_modules/@aideui/core/dist";`;
 
 const UPGRADE = `# 升级到最新
-pnpm update @forge-ui-official/core
+pnpm update @aideui/core
 
 # 安装指定版本。${coreVersion} 是当前仓库版本，其他版本替换这个号
-pnpm add @forge-ui-official/core@${coreVersion}`;
+pnpm add @aideui/core@${coreVersion}`;
 
 export default function InstallationPage() {
   return (
@@ -53,7 +53,7 @@ export default function InstallationPage() {
       <DocSection id="install" title="装包">
         <PromptBlock content={INSTALL} />
         <p>
-          装成功的话，<code>node_modules/@forge-ui-official/core/dist/</code>{" "}
+          装成功的话，<code>node_modules/@aideui/core/dist/</code>{" "}
           里会有 js + d.ts + styles.css。
         </p>
       </DocSection>
@@ -69,7 +69,7 @@ export default function InstallationPage() {
 
       <DocSection id="peer" title="Peer dependencies">
         <p>
-          <code>@forge-ui-official/core</code> 不打包以下依赖，需要你项目里自己有（版本对齐很重要）：
+          <code>@aideui/core</code> 不打包以下依赖，需要你项目里自己有（版本对齐很重要）：
         </p>
         <ul className="list-disc space-y-1 pl-5">
           <li>

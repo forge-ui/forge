@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type Key } from "react";
-import { Button, DataTable, Modal, PlusIcon, ProgressBar, TextField, cn, type ColumnDef } from "@forge-ui-official/core";
+import { Button, DataTable, Modal, PlusIcon, ProgressBar, TextField, cn, type ColumnDef } from "@aideui/core";
 
 export interface SavingsGoal {
   id: string;

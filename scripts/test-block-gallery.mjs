@@ -36,7 +36,7 @@ await build({
     export { default as BlockPage, generateStaticParams, generateMetadata } from './src/app/blocks/[name]/page';`, resolveDir: root, loader: "tsx" },
   outfile: resolve(temporary, "gallery.mjs"), bundle: true, packages: "external", platform: "node", format: "esm", jsx: "automatic", logLevel: "silent",
   banner: { js: `import { createRequire as createNodeRequire } from "node:module"; const require = createNodeRequire(${JSON.stringify(require.resolve("next/package.json"))});` },
-  alias: { "@forge-ui-official/core": resolve(root, "core/src/index.ts"), "@forge-ui-official/core/icons": resolve(root, "core/src/icons.tsx") },
+  alias: { "@aideui/core": resolve(root, "core/src/index.ts"), "@aideui/core/icons": resolve(root, "core/src/icons.tsx") },
   plugins: [{ name: "server-only-marker", setup(builder) {
     builder.onResolve({ filter: /^server-only$/ }, () => ({ path: "server-only", namespace: "marker" }));
     builder.onLoad({ filter: /.*/, namespace: "marker" }, () => ({ contents: "export {};", loader: "js" }));
@@ -187,8 +187,8 @@ test("project and collaboration previews use existing portraits and concise memb
 });
 
 test("Props display removes package qualification but preserves the actual type expression", () => {
-  assert.equal(gallery.formatPropType('import("react").ReactNode | import("@forge-ui-official/core").PanelProps'), "ReactNode | PanelProps");
-  assert.equal(gallery.formatPropType("ComponentProps<typeof import('@forge-ui-official/core').Avatar>"), "ComponentProps<typeof Avatar>");
+  assert.equal(gallery.formatPropType('import("react").ReactNode | import("@aideui/core").PanelProps'), "ReactNode | PanelProps");
+  assert.equal(gallery.formatPropType("ComponentProps<typeof import('@aideui/core').Avatar>"), "ComponentProps<typeof Avatar>");
   assert.equal(gallery.formatPropType('import("other-package").OtherType[] | undefined'), 'import("other-package").OtherType[] | undefined');
 });
 
@@ -453,7 +453,7 @@ test("static detail params, metadata, sitemap and navigation cover every registe
     for (const component of item.meta.props) assert.ok(html.includes(component.component));
     for (const screen of item.meta.screens) assert.ok(html.includes(screen.href));
     const dom = new JSDOM(html);
-    for (const typeCell of dom.window.document.querySelectorAll("tbody td:last-child code")) assert.doesNotMatch(typeCell.textContent, /import\(["'](?:react|@forge-ui-official\/core)["']\)\./);
+    for (const typeCell of dom.window.document.querySelectorAll("tbody td:last-child code")) assert.doesNotMatch(typeCell.textContent, /import\(["'](?:react|@aideui\/core)["']\)\./);
     dom.window.close();
   }
   await assert.rejects(() => gallery.BlockPage({ params: Promise.resolve({ name: "../../package" }) }), /NEXT_HTTP_ERROR_FALLBACK;404/);

@@ -48,7 +48,7 @@ function verifyScenario({ scenario, tarballPath }) {
 
   const installedPackageJson = path.join(
     consumerRoot,
-    "node_modules/@forge-ui-official/core/package.json",
+    "node_modules/@aideui/core/package.json",
   );
   const installedRealPath = fs.realpathSync(installedPackageJson);
   if (installedRealPath.startsWith(root + path.sep)) {

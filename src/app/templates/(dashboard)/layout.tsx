@@ -1,7 +1,7 @@
 "use client";
 
 import { type ReactNode } from "react";
-import { AppLayout } from "@forge-ui-official/core";
+import { AppLayout } from "@aideui/core";
 import {
   BoxBoldDuotone,
   BagBoldDuotone,
@@ -10,8 +10,8 @@ import {
   MouseBoldDuotone,
   GameboyBoldDuotone,
   KeyboardBoldDuotone,
-} from "@forge-ui-official/core/icons";
-import type { AppLayoutMenuItem } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import type { AppLayoutMenuItem } from "@aideui/core";
 
 const menuItems: AppLayoutMenuItem[] = [
   {

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   TrashBinMinimalisticLinear,
   ArrowLeftLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Breadcrumbs,
   Button,
@@ -19,7 +19,7 @@ import {
   PlusIcon,
   CloseIcon,
   CheckIcon,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 
 const DEFAULT_DESCRIPTION =
   "Smartwatch for men women notify you incoming calls, SMS notifications. when you connect the smartphone with fitness tracker. Connect fitness tracker with your phone, you will never miss a call and a message. The smart watches for android phones will vibrate to alert you if your phone receives any notifications. You can reject calls and view message directly from your watch. A best gift for family and friends.";

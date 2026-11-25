@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Button, IconButton, SelectOption, TextField } from "@forge-ui-official/core";
-import { PlusLinear } from "@forge-ui-official/core/icons";
+import { Button, IconButton, SelectOption, TextField } from "@aideui/core";
+import { PlusLinear } from "@aideui/core/icons";
 
 export function TaskLabels({ value, available, onChange, compact = false }: {
   compact?: boolean;

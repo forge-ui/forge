@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { Breadcrumbs, Button, DataTable, PageTitleToolbar, StatusBadge, TextField, type ColumnDef } from "@forge-ui-official/core";
+import { Breadcrumbs, Button, DataTable, PageTitleToolbar, StatusBadge, TextField, type ColumnDef } from "@aideui/core";
 
 export type RuntimeStatus = "online" | "offline" | "unknown";
 

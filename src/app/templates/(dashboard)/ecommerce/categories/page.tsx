@@ -6,7 +6,7 @@ import {
   DownloadMinimalisticLinear,
   PenLinear,
   TrashBinMinimalisticLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Breadcrumbs,
   Button,
@@ -17,8 +17,8 @@ import {
   CellMuted,
   ConfirmationDialog,
   PlusIcon,
-} from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import { downloadCsv } from "../../../_shared/download-csv";
 
 interface CategoryItem {

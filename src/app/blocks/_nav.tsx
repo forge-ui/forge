@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { cn } from "@forge-ui-official/core";
+import { cn } from "@aideui/core";
 import { blocks, categories } from "./_catalog";
 
 const groups = categories.map(category => ({ category, items: blocks.filter(block => block.category === category) })).filter(group => group.items.length);

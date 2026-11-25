@@ -2,8 +2,8 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion as m, useReducedMotion } from "motion/react";
-import { Button, CheckboxWithLabel, FilterPanel, ListGroup, ListItem, SurfaceCard, TextField } from "@forge-ui-official/core";
-import { CloseCircleLinear, DocumentTextLinear } from "@forge-ui-official/core/icons";
+import { Button, CheckboxWithLabel, FilterPanel, ListGroup, ListItem, SurfaceCard, TextField } from "@aideui/core";
+import { CloseCircleLinear, DocumentTextLinear } from "@aideui/core/icons";
 import type { FusionExampleProps, FusionSettings } from "./types";
 import { MagnifierBoldIcon } from "@solar-icons/react";
 

@@ -1,6 +1,6 @@
 import { SITE_NAME, SITE_URL, pageMetadata } from "@/lib/seo";
 import Link from "next/link";
-import { ArrowRightLinear } from "@forge-ui-official/core/icons";
+import { ArrowRightLinear } from "@aideui/core/icons";
 import { SiteHeader } from "./_components/site-header";
 import { HomeHero } from "./_components/home-hero";
 import { HomeSections } from "./_components/home-sections";
@@ -17,7 +17,7 @@ const structuredData = {
     { "@type": "WebSite", "@id": `${SITE_URL}/#website`, url: SITE_URL, name: SITE_NAME, inLanguage: "zh-CN" },
     {
       "@type": "SoftwareSourceCode",
-      name: "@forge-ui-official/core",
+      name: "@aideui/core",
       description: "面向中文后台的 React 组件库，含组件、页面组件和后台模板。",
       url: SITE_URL,
       codeRepository: "https://github.com/forge-ui/forge",

@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Avatar, Button, CommandSearch, Modal, Popover, TabBar, TextArea, Toggle, cn } from "@forge-ui-official/core";
+import { Avatar, Button, CommandSearch, Modal, Popover, TabBar, TextArea, Toggle, cn } from "@aideui/core";
 import {
   AltArrowDownLinear,
   AltArrowRightLinear,
@@ -19,7 +19,7 @@ import {
   PenBold,
   SettingsBold,
   UserPlusBold,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import { PROJECTS, THREADS } from "./_data";
 
 export const BASE = "/templates/ai-chat";

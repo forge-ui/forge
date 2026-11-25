@@ -10,7 +10,7 @@ import {
   PlainLinear,
   PlayBoldDuotone,
   BookmarkLinear,
-} from "@forge-ui-official/core/icons";
+} from "@aideui/core/icons";
 import {
   Button,
   IconButton,
@@ -25,7 +25,7 @@ import {
   type IconButtonShape,
   type IconButtonEffect,
   type LinkColor,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 
 const buttonColors: ButtonColor[] = [

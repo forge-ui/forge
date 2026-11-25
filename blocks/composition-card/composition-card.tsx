@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { DonutChart, Panel, type PanelProps } from "@forge-ui-official/core";
+import { DonutChart, Panel, type PanelProps } from "@aideui/core";
 
 export type CompositionCardProps = Omit<PanelProps, "children" | "variant"> & {
   children?: PanelProps["children"];

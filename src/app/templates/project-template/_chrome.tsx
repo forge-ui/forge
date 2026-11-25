@@ -8,9 +8,9 @@ import {
   StarBoldDuotone,
   UsersGroupTwoRoundedBoldDuotone,
   WidgetBoldDuotone,
-} from "@forge-ui-official/core/icons";
-import { AppLayout } from "@forge-ui-official/core";
-import type { AppLayoutMenuItem } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { AppLayout } from "@aideui/core";
+import type { AppLayoutMenuItem } from "@aideui/core";
 import { mainProfile, teamMeta } from "./_data";
 import { ProtaskLogo } from "./_logos";
 

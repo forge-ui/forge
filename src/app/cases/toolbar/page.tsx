@@ -14,8 +14,8 @@ import {
   type BreadcrumbColor,
   type ToolbarColor,
   type ToolbarPillTab,
-} from "@forge-ui-official/core";
-import { AddCircleLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { AddCircleLinear } from "@aideui/core/icons";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 import { ToolbarInteractiveDemo } from "./_interactive-demo";
 

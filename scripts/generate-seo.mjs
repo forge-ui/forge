@@ -15,7 +15,7 @@ const check = process.argv.includes("--check");
 
 const STATIC = {
   "/": { title: "Forge UI · 中文后台 React 组件库", description: "面向中文后台的 React 组件库：500 多个组件、70 个可复制的页面组件和整套后台模板，配套 Skill、MCP 和页面检查，人和编码助手按同一套规范做出一致的界面。" },
-  "/blocks": { title: "shadcn 后台页面组件", description: "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @forge-ui-official/core，一条 shadcn 命令安装。" },
+  "/blocks": { title: "shadcn 后台页面组件", description: "70 个可直接复制进项目的整页区块：经营看板、订单列表、详情、表单、设置和智能体工作台，基于 @aideui/core，一条 shadcn 命令安装。" },
   "/templates": { title: "React 后台管理系统模板", description: "基于 Next.js 16、React 19 和 Tailwind v4 的后台模板：CRM、电商、财务、项目管理、任务看板、仪表盘和智能体工作台，可在线体验，页面可用 shadcn 命令复制，MIT 协议。" },
   "/en": { lang: "en", title: "Forge UI · React admin UI kit with a frontend design skill for AI coding agents", description: "Open-source React components, 70 shadcn admin blocks and complete admin templates, plus a frontend design skill, MCP server and code checks so Claude Code, Codex and Cursor build consistent admin pages." },
   "/en/frontend-design-skill": { lang: "en", title: "Frontend Design Skill for Claude Code, Codex and Cursor", description: "Install the Forge frontend design skill in one command. Claude Code, Codex and Cursor learn which components to use, how to lay out admin pages and how to check their own output. In our 20-task eval, pass rate went from 90% to 100%." },

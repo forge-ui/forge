@@ -1,12 +1,12 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.11.6
+Package: @aideui/core@0.12.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 1f839419f2fbea18f57d2c6f0dbfcbdfbe107bf506d40bba1f2b6573af0e0133
+Source fingerprint: 8661e05cfb920ae3193fbd9b526f69677cd7605fe996b5cb0c41e7033ff6ff11
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
+Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @aideui/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
 ---
 
@@ -54,7 +54,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 采用规则
 
 - [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md) 定布局与看板几何，对应结构线稿见 [线稿图集](https://www.forgeui.org/docs/design-atlas)；[Grid](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/layout-grid.md) 定 API 和固定/比例列边界；[多维图方法](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-design-dimensional.md) 可随包使用，不依赖本机其他 skill。
-- 组件来自 `@forge-ui-official/core`，图标来自 `@forge-ui-official/core/icons`。AppLayout 标识使用 `appName`；不要使用已弃用 teamName 或不存在的 FormField。
+- 组件来自 `@aideui/core`，图标来自 `@aideui/core/icons`。AppLayout 标识使用 `appName`；不要使用已弃用 teamName 或不存在的 FormField。
 - 默认 accent/focus 为 blue，purple/black 仅为可选主题。7 个色族加 grey/white；token `fg-violet` 对应组件颜色 `"purple"`，见 [Tokens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/tokens.md)。
 - 状态默认 soft StatusBadge，分类/角色普通文字；一张表通常最多一个状态胶囊列，见 [状态表达](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/status-presentation.md)。
 - 核对 [内容契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-content-contracts.md)、[弹层焦点](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/overlay-focus.md)、[动效](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/motion.md)。技术检查不等于浏览器和面向使用者的 验收。
@@ -98,7 +98,7 @@ Source: skills/forge-skill/references/audit-checklist.md
 ## M
 
 - **M1**（通用部分；starter 适配留宿主）：导航只放真实模块入口；新增/编辑/详情不充当占位模块，逐一验证可达。
-- **M2**（通用）：图标从 @forge-ui-official/core/icons 导入，核对真实导出，沿用模板变体与尺寸，不凭名称猜合法性。
+- **M2**（通用）：图标从 @aideui/core/icons 导入，核对真实导出，沿用模板变体与尺寸，不凭名称猜合法性。
 - **M4**（通用）：禁止 href="#"、不存在路由和空处理器；真实点击需要解决对应任务。
 - **M5**（通用）：分组、命名和顺序符合业务动线；个人资料/安全设置按宿主信息架构归位。
 
@@ -332,7 +332,7 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 宿主提供 currentCounts/previousCounts（各 30 项）、maximum（至少 1）及起止日期。dateSelection 可放真实 Datepicker，primaryAction 放导出等主操作；不要用 disabled 假按钮代替可用操作。
 
 - 画廊：`/blocks`（74 项共用完整预览数据）；详情：`/blocks/<name>`；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
-- 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
+- 源码只依赖 React、`@aideui/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
 - 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
 - 依赖 core `^0.6.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
 - 本地示例：`npx shadcn@latest add http://localhost:3000/r/kpi-metrics.json`。宿主须已有 React 19、Tailwind 4、core 样式及 Token，复制后的文件由用户维护。沿用[安装说明](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/SKILL.md)配置，不附带后台、数据请求、鉴权或持久化。
@@ -801,7 +801,7 @@ Source: skills/forge-skill/references/tokens.md
 
 # Forge Design Tokens — quick reference
 
-Snapshot of `@forge-ui-official/core/styles.css`. When picking a color, pick a semantic alias first (`accent`, `text-muted`, `border`); reach for raw primitives (`fg-violet-500`) only when none fit.
+Snapshot of `@aideui/core/styles.css`. When picking a color, pick a semantic alias first (`accent`, `text-muted`, `border`); reach for raw primitives (`fg-violet-500`) only when none fit.
 
 Tailwind usage: `bg-fg-violet-500` / `text-fg-grey-700` / `border-fg-grey-200`. CSS: `var(--fg-violet)` / `var(--accent)`.
 

@@ -14,7 +14,7 @@ const parts = [
 ];
 
 const setup = `# components
-npm install @forge-ui-official/core
+npm install @aideui/core
 
 # skill + MCP for Claude Code, Codex and Cursor
 curl -fsSL https://www.forgeui.org/setup.sh | bash`;

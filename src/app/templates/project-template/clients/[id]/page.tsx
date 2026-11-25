@@ -1,11 +1,11 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { AddCircleLinear, Pen2Linear } from "@forge-ui-official/core/icons";
-import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, FileCard, TabBar } from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+import { AddCircleLinear, Pen2Linear } from "@aideui/core/icons";
+import { Avatar, Button, ChatBubble, ChatInputBar, DataTable, FileCard, TabBar } from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import { PageTop, ProjectTemplateShell } from "../../_chrome";
 import { activityItems, clients, fileItems, projects, type Project } from "../../_data";
 import { projectPageStackClass, projectPanelClass } from "../../_density";

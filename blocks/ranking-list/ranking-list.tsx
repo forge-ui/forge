@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
-import { BoxBoldDuotone } from "@forge-ui-official/core/icons";
-import { ChartListItem, ListGroup, cn, type ListGroupProps } from "@forge-ui-official/core";
+import { BoxBoldDuotone } from "@aideui/core/icons";
+import { ChartListItem, ListGroup, cn, type ListGroupProps } from "@aideui/core";
 
 export type RankingListProps = Omit<ListGroupProps, "items"> & {
   items?: ReactNode;

@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, type ReactNode } from "react";
-import { ToastProvider } from "@forge-ui-official/core";
+import { ToastProvider } from "@aideui/core";
 import { AiChatShell } from "./_shell";
 
 export default function AiChatLayout({ children }: { children: ReactNode }) {

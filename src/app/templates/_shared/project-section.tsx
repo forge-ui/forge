@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export interface ProjectSectionProps {
   title: string;

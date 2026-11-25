@@ -1,10 +1,10 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, CloudUploadLinear } from "@forge-ui-official/core/icons";
-import { Button, CellActions, Checkbox, FileCard, FileTypeIcon, Toolbar, ToolbarActions, ToolbarDatepicker, ToolbarSearchInput } from "@forge-ui-official/core";
+import { AddCircleLinear, CloudUploadLinear } from "@aideui/core/icons";
+import { Button, CellActions, Checkbox, FileCard, FileTypeIcon, Toolbar, ToolbarActions, ToolbarDatepicker, ToolbarSearchInput } from "@aideui/core";
 import {
   ProtaskDeleteDialog,
   ProtaskFilterTrigger,

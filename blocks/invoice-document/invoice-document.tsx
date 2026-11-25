@@ -2,8 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import { Button, HistoryItem, Label, Panel, ProgressBar, StatusBadge, cn } from "@forge-ui-official/core";
-import { DownloadMinimalisticLinear, PenLinear, PlainLinear, PrinterLinear } from "@forge-ui-official/core/icons";
+import { Button, HistoryItem, Label, Panel, ProgressBar, StatusBadge, cn } from "@aideui/core";
+import { DownloadMinimalisticLinear, PenLinear, PlainLinear, PrinterLinear } from "@aideui/core/icons";
 
 export interface InvoiceLine {
   id: string;

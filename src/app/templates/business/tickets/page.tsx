@@ -16,8 +16,8 @@ import {
   ToolbarPillTabs,
   ToolbarSearchInput,
   useToast,
-} from "@forge-ui-official/core";
-import { AddCircleLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { AddCircleLinear } from "@aideui/core/icons";
 import { BusinessShell } from "../_chrome";
 import { TICKETS, customerById, ticketStatusOrder, type Ticket, type TicketPriority, type TicketStatus } from "../_data";
 

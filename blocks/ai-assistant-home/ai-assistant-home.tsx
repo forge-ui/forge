@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
-import { ChatBubble, ChatInputBar, IconButton, StreamingAnswer, type ChatInputBarQuickAction } from "@forge-ui-official/core";
-import { AltArrowDownLinear, AltArrowLeftLinear, AltArrowRightLinear, CloseCircleLinear, HamburgerMenuLinear, MagniferLinear, PenLinear, PenNewSquareLinear, TrashBinMinimalisticLinear, UsersGroupRoundedLinear } from "@forge-ui-official/core/icons";
+import { ChatBubble, ChatInputBar, IconButton, StreamingAnswer, type ChatInputBarQuickAction } from "@aideui/core";
+import { AltArrowDownLinear, AltArrowLeftLinear, AltArrowRightLinear, CloseCircleLinear, HamburgerMenuLinear, MagniferLinear, PenLinear, PenNewSquareLinear, TrashBinMinimalisticLinear, UsersGroupRoundedLinear } from "@aideui/core/icons";
 
 export interface ChatPeer {
   key: string;

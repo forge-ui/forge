@@ -14,5 +14,5 @@ export function installationCommand(name: string) {
 }
 
 export function formatPropType(type: string) {
-  return type.replace(/import\(["'](?:@forge-ui-official\/core|react)["']\)\./g, "");
+  return type.replace(/import\(["'](?:@aideui\/core|react)["']\)\./g, "");
 }

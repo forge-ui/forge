@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { Button, SelectOption, Toggle, cn } from "@forge-ui-official/core";
+import { Button, SelectOption, Toggle, cn } from "@aideui/core";
 
 export type NotificationChannel = "inbox" | "email" | "im";
 

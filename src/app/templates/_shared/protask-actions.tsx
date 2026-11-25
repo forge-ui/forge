@@ -1,6 +1,6 @@
 "use client";
 
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 import { useState, type ReactNode } from "react";
 import {
   BarChart,
@@ -13,8 +13,8 @@ import {
   TextArea,
   TextField,
   type AccentColor,
-} from "@forge-ui-official/core";
-import { CloudUploadLinear, Pen2Linear, TrashBinMinimalisticLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { CloudUploadLinear, Pen2Linear, TrashBinMinimalisticLinear } from "@aideui/core/icons";
 import { Modal } from "./modal";
 import { CalendarMinimalisticBoldIcon } from "@solar-icons/react";
 

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { ChatInputBar } from "@forge-ui-official/core";
+import { ChatInputBar } from "@aideui/core";
 import { CompleteApiReference } from "../../components/_complete-api-reference";
 import { CodeBlock } from "../../components/_api-table";
 import { Section } from "../../components/_shared";
 import { demoSources } from "./_sources";
 
-const CODE_USAGE = `import { ChatInputBar } from "@forge-ui-official/core";
+const CODE_USAGE = `import { ChatInputBar } from "@aideui/core";
 
 <ChatInputBar
   multiline

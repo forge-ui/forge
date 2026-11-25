@@ -1,7 +1,7 @@
 "use client";
 
 import { FolderPreview } from "./_folder-preview";
-import { FileTypeIcon, FileCard } from "@forge-ui-official/core";
+import { FileTypeIcon, FileCard } from "@aideui/core";
 import { PageHeading, Section, SubSection, Labeled } from "../_shared";
 import { ApiBlock, DocExample } from "../_doc-blocks";
 import { CodeBlock, type ApiTableRow } from "../_api-table";
@@ -18,7 +18,7 @@ function IconTile({ ext }: { ext: string }) {
   );
 }
 
-const CODE_IMPORT = `import { FileTypeIcon, FileCard, Folder } from "@forge-ui-official/core";`;
+const CODE_IMPORT = `import { FileTypeIcon, FileCard, Folder } from "@aideui/core";`;
 
 const CODE_ICON_USAGE = `<FileTypeIcon fileName="design.fig" />`;
 

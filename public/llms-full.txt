@@ -1,12 +1,12 @@
 # Forge UI Kit
 
-Package: @forge-ui-official/core@0.11.6
+Package: @aideui/core@0.12.0
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 1f839419f2fbea18f57d2c6f0dbfcbdfbe107bf506d40bba1f2b6573af0e0133
+Source fingerprint: 8661e05cfb920ae3193fbd9b526f69677cd7605fe996b5cb0c41e7033ff6ff11
 
 ## Adopted rules / 采用规则
 
-Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @forge-ui-official/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
+Screen → Blocks → Components. Start dashboards from a real Screen; 70 Blocks are implemented as copyable project source in blocks/ with public/r registry items, not core exports; install one with `npx shadcn@latest add https://www.forgeui.org/r/<name>.json`. Default status: soft StatusBadge; categories/roles use plain text. Default accent/focus: blue; purple/black optional. Icons: @aideui/core/icons. Missing capabilities: FORGE-GAP, ask before adding public primitives. In forge-starter use its host skills for routes, permission and data integration.
 
 ## 使用指南与 MCP
 
@@ -29,7 +29,7 @@ forge-skill、MCP、llms.txt 与统一审计清单。Blocks 是复制到项目�
 ## 示例代码
 
 ```tsx
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export function ReviewScope() {
   return <Panel><p>按 Screen → Blocks → Components 实施，并提交真实验证证据。</p></Panel>;
@@ -93,7 +93,7 @@ Panel、Modal、Drawer；activity-feed。Blocks 是复制到项目的源码，�
 ## 示例代码
 
 ```tsx
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export function Details() {
   return <Panel><h2>订单详情</h2><p>订单编号：SO-128</p></Panel>;
@@ -107,7 +107,7 @@ export function Details() {
 ```tsx
 "use client";
 
-import { Modal } from "@forge-ui-official/core";
+import { Modal } from "@aideui/core";
 
 export function DetailDialog({ open, onOpenChange }: {
   open: boolean;
@@ -142,7 +142,7 @@ StatusBadge soft、ToastProvider/useToast；现有空态与加载组件。Blocks
 ## 示例代码
 
 ```tsx
-import { StatusBadge } from "@forge-ui-official/core";
+import { StatusBadge } from "@aideui/core";
 
 export function PendingStatus() {
   return <StatusBadge variant="soft" color="yellow" label="待处理" />;
@@ -174,7 +174,7 @@ Panel、Button；参考真实表单案例。Blocks 是复制到项目的源码�
 ## 示例代码
 
 ```tsx
-import { Button, Panel } from "@forge-ui-official/core";
+import { Button, Panel } from "@aideui/core";
 
 export function BasicForm() {
   return <Panel><form><label>名称<input name="name" required /></label><Button type="submit">保存</Button></form></Panel>;
@@ -206,7 +206,7 @@ recent-records；DataTable、StatusBadge。Blocks 是复制到项目的源码，
 ## 示例代码
 
 ```tsx
-import { StatusBadge } from "@forge-ui-official/core";
+import { StatusBadge } from "@aideui/core";
 
 export function OrderStatus() {
   return <StatusBadge variant="soft" color="green" label="已完成" />;
@@ -238,7 +238,7 @@ Panel、Button；设置类 Screen 或案例。Blocks 是复制到项目的源码
 ## 示例代码
 
 ```tsx
-import { Button, Panel } from "@forge-ui-official/core";
+import { Button, Panel } from "@aideui/core";
 
 export function Settings() {
   return <Panel><h2>通知偏好</h2><label><input type="checkbox" name="email" />邮件通知</label><Button type="button">保存设置</Button></Panel>;
@@ -270,7 +270,7 @@ Source: content/guides/starter-module.md
 ## 示例代码
 
 ```tsx
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export function ModuleOverview() {
   return <Panel><h2>客户模块</h2><p>先完成模块声明、权限与数据接口，再接列表。</p></Panel>;
@@ -1292,7 +1292,7 @@ description: 使用 Forge / forge-ui 设计与实现看板、后台、管理系�
 ## 采用规则
 
 - [页面规范](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-recommended-standard.md) 定布局与看板几何，对应结构线稿见 [线稿图集](https://www.forgeui.org/docs/design-atlas)；[Grid](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/layout-grid.md) 定 API 和固定/比例列边界；[多维图方法](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/page-design-dimensional.md) 可随包使用，不依赖本机其他 skill。
-- 组件来自 `@forge-ui-official/core`，图标来自 `@forge-ui-official/core/icons`。AppLayout 标识使用 `appName`；不要使用已弃用 teamName 或不存在的 FormField。
+- 组件来自 `@aideui/core`，图标来自 `@aideui/core/icons`。AppLayout 标识使用 `appName`；不要使用已弃用 teamName 或不存在的 FormField。
 - 默认 accent/focus 为 blue，purple/black 仅为可选主题。7 个色族加 grey/white；token `fg-violet` 对应组件颜色 `"purple"`，见 [Tokens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/tokens.md)。
 - 状态默认 soft StatusBadge，分类/角色普通文字；一张表通常最多一个状态胶囊列，见 [状态表达](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/status-presentation.md)。
 - 核对 [内容契约](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/component-content-contracts.md)、[弹层焦点](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/overlay-focus.md)、[动效](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/motion.md)。技术检查不等于浏览器和面向使用者的 验收。
@@ -1628,9 +1628,9 @@ import {
   ToolbarFilterButton,
   type ColumnDef,
   type KebabMenuItem,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, EyeLinear, PenLinear, TrashBinTrashLinear, MagniferLinear } from "@forge-ui-official/core/icons";
+import { AddCircleLinear, EyeLinear, PenLinear, TrashBinTrashLinear, MagniferLinear } from "@aideui/core/icons";
 
 type OrderStatus = "draft" | "pending" | "paid" | "void";
 type OrderRow = { id: string; number: string; customer: string; status: OrderStatus; updatedAt: string };
@@ -1821,7 +1821,7 @@ Field error mapping skeleton:
 "use client";
 
 import { useActionState, useState } from "react";
-import { Button, TextField } from "@forge-ui-official/core";
+import { Button, TextField } from "@aideui/core";
 import { createOrder, type OrderFormState } from "../actions";
 
 export function OrderForm() {
@@ -1911,7 +1911,7 @@ Compatibility inline-mode skeleton (intentionally omits `open` inside one native
 "use client";
 
 import { useRef } from "react";
-import { ConfirmationDialog } from "@forge-ui-official/core";
+import { ConfirmationDialog } from "@aideui/core";
 
 export function DeleteOrderDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -1982,8 +1982,8 @@ State/action matrix example:
 Typed row action map example:
 
 ```tsx
-import type { KebabMenuItem } from "@forge-ui-official/core";
-import { EyeLinear, PenLinear, TrashBinTrashLinear } from "@forge-ui-official/core/icons";
+import type { KebabMenuItem } from "@aideui/core";
+import { EyeLinear, PenLinear, TrashBinTrashLinear } from "@aideui/core/icons";
 
 type InvoiceStatus = "draft" | "sent" | "paid" | "void";
 type Invoice = { id: string; status: InvoiceStatus };
@@ -2136,7 +2136,7 @@ export default async function OrdersPage({
 // app/orders/_components/orders-screen.tsx
 "use client";
 
-import { AppLayout } from "@forge-ui-official/core";
+import { AppLayout } from "@aideui/core";
 import { useState } from "react";
 import { OrdersTable } from "./orders-table";
 
@@ -2204,7 +2204,7 @@ export async function archiveOrder(
 
 import { useActionState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { ConfirmationDialog } from "@forge-ui-official/core";
+import { ConfirmationDialog } from "@aideui/core";
 import { archiveOrder, type ArchiveState } from "../actions";
 
 export function ArchiveOrderDialog({ orderId }: { orderId: string }) {
@@ -2439,7 +2439,7 @@ Source: skills/forge-skill/references/audit-checklist.md
 ## M
 
 - **M1**（通用部分；starter 适配留宿主）：导航只放真实模块入口；新增/编辑/详情不充当占位模块，逐一验证可达。
-- **M2**（通用）：图标从 @forge-ui-official/core/icons 导入，核对真实导出，沿用模板变体与尺寸，不凭名称猜合法性。
+- **M2**（通用）：图标从 @aideui/core/icons 导入，核对真实导出，沿用模板变体与尺寸，不凭名称猜合法性。
 - **M4**（通用）：禁止 href="#"、不存在路由和空处理器；真实点击需要解决对应任务。
 - **M5**（通用）：分组、命名和顺序符合业务动线；个人资料/安全设置按宿主信息架构归位。
 
@@ -2673,7 +2673,7 @@ CompositionCard 默认紫色起始配色与图例，segments 含 label/value，�
 宿主提供 currentCounts/previousCounts（各 30 项）、maximum（至少 1）及起止日期。dateSelection 可放真实 Datepicker，primaryAction 放导出等主操作；不要用 disabled 假按钮代替可用操作。
 
 - 画廊：`/blocks`（74 项共用完整预览数据）；详情：`/blocks/<name>`；公共 API 对照：`/cases/dashboard-kit`。来源为[完整 Screens](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/references/screens.md)。
-- 源码只依赖 React、`@forge-ui-official/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
+- 源码只依赖 React、`@aideui/core` 及其公开 icons 子路径；配色只使用 fg-* Token（白色/透明基础色除外），不依赖站点私有组件。
 - 生成：`corepack pnpm blocks:generate`；校验：`corepack pnpm blocks:check`。`public/r/index.json` 为目录，`public/r/<name>.json` 内嵌完整源码，安装目标为 `@components/blocks/<name>.tsx`（遵循用户 components.json 别名）。
 - 依赖 core `^0.6.0`。本次只修改版本，不发布 npm 或网站；公网安装须等待发布授权。可先在本仓使用 workspace core、本地访问 registry。
 - 本地示例：`npx shadcn@latest add http://localhost:3000/r/kpi-metrics.json`。宿主须已有 React 19、Tailwind 4、core 样式及 Token，复制后的文件由用户维护。沿用[安装说明](https://github.com/forge-ui/forge/blob/main/skills/forge-skill/SKILL.md)配置，不附带后台、数据请求、鉴权或持久化。
@@ -2703,7 +2703,7 @@ Source: skills/forge-skill/references/blocks/agent-catalog.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、ButtonGroup、ConfirmationDialog、IconButton、Modal、PageTitleToolbar、PlusIcon、SelectOption、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -2734,7 +2734,7 @@ Source: skills/forge-skill/references/blocks/agent-orchestration.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Panel、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、Panel、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2763,7 +2763,7 @@ Source: skills/forge-skill/references/blocks/agent-run.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、ChatInputBar、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -2792,7 +2792,7 @@ Source: skills/forge-skill/references/blocks/agent-usage.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
+依赖：core ^0.12.0；组件：ButtonGroup、Panel、ProgressBar、SmoothLineChart、StatCard、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -2821,7 +2821,7 @@ Source: skills/forge-skill/references/blocks/ai-assistant-home.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
+依赖：core ^0.12.0；组件：ChatBubble、ChatInputBar、IconButton、StreamingAnswer。
 
 ## 最小可用示例
 
@@ -2851,7 +2851,7 @@ Source: skills/forge-skill/references/blocks/ai-workspace-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、ButtonGroup、KebabMenu、LineChartStatCard、ListGroup、PageTitleToolbar、PlusIcon、ProgressStatCard、SelectOption、SmoothLineChart。
 
 ## 最小可用示例
 
@@ -2884,7 +2884,7 @@ Source: skills/forge-skill/references/blocks/autonomous-agents.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、Checkbox、ConfirmationDialog、Grid、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -2915,7 +2915,7 @@ Source: skills/forge-skill/references/blocks/calendar-month.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
+依赖：core ^0.12.0；组件：Avatar、Button、FullCalendar、Modal、SurfaceCard、cn。
 
 ## 最小可用示例
 
@@ -2948,7 +2948,7 @@ Source: skills/forge-skill/references/blocks/card-carousel.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：CreditCard、PageDot。
+依赖：core ^0.12.0；组件：CreditCard、PageDot。
 
 ## 最小可用示例
 
@@ -2964,7 +2964,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| cards | 是 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@forge-ui-official/core").FinancialTheme; variant?: import("@forge-ui-official/core").FinancialVariant; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[]` |
+| cards | 是 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@aideui/core").FinancialTheme; variant?: import("@aideui/core").FinancialVariant; width?: import("@aideui/core").CardWidth; className?: string; } & { id: string; })[]` |
 | size | 否 | `"default" \| "compact" \| undefined` |
 | index | 否 | `number \| undefined` |
 | defaultIndex | 否 | `number \| undefined` |
@@ -2981,7 +2981,7 @@ Source: skills/forge-skill/references/blocks/cards-management.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、CreditCard、Panel、PlusIcon、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -3012,7 +3012,7 @@ Source: skills/forge-skill/references/blocks/categories-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
+依赖：core ^0.12.0；组件：Button、CellImageText、CellMuted、CellText、ConfirmationDialog、DataTable、IconButton、Modal、PlusIcon、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -3043,7 +3043,7 @@ Source: skills/forge-skill/references/blocks/client-directory.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Avatar、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3074,7 +3074,7 @@ Source: skills/forge-skill/references/blocks/composition-card.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：DonutChart、Panel。
+依赖：core ^0.12.0；组件：DonutChart、Panel。
 
 ## 最小可用示例
 
@@ -3387,7 +3387,7 @@ Source: skills/forge-skill/references/blocks/crm-summary.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Panel、DescriptionItem、LineChartStatCard、SurfaceCard。
+依赖：core ^0.12.0；组件：Panel、DescriptionItem、LineChartStatCard、SurfaceCard。
 
 ## 最小可用示例
 
@@ -3449,7 +3449,7 @@ Source: skills/forge-skill/references/blocks/customer-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
+依赖：core ^0.12.0；组件：Button、IconButton、Panel、ReviewItem、SmoothLineChart、StatCard、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -3480,7 +3480,7 @@ Source: skills/forge-skill/references/blocks/customers-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Avatar、Button、CellImageText、CellMuted、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、TextField、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3513,7 +3513,7 @@ Source: skills/forge-skill/references/blocks/deals-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、CellImageText、CellText、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3546,7 +3546,7 @@ Source: skills/forge-skill/references/blocks/dialog-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、ConfirmationDialog、DataTable、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、TextField、Toolbar、ToolbarSearchInput。
 
 ## 最小可用示例
 
@@ -3575,7 +3575,7 @@ Source: skills/forge-skill/references/blocks/file-manager.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、CellActions、Checkbox、ConfirmationDialog、FileTypeIcon、Panel、PlusIcon、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -3607,7 +3607,7 @@ Source: skills/forge-skill/references/blocks/finance-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
+依赖：core ^0.12.0；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
 
 ## 最小可用示例
 
@@ -3627,7 +3627,7 @@ export default function Example() {
 | description | 否 | `string \| undefined` |
 | periodLabel | 否 | `string \| undefined` |
 | accounts | 否 | `FinanceAccount[] \| undefined` |
-| trend | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| trend | 否 | `{ data: import("@aideui/core").GroupedBarPoint[]; series: import("@aideui/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@aideui/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | goals | 否 | `(WalletGoalCardProps & { id: string; })[] \| undefined` |
 | className | 否 | `string \| undefined` |
 
@@ -3641,7 +3641,7 @@ Source: skills/forge-skill/references/blocks/finance-workspace.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Panel、DescriptionItem、SurfaceCard、ToolbarKebabButton。
+依赖：core ^0.12.0；组件：Panel、DescriptionItem、SurfaceCard、ToolbarKebabButton。
 
 ## 最小可用示例
 
@@ -3734,7 +3734,7 @@ Source: skills/forge-skill/references/blocks/goal-progress-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
+依赖：core ^0.12.0；组件：Button、KebabMenu、PageDot、Panel、WalletGoalCard。
 
 ## 最小可用示例
 
@@ -4061,7 +4061,7 @@ Source: skills/forge-skill/references/blocks/integrations-directory.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、Panel、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4091,7 +4091,7 @@ Source: skills/forge-skill/references/blocks/invoice-document.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、HistoryItem、Label、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4123,7 +4123,7 @@ Source: skills/forge-skill/references/blocks/invoice-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、IconButton、PageTitleToolbar、PlusIcon、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4155,7 +4155,7 @@ Source: skills/forge-skill/references/blocks/invoices-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4187,7 +4187,7 @@ Source: skills/forge-skill/references/blocks/kanban-board.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
+依赖：core ^0.12.0；组件：Avatar、Breadcrumbs、Button、IconButton、KebabMenu、PageTitleToolbar、PlusIcon、ProgressBar、TextField。
 
 ## 最小可用示例
 
@@ -4218,7 +4218,7 @@ Source: skills/forge-skill/references/blocks/kpi-metrics.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
+依赖：core ^0.12.0；组件：BarChartStatCard、LineChartStatCard、Panel、StatCard、cn。
 
 ## 最小可用示例
 
@@ -4234,7 +4234,7 @@ export default function Example() {
 
 | Prop | 必填 | Type |
 |---|---|---|
-| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("@forge-ui-official/core").MotionPreference; trend?: string; trendDirection?: import("@forge-ui-official/core").TrendDirection; subtitle?: string; theme?: import("@forge-ui-official/core").CardTheme \| ("dark" \| "orange"); size?: import("@forge-ui-official/core").StatCardSize; icon?: ReactNode; badgeVariant?: import("@forge-ui-official/core").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("@forge-ui-official/core").CardDensity; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
+| metrics | 否 | `({ title: string; value: ReactNode; animateValue?: boolean; locale?: string; numberFormat?: Intl.NumberFormatOptions; motion?: import("@aideui/core").MotionPreference; trend?: string; trendDirection?: import("@aideui/core").TrendDirection; subtitle?: string; theme?: import("@aideui/core").CardTheme \| ("dark" \| "orange"); size?: import("@aideui/core").StatCardSize; icon?: ReactNode; badgeVariant?: import("@aideui/core").CardBadgeVariant; action?: ReactNode; onKebabClick?: () => void; density?: import("@aideui/core").CardDensity; width?: import("@aideui/core").CardWidth; className?: string; } & { id: string; visualization?: "line" \| "bar"; data?: number[]; })[] \| undefined` |
 | children | 否 | `ReactNode` |
 | className | 否 | `string \| undefined` |
 | variant | 否 | `"chart" \| "plain" \| undefined` |
@@ -4259,7 +4259,7 @@ Source: skills/forge-skill/references/blocks/layout-icon-rail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+依赖：core ^0.12.0；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、PlusIcon、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4288,7 +4288,7 @@ Source: skills/forge-skill/references/blocks/layout-immersive.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：AppLayout、ChatBubble、ChatInputBar。
+依赖：core ^0.12.0；组件：AppLayout、ChatBubble、ChatInputBar。
 
 ## 最小可用示例
 
@@ -4317,7 +4317,7 @@ Source: skills/forge-skill/references/blocks/layout-settings.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
+依赖：core ^0.12.0；组件：AppLayout、Avatar、Breadcrumbs、Button、PageTitleToolbar、SelectOption、TextArea、TextField、Toggle。
 
 ## 最小可用示例
 
@@ -4346,7 +4346,7 @@ Source: skills/forge-skill/references/blocks/layout-sidebar-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
+依赖：core ^0.12.0；组件：AppLayout、ProgressBar、StatusBadge、SurfaceCard。
 
 ## 最小可用示例
 
@@ -4375,7 +4375,7 @@ Source: skills/forge-skill/references/blocks/layout-topbar-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
+依赖：core ^0.12.0；组件：AppLayout、Breadcrumbs、Button、DataTable、PageTitleToolbar、StatCard、StatusBadge。
 
 ## 最小可用示例
 
@@ -4404,7 +4404,7 @@ Source: skills/forge-skill/references/blocks/lead-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
+依赖：core ^0.12.0；组件：Button、Modal、Panel、PlusIcon、SelectOption、StatusBadge、TabBar、TextArea、cn。
 
 ## 最小可用示例
 
@@ -4434,7 +4434,7 @@ Source: skills/forge-skill/references/blocks/leads-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Avatar、AvatarGroup、Button、ButtonGroup、CellImageText、CellMuted、CellText、DataTable、IconButton、Panel、PlusIcon、SmoothLineChart、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4467,7 +4467,7 @@ Source: skills/forge-skill/references/blocks/login-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、Checkbox、OtpInput、TextField、cn。
 
 ## 最小可用示例
 
@@ -4501,7 +4501,7 @@ Source: skills/forge-skill/references/blocks/member-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
+依赖：core ^0.12.0；组件：DataTable、Panel、SmoothLineChart、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -4530,7 +4530,7 @@ Source: skills/forge-skill/references/blocks/message-channels.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、CheckboxWithLabel、ConfirmationDialog、Grid、KebabMenu、Modal、PageTitleToolbar、PlusIcon、RadioWithLabel、SelectOption、StatusBadge、SurfaceCard、TextField、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown。
 
 ## 最小可用示例
 
@@ -4561,7 +4561,7 @@ Source: skills/forge-skill/references/blocks/onboarding-flow.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
+依赖：core ^0.12.0；组件：Button、Checkbox、ProgressBar、SelectOption、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -4591,7 +4591,7 @@ Source: skills/forge-skill/references/blocks/order-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、HistoryItem、InfoRow、Label、Modal、Panel、SelectOption、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4622,7 +4622,7 @@ Source: skills/forge-skill/references/blocks/order-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、PageTitleToolbar、RadioWithLabel、SelectOption、Stepper、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4652,7 +4652,7 @@ Source: skills/forge-skill/references/blocks/orders-table-section.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
+依赖：core ^0.12.0；组件：Avatar、Button、DataTable、IconButton、Modal、Pagination、Panel、StatusBadge、Toolbar、ToolbarSearchInput、ToolbarSelectDropdown、cn。
 
 ## 最小可用示例
 
@@ -4686,7 +4686,7 @@ Source: skills/forge-skill/references/blocks/overview-dashboard.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
+依赖：core ^0.12.0；组件：BarChartStatCard、Button、ChartHeader、ChartMetricRow、DonutChart、GroupedBarChart、LineChartStatCard、Panel、cn。
 
 ## 最小可用示例
 
@@ -4706,7 +4706,7 @@ export default function Example() {
 | description | 否 | `string \| undefined` |
 | periodLabel | 否 | `string \| undefined` |
 | metrics | 否 | `OverviewMetric[] \| undefined` |
-| trend | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| trend | 否 | `{ data: import("@aideui/core").GroupedBarPoint[]; series: import("@aideui/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@aideui/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | composition | 否 | `DonutChartProps \| undefined` |
 | onExport | 否 | `(() => void) \| undefined` |
 | className | 否 | `string \| undefined` |
@@ -4721,7 +4721,7 @@ Source: skills/forge-skill/references/blocks/password-recovery.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、OtpInput、TextField、cn。
+依赖：core ^0.12.0；组件：Button、OtpInput、TextField、cn。
 
 ## 最小可用示例
 
@@ -4754,7 +4754,7 @@ Source: skills/forge-skill/references/blocks/product-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Panel、StatusBadge、TabBar、cn。
+依赖：core ^0.12.0；组件：Button、Panel、StatusBadge、TabBar、cn。
 
 ## 最小可用示例
 
@@ -4784,7 +4784,7 @@ Source: skills/forge-skill/references/blocks/product-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、MediaUpload、PageTitleToolbar、RadioWithLabel、SelectOption、TextArea、TextField。
 
 ## 最小可用示例
 
@@ -4814,7 +4814,7 @@ Source: skills/forge-skill/references/blocks/products-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、CellImageText、CellMuted、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、IconButton、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -4848,7 +4848,7 @@ Source: skills/forge-skill/references/blocks/project-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Avatar、AvatarGroup、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4884,7 +4884,7 @@ Source: skills/forge-skill/references/blocks/project-portfolio.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
+依赖：core ^0.12.0；组件：Avatar、Breadcrumbs、Button、ButtonGroup、CardIconChip、CellMuted、CellProgressBar、CellText、CellTextSubtitle、ConfirmationDialog、DataTable、DonutChart、Grid、GridItem、IconButton、KebabMenu、PageTitleToolbar、ProgressBar、StatusBadge、SurfaceCard、Toolbar、ToolbarPillTabs、ToolbarSearchInput、ToolbarSelectDropdown、cardThemes。
 
 ## 最小可用示例
 
@@ -4914,7 +4914,7 @@ Source: skills/forge-skill/references/blocks/prompt-evals.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、DataTable、Panel、SmoothLineChart、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -4944,7 +4944,7 @@ Source: skills/forge-skill/references/blocks/provider-settings-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、PageTitleToolbar、StatusBadge、TabBar、TextField、Toggle。
 
 ## 最小可用示例
 
@@ -4973,7 +4973,7 @@ Source: skills/forge-skill/references/blocks/ranking-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChartListItem、ListGroup、cn。
+依赖：core ^0.12.0；组件：ChartListItem、ListGroup、cn。
 
 ## 最小可用示例
 
@@ -4991,16 +4991,16 @@ export default function Example() {
 |---|---|---|
 | title | 是 | `string` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
+| color | 否 | `import("@aideui/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
 | action | 否 | `ReactNode` |
 | badge | 否 | `ReactNode` |
-| tabs | 否 | `import("@forge-ui-official/core").ListGroupTab[] \| undefined` |
+| tabs | 否 | `import("@aideui/core").ListGroupTab[] \| undefined` |
 | activeTab | 否 | `string \| undefined` |
 | onTabChange | 否 | `((value: string) => void) \| undefined` |
 | closable | 否 | `boolean \| undefined` |
 | onClose | 否 | `(() => void) \| undefined` |
-| density | 否 | `import("@forge-ui-official/core").CardDensity \| undefined` |
+| density | 否 | `import("@aideui/core").CardDensity \| undefined` |
 | items | 否 | `ReactNode` |
 | entries | 否 | `{ id: string; title: string; subtitle?: string; value: string; icon?: ComponentProps<typeof ChartListItem>["icon"]; accent?: ComponentProps<typeof ChartListItem>["accent"]; avatar?: string; }[] \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |
@@ -5015,7 +5015,7 @@ Source: skills/forge-skill/references/blocks/recent-records.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：DataTable、Panel。
+依赖：core ^0.12.0；组件：DataTable、Panel。
 
 ## 最小可用示例
 
@@ -5330,7 +5330,7 @@ Source: skills/forge-skill/references/blocks/region-distribution.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：MapCard。
+依赖：core ^0.12.0；组件：MapCard。
 
 ## 最小可用示例
 
@@ -5348,13 +5348,13 @@ export default function Example() {
 |---|---|---|
 | title | 否 | `string \| undefined` |
 | className | 否 | `string \| undefined` |
-| color | 否 | `import("@forge-ui-official/core").AccentColor \| undefined` |
+| color | 否 | `import("@aideui/core").AccentColor \| undefined` |
 | subtitle | 否 | `string \| undefined` |
-| variant | 否 | `import("@forge-ui-official/core").MapVariant \| undefined` |
-| highlights | 否 | `import("@forge-ui-official/core").MapContinent[] \| undefined` |
+| variant | 否 | `import("@aideui/core").MapVariant \| undefined` |
+| highlights | 否 | `import("@aideui/core").MapContinent[] \| undefined` |
 | onMenuClick | 否 | `(() => void) \| undefined` |
-| width | 否 | `import("@forge-ui-official/core").CardWidth \| undefined` |
-| regions | 否 | `(Omit<import("@forge-ui-official/core").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |
+| width | 否 | `import("@aideui/core").CardWidth \| undefined` |
+| regions | 否 | `(Omit<import("@aideui/core").MapRegion, "flag"> & { flag?: string; countryCode?: string; })[] \| undefined` |
 
 ---
 
@@ -5366,7 +5366,7 @@ Source: skills/forge-skill/references/blocks/register-form.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Checkbox、TextField、cn。
+依赖：core ^0.12.0；组件：Button、Checkbox、TextField、cn。
 
 ## 最小可用示例
 
@@ -5400,7 +5400,7 @@ Source: skills/forge-skill/references/blocks/runtime-list.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、DataTable、PageTitleToolbar、StatusBadge、TextField。
 
 ## 最小可用示例
 
@@ -5430,7 +5430,7 @@ Source: skills/forge-skill/references/blocks/savings-goals-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
+依赖：core ^0.12.0；组件：Button、DataTable、Modal、PlusIcon、ProgressBar、TextField、cn。
 
 ## 最小可用示例
 
@@ -5460,7 +5460,7 @@ Source: skills/forge-skill/references/blocks/sellers-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、CellImageText、CellRating、CellText、DataTable、IconButton、Modal、PlusIcon、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5493,7 +5493,7 @@ Source: skills/forge-skill/references/blocks/settings-billing.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、CreditCard、Panel、ProgressBar、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -5525,7 +5525,7 @@ Source: skills/forge-skill/references/blocks/settings-members.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：Button、ButtonGroup、CellImageText、DataTable、Modal、Panel、PlusIcon、ProgressBar、SelectOption、TabBar、TextField、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5556,7 +5556,7 @@ Source: skills/forge-skill/references/blocks/settings-notifications.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、SelectOption、Toggle、cn。
+依赖：core ^0.12.0；组件：Button、SelectOption、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5586,7 +5586,7 @@ Source: skills/forge-skill/references/blocks/settings-profile.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、SelectOption、TextArea、TextField、cn。
+依赖：core ^0.12.0；组件：Button、SelectOption、TextArea、TextField、cn。
 
 ## 最小可用示例
 
@@ -5617,7 +5617,7 @@ Source: skills/forge-skill/references/blocks/settings-roles.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
+依赖：core ^0.12.0；组件：Button、Checkbox、Panel、PlusIcon、StatusBadge、cn。
 
 ## 最小可用示例
 
@@ -5648,7 +5648,7 @@ Source: skills/forge-skill/references/blocks/settings-security.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
+依赖：core ^0.12.0；组件：Button、Modal、StatusBadge、TextField、Toggle、cn。
 
 ## 最小可用示例
 
@@ -5678,7 +5678,7 @@ Source: skills/forge-skill/references/blocks/task-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
+依赖：core ^0.12.0；组件：Avatar、AvatarGroup、Button、Checkbox、IconButton、Panel、PlusIcon、ProgressBar、StatusBadge、TextField、cn。
 
 ## 最小可用示例
 
@@ -5708,7 +5708,7 @@ Source: skills/forge-skill/references/blocks/task-run-detail.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、ConfirmationDialog、Modal、PageTitleToolbar、StatusBadge。
 
 ## 最小可用示例
 
@@ -5737,7 +5737,7 @@ Source: skills/forge-skill/references/blocks/transactions-table.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
+依赖：core ^0.12.0；组件：ButtonGroup、CellTextSubtitle、DataTable、DonutChart、IconButton、Modal、Panel、ProgressBar、StatusBadge、ToolbarSearchInput、cn。
 
 ## 最小可用示例
 
@@ -5768,7 +5768,7 @@ Source: skills/forge-skill/references/blocks/trend-chart.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
+依赖：core ^0.12.0；组件：ChartHeader、ChartMetricRow、GroupedBarChart、SmoothLineChart、Panel、cn。
 
 ## 最小可用示例
 
@@ -6068,7 +6068,7 @@ export default function Example() {
 | asChild | 否 | `boolean \| undefined` |
 | gap | 否 | `"none" \| "sm" \| "md" \| undefined` |
 | children | 否 | `import("react").ReactNode` |
-| chart | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| chart | 否 | `{ data: import("@aideui/core").GroupedBarPoint[]; series: import("@aideui/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@aideui/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | periods | 否 | `TrendPeriod[] \| undefined` |
 | variant | 否 | `"plain" \| "template" \| undefined` |
 | activePeriod | 否 | `string \| undefined` |
@@ -6085,7 +6085,7 @@ Source: skills/forge-skill/references/blocks/wealth-overview.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
+依赖：core ^0.12.0；组件：Button、CreditCard、LineChartStatCard、Panel、PlusIcon、ProgressBar、cn。
 
 ## 最小可用示例
 
@@ -6102,7 +6102,7 @@ export default function Example() {
 | Prop | 必填 | Type |
 |---|---|---|
 | metrics | 否 | `WealthMetric[] \| undefined` |
-| cards | 否 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@forge-ui-official/core").FinancialTheme; variant?: import("@forge-ui-official/core").FinancialVariant; width?: import("@forge-ui-official/core").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
+| cards | 否 | `({ locale?: "zh" \| "en"; cardNumberLabel?: string; holderNameLabel?: string; cardNumber?: string; holderName?: string; expiry?: string; theme?: import("@aideui/core").FinancialTheme; variant?: import("@aideui/core").FinancialVariant; width?: import("@aideui/core").CardWidth; className?: string; } & { id: string; })[] \| undefined` |
 | goals | 否 | `WealthGoal[] \| undefined` |
 | onAddCard | 否 | `(() => void) \| undefined` |
 | className | 否 | `string \| undefined` |
@@ -6117,7 +6117,7 @@ Source: skills/forge-skill/references/blocks/workflow-builder.md
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
+依赖：core ^0.12.0；组件：Breadcrumbs、Button、CellText、StatusBadge、TabBar。
 
 ## 最小可用示例
 
@@ -7133,7 +7133,7 @@ forms:
 dialogs:
   destructive: "ConfirmationDialog with controlled open/onOpenChange; inline mode only inside an existing shell"
 icons:
-  package: "@forge-ui-official/core/icons"
+  package: "@aideui/core/icons"
   names: []
 missing_primitives:
   drawer: "Drawer (controlled open/onOpenChange); check installed version"
@@ -7149,7 +7149,7 @@ missing_primitives:
 - Use `TextField`, `TextArea`, `SelectOption`, `Datepicker`, `FileUpload`, `MediaUpload`, and `Stepper` for forms.
 - Use controlled `ConfirmationDialog` for standalone confirmation; omit `open` only for inline content in one existing shell.
 - Use `fg-*` color tokens only.
-- Use `@forge-ui-official/core/icons` icons with numeric `size`; currentColor may inherit from className, while an explicit color intentionally overrides it.
+- Use `@aideui/core/icons` icons with numeric `size`; currentColor may inherit from className, while an explicit color intentionally overrides it.
 
 ---
 
@@ -7346,14 +7346,14 @@ closest_forge_references: []
 
 Source: skills/forge-skill/references/icons.md
 
-# Icons — @forge-ui-official/core/icons
+# Icons — @aideui/core/icons
 
 Forge 项目唯一 icon 源。禁止用 `lucide-react`、inline SVG 等，**除**文件类型 icon（`public/images/file-icons/*.svg` 是 Figma 原图资产）。
 
 ## 基础用法
 
 ```tsx
-import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
+import { MagniferLinear, BellBoldDuotone } from "@aideui/core/icons";
 
 <MagniferLinear size={16} color="#71717A" />
 <BellBoldDuotone size={24} color="var(--fg-violet)" />
@@ -7466,7 +7466,7 @@ import { MagniferLinear, BellBoldDuotone } from "@forge-ui-official/core/icons";
 如果不确定某语义的 icon 名：
 
 ```bash
-ls node_modules/@forge-ui-official/core/icons/dist/icons/ | grep -i <关键词>
+ls node_modules/@aideui/core/icons/dist/icons/ | grep -i <关键词>
 ```
 
 常用关键词 → 文件名 映射：用"搜索 = magnifer"、"邮件 = letter"、"钱包 = wallet"、"编辑 = pen"、"删除 = trash" 等英文词 grep。
@@ -7492,7 +7492,7 @@ Source: skills/forge-skill/references/layout-grid.md
 
 # Forge layout grid
 
-Read this before choosing page columns or adapting a page to a narrow viewport. APIs are exported from `@forge-ui-official/core`; see `/components/grid` and `/cases/grid` for runnable examples. Existing consumers need a Core version that actually exports Grid/GridItem; do not invent imports against an older installed package.
+Read this before choosing page columns or adapting a page to a narrow viewport. APIs are exported from `@aideui/core`; see `/components/grid` and `/cases/grid` for runnable examples. Existing consumers need a Core version that actually exports Grid/GridItem; do not invent imports against an older installed package.
 
 ## Template first
 
@@ -7528,7 +7528,7 @@ Both components accept normal div attributes, className, style and ref and work 
 ## Composition
 
 ```tsx
-import { Grid, GridItem, StatCard } from "@forge-ui-official/core";
+import { Grid, GridItem, StatCard } from "@aideui/core";
 
 // Plain direct children auto-place into one cell each.
 <Grid columns={{ base: 1, sm: 2, lg: 4 }} gap={16}>
@@ -8299,7 +8299,7 @@ Source: skills/forge-skill/references/tokens.md
 
 # Forge Design Tokens — quick reference
 
-Snapshot of `@forge-ui-official/core/styles.css`. When picking a color, pick a semantic alias first (`accent`, `text-muted`, `border`); reach for raw primitives (`fg-violet-500`) only when none fit.
+Snapshot of `@aideui/core/styles.css`. When picking a color, pick a semantic alias first (`accent`, `text-muted`, `border`); reach for raw primitives (`fg-violet-500`) only when none fit.
 
 Tailwind usage: `bg-fg-violet-500` / `text-fg-grey-700` / `border-fg-grey-200`. CSS: `var(--fg-violet)` / `var(--accent)`.
 

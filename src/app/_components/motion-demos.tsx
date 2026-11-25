@@ -7,8 +7,8 @@ import {
   ToolbarSelectDropdown, TabBar, ButtonGroup, ToolbarPillTabs,
   Toggle, CheckboxWithLabel, Checklist, SidebarMenu, Tooltip, TooltipGroup,
   type MotionPreference,
-} from "@forge-ui-official/core";
-import { AddCircleLinear } from "@forge-ui-official/core/icons";
+} from "@aideui/core";
+import { AddCircleLinear } from "@aideui/core/icons";
 
 const options = [
   { value: "all", label: "所有项目" },

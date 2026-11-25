@@ -20,7 +20,7 @@ import {
   ToolbarDatepicker,
   ToolbarFilterButton,
   ToolbarShowSelect,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { MockFilterPanel } from "@/app/templates/_shared";
 
 const SHOW_PER_PAGE_OPTIONS = [
@@ -29,12 +29,12 @@ const SHOW_PER_PAGE_OPTIONS = [
   { label: "50", value: "50" },
   { label: "100", value: "100" },
 ];
-import type { ColumnDef, StatusBadgeColor } from "@forge-ui-official/core";
+import type { ColumnDef, StatusBadgeColor } from "@aideui/core";
 import {
   DownloadMinimalisticLinear,
   TrashBinTrashLinear,
-} from "@forge-ui-official/core/icons";
-import { PlusIcon } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { PlusIcon } from "@aideui/core";
 import { downloadCsv } from "../../../_shared/download-csv";
 
 interface OrderItem {

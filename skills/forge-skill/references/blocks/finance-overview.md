@@ -4,7 +4,7 @@
 
 由源码类型生成；继承的 DOM 属性一并列出。默认值与插槽优先级见 registry 内源码。
 
-依赖：core ^0.11.6；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
+依赖：core ^0.12.0；组件：ChartMetricRow、CreditCard、GroupedBarChart、Panel、WalletGoalCard、cn。
 
 ## 最小可用示例
 
@@ -24,6 +24,6 @@ export default function Example() {
 | description | 否 | `string \| undefined` |
 | periodLabel | 否 | `string \| undefined` |
 | accounts | 否 | `FinanceAccount[] \| undefined` |
-| trend | 否 | `{ data: import("@forge-ui-official/core").GroupedBarPoint[]; series: import("@forge-ui-official/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@forge-ui-official/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
+| trend | 否 | `{ data: import("@aideui/core").GroupedBarPoint[]; series: import("@aideui/core").ChartMetricSeries[]; activeIndex?: number; tooltipItems?: import("@aideui/core").GroupedBarTooltipItem[]; yAxisLabels?: string[]; heightClass?: string; } \| undefined` |
 | goals | 否 | `(WalletGoalCardProps & { id: string; })[] \| undefined` |
 | className | 否 | `string \| undefined` |

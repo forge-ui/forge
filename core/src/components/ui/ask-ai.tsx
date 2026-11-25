@@ -69,7 +69,7 @@ const DEFAULT_SUGGESTIONS = ["这个页面可以做什么？", "下一步该做�
 /**
  * The page-header entry to Forge Agent: the header button opens the Forge Agent panel (AgentPanel)
  * with a built-in conversation over `onSend`. For tools, approvals and generative answers, mount
- * ForgeAgent from @forge-ui-official/agent, or pass your own `messages` and `composer`.
+ * ForgeAgent from @aideui/agent, or pass your own `messages` and `composer`.
  */
 export function AskAi({
   color,

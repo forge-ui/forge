@@ -1,7 +1,7 @@
 "use client";
 
 import { type ComponentProps } from "react";
-import { Button, CreditCard, LineChartStatCard, Panel, PlusIcon, ProgressBar, cn } from "@forge-ui-official/core";
+import { Button, CreditCard, LineChartStatCard, Panel, PlusIcon, ProgressBar, cn } from "@aideui/core";
 
 export interface WealthMetric {
   id: string;

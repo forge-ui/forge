@@ -1,6 +1,6 @@
 "use client";
 
-import { FileInput } from "@forge-ui-official/core";
+import { FileInput } from "@aideui/core";
 import { useState, useCallback, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -17,8 +17,8 @@ import {
   ConfirmationDialog,
   Pagination,
   Avatar,
-} from "@forge-ui-official/core";
-import type { ColumnDef } from "@forge-ui-official/core";
+} from "@aideui/core";
+import type { ColumnDef } from "@aideui/core";
 import {
   LetterLinear,
   PhoneCallingLinear,
@@ -26,8 +26,8 @@ import {
   TrashBinMinimalisticLinear,
   DownloadMinimalisticLinear,
   PenLinear,
-} from "@forge-ui-official/core/icons";
-import { PlusIcon } from "@forge-ui-official/core";
+} from "@aideui/core/icons";
+import { PlusIcon } from "@aideui/core";
 import { Modal } from "@/app/templates/_shared";
 
 interface CustomerItem {

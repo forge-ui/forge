@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type Key } from "react";
-import { Button, ButtonGroup, CellActions, Checkbox, ConfirmationDialog, FileTypeIcon, Panel, PlusIcon, ToolbarSearchInput, cn } from "@forge-ui-official/core";
+import { Button, ButtonGroup, CellActions, Checkbox, ConfirmationDialog, FileTypeIcon, Panel, PlusIcon, ToolbarSearchInput, cn } from "@aideui/core";
 
 export interface FileEntry {
   id: string;

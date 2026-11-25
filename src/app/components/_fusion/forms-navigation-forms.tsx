@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { Accordion, Button, ButtonGroup, CheckboxControl, Checklist, CommentItem, Datepicker, FileUpload, IconButton, OtpInput, ProgressBar, RadioWithLabel, RatingStars, Stepper, SurfaceCard, TextArea, TextField, Toggle, type FileItem } from "@forge-ui-official/core";
-import { CheckCircleLinear, PenLinear, SunLinear, MoonLinear } from "@forge-ui-official/core/icons";
+import { Accordion, Button, ButtonGroup, CheckboxControl, Checklist, CommentItem, Datepicker, FileUpload, IconButton, OtpInput, ProgressBar, RadioWithLabel, RatingStars, Stepper, SurfaceCard, TextArea, TextField, Toggle, type FileItem } from "@aideui/core";
+import { CheckCircleLinear, PenLinear, SunLinear, MoonLinear } from "@aideui/core/icons";
 import type { FusionExampleProps } from "./types";
 
 import { useActionTimers } from "./actions-shared";

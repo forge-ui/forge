@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Breadcrumbs, Button, PageTitleToolbar, StatusBadge, TabBar, TextField, Toggle } from "@forge-ui-official/core";
-import { CopyLinear } from "@forge-ui-official/core/icons";
+import { Breadcrumbs, Button, PageTitleToolbar, StatusBadge, TabBar, TextField, Toggle } from "@aideui/core";
+import { CopyLinear } from "@aideui/core/icons";
 
 export interface ProviderField {
   key: string;

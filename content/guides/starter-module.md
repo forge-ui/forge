@@ -11,7 +11,7 @@
 ## 示例代码
 
 ```tsx
-import { Panel } from "@forge-ui-official/core";
+import { Panel } from "@aideui/core";
 
 export function ModuleOverview() {
   return <Panel><h2>客户模块</h2><p>先完成模块声明、权限与数据接口，再接列表。</p></Panel>;

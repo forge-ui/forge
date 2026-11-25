@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Button, SelectOption, TextArea, TextField } from "@forge-ui-official/core";
+import { Button, SelectOption, TextArea, TextField } from "@aideui/core";
 import { CrmSurface } from "@/blocks/crm-summary/crm-summary";
 import { CrmPageHeader, CrmTemplateShell } from "../../_chrome";
 

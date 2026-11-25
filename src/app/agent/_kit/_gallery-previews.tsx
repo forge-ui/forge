@@ -1,8 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { AgentMessage, AgentWelcome, CitedAnswer, Reasoning, StreamingAnswer, ThinkingIndicator, ToolCall, ToolCallGroup } from "@forge-ui-official/core";
-import { StarsLinear } from "@forge-ui-official/core/icons";
+import { AgentMessage, AgentWelcome, CitedAnswer, Reasoning, StreamingAnswer, ThinkingIndicator, ToolCall, ToolCallGroup } from "@aideui/core";
+import { StarsLinear } from "@aideui/core/icons";
 
 // Gallery thumbnails drawn at card width, for components whose full demo does not read when
 // shrunk: a panel that opens on a button, a block that starts folded, a stream that waits for a click.

@@ -319,9 +319,9 @@ import {
   ToolbarFilterButton,
   type ColumnDef,
   type KebabMenuItem,
-} from "@forge-ui-official/core";
+} from "@aideui/core";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { AddCircleLinear, EyeLinear, PenLinear, TrashBinTrashLinear, MagniferLinear } from "@forge-ui-official/core/icons";
+import { AddCircleLinear, EyeLinear, PenLinear, TrashBinTrashLinear, MagniferLinear } from "@aideui/core/icons";
 
 type OrderStatus = "draft" | "pending" | "paid" | "void";
 type OrderRow = { id: string; number: string; customer: string; status: OrderStatus; updatedAt: string };
@@ -512,7 +512,7 @@ Field error mapping skeleton:
 "use client";
 
 import { useActionState, useState } from "react";
-import { Button, TextField } from "@forge-ui-official/core";
+import { Button, TextField } from "@aideui/core";
 import { createOrder, type OrderFormState } from "../actions";
 
 export function OrderForm() {
@@ -602,7 +602,7 @@ Compatibility inline-mode skeleton (intentionally omits `open` inside one native
 "use client";
 
 import { useRef } from "react";
-import { ConfirmationDialog } from "@forge-ui-official/core";
+import { ConfirmationDialog } from "@aideui/core";
 
 export function DeleteOrderDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -673,8 +673,8 @@ State/action matrix example:
 Typed row action map example:
 
 ```tsx
-import type { KebabMenuItem } from "@forge-ui-official/core";
-import { EyeLinear, PenLinear, TrashBinTrashLinear } from "@forge-ui-official/core/icons";
+import type { KebabMenuItem } from "@aideui/core";
+import { EyeLinear, PenLinear, TrashBinTrashLinear } from "@aideui/core/icons";
 
 type InvoiceStatus = "draft" | "sent" | "paid" | "void";
 type Invoice = { id: string; status: InvoiceStatus };
@@ -827,7 +827,7 @@ export default async function OrdersPage({
 // app/orders/_components/orders-screen.tsx
 "use client";
 
-import { AppLayout } from "@forge-ui-official/core";
+import { AppLayout } from "@aideui/core";
 import { useState } from "react";
 import { OrdersTable } from "./orders-table";
 
@@ -895,7 +895,7 @@ export async function archiveOrder(
 
 import { useActionState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { ConfirmationDialog } from "@forge-ui-official/core";
+import { ConfirmationDialog } from "@aideui/core";
 import { archiveOrder, type ArchiveState } from "../actions";
 
 export function ArchiveOrderDialog({ orderId }: { orderId: string }) {
