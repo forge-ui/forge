@@ -17,6 +17,10 @@
       {
         "href": "/templates/dashboards/project-2",
         "title": "项目进展看板"
+      },
+      {
+        "href": "/templates/business",
+        "title": "业务系统"
       }
     ],
     "example": "import { CompositionCard } from \"@/components/blocks/composition-card\";\n\nexport default function Example() {\n  return (<CompositionCard title=\"渠道占比\" chart={{ segments: [{ label: \"商城\", value: 257 }, { label: \"小店\", value: 255 }], centerValue: \"512 笔\" }} />);\n}\n",

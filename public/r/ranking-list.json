@@ -37,6 +37,10 @@
       {
         "href": "/templates/dashboards/project-2",
         "title": "项目进展看板"
+      },
+      {
+        "href": "/templates/business",
+        "title": "业务系统"
       }
     ],
     "example": "import { RankingList } from \"@/components/blocks/ranking-list\";\n\nexport default function Example() {\n  return (<RankingList title=\"商品排行\" entries={[{ id: \"keyboard\", title: \"机械键盘\", subtitle: \"192 件\", value: \"¥24,500\", avatar: \"KB\" }, { id: \"mouse\", title: \"无线鼠标\", subtitle: \"160 件\", value: \"¥12,500\" }]} />);\n}\n",

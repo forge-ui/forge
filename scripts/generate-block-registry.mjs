@@ -14,7 +14,7 @@ const screenTitles = {
   analytics: "经营分析看板", "ecommerce-1": "电商经营看板", "ecommerce-2": "电商明细看板", "ecommerce-3": "渠道分析看板",
   "project-1": "项目协作看板", "project-2": "项目进展看板", "finance-1": "财务概览看板", "finance-2": "账户分析看板", "finance-3": "财务工作台",
   crm: "客户经营看板", ecommerce: "电商管理", "project-template": "项目管理", "finance-template": "财务管理", "crm-template": "客户关系管理",
-  "micellaneous-template": "团队工作区", agent: "智能体工作台", "task-board": "任务看板", "dashboard-builder": "看板编辑器", orders: "订单管理",
+  "micellaneous-template": "团队工作区", agent: "智能体工作台", business: "业务系统", "ai-chat": "AI 对话", "task-board": "任务看板", "dashboard-builder": "看板编辑器", orders: "订单管理",
 };
 const pageTitles = {
   "/templates/ecommerce/products": "商品列表页", "/templates/ecommerce/customers": "客户列表页", "/templates/ecommerce/sellers": "商家列表页", "/templates/ecommerce/categories": "分类管理页",

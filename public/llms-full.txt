@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.11.6
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: 878f20ebccd0d9d6efc1cdad66b8909dc2ecffa0ba1595f105d6e15c535f59d7
+Source fingerprint: a1491a7dccf58de92ade9fc18fe2a7514ca03e86e00c1b706a5c971f3814fb13
 
 ## Adopted rules / 采用规则
 
@@ -1115,6 +1115,19 @@ export function ModuleOverview() {
 
 - /templates — src/app/templates/page.tsx
 - /templates/agent — src/app/templates/agent/page.tsx
+- /templates/ai-chat — src/app/templates/ai-chat/page.tsx
+- /templates/ai-chat/automations — src/app/templates/ai-chat/automations/page.tsx
+- /templates/ai-chat/plugins — src/app/templates/ai-chat/plugins/page.tsx
+- /templates/ai-chat/projects/[id] — src/app/templates/ai-chat/projects/[id]/page.tsx (route pattern; use real IDs)
+- /templates/business — src/app/templates/business/page.tsx
+- /templates/business/contracts — src/app/templates/business/contracts/page.tsx
+- /templates/business/contracts/[id] — src/app/templates/business/contracts/[id]/page.tsx (route pattern; use real IDs)
+- /templates/business/customers — src/app/templates/business/customers/page.tsx
+- /templates/business/customers/[id] — src/app/templates/business/customers/[id]/page.tsx (route pattern; use real IDs)
+- /templates/business/payments — src/app/templates/business/payments/page.tsx
+- /templates/business/reports — src/app/templates/business/reports/page.tsx
+- /templates/business/settings — src/app/templates/business/settings/page.tsx
+- /templates/business/tickets — src/app/templates/business/tickets/page.tsx
 - /templates/crm-template — src/app/templates/crm-template/page.tsx
 - /templates/crm-template/activity — src/app/templates/crm-template/activity/page.tsx
 - /templates/crm-template/customers — src/app/templates/crm-template/customers/page.tsx

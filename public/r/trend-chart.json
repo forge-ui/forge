@@ -45,6 +45,10 @@
       {
         "href": "/templates/dashboards/project-2",
         "title": "项目进展看板"
+      },
+      {
+        "href": "/templates/business",
+        "title": "业务系统"
       }
     ],
     "example": "import { TrendChart } from \"@/components/blocks/trend-chart\";\n\nexport default function Example() {\n  return (<TrendChart title=\"订单趋势\" periods={[{ label: \"日\", countChart: { series: [{ label: \"订单\", data: [12, 26, 18, 30] }], xAxisLabels: [\"09:00\", \"12:00\", \"15:00\", \"18:00\"] } }, { label: \"周\", countChart: { series: [{ label: \"订单\", data: [50, 80, 60, 100] }], xAxisLabels: [\"周一\", \"周二\", \"周三\", \"周四\"] } }]} />);\n}\n",

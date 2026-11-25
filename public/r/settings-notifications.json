@@ -13,6 +13,10 @@
       {
         "href": "/templates/agent",
         "title": "智能体工作台"
+      },
+      {
+        "href": "/templates/business",
+        "title": "业务系统"
       }
     ],
     "example": "import { SettingsNotifications } from \"@/components/blocks/settings-notifications\";\n\nexport default function Example() {\n  return (<SettingsNotifications onSave={(rules, digest) => console.log(rules.length, digest)} />);\n}\n",

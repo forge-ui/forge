@@ -1687,6 +1687,10 @@
           {
             "href": "/templates/dashboards/project-2",
             "title": "项目进展看板"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { TrendChart } from \"@/components/blocks/trend-chart\";\n\nexport default function Example() {\n  return (<TrendChart title=\"订单趋势\" periods={[{ label: \"日\", countChart: { series: [{ label: \"订单\", data: [12, 26, 18, 30] }], xAxisLabels: [\"09:00\", \"12:00\", \"15:00\", \"18:00\"] } }, { label: \"周\", countChart: { series: [{ label: \"订单\", data: [50, 80, 60, 100] }], xAxisLabels: [\"周一\", \"周二\", \"周三\", \"周四\"] } }]} />);\n}\n",
@@ -3207,6 +3211,10 @@
           {
             "href": "/templates/dashboards/project-2",
             "title": "项目进展看板"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { RankingList } from \"@/components/blocks/ranking-list\";\n\nexport default function Example() {\n  return (<RankingList title=\"商品排行\" entries={[{ id: \"keyboard\", title: \"机械键盘\", subtitle: \"192 件\", value: \"¥24,500\", avatar: \"KB\" }, { id: \"mouse\", title: \"无线鼠标\", subtitle: \"160 件\", value: \"¥12,500\" }]} />);\n}\n",
@@ -3329,6 +3337,10 @@
           {
             "href": "/templates/dashboards/project-2",
             "title": "项目进展看板"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { CompositionCard } from \"@/components/blocks/composition-card\";\n\nexport default function Example() {\n  return (<CompositionCard title=\"渠道占比\" chart={{ segments: [{ label: \"商城\", value: 257 }, { label: \"小店\", value: 255 }], centerValue: \"512 笔\" }} />);\n}\n",
@@ -6493,6 +6505,10 @@
       "meta": {
         "category": "图表与指标",
         "screens": [
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
+          },
           {
             "href": "/templates/crm-template",
             "title": "客户关系管理"
@@ -9895,6 +9911,10 @@
           {
             "href": "/templates/agent",
             "title": "智能体工作台"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { SettingsProfile } from \"@/components/blocks/settings-profile\";\n\nexport default function Example() {\n  return (<SettingsProfile onSave={value => console.log(value.name)} />);\n}\n",
@@ -9960,6 +9980,10 @@
           {
             "href": "/templates/agent",
             "title": "智能体工作台"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { SettingsMembers } from \"@/components/blocks/settings-members\";\n\nexport default function Example() {\n  return (<SettingsMembers seats={10} onInvite={(email, role) => console.log(email, role)} />);\n}\n",
@@ -10099,6 +10123,10 @@
           {
             "href": "/templates/agent",
             "title": "智能体工作台"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { SettingsNotifications } from \"@/components/blocks/settings-notifications\";\n\nexport default function Example() {\n  return (<SettingsNotifications onSave={(rules, digest) => console.log(rules.length, digest)} />);\n}\n",
@@ -10158,6 +10186,10 @@
           {
             "href": "/templates/agent",
             "title": "智能体工作台"
+          },
+          {
+            "href": "/templates/business",
+            "title": "业务系统"
           }
         ],
         "example": "import { SettingsSecurity } from \"@/components/blocks/settings-security\";\n\nexport default function Example() {\n  return (<SettingsSecurity />);\n}\n",
