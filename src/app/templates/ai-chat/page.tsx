@@ -20,6 +20,7 @@ import {
   ToolCallGroup,
   cn,
   type ComposerStatus,
+  useToast,
 } from "@forge-ui-official/core";
 import { CodeLinear, DocumentTextLinear, FolderLinear, LightbulbLinear, PaperclipLinear, ShareLinear, SidebarMinimalisticLinear, StarsLinear } from "@forge-ui-official/core/icons";
 import { IconAction, useSidebar } from "./_shell";
@@ -209,12 +210,13 @@ function ChatComposer({ threadKey, placeholder, onSend, status, onStop, model, o
 }
 
 function AssistantTurn({ turn, onOpenChanges }: { turn: Extract<Turn, { role: "assistant" }>; onOpenChanges: (path: string) => void }) {
+  const { toast } = useToast();
   const changes = useMemo(() => FILE_CHANGES.filter((file) => turn.changes?.includes(file.path)), [turn.changes]);
   const waiting = turn.streaming && !turn.tools && turn.paragraphs.length === 0;
   return (
     <AgentMessage
       role="assistant"
-      actions={turn.streaming ? undefined : <MessageActions copyText={turn.paragraphs.join("\n")} onRetry={() => undefined} />}
+      actions={turn.streaming ? undefined : <MessageActions copyText={turn.paragraphs.join("\n")} onRetry={() => toast({ title: "已按原问题重新生成", status: "success" })} />}
     >
       {waiting ? (
         <ThinkingIndicator phases={["正在读取项目", "正在规划改动"]} />

@@ -2,7 +2,7 @@
 
 Package: @forge-ui-official/core@0.11.6
 Source: this repository; forge-skill + generated core exports + real page routes
-Source fingerprint: a1491a7dccf58de92ade9fc18fe2a7514ca03e86e00c1b706a5c971f3814fb13
+Source fingerprint: 1f839419f2fbea18f57d2c6f0dbfcbdfbe107bf506d40bba1f2b6573af0e0133
 
 ## Adopted rules / 采用规则
 
@@ -8093,6 +8093,29 @@ corepack pnpm dev --hostname 127.0.0.1 --port 3219
 | 路由模式 | 可访问示例 | 源码 |
 |---|---|---|
 | `/templates/agent` | `/templates/agent` | src/app/templates/agent/page.tsx |
+
+### ai-chat
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/ai-chat` | `/templates/ai-chat?thread=hero` | src/app/templates/ai-chat/page.tsx |
+| `/templates/ai-chat/automations` | `/templates/ai-chat/automations` | src/app/templates/ai-chat/automations/page.tsx |
+| `/templates/ai-chat/plugins` | `/templates/ai-chat/plugins` | src/app/templates/ai-chat/plugins/page.tsx |
+| `/templates/ai-chat/projects/[id]` | `/templates/ai-chat/projects/website` | src/app/templates/ai-chat/projects/[id]/page.tsx |
+
+### business
+
+| 路由模式 | 可访问示例 | 源码 |
+|---|---|---|
+| `/templates/business` | `/templates/business` | src/app/templates/business/page.tsx |
+| `/templates/business/contracts` | `/templates/business/contracts` | src/app/templates/business/contracts/page.tsx |
+| `/templates/business/contracts/[id]` | `/templates/business/contracts/HT-2611-024` | src/app/templates/business/contracts/[id]/page.tsx |
+| `/templates/business/customers` | `/templates/business/customers` | src/app/templates/business/customers/page.tsx |
+| `/templates/business/customers/[id]` | `/templates/business/customers/c-1002` | src/app/templates/business/customers/[id]/page.tsx |
+| `/templates/business/payments` | `/templates/business/payments` | src/app/templates/business/payments/page.tsx |
+| `/templates/business/reports` | `/templates/business/reports` | src/app/templates/business/reports/page.tsx |
+| `/templates/business/settings` | `/templates/business/settings` | src/app/templates/business/settings/page.tsx |
+| `/templates/business/tickets` | `/templates/business/tickets` | src/app/templates/business/tickets/page.tsx |
 
 ### crm-template
 

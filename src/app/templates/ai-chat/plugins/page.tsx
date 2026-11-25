@@ -42,7 +42,7 @@ export default function PluginsPage() {
           </div>
           <div className="flex items-center gap-3 pt-1">
             <TextField shape="pill" className="w-64" value={query} onChange={setQuery} placeholder="搜索插件" aria-label="搜索插件" iconLeft={<MagniferLinear size={16} />} />
-            <IconAction label="插件设置" onClick={() => undefined}>
+            <IconAction label="管理已添加的插件" onClick={() => setFilter("已安装")}>
               <SettingsIcon size={18} />
             </IconAction>
             <Button size="sm" color="black" iconRight={<AltArrowDownLinear size={14} />}>
