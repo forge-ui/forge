@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.3
+
+- `useToast()` 返回的对象不再随每条通知变化。0.11.0 起它每弹一条通知就换一个新对象，把 `toast` / `dismiss` 放进 `useEffect` 依赖的写法会反复重订阅，弹一条通知会无限重复并报 Maximum update depth exceeded。
+
 ## 0.11.2
 
 审计发现的问题修复，不涉及新功能。

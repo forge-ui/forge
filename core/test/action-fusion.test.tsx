@@ -92,6 +92,18 @@ test("toast updates preserve identity and action restores the consumer state", a
   } finally { await env.close(); }
 });
 
+test("useToast stays the same object while toasts come and go", async () => {
+  const env = await setup(); const seen = new Set<ToastApi>(); let api: ToastApi | undefined;
+  function Probe() { api = useToast(); seen.add(api); return null; }
+  try {
+    await env.render(<ToastProvider motion="none"><Probe /></ToastProvider>);
+    let id = "";
+    await act(async () => { id = api!.toast({ title: "Saved", duration: 0 }); });
+    await act(async () => api!.dismiss(id));
+    assert.equal(seen.size, 1);
+  } finally { await env.close(); }
+});
+
 test("plain loading actions respond to system reduced motion without requiring an effect", async () => {
   const env = await setup(false);
   try {
