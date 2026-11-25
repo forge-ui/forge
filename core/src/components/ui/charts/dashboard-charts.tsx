@@ -84,7 +84,7 @@ export function ChartHeader({
               onClick={() => { setSelected(tab); onTabChange?.(tab); }}
               className={
                 tab === current
-                  ? "rounded-full bg-background px-3 py-1.5 font-semibold text-fg-violet shadow-subtle"
+                  ? "rounded-full bg-background px-3 py-1.5 font-semibold text-accent shadow-subtle"
                   : "rounded-full px-3 py-1.5 font-medium text-fg-grey-500"
               }
             >
@@ -175,18 +175,18 @@ export function GroupedBarChart({
         {data.map((point, pointIndex) => (
           <div key={point.label} className="relative z-10 flex h-full flex-1 flex-col justify-end gap-3">
             {pointIndex === activeIndex && (
-              <span className="absolute inset-y-8 left-1/2 w-12 -translate-x-1/2 bg-fg-violet-50" />
+              <span className="absolute inset-y-8 left-1/2 w-12 -translate-x-1/2 bg-accent-soft" />
             )}
             <div className="relative z-10 flex h-[calc(100%-34px)] items-end justify-center gap-2">
               {point.values.map((value, seriesIndex) => (
                 <span
                   key={`${point.label}-${series[seriesIndex]?.label ?? seriesIndex}`}
-                  className={`w-3 rounded-full ${series[seriesIndex]?.colorClass ?? "bg-fg-violet"}`}
+                  className={`w-3 rounded-full ${series[seriesIndex]?.colorClass ?? "bg-accent"}`}
                   style={{ height: `${barPercent(value, max, 100)}%` }}
                 />
               ))}
             </div>
-            <div className={pointIndex === activeIndex ? "relative z-10 text-center text-sm font-medium text-fg-violet" : "relative z-10 text-center text-sm font-medium text-fg-grey-700"}>
+            <div className={pointIndex === activeIndex ? "relative z-10 text-center text-sm font-medium text-accent" : "relative z-10 text-center text-sm font-medium text-fg-grey-700"}>
               {point.label}
             </div>
           </div>
@@ -239,10 +239,10 @@ export function DivergingBarChart({
       </div>
       {data.map((item, index) => (
         <div key={item.label} className="relative z-10 flex h-full flex-1 flex-col items-center justify-center">
-          {index === activeIndex && <span className="absolute inset-y-6 w-12 bg-fg-violet-50" />}
+          {index === activeIndex && <span className="absolute inset-y-6 w-12 bg-accent-soft" />}
           <span className={`relative z-10 mb-1 w-3 rounded-full ${upperColor}`} style={{ height: `${barPercent(item.upperValue, max, 42)}%` }} />
           <span className={`relative z-10 mt-1 w-3 rounded-full ${lowerColor}`} style={{ height: `${barPercent(item.lowerValue, max, 42)}%` }} />
-          <span className={index === activeIndex ? "absolute bottom-0 text-sm font-medium text-fg-violet" : "absolute bottom-0 text-sm font-medium text-fg-grey-700"}>
+          <span className={index === activeIndex ? "absolute bottom-0 text-sm font-medium text-accent" : "absolute bottom-0 text-sm font-medium text-fg-grey-700"}>
             {item.label}
           </span>
         </div>

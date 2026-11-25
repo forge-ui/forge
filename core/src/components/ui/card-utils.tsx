@@ -27,6 +27,8 @@ export interface CardThemeConfig {
   titleColor: string;
   /** Trend text color (badge-like indicator next to subtitle) */
   trendColor: string;
+  /** Trend color when the value went down; falls back to trendColor (colored cards keep white). */
+  trendDownColor?: string;
   /** Secondary text color (subtitle/helper) */
   subtextColor: string;
   /** Accent background for icon chip (used in Icon variant) */
@@ -48,9 +50,10 @@ export const cardThemes: Record<CardTheme, CardThemeConfig> = {
     valueColor: "text-fg-black",
     titleColor: "text-fg-grey-700",
     trendColor: "text-fg-green-500",
+    trendDownColor: "text-fg-red",
     subtextColor: "text-fg-grey-700",
-    iconChipBg: "bg-fg-violet-100",
-    iconChipText: "text-fg-violet",
+    iconChipBg: "bg-accent-soft",
+    iconChipText: "text-accent",
     avatarBorder: "border-white",
   },
   black: {
@@ -179,14 +182,15 @@ export function CardTrend({
   theme: CardThemeConfig;
 }) {
   if (!trend && !subtitle) return null;
+  const trendColor = direction === "down" ? (theme.trendDownColor ?? theme.trendColor) : theme.trendColor;
   return (
     <div className="self-stretch inline-flex justify-start items-center gap-1 relative z-10">
       {trend && (
         <div className="flex items-center gap-0.5">
-          <span className={cn("text-sm font-medium leading-5 tracking-fg", theme.trendColor)}>
+          <span className={cn("text-sm font-medium leading-5 tracking-fg", trendColor)}>
             {trend}
           </span>
-          <span className={theme.trendColor}>
+          <span className={trendColor}>
             {direction === "up" ? <AltArrowUpLinear size={16} /> : <AltArrowDownLinear size={16} />}
           </span>
         </div>
@@ -211,7 +215,7 @@ export function CardTrend({
 export type CardBadgeVariant = "default" | "greyBg" | "solid" | "opacity" | "white";
 
 const badgeColorMap: Record<CardTheme, { solid: string; opacity: string; text: string }> = {
-  white: { solid: "bg-fg-violet", opacity: "bg-fg-violet/10", text: "text-fg-violet" },
+  white: { solid: "bg-accent", opacity: "bg-accent/10", text: "text-accent" },
   black: { solid: "bg-fg-black", opacity: "bg-fg-black/10", text: "text-fg-black" },
   purple: { solid: "bg-fg-violet", opacity: "bg-fg-violet/10", text: "text-fg-violet" },
   blue: { solid: "bg-fg-blue", opacity: "bg-fg-blue/10", text: "text-fg-blue" },
